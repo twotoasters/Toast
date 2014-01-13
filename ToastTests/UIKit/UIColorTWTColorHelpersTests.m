@@ -41,22 +41,6 @@
     XCTAssertEqualObjects(testColor, expected, @"Color created with integer hex was not created properly");
 }
 
-- (void)testTWTColorFromStringWithPound
-{
-    UIColor *expected = [UIColor redColor];
-    UIColor *testColor = [UIColor twt_colorWithHexString:@"#FF0000" alpha:1.0];
-    
-    XCTAssertEqualObjects(testColor, expected, @"Color created from string (#FFFFFF) was not created properly");
-}
-
-- (void)testTWTColorFromStringWithoutPound
-{
-    UIColor *expected = [UIColor redColor];
-    UIColor *testColor = [UIColor twt_colorWithHexString:@"FF0000" alpha:1.0];
-    
-    XCTAssertEqualObjects(testColor, expected, @"Color created from string (FFFFFF) was not created properly");
-}
-
 - (void)testTWTColorFromInvalidString
 {
     UIColor *notExpected = [UIColor redColor];
@@ -64,5 +48,28 @@
     
     XCTAssertNotEqualObjects(notExpected, testColor, @"The color somehow magically matched the color expected.");
 }
+
+
+- (void)testTWTColorFromString
+{
+    for (NSUInteger i = 0; i < 65536; ++i) {
+        BOOL includeOctothorpe = arc4random_uniform(2);
+        unsigned int red = arc4random_uniform(255);
+        unsigned int green = arc4random_uniform(255);
+        unsigned int blue = arc4random_uniform(255);
+        CGFloat alpha = (CGFloat)drand48();
+        BOOL upperCase = arc4random_uniform(2);
+
+        NSString *colorString = [NSString stringWithFormat:@"%@%02x%02x%02x", includeOctothorpe ? @"#" : @"", red, green, blue];
+        if (upperCase) {
+            colorString = colorString.uppercaseString;
+        }
+
+        UIColor *expectedColor = [UIColor colorWithRed:(CGFloat)red / 255.0 green:(CGFloat)green / 255.0 blue:(CGFloat)blue / 255.0 alpha:alpha];
+
+        XCTAssertEqualObjects(expectedColor, [UIColor twt_colorWithHexString:colorString alpha:alpha], @"Wrong color for string (%@)", colorString);
+    }
+}
+
 
 @end
