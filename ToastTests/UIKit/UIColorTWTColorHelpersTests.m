@@ -57,4 +57,12 @@
     XCTAssertEqualObjects(testColor, expected, @"Color created from string (FFFFFF) was not created properly");
 }
 
+- (void)testTWTColorFromInvalidString
+{
+    UIColor *notExpected = [UIColor redColor];
+    UIColor *testColor = [UIColor twt_colorWithHexString:@"RED IN THE LITTLE CODES" alpha:1.0];
+    
+    XCTAssertNotEqualObjects(notExpected, testColor, @"The color somehow magically matched the color expected.");
+}
+
 @end

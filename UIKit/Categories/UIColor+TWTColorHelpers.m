@@ -39,9 +39,10 @@
 + (UIColor *)twt_colorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha
 {
     static NSRegularExpression *regex = nil;
-    if (!regex) {
-        regex = [NSRegularExpression regularExpressionWithPattern:@"^#?[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]$" options:NSRegularExpressionCaseInsensitive error:NULL];
-    }
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        regex = [NSRegularExpression regularExpressionWithPattern:@"^#?[0-9a-f]{6}$" options:NSRegularExpressionCaseInsensitive error:NULL];
+    });
     NSAssert([regex matchesInString:hexString options:NSMatchingAnchored range:NSMakeRange(0, hexString.length)], @"Tried to parse a hex color that was invalid: %@ (must be of the form #ffffff or ffffff)", hexString);
     
     NSScanner *scanner = [NSScanner scannerWithString:hexString];
