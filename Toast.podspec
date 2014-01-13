@@ -5,9 +5,14 @@ Pod::Spec.new do |s|
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { "Two Toasters" => "general@twotoasters.com" }
   s.social_media_url = "http://twitter.com/twotoasters"
-  s.platform         = :ios, '6.0'
-  s.source           = { :git => "http://github.com/twotoasters/Toast.git", :tag => "0.0.1" }
+  s.platform         = :ios, '7.0'
+  s.source           = { :git => "https://github.com/twotoasters/Toast.git", :tag => "0.0.1" }
   s.requires_arc     = true
+
+  ## Subspec for Core files. Files that extend Foundation is an example
+  s.subspec 'Core' do |sp|
+    sp.source_files = "Core/*.{h,m}"
+  end
 
   ## Subspec for Files Related to UIKit
   s.subspec 'UIKit' do |sp|

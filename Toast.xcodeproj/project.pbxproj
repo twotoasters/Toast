@@ -20,6 +20,8 @@
 		A4D633E31883914600DA51CB /* TWTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D633E11883914600DA51CB /* TWTAppDelegate.m */; };
 		A4D633EA1883916A00DA51CB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A4D633E51883916A00DA51CB /* InfoPlist.strings */; };
 		A4D633EB1883916A00DA51CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D633E71883916A00DA51CB /* main.m */; };
+		A4D633EF18839EA900DA51CB /* TWTHighOrderFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D633EE18839EA900DA51CB /* TWTHighOrderFunctions.m */; };
+		A4D633F11883A1E100DA51CB /* TWTHighOrderFunctionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D633F01883A1E100DA51CB /* TWTHighOrderFunctionsTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,9 @@
 		A4D633E71883916A00DA51CB /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ExampleApplication/main.m; sourceTree = SOURCE_ROOT; };
 		A4D633E81883916A00DA51CB /* Toast-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Toast-Info.plist"; path = "ExampleApplication/Toast-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A4D633E91883916A00DA51CB /* Toast-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Toast-Prefix.pch"; path = "ExampleApplication/Toast-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		A4D633ED18839EA900DA51CB /* TWTHighOrderFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTHighOrderFunctions.h; sourceTree = "<group>"; };
+		A4D633EE18839EA900DA51CB /* TWTHighOrderFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTHighOrderFunctions.m; sourceTree = "<group>"; };
+		A4D633F01883A1E100DA51CB /* TWTHighOrderFunctionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTHighOrderFunctionsTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +167,8 @@
 		A4D633D618838DC900DA51CB /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A4D633ED18839EA900DA51CB /* TWTHighOrderFunctions.h */,
+				A4D633EE18839EA900DA51CB /* TWTHighOrderFunctions.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -186,6 +193,7 @@
 		A4D633DC18838EFD00DA51CB /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A4D633F01883A1E100DA51CB /* TWTHighOrderFunctionsTests.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -297,6 +305,7 @@
 			files = (
 				A4D633DA18838EE700DA51CB /* UIDevice+TWTSystemVersion.m in Sources */,
 				A4D633EB1883916A00DA51CB /* main.m in Sources */,
+				A4D633EF18839EA900DA51CB /* TWTHighOrderFunctions.m in Sources */,
 				A4D633E31883914600DA51CB /* TWTAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,6 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4D633F11883A1E100DA51CB /* TWTHighOrderFunctionsTests.m in Sources */,
 				A4D633DE18838FF400DA51CB /* UIDeviceTWTSystemVersionTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
