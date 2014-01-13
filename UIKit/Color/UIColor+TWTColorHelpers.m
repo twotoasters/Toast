@@ -46,16 +46,16 @@
     
     NSArray *matches = [regex matchesInString:hexString options:NSMatchingAnchored range:NSMakeRange(0, hexString.length)];
     BOOL hexStringValid = (0 < matches.count);
+
+    NSAssert(hexStringValid, @"Tried to parse a hex color that was invalid: %@ (must be of the form #ffffff or ffffff)", hexString);
+
     UIColor *color = nil;
-    
     if (hexStringValid) {
         NSScanner *scanner = [NSScanner scannerWithString:hexString];
         scanner.charactersToBeSkipped = [NSCharacterSet characterSetWithCharactersInString:@"#"];
         unsigned int hex;
         [scanner scanHexInt:&hex];
         color = [UIColor twt_colorWithHex:hex alpha:alpha];
-    } else {
-        color = nil;
     }
     
     return color;
