@@ -43,13 +43,22 @@
     dispatch_once(&onceToken, ^{
         regex = [NSRegularExpression regularExpressionWithPattern:@"^#?[0-9a-f]{6}$" options:NSRegularExpressionCaseInsensitive error:NULL];
     });
-    NSAssert([regex matchesInString:hexString options:NSMatchingAnchored range:NSMakeRange(0, hexString.length)], @"Tried to parse a hex color that was invalid: %@ (must be of the form #ffffff or ffffff)", hexString);
     
-    NSScanner *scanner = [NSScanner scannerWithString:hexString];
-    scanner.charactersToBeSkipped = [NSCharacterSet characterSetWithCharactersInString:@"#"];
-    unsigned int hex;
-    [scanner scanHexInt:&hex];
-    return [UIColor twt_colorWithHex:hex alpha:alpha];
+    NSArray *matches = [regex matchesInString:hexString options:NSMatchingAnchored range:NSMakeRange(0, hexString.length)];
+    BOOL hexStringValid = (0 < matches.count);
+    UIColor *color = nil;
+    
+    if (hexStringValid) {
+        NSScanner *scanner = [NSScanner scannerWithString:hexString];
+        scanner.charactersToBeSkipped = [NSCharacterSet characterSetWithCharactersInString:@"#"];
+        unsigned int hex;
+        [scanner scanHexInt:&hex];
+        color = [UIColor twt_colorWithHex:hex alpha:alpha];
+    } else {
+        color = nil;
+    }
+    
+    return color;
 }
 
 @end

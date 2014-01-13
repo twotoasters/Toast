@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
     sp.source_files = "UIKit/*.{h,m}"
 
     sp.subspec 'Color' do |csp|
-      csp.source_files = "UIKit/Color/*.{h,m}"
+      csp.source_files = "UIKit/Categories/UIColor+TWTColorHelpers.{h,m}"
     end
   end
 
