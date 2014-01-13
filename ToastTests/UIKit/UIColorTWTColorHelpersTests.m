@@ -83,10 +83,8 @@ static NSUInteger kTWTIterationCount = 65536;
 
 - (void)testTWTColorFromInvalidString
 {
-    UIColor *notExpected = [UIColor redColor];
-    UIColor *testColor = [UIColor twt_colorWithHexString:@"RED IN THE LITTLE CODES" alpha:1.0];
-    
-    XCTAssertNotEqualObjects(notExpected, testColor, @"The color somehow magically matched the color expected.");
+    XCTAssertThrowsSpecificNamed([UIColor twt_colorWithHexString:@"GREEN IN THE LITTLE CODES" alpha:1.0], NSException,
+                                NSInternalInconsistencyException, @"A color was created with an invalid string.");
 }
 
 
