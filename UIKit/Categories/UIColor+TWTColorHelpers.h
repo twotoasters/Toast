@@ -1,9 +1,9 @@
 //
-//  TWTHighOrderFunctionsTests.m
+//  UIColor+TWTColorHelpers.h
 //  Toast
 //
-//  Created by Josh Johnson on 1/12/14.
-//  Copyright (c) 2014 Two Toasters, LLC. All rights reserved.
+//  Created by Kevin Conner on 1/13/2014.
+//  Copyright (c) 2014 Two Toasters, LLC.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,26 +24,24 @@
 //  THE SOFTWARE.
 //
 
-#import <XCTest/XCTest.h>
-#import "TWTHighOrderFunctions.h"
+#import <UIKit/UIKit.h>
 
-@interface TWTHighOrderFunctionsTests : XCTestCase
+@interface UIColor (TWTColorHelpers)
 
-@end
+/**
+ @abstract Create a UIColor with a Hex value.  
+ @param hex An integer hex value to used to create a value.
+ @param alpha A CGFloat value to control the alpha of the color.
+ @return A new instance of a UIColor
+ */
++ (UIColor *)twt_colorWithHex:(uint32_t)hex alpha:(CGFloat)alpha;
 
-@implementation TWTHighOrderFunctionsTests
-
-- (void)testTWTSimpleMapMappedArray
-{
-    NSString *testString = @"Test";
-    NSArray *originalArray = @[ @"One", @"Two", @"Three" ];
-    NSString *expectedItem = [testString stringByAppendingString:originalArray[ 0 ]];
-    
-    NSArray *mappedArray = TWTSimpleMap(originalArray, ^id(NSString *item, BOOL *stop) {
-        return [testString stringByAppendingString:item];
-    });
-    
-    XCTAssertEqualObjects(mappedArray[ 0 ], expectedItem, @"Item was not mapped as expected");
-}
+/**
+ @abstract Create a UIColor with a Hex String.
+ @param hexString A hex string conforming to #FFFFFF or FFFFFF defining the color to build.
+ @param alpha A CGFloat value to control the alpha of the color.
+ @return A new instance of a UIColor
+ */
++ (UIColor *)twt_colorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha;
 
 @end

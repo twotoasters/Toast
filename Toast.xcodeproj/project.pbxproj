@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A455D79018844D82009EB4EA /* UIColor+TWTColorHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = A455D78F18844D82009EB4EA /* UIColor+TWTColorHelpers.m */; };
+		A455D79218844EEA009EB4EA /* UIColorTWTColorHelpersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A455D79118844EEA009EB4EA /* UIColorTWTColorHelpersTests.m */; };
 		A4D633991883164000DA51CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D633981883164000DA51CB /* Foundation.framework */; };
 		A4D6339B1883164000DA51CB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D6339A1883164000DA51CB /* CoreGraphics.framework */; };
 		A4D6339D1883164000DA51CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D6339C1883164000DA51CB /* UIKit.framework */; };
@@ -35,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A455D78E18844D82009EB4EA /* UIColor+TWTColorHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+TWTColorHelpers.h"; sourceTree = "<group>"; };
+		A455D78F18844D82009EB4EA /* UIColor+TWTColorHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+TWTColorHelpers.m"; sourceTree = "<group>"; };
+		A455D79118844EEA009EB4EA /* UIColorTWTColorHelpersTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColorTWTColorHelpersTests.m; sourceTree = "<group>"; };
 		A4D633951883164000DA51CB /* Toast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Toast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4D633981883164000DA51CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A4D6339A1883164000DA51CB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -178,6 +183,8 @@
 			children = (
 				A4D633D818838EE700DA51CB /* UIDevice+TWTSystemVersion.h */,
 				A4D633D918838EE700DA51CB /* UIDevice+TWTSystemVersion.m */,
+				A455D78E18844D82009EB4EA /* UIColor+TWTColorHelpers.h */,
+				A455D78F18844D82009EB4EA /* UIColor+TWTColorHelpers.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -186,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				A4D633DD18838FF400DA51CB /* UIDeviceTWTSystemVersionTests.m */,
+				A455D79118844EEA009EB4EA /* UIColorTWTColorHelpersTests.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -304,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4D633DA18838EE700DA51CB /* UIDevice+TWTSystemVersion.m in Sources */,
+				A455D79018844D82009EB4EA /* UIColor+TWTColorHelpers.m in Sources */,
 				A4D633EB1883916A00DA51CB /* main.m in Sources */,
 				A4D633EF18839EA900DA51CB /* TWTHighOrderFunctions.m in Sources */,
 				A4D633E31883914600DA51CB /* TWTAppDelegate.m in Sources */,
@@ -314,6 +323,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A455D79218844EEA009EB4EA /* UIColorTWTColorHelpersTests.m in Sources */,
 				A4D633F11883A1E100DA51CB /* TWTHighOrderFunctionsTests.m in Sources */,
 				A4D633DE18838FF400DA51CB /* UIDeviceTWTSystemVersionTests.m in Sources */,
 			);

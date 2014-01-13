@@ -1,8 +1,8 @@
 //
-//  TWTHighOrderFunctionsTests.m
+//  TWTColorHelpersTests.m
 //  Toast
 //
-//  Created by Josh Johnson on 1/12/14.
+//  Created by Josh Johnson on 1/13/14.
 //  Copyright (c) 2014 Two Toasters, LLC. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,25 +25,36 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "TWTHighOrderFunctions.h"
+#import "UIColor+TWTColorHelpers.h"
 
-@interface TWTHighOrderFunctionsTests : XCTestCase
+@interface UIColorTWTColorHelpersTests : XCTestCase
 
 @end
 
-@implementation TWTHighOrderFunctionsTests
+@implementation UIColorTWTColorHelpersTests
 
-- (void)testTWTSimpleMapMappedArray
+- (void)testTWTColorFromInteger
 {
-    NSString *testString = @"Test";
-    NSArray *originalArray = @[ @"One", @"Two", @"Three" ];
-    NSString *expectedItem = [testString stringByAppendingString:originalArray[ 0 ]];
+    UIColor *expected = [UIColor redColor];
+    UIColor *testColor = [UIColor twt_colorWithHex:0xFF0000 alpha:1.0];
     
-    NSArray *mappedArray = TWTSimpleMap(originalArray, ^id(NSString *item, BOOL *stop) {
-        return [testString stringByAppendingString:item];
-    });
+    XCTAssertEqualObjects(testColor, expected, @"Color created with integer hex was not created properly");
+}
+
+- (void)testTWTColorFromStringWithPound
+{
+    UIColor *expected = [UIColor redColor];
+    UIColor *testColor = [UIColor twt_colorWithHexString:@"#FF0000" alpha:1.0];
     
-    XCTAssertEqualObjects(mappedArray[ 0 ], expectedItem, @"Item was not mapped as expected");
+    XCTAssertEqualObjects(testColor, expected, @"Color created from string (#FFFFFF) was not created properly");
+}
+
+- (void)testTWTColorFromStringWithoutPound
+{
+    UIColor *expected = [UIColor redColor];
+    UIColor *testColor = [UIColor twt_colorWithHexString:@"FF0000" alpha:1.0];
+    
+    XCTAssertEqualObjects(testColor, expected, @"Color created from string (FFFFFF) was not created properly");
 }
 
 @end
