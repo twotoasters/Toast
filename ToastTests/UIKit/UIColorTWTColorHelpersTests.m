@@ -46,7 +46,7 @@
     UIColor *expected = [UIColor redColor];
     UIColor *testColor = [UIColor twt_colorWithHexString:@"#FF0000" alpha:1.0];
     
-    XCTAssertEqualObjects(testColor, expected, @"Color created from string (#FFFFFF) was not created properly");
+    XCTAssertEqualObjects(testColor, expected, @"Color created from string (#FF0000) was not created properly");
 }
 
 - (void)testTWTColorFromStringWithoutPound
@@ -54,7 +54,7 @@
     UIColor *expected = [UIColor redColor];
     UIColor *testColor = [UIColor twt_colorWithHexString:@"FF0000" alpha:1.0];
     
-    XCTAssertEqualObjects(testColor, expected, @"Color created from string (FFFFFF) was not created properly");
+    XCTAssertEqualObjects(testColor, expected, @"Color created from string (FF0000) was not created properly");
 }
 
 - (void)testTWTColorFromInvalidString
