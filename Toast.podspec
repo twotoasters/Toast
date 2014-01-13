@@ -17,6 +17,10 @@ Pod::Spec.new do |s|
   ## Subspec for Files Related to UIKit
   s.subspec 'UIKit' do |sp|
     sp.source_files = "UIKit/*.{h,m}"
+
+    sp.subspec 'Color' do |csp|
+      csp.source_files = "UIKit/Color/*.{h,m}"
+    end
   end
 
 end
