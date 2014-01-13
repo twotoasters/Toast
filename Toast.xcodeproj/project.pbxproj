@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4C351FBD188495F4009AD246 /* UIColor+TWTColorHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FB9188495F4009AD246 /* UIColor+TWTColorHelpers.m */; };
 		4C351FBE188495F4009AD246 /* UIDevice+TWTSystemVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FBC188495F4009AD246 /* UIDevice+TWTSystemVersion.m */; };
+		4C351FC118849803009AD246 /* TWTRandomizedTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FC018849803009AD246 /* TWTRandomizedTestCase.m */; };
 		A455D79218844EEA009EB4EA /* UIColorTWTColorHelpersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A455D79118844EEA009EB4EA /* UIColorTWTColorHelpersTests.m */; };
 		A4D633991883164000DA51CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D633981883164000DA51CB /* Foundation.framework */; };
 		A4D6339B1883164000DA51CB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D6339A1883164000DA51CB /* CoreGraphics.framework */; };
@@ -41,6 +42,8 @@
 		4C351FB9188495F4009AD246 /* UIColor+TWTColorHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+TWTColorHelpers.m"; sourceTree = "<group>"; };
 		4C351FBB188495F4009AD246 /* UIDevice+TWTSystemVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+TWTSystemVersion.h"; sourceTree = "<group>"; };
 		4C351FBC188495F4009AD246 /* UIDevice+TWTSystemVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+TWTSystemVersion.m"; sourceTree = "<group>"; };
+		4C351FBF18849803009AD246 /* TWTRandomizedTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTRandomizedTestCase.h; sourceTree = "<group>"; };
+		4C351FC018849803009AD246 /* TWTRandomizedTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTRandomizedTestCase.m; sourceTree = "<group>"; };
 		A455D79118844EEA009EB4EA /* UIColorTWTColorHelpersTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColorTWTColorHelpersTests.m; sourceTree = "<group>"; };
 		A4D633951883164000DA51CB /* Toast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Toast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4D633981883164000DA51CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -172,6 +175,8 @@
 		A4D633B71883164000DA51CB /* ToastTests */ = {
 			isa = PBXGroup;
 			children = (
+				4C351FBF18849803009AD246 /* TWTRandomizedTestCase.h */,
+				4C351FC018849803009AD246 /* TWTRandomizedTestCase.m */,
 				A4D633DC18838EFD00DA51CB /* Core */,
 				A4D633DB18838EF700DA51CB /* UIKit */,
 				A4D633B81883164000DA51CB /* Supporting Files */,
@@ -333,6 +338,7 @@
 			files = (
 				A455D79218844EEA009EB4EA /* UIColorTWTColorHelpersTests.m in Sources */,
 				A4D633F11883A1E100DA51CB /* TWTHighOrderFunctionsTests.m in Sources */,
+				4C351FC118849803009AD246 /* TWTRandomizedTestCase.m in Sources */,
 				A4D633DE18838FF400DA51CB /* UIDeviceTWTSystemVersionTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

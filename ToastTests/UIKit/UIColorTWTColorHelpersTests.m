@@ -25,20 +25,46 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "TWTRandomizedTestCase.h"
 #import "UIColor+TWTColorHelpers.h"
 
-@interface UIColorTWTColorHelpersTests : XCTestCase
+static NSUInteger kTWTIterationCount = 65536;
+
+@interface UIColorTWTColorHelpersTests : TWTRandomizedTestCase
 
 @end
 
+
 @implementation UIColorTWTColorHelpersTests
+
+- (UIColor *)getRandomColorWithRed:(unsigned *)redOut green:(unsigned *)greenOut blue:(unsigned *)blueOut alpha:(CGFloat *)alphaOut
+{
+    unsigned red = random() % 255;
+    unsigned green = random() % 255;
+    unsigned blue = random() % 255;
+    CGFloat alpha = (CGFloat)drand48();
+
+    if (redOut) *redOut = red;
+    if (greenOut) *greenOut = green;
+    if (blueOut) *blueOut = blue;
+    if (alphaOut) *alphaOut = alpha;
+
+    return [UIColor colorWithRed:(CGFloat)red / 255.0 green:(CGFloat)green / 255.0 blue:(CGFloat)blue / 255.0 alpha:alpha];
+}
+
 
 - (void)testTWTColorFromInteger
 {
-    UIColor *expected = [UIColor redColor];
-    UIColor *testColor = [UIColor twt_colorWithHex:0xFF0000 alpha:1.0];
-    
-    XCTAssertEqualObjects(testColor, expected, @"Color created with integer hex was not created properly");
+    for (NSUInteger i = 0; i < kTWTIterationCount; ++i) {
+        unsigned red, green, blue;
+        CGFloat alpha;
+        UIColor *expectedColor = [self getRandomColorWithRed:&red green:&green blue:&blue alpha:&alpha];
+
+        uint32_t integerValue = (red << 16) + (green << 8) + blue;
+        UIColor *actualColor = [UIColor twt_colorWithHex:integerValue alpha:alpha];
+
+        XCTAssertEqualObjects(actualColor, expectedColor, @"Color created with integer hex (0x%x) was not created properly", integerValue);
+    }
 }
 
 
@@ -53,22 +79,26 @@
 
 - (void)testTWTColorFromString
 {
-    for (NSUInteger i = 0; i < 65536; ++i) {
-        BOOL includeOctothorpe = arc4random_uniform(2);
-        unsigned int red = arc4random_uniform(255);
-        unsigned int green = arc4random_uniform(255);
-        unsigned int blue = arc4random_uniform(255);
-        CGFloat alpha = (CGFloat)drand48();
-        BOOL upperCase = arc4random_uniform(2);
+    for (NSUInteger i = 0; i < kTWTIterationCount; ++i) {
+        unsigned red, green, blue;
+        CGFloat alpha;
+        UIColor *expectedColor = [self getRandomColorWithRed:&red green:&green blue:&blue alpha:&alpha];
 
-        NSString *colorString = [NSString stringWithFormat:@"%@%02x%02x%02x", includeOctothorpe ? @"#" : @"", red, green, blue];
-        if (upperCase) {
-            colorString = colorString.uppercaseString;
-        }
+        NSString *lowercaseColorString = [NSString stringWithFormat:@"%02x%02x%02x", red, green, blue];
+        XCTAssertEqualObjects(expectedColor, [UIColor twt_colorWithHexString:lowercaseColorString alpha:alpha],
+                              @"Wrong color for string (%@)", lowercaseColorString);
 
-        UIColor *expectedColor = [UIColor colorWithRed:(CGFloat)red / 255.0 green:(CGFloat)green / 255.0 blue:(CGFloat)blue / 255.0 alpha:alpha];
+        NSString *lowercaseColorStringWithOctothorpe = [@"#" stringByAppendingString:lowercaseColorString];
+        XCTAssertEqualObjects(expectedColor, [UIColor twt_colorWithHexString:lowercaseColorStringWithOctothorpe alpha:alpha],
+                              @"Wrong color for string (%@)", lowercaseColorStringWithOctothorpe);
 
-        XCTAssertEqualObjects(expectedColor, [UIColor twt_colorWithHexString:colorString alpha:alpha], @"Wrong color for string (%@)", colorString);
+        NSString *uppercaseColorString = lowercaseColorString.uppercaseString;
+        XCTAssertEqualObjects(expectedColor, [UIColor twt_colorWithHexString:uppercaseColorString alpha:alpha],
+                              @"Wrong color for string (%@)", lowercaseColorString);
+
+        NSString *uppercaseColorStringWithOctothorpe = lowercaseColorStringWithOctothorpe.uppercaseString;
+        XCTAssertEqualObjects(expectedColor, [UIColor twt_colorWithHexString:uppercaseColorStringWithOctothorpe alpha:alpha],
+                              @"Wrong color for string (%@)", uppercaseColorStringWithOctothorpe);
     }
 }
 
