@@ -30,14 +30,14 @@ NSArray *TWTSimpleMap(id<NSObject, NSFastEnumeration> enumeration, TWTMapBlock b
     NSCParameterAssert(enumeration);
     NSCParameterAssert(block);
     
-    __block NSMutableArray *mappedArray = [NSMutableArray array];
+    __block NSMutableArray *mappedArray = [[NSMutableArray alloc] init];
     __block BOOL stop = NO;
     
     for (id object in enumeration) {
         id blockObject = block(object, &stop);
         
         // check if the enumeration should stop
-        if (stop == YES) {
+        if (stop) {
             break;
         }
         
