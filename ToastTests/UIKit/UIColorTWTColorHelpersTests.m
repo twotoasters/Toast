@@ -44,12 +44,12 @@ static NSUInteger kTWTIterationCount = 65536;
     unsigned blue = random() % 255;
     CGFloat alpha = (CGFloat)drand48();
 
-    if (redOut) *redOut = red;
-    if (greenOut) *greenOut = green;
-    if (blueOut) *blueOut = blue;
-    if (alphaOut) *alphaOut = alpha;
+    if (redOut) { *redOut = red; }
+    if (greenOut) { *greenOut = green; }
+    if (blueOut) { *blueOut = blue; }
+    if (alphaOut) { *alphaOut = alpha; }
 
-    return [UIColor colorWithRed:(CGFloat)red / 255.0 green:(CGFloat)green / 255.0 blue:(CGFloat)blue / 255.0 alpha:alpha];
+    return [UIColor colorWithRed:red / 255.0 green:green / 255.0 blue:blue / 255.0 alpha:alpha];
 }
 
 
@@ -62,6 +62,19 @@ static NSUInteger kTWTIterationCount = 65536;
 
         uint32_t integerValue = (red << 16) + (green << 8) + blue;
         UIColor *actualColor = [UIColor twt_colorWithHex:integerValue alpha:alpha];
+
+        XCTAssertEqualObjects(actualColor, expectedColor, @"Color created with integer hex (0x%x) was not created properly", integerValue);
+    }
+
+    // Edge cases (each component is either 0x00 or 0xFF)
+    for (NSUInteger i = 0; i < 8; ++i) {
+        unsigned red = ((i & 4) != 0) ? 0xff0000 : 0;
+        unsigned green = ((i & 2) != 0) ? 0x00ff00 : 0;
+        unsigned blue = ((i & 1) != 0) ? 0x0000ff : 0;
+
+        uint32_t integerValue = red + green + blue;
+        UIColor *expectedColor = [UIColor colorWithRed:red / 255.0 green:green / 255.0 blue:blue / 255.0 alpha:1.0];
+        UIColor *actualColor = [UIColor twt_colorWithHex:integerValue alpha:1.0];
 
         XCTAssertEqualObjects(actualColor, expectedColor, @"Color created with integer hex (0x%x) was not created properly", integerValue);
     }
