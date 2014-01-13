@@ -25,44 +25,92 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "TWTRandomizedTestCase.h"
 #import "UIColor+TWTColorHelpers.h"
 
-@interface UIColorTWTColorHelpersTests : XCTestCase
+static NSUInteger kTWTIterationCount = 65536;
+
+@interface UIColorTWTColorHelpersTests : TWTRandomizedTestCase
 
 @end
 
+
 @implementation UIColorTWTColorHelpersTests
+
+- (UIColor *)getRandomColorWithRed:(unsigned *)redOut green:(unsigned *)greenOut blue:(unsigned *)blueOut alpha:(CGFloat *)alphaOut
+{
+    unsigned red = random() % 255;
+    unsigned green = random() % 255;
+    unsigned blue = random() % 255;
+    CGFloat alpha = (CGFloat)drand48();
+
+    if (redOut) { *redOut = red; }
+    if (greenOut) { *greenOut = green; }
+    if (blueOut) { *blueOut = blue; }
+    if (alphaOut) { *alphaOut = alpha; }
+
+    return [UIColor colorWithRed:red / 255.0 green:green / 255.0 blue:blue / 255.0 alpha:alpha];
+}
+
 
 - (void)testTWTColorFromInteger
 {
-    UIColor *expected = [UIColor redColor];
-    UIColor *testColor = [UIColor twt_colorWithHex:0xFF0000 alpha:1.0];
-    
-    XCTAssertEqualObjects(testColor, expected, @"Color created with integer hex was not created properly");
+    for (NSUInteger i = 0; i < kTWTIterationCount; ++i) {
+        unsigned red, green, blue;
+        CGFloat alpha;
+        UIColor *expectedColor = [self getRandomColorWithRed:&red green:&green blue:&blue alpha:&alpha];
+
+        uint32_t integerValue = (red << 16) + (green << 8) + blue;
+        UIColor *actualColor = [UIColor twt_colorWithHex:integerValue alpha:alpha];
+
+        XCTAssertEqualObjects(actualColor, expectedColor, @"Color created with integer hex (0x%x) was not created properly", integerValue);
+    }
+
+    // Edge cases (each component is either 0x00 or 0xFF)
+    for (NSUInteger i = 0; i < 8; ++i) {
+        unsigned red = ((i & 4) != 0) ? 0xff0000 : 0;
+        unsigned green = ((i & 2) != 0) ? 0x00ff00 : 0;
+        unsigned blue = ((i & 1) != 0) ? 0x0000ff : 0;
+
+        uint32_t integerValue = red + green + blue;
+        UIColor *expectedColor = [UIColor colorWithRed:red / 255.0 green:green / 255.0 blue:blue / 255.0 alpha:1.0];
+        UIColor *actualColor = [UIColor twt_colorWithHex:integerValue alpha:1.0];
+
+        XCTAssertEqualObjects(actualColor, expectedColor, @"Color created with integer hex (0x%x) was not created properly", integerValue);
+    }
 }
 
-- (void)testTWTColorFromStringWithPound
-{
-    UIColor *expected = [UIColor redColor];
-    UIColor *testColor = [UIColor twt_colorWithHexString:@"#FF0000" alpha:1.0];
-    
-    XCTAssertEqualObjects(testColor, expected, @"Color created from string (#FF0000) was not created properly");
-}
-
-- (void)testTWTColorFromStringWithoutPound
-{
-    UIColor *expected = [UIColor redColor];
-    UIColor *testColor = [UIColor twt_colorWithHexString:@"FF0000" alpha:1.0];
-    
-    XCTAssertEqualObjects(testColor, expected, @"Color created from string (FF0000) was not created properly");
-}
 
 - (void)testTWTColorFromInvalidString
 {
-    UIColor *notExpected = [UIColor redColor];
-    UIColor *testColor = [UIColor twt_colorWithHexString:@"RED IN THE LITTLE CODES" alpha:1.0];
-    
-    XCTAssertNotEqualObjects(notExpected, testColor, @"The color somehow magically matched the color expected.");
+    XCTAssertThrowsSpecificNamed([UIColor twt_colorWithHexString:@"GREEN IN THE LITTLE CODES" alpha:1.0], NSException,
+                                NSInternalInconsistencyException, @"A color was created with an invalid string.");
+}
+
+
+- (void)testTWTColorFromString
+{
+    for (NSUInteger i = 0; i < kTWTIterationCount; ++i) {
+        unsigned red, green, blue;
+        CGFloat alpha;
+        UIColor *expectedColor = [self getRandomColorWithRed:&red green:&green blue:&blue alpha:&alpha];
+
+        NSString *lowercaseColorString = [NSString stringWithFormat:@"%02x%02x%02x", red, green, blue];
+        XCTAssertEqualObjects(expectedColor, [UIColor twt_colorWithHexString:lowercaseColorString alpha:alpha],
+                              @"Wrong color for string (%@)", lowercaseColorString);
+
+        NSString *lowercaseColorStringWithOctothorpe = [@"#" stringByAppendingString:lowercaseColorString];
+        XCTAssertEqualObjects(expectedColor, [UIColor twt_colorWithHexString:lowercaseColorStringWithOctothorpe alpha:alpha],
+                              @"Wrong color for string (%@)", lowercaseColorStringWithOctothorpe);
+
+        NSString *uppercaseColorString = lowercaseColorString.uppercaseString;
+        XCTAssertEqualObjects(expectedColor, [UIColor twt_colorWithHexString:uppercaseColorString alpha:alpha],
+                              @"Wrong color for string (%@)", lowercaseColorString);
+
+        NSString *uppercaseColorStringWithOctothorpe = lowercaseColorStringWithOctothorpe.uppercaseString;
+        XCTAssertEqualObjects(expectedColor, [UIColor twt_colorWithHexString:uppercaseColorStringWithOctothorpe alpha:alpha],
+                              @"Wrong color for string (%@)", uppercaseColorStringWithOctothorpe);
+    }
 }
 
 @end
