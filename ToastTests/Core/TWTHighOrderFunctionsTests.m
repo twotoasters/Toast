@@ -35,18 +35,41 @@
 
 @implementation TWTHighOrderFunctionsTests
 
+- (NSArray *)randomArrayWithGeneratorBlock:(id (^)(void))generatorBlock
+{
+    NSParameterAssert(generatorBlock);
+    
+    NSUInteger count = random() % 1024;
+    NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:count];
+    for (NSUInteger i = 0; i < count; ++i) {
+        [array addObject:generatorBlock()];
+    }
+    
+    return array;
+}
+
 - (void)testTWTSimpleMapMappedArray
 {
-    NSString *randomString = UMKRandomAlphanumericString();
-    NSArray *originalArray = @[ randomString, randomString ];
-    NSString *expectedItem = [randomString stringByAppendingString:randomString];
+    NSArray *randomStrings = [self randomArrayWithGeneratorBlock:^id{
+        return UMKRandomUnicodeString();
+    }];
     
-    NSArray *mappedArray = TWTSimpleMap(originalArray, ^id(NSString *item) {
-        return [randomString stringByAppendingString:item];
+    NSMutableArray *randomNumbers = [[NSMutableArray alloc] initWithCapacity:randomStrings.count];
+    NSArray *mappedArray = TWTSimpleMap(randomStrings, ^id(id item) {
+        NSNumber *randomNumber = @(random());
+        [randomNumbers addObject:randomNumber];
+        return [item length] > 30 ? [NSString stringWithFormat:@"%@%@", item, randomNumber] : nil;
     });
     
-    for (NSString *stringItem in mappedArray) {
-        XCTAssertEqualObjects(expectedItem, stringItem, @"Mapped Item does not match generated string [%@]", randomString);
+    XCTAssertNotNil(mappedArray, @"Returned array is nil");
+    XCTAssertEqual(mappedArray.count, randomStrings.count, @"Returned array is the wrong size");
+    
+    NSUInteger count = mappedArray.count;
+    for (NSUInteger i = 0; i < count; ++i) {
+        id actualValue = mappedArray[i];
+        id randomString = randomStrings[i];
+        id expectedValue = [randomString length] > 30 ? [NSString stringWithFormat:@"%@%@", randomString, randomNumbers[i]] : [NSNull null];
+        XCTAssertEqualObjects(expectedValue, mappedArray[i], @"Mapped value (%@) is incorrect for index %ld", actualValue, (unsigned long)i);
     }
 }
 
