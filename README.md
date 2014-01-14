@@ -44,3 +44,11 @@ A subspec containing our humble extensions to UIKit.
 
 * **`UIActionSheet+TWTBlocks`** establishes a block-based means of handling UIActionSheets.
 * **`UIAlertView+TWTBlocks`** does the same for UIAlertView, enabling easy block-based handling of UIAlertView input.
+
+### Credits
+
+Toast was created by developers at Two Toasters(@twotoasters) in order to collect our reusable code into one common repository, easily accessible via Cocoapods subspecs.
+
+### License
+
+All code in Toast is released under the MIT License. See the LICENSE file for more info.
