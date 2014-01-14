@@ -10,6 +10,10 @@ A repo for small utilities we use in Cocoa Development. Conveniently broken up i
 
 A subspec chock full of Foundation extensions and similar utilities.
 
+##### TWTHighOrderFunctions
+
+* **`TWTSimpleMap(id<NSObject, NSFastEnumeration> enumeration, TWTMapBlock block)`** provides a simple implementation of Map. Map recieves an enumeration of objects and applies the block to each item, returning the resulting array.
+
 #### UIKit
 
 `pod 'Toast/UIKit'`
@@ -20,23 +24,31 @@ A subspec containing our humble extensions to UIKit.
 
 `pod 'Toast/UIKit/AutoLayout'`
 
-[TODO]
+* **`UIView+TWTConvenientConstraintAddition`** provides methods for adding constraints for several visual format strings with a single message send.
 
 ##### Color
 
 `pod 'Toast/UIKit/Color'`
 
-[TODO]
+* **`UIColor+TWTColorHelpers`** is a colleciton of convenience methods for creating UIColors, e.g. from hexadecimal values.
 
 ##### Device
 
 `pod 'Toast/UIKit/Device'`
 
-[TODO]
-
+* **`UIDevice+TWTSystemVersion`** provides convenient methods of retrieving and comparing iOS version information in the form of NSIntegers.
 
 ##### Blocks
 
 `pod 'Toast/UIKit/Blocks'`
 
-[TODO]
+* **`UIActionSheet+TWTBlocks`** establishes a block-based means of handling UIActionSheets.
+* **`UIAlertView+TWTBlocks`** does the same for UIAlertView, enabling easy block-based handling of UIAlertView input.
+
+### Credits
+
+Toast was created by developers at Two Toasters(@twotoasters) in order to collect our reusable code into one common repository, easily accessible via Cocoapods subspecs.
+
+### License
+
+All code in Toast is released under the MIT License. See the LICENSE file for more info.
