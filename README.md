@@ -36,7 +36,7 @@ A subspec containing our humble extensions to UIKit.
 
 `pod 'Toast/UIKit/Device'`
 
-* **`UIDevice+TWTSystemVersion`** provides convenient methods of retrieving and comparing iOS version information in the form of NSIntegers.
+* **`UIDevice+TWTSystemVersion`** provides convenient methods of retrieving and comparing iOS version information in a more performant way, using NSIntegers rather than string comparison.
 
 ##### Blocks
 
