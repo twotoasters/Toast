@@ -25,9 +25,11 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <UMKTestUtilities.h>
 #import "TWTHighOrderFunctions.h"
+#import "TWTRandomizedTestCase.h"
 
-@interface TWTHighOrderFunctionsTests : XCTestCase
+@interface TWTHighOrderFunctionsTests : TWTRandomizedTestCase
 
 @end
 
@@ -35,15 +37,17 @@
 
 - (void)testTWTSimpleMapMappedArray
 {
-    NSString *testString = @"Test";
-    NSArray *originalArray = @[ @"One", @"Two", @"Three" ];
-    NSString *expectedItem = [testString stringByAppendingString:originalArray[ 0 ]];
+    NSString *randomString = UMKRandomAlphanumericString();
+    NSArray *originalArray = @[ randomString, randomString ];
+    NSString *expectedItem = [randomString stringByAppendingString:randomString];
     
-    NSArray *mappedArray = TWTSimpleMap(originalArray, ^id(NSString *item, BOOL *stop) {
-        return [testString stringByAppendingString:item];
+    NSArray *mappedArray = TWTSimpleMap(originalArray, ^id(NSString *item) {
+        return [randomString stringByAppendingString:item];
     });
     
-    XCTAssertEqualObjects(mappedArray[ 0 ], expectedItem, @"Item was not mapped as expected");
+    for (NSString *stringItem in mappedArray) {
+        XCTAssertEqualObjects(expectedItem, stringItem, @"Mapped Item does not match generated string [%@]", randomString);
+    }
 }
 
 @end

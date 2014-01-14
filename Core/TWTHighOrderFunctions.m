@@ -30,23 +30,13 @@ NSArray *TWTSimpleMap(id<NSObject, NSFastEnumeration> enumeration, TWTMapBlock b
     NSCParameterAssert(enumeration);
     NSCParameterAssert(block);
     
-    __block NSMutableArray *mappedArray = [[NSMutableArray alloc] init];
-    __block BOOL stop = NO;
+    NSMutableArray *mappedArray = [[NSMutableArray alloc] init];
     
     for (id object in enumeration) {
-        id blockObject = block(object, &stop);
-        
-        // check if the enumeration should stop
-        if (stop) {
-            break;
-        }
-        
-        // if there is a block object add it to the array
-        if (blockObject) {
-            [mappedArray addObject:blockObject];
-        }       
+        id blockObject = block(object);
+        [mappedArray addObject:blockObject ? blockObject : [NSNull null]];
     }
     
-	return [NSArray arrayWithArray:mappedArray];
+	return [mappedArray copy];
     
 }
