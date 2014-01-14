@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name             = "Toast"
+  s.name             = "TWTToast"
   s.version          = "0.1"
   s.summary          = "Tools and Utilities for Cocoa Development"
   s.homepage         = "https://github.com/twotoasters/Toast"
