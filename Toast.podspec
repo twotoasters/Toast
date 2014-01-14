@@ -1,12 +1,12 @@
 Pod::Spec.new do |s|
   s.name             = "Toast"
-  s.version          = "0.0.1"
+  s.version          = "0.1"
   s.summary          = "Tools and Utilities for Cocoa Development"
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { "Two Toasters" => "general@twotoasters.com" }
   s.social_media_url = "http://twitter.com/twotoasters"
   s.platform         = :ios, '7.0'
-  s.source           = { :git => "https://github.com/twotoasters/Toast.git", :tag => "0.0.1" }
+  s.source           = { :git => "https://github.com/twotoasters/Toast.git", :tag => "0.1" }
   s.requires_arc     = true
 
   ## Subspec for Core files. Files that extend Foundation is an example
