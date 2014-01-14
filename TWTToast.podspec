@@ -1,7 +1,8 @@
 Pod::Spec.new do |s|
-  s.name             = "Toast"
+  s.name             = "TWTToast"
   s.version          = "0.1"
   s.summary          = "Tools and Utilities for Cocoa Development"
+  s.homepage         = "https://github.com/twotoasters/Toast"
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { "Two Toasters" => "general@twotoasters.com" }
   s.social_media_url = "http://twitter.com/twotoasters"
@@ -11,12 +12,12 @@ Pod::Spec.new do |s|
 
   ## Subspec for Core files. Files that extend Foundation is an example
   s.subspec 'Core' do |sp|
-    sp.source_files = "Core/*.{h,m}"
+    sp.source_files = "Core/**/*.{h,m}"
   end
 
   ## Subspec for Files Related to UIKit
   s.subspec 'UIKit' do |sp|
-    sp.source_files = "UIKit/*.{h,m}"
+    sp.source_files = "UIKit/**/*.{h,m}"
 
     sp.subspec 'AutoLayout' do |ss|
       ss.source_files = "UIKit/Auto Layout/*.{h,m}"
