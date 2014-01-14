@@ -25,25 +25,52 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <UMKTestUtilities.h>
 #import "TWTHighOrderFunctions.h"
+#import "TWTRandomizedTestCase.h"
 
-@interface TWTHighOrderFunctionsTests : XCTestCase
+@interface TWTHighOrderFunctionsTests : TWTRandomizedTestCase
 
 @end
 
 @implementation TWTHighOrderFunctionsTests
 
+- (NSArray *)randomArrayWithGeneratorBlock:(id (^)(void))generatorBlock
+{
+    NSParameterAssert(generatorBlock);
+    
+    NSUInteger count = random() % 1024;
+    NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:count];
+    for (NSUInteger i = 0; i < count; ++i) {
+        [array addObject:generatorBlock()];
+    }
+    
+    return array;
+}
+
 - (void)testTWTSimpleMapMappedArray
 {
-    NSString *testString = @"Test";
-    NSArray *originalArray = @[ @"One", @"Two", @"Three" ];
-    NSString *expectedItem = [testString stringByAppendingString:originalArray[ 0 ]];
+    NSArray *randomStrings = [self randomArrayWithGeneratorBlock:^id{
+        return UMKRandomUnicodeString();
+    }];
     
-    NSArray *mappedArray = TWTSimpleMap(originalArray, ^id(NSString *item, BOOL *stop) {
-        return [testString stringByAppendingString:item];
+    NSMutableArray *randomNumbers = [[NSMutableArray alloc] initWithCapacity:randomStrings.count];
+    NSArray *mappedArray = TWTSimpleMap(randomStrings, ^id(id item) {
+        NSNumber *randomNumber = @(random());
+        [randomNumbers addObject:randomNumber];
+        return [item length] > 30 ? [NSString stringWithFormat:@"%@%@", item, randomNumber] : nil;
     });
     
-    XCTAssertEqualObjects(mappedArray[ 0 ], expectedItem, @"Item was not mapped as expected");
+    XCTAssertNotNil(mappedArray, @"Returned array is nil");
+    XCTAssertEqual(mappedArray.count, randomStrings.count, @"Returned array is the wrong size");
+    
+    NSUInteger count = mappedArray.count;
+    for (NSUInteger i = 0; i < count; ++i) {
+        id actualValue = mappedArray[i];
+        id randomString = randomStrings[i];
+        id expectedValue = [randomString length] > 30 ? [NSString stringWithFormat:@"%@%@", randomString, randomNumbers[i]] : [NSNull null];
+        XCTAssertEqualObjects(expectedValue, mappedArray[i], @"Mapped value (%@) is incorrect for index %ld", actualValue, (unsigned long)i);
+    }
 }
 
 @end
