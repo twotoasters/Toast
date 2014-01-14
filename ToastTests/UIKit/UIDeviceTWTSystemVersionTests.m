@@ -1,6 +1,6 @@
 //
 //  UIDeviceTWTSystemVersionTests.m
-//  SystemVersionTests
+//  Toast
 //
 //  Created by Prachi Gauriar on 12/3/2013.
 //  Copyright (c) 2013 Two Toasters, LLC.

@@ -1,9 +1,9 @@
 //
-//  TWTHighOrderFunctions.h
+//  UIView+TWTConvenientConstraintAddition.h
 //  Toast
 //
-//  Created by Josh Johnson on 1/12/14.
-//  Copyright (c) 2014 Two Toasters, LLC.
+//  Created by Prachi Gauriar on 12/12/2013.
+//  Copyright (c) 2013 Two Toasters, LLC.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,12 +24,13 @@
 //  THE SOFTWARE.
 //
 
-typedef id (^TWTMapBlock)(id item);
+#import <UIKit/UIKit.h>
 
-/**
- @abstract Simple Implementation of Map. Map recieves an enumeration of objects and applies the block to each item, returning the resulting array.
- @param enumeration The original enumaratable object to apply the block to.
- @param block The block to apply to each item. The return object from this item is added to the resulting array.
- @result NSArray of the resulting enumeration.
- */
-extern NSArray *TWTSimpleMap(id<NSObject, NSFastEnumeration> enumeration, TWTMapBlock block);
+@interface UIView (TWTConvenientConstraintAddition)
+
+- (void)twt_addConstraintsWithVisualFormatStrings:(NSArray *)formatStrings views:(NSDictionary *)views;
+- (void)twt_addConstraintsWithVisualFormatStrings:(NSArray *)formatStrings metrics:(NSDictionary *)metrics views:(NSDictionary *)views;
+- (void)twt_addConstraintsWithVisualFormatStrings:(NSArray *)formatStrings options:(NSLayoutFormatOptions)options
+                                          metrics:(NSDictionary *)metrics views:(NSDictionary *)views;
+
+@end
