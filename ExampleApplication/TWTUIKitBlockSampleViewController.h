@@ -1,8 +1,8 @@
 //
-//  TWTAppDelegate.m
+//  TWTUIKitBlockSampleViewController.h
 //  Toast
 //
-//  Created by Josh Johnson on 1/12/14.
+//  Created by Josh Johnson on 1/13/14.
 //  Copyright (c) 2014 Two Toasters, LLC.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,19 +24,8 @@
 //  THE SOFTWARE.
 //
 
-#import "TWTAppDelegate.h"
-#import "TWTSampleViewController.h"
+#import <UIKit/UIKit.h>
 
-@implementation TWTAppDelegate
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[TWTSampleViewController alloc] initWithStyle:UITableViewStylePlain]];
-    self.window.rootViewController = navigationController;
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-    return YES;
-}
+@interface TWTUIKitBlockSampleViewController : UIViewController
 
 @end
