@@ -14,7 +14,7 @@ A subspec chock full of Foundation extensions and similar utilities.
 
 `pod 'Toast/UIKit'`
 
-If it enhances UIKit, it lives here.
+A subspec containing our humble extensions to UIKit.
 
 ##### AutoLayout
 
