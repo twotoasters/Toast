@@ -30,7 +30,7 @@ A subspec containing our humble extensions to UIKit.
 
 `pod 'Toast/UIKit/Color'`
 
-* **`UIColor+TWTColorHelpers`** is a colleciton of convenience methods for creating UIColors, e.g. from hexadecimal values.
+* **`UIColor+TWTColorHelpers`** is a collection of convenience methods for creating UIColors, e.g. from hexadecimal values.
 
 ##### Device
 
