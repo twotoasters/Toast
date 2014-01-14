@@ -27,6 +27,9 @@
 		A4D633EB1883916A00DA51CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D633E71883916A00DA51CB /* main.m */; };
 		A4D633EF18839EA900DA51CB /* TWTHighOrderFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D633EE18839EA900DA51CB /* TWTHighOrderFunctions.m */; };
 		A4D633F11883A1E100DA51CB /* TWTHighOrderFunctionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D633F01883A1E100DA51CB /* TWTHighOrderFunctionsTests.m */; };
+		A4DF78E71884EF0800E77FBE /* TWTSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DF78E61884EF0800E77FBE /* TWTSampleViewController.m */; };
+		A4DF78ED1884F30000E77FBE /* ToastExamples.plist in Resources */ = {isa = PBXBuildFile; fileRef = A4DF78EC1884F30000E77FBE /* ToastExamples.plist */; };
+		A4DF78F01884F37900E77FBE /* TWTUIKitBlockSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DF78EF1884F37900E77FBE /* TWTUIKitBlockSampleViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +73,11 @@
 		A4D633ED18839EA900DA51CB /* TWTHighOrderFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTHighOrderFunctions.h; sourceTree = "<group>"; };
 		A4D633EE18839EA900DA51CB /* TWTHighOrderFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTHighOrderFunctions.m; sourceTree = "<group>"; };
 		A4D633F01883A1E100DA51CB /* TWTHighOrderFunctionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTHighOrderFunctionsTests.m; sourceTree = "<group>"; };
+		A4DF78E51884EF0800E77FBE /* TWTSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTSampleViewController.h; sourceTree = "<group>"; };
+		A4DF78E61884EF0800E77FBE /* TWTSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTSampleViewController.m; sourceTree = "<group>"; };
+		A4DF78EC1884F30000E77FBE /* ToastExamples.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ToastExamples.plist; sourceTree = "<group>"; };
+		A4DF78EE1884F37900E77FBE /* TWTUIKitBlockSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTUIKitBlockSampleViewController.h; sourceTree = "<group>"; };
+		A4DF78EF1884F37900E77FBE /* TWTUIKitBlockSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTUIKitBlockSampleViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,11 +180,14 @@
 			children = (
 				A4D633E01883914600DA51CB /* TWTAppDelegate.h */,
 				A4D633E11883914600DA51CB /* TWTAppDelegate.m */,
+				A4DF78EC1884F30000E77FBE /* ToastExamples.plist */,
+				A4DF78E51884EF0800E77FBE /* TWTSampleViewController.h */,
+				A4DF78E61884EF0800E77FBE /* TWTSampleViewController.m */,
+				A4DF78F11884FAEA00E77FBE /* Sample ViewControllers */,
 				A4D633DF1883914600DA51CB /* Images.xcassets */,
 				A4D6339F1883164000DA51CB /* Supporting Files */,
 			);
-			name = ExampleApplication;
-			path = Toast;
+			path = ExampleApplication;
 			sourceTree = "<group>";
 		};
 		A4D6339F1883164000DA51CB /* Supporting Files */ = {
@@ -245,6 +256,15 @@
 			name = en.lproj;
 			path = ExampleApplication/en.lproj;
 			sourceTree = SOURCE_ROOT;
+		};
+		A4DF78F11884FAEA00E77FBE /* Sample ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A4DF78EE1884F37900E77FBE /* TWTUIKitBlockSampleViewController.h */,
+				A4DF78EF1884F37900E77FBE /* TWTUIKitBlockSampleViewController.m */,
+			);
+			name = "Sample ViewControllers";
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -322,6 +342,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4DF78ED1884F30000E77FBE /* ToastExamples.plist in Resources */,
 				A4D633E21883914600DA51CB /* Images.xcassets in Resources */,
 				A4D633EA1883916A00DA51CB /* InfoPlist.strings in Resources */,
 			);
@@ -345,7 +366,9 @@
 				A4D633EB1883916A00DA51CB /* main.m in Sources */,
 				4C351FBD188495F4009AD246 /* UIColor+TWTColorHelpers.m in Sources */,
 				4C351FBE188495F4009AD246 /* UIDevice+TWTSystemVersion.m in Sources */,
+				A4DF78F01884F37900E77FBE /* TWTUIKitBlockSampleViewController.m in Sources */,
 				A4D633EF18839EA900DA51CB /* TWTHighOrderFunctions.m in Sources */,
+				A4DF78E71884EF0800E77FBE /* TWTSampleViewController.m in Sources */,
 				4C55548A1884CDE700B2B24C /* UIAlertView+TWTBlocks.m in Sources */,
 				A4D633E31883914600DA51CB /* TWTAppDelegate.m in Sources */,
 				4C5554891884CDE700B2B24C /* UIActionSheet+TWTBlocks.m in Sources */,

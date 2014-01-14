@@ -1,10 +1,9 @@
 //
-//  UIActionSheet+TWTBlocks.h
+//  TWTSampleViewController.h
 //  Toast
 //
-//  Based on SXYAlertView, created by Jeremy Ellison on 2/9/12.
-//  Created by Andrew Hershberger on 6 February 2013
-//  Copyright (c) 2013 Two Toasters, LLC. All rights reserved.
+//  Created by Josh Johnson on 1/12/14.
+//  Copyright (c) 2014 Two Toasters, LLC.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -27,10 +26,6 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^TWTActionSheetBlock)(UIActionSheet *actionSheet, NSInteger buttonIndex);
-
-@interface UIActionSheet (TWTBlocks) <UIActionSheetDelegate>
-
-@property (nonatomic, copy, getter = twt_tapHandler, setter = twt_setTapHandler:) TWTActionSheetBlock twt_tapHandler;
+@interface TWTSampleViewController : UITableViewController
 
 @end

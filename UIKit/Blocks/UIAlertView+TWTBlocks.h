@@ -1,6 +1,6 @@
 //
 //  UIAlertView+TWTBlocks.h
-//  Two Toasters
+//  Toast
 //
 //  Based on SXYAlertView, created by Jeremy Ellison on 2/9/12.
 //  Created by Andrew Hershberger on 6 February 2013

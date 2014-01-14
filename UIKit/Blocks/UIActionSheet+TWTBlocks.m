@@ -1,6 +1,6 @@
 //
 //  UIActionSheet+TWTBlocks.m
-//  Two Toasters
+//  Toast
 //
 //  Based on SXYActionSheet, created by Jeremy Ellison on 2/9/12.
 //  Created by Andrew Hershberger on 6 February 2013
