@@ -1,6 +1,6 @@
 ## Toast
 
-A repo for small utilities we use in Cocoa Development. Conveniently broken up into small subspecs for a la carte use.
+A repo for small utilities we use in Cocoa Development. Conveniently broken up into small subspecs for à la carte use.
 
 ### Subspecs
 
