@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		38D001530B13452CBE5DDB73 /* libPods-ToastTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A07E2E64D14C2EA63FBE64 /* libPods-ToastTests.a */; };
 		4C351FBD188495F4009AD246 /* UIColor+TWTColorHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FB9188495F4009AD246 /* UIColor+TWTColorHelpers.m */; };
 		4C351FBE188495F4009AD246 /* UIDevice+TWTSystemVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FBC188495F4009AD246 /* UIDevice+TWTSystemVersion.m */; };
 		4C351FC118849803009AD246 /* TWTRandomizedTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FC018849803009AD246 /* TWTRandomizedTestCase.m */; };
-		4C5554891884CDE700B2B24C /* UIActionSheet+TWTBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5554861884CDE700B2B24C /* UIActionSheet+TWTBlocks.m */; };
-		4C55548A1884CDE700B2B24C /* UIAlertView+TWTBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5554881884CDE700B2B24C /* UIAlertView+TWTBlocks.m */; };
+		A43C03351884FEA9000F9753 /* TWTUIKitBlockSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A43C03341884FEA9000F9753 /* TWTUIKitBlockSampleViewController.m */; };
+		A43C03381884FEB6000F9753 /* TWTSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A43C03371884FEB6000F9753 /* TWTSampleViewController.m */; };
+		A43C033A1884FEC2000F9753 /* ToastExamples.plist in Resources */ = {isa = PBXBuildFile; fileRef = A43C03391884FEC2000F9753 /* ToastExamples.plist */; };
+		A43C03401884FEF1000F9753 /* UIActionSheet+TWTBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = A43C033D1884FEF1000F9753 /* UIActionSheet+TWTBlocks.m */; };
+		A43C03411884FEF1000F9753 /* UIAlertView+TWTBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = A43C033F1884FEF1000F9753 /* UIAlertView+TWTBlocks.m */; };
 		A455D79218844EEA009EB4EA /* UIColorTWTColorHelpersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A455D79118844EEA009EB4EA /* UIColorTWTColorHelpersTests.m */; };
 		A4D633991883164000DA51CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D633981883164000DA51CB /* Foundation.framework */; };
 		A4D6339B1883164000DA51CB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D6339A1883164000DA51CB /* CoreGraphics.framework */; };
@@ -27,9 +31,6 @@
 		A4D633EB1883916A00DA51CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D633E71883916A00DA51CB /* main.m */; };
 		A4D633EF18839EA900DA51CB /* TWTHighOrderFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D633EE18839EA900DA51CB /* TWTHighOrderFunctions.m */; };
 		A4D633F11883A1E100DA51CB /* TWTHighOrderFunctionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D633F01883A1E100DA51CB /* TWTHighOrderFunctionsTests.m */; };
-		A4DF78E71884EF0800E77FBE /* TWTSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DF78E61884EF0800E77FBE /* TWTSampleViewController.m */; };
-		A4DF78ED1884F30000E77FBE /* ToastExamples.plist in Resources */ = {isa = PBXBuildFile; fileRef = A4DF78EC1884F30000E77FBE /* ToastExamples.plist */; };
-		A4DF78F01884F37900E77FBE /* TWTUIKitBlockSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DF78EF1884F37900E77FBE /* TWTUIKitBlockSampleViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,16 +44,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		22A07E2E64D14C2EA63FBE64 /* libPods-ToastTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ToastTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C351FB8188495F4009AD246 /* UIColor+TWTColorHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+TWTColorHelpers.h"; sourceTree = "<group>"; };
 		4C351FB9188495F4009AD246 /* UIColor+TWTColorHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+TWTColorHelpers.m"; sourceTree = "<group>"; };
 		4C351FBB188495F4009AD246 /* UIDevice+TWTSystemVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+TWTSystemVersion.h"; sourceTree = "<group>"; };
 		4C351FBC188495F4009AD246 /* UIDevice+TWTSystemVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+TWTSystemVersion.m"; sourceTree = "<group>"; };
 		4C351FBF18849803009AD246 /* TWTRandomizedTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTRandomizedTestCase.h; sourceTree = "<group>"; };
 		4C351FC018849803009AD246 /* TWTRandomizedTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTRandomizedTestCase.m; sourceTree = "<group>"; };
-		4C5554851884CDE700B2B24C /* UIActionSheet+TWTBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+TWTBlocks.h"; sourceTree = "<group>"; };
-		4C5554861884CDE700B2B24C /* UIActionSheet+TWTBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+TWTBlocks.m"; sourceTree = "<group>"; };
-		4C5554871884CDE700B2B24C /* UIAlertView+TWTBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+TWTBlocks.h"; sourceTree = "<group>"; };
-		4C5554881884CDE700B2B24C /* UIAlertView+TWTBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+TWTBlocks.m"; sourceTree = "<group>"; };
+		A43C03331884FEA9000F9753 /* TWTUIKitBlockSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTUIKitBlockSampleViewController.h; sourceTree = "<group>"; };
+		A43C03341884FEA9000F9753 /* TWTUIKitBlockSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTUIKitBlockSampleViewController.m; sourceTree = "<group>"; };
+		A43C03361884FEB6000F9753 /* TWTSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTSampleViewController.h; sourceTree = "<group>"; };
+		A43C03371884FEB6000F9753 /* TWTSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTSampleViewController.m; sourceTree = "<group>"; };
+		A43C03391884FEC2000F9753 /* ToastExamples.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ToastExamples.plist; sourceTree = "<group>"; };
+		A43C033C1884FEF1000F9753 /* UIActionSheet+TWTBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+TWTBlocks.h"; sourceTree = "<group>"; };
+		A43C033D1884FEF1000F9753 /* UIActionSheet+TWTBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+TWTBlocks.m"; sourceTree = "<group>"; };
+		A43C033E1884FEF1000F9753 /* UIAlertView+TWTBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+TWTBlocks.h"; sourceTree = "<group>"; };
+		A43C033F1884FEF1000F9753 /* UIAlertView+TWTBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+TWTBlocks.m"; sourceTree = "<group>"; };
 		A455D79118844EEA009EB4EA /* UIColorTWTColorHelpersTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColorTWTColorHelpersTests.m; sourceTree = "<group>"; };
 		A4D633951883164000DA51CB /* Toast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Toast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4D633981883164000DA51CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -73,11 +80,7 @@
 		A4D633ED18839EA900DA51CB /* TWTHighOrderFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTHighOrderFunctions.h; sourceTree = "<group>"; };
 		A4D633EE18839EA900DA51CB /* TWTHighOrderFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTHighOrderFunctions.m; sourceTree = "<group>"; };
 		A4D633F01883A1E100DA51CB /* TWTHighOrderFunctionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTHighOrderFunctionsTests.m; sourceTree = "<group>"; };
-		A4DF78E51884EF0800E77FBE /* TWTSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTSampleViewController.h; sourceTree = "<group>"; };
-		A4DF78E61884EF0800E77FBE /* TWTSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTSampleViewController.m; sourceTree = "<group>"; };
-		A4DF78EC1884F30000E77FBE /* ToastExamples.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ToastExamples.plist; sourceTree = "<group>"; };
-		A4DF78EE1884F37900E77FBE /* TWTUIKitBlockSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTUIKitBlockSampleViewController.h; sourceTree = "<group>"; };
-		A4DF78EF1884F37900E77FBE /* TWTUIKitBlockSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTUIKitBlockSampleViewController.m; sourceTree = "<group>"; };
+		BCA7BDBC837C4B16812ADD3A /* Pods-ToastTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToastTests.xcconfig"; path = "Pods/Pods-ToastTests.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +101,7 @@
 				A4D633B21883164000DA51CB /* XCTest.framework in Frameworks */,
 				A4D633B41883164000DA51CB /* UIKit.framework in Frameworks */,
 				A4D633B31883164000DA51CB /* Foundation.framework in Frameworks */,
+				38D001530B13452CBE5DDB73 /* libPods-ToastTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,7 +111,7 @@
 		4C351FB6188495F4009AD246 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				4C5554841884CDE700B2B24C /* Blocks */,
+				A43C033B1884FEE0000F9753 /* Blocks */,
 				4C351FB7188495F4009AD246 /* Color */,
 				4C351FBA188495F4009AD246 /* Device */,
 			);
@@ -132,13 +136,22 @@
 			path = Device;
 			sourceTree = "<group>";
 		};
-		4C5554841884CDE700B2B24C /* Blocks */ = {
+		A43C03321884FE7B000F9753 /* Sample ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				4C5554851884CDE700B2B24C /* UIActionSheet+TWTBlocks.h */,
-				4C5554861884CDE700B2B24C /* UIActionSheet+TWTBlocks.m */,
-				4C5554871884CDE700B2B24C /* UIAlertView+TWTBlocks.h */,
-				4C5554881884CDE700B2B24C /* UIAlertView+TWTBlocks.m */,
+				A43C03331884FEA9000F9753 /* TWTUIKitBlockSampleViewController.h */,
+				A43C03341884FEA9000F9753 /* TWTUIKitBlockSampleViewController.m */,
+			);
+			name = "Sample ViewControllers";
+			sourceTree = "<group>";
+		};
+		A43C033B1884FEE0000F9753 /* Blocks */ = {
+			isa = PBXGroup;
+			children = (
+				A43C033C1884FEF1000F9753 /* UIActionSheet+TWTBlocks.h */,
+				A43C033D1884FEF1000F9753 /* UIActionSheet+TWTBlocks.m */,
+				A43C033E1884FEF1000F9753 /* UIAlertView+TWTBlocks.h */,
+				A43C033F1884FEF1000F9753 /* UIAlertView+TWTBlocks.m */,
 			);
 			path = Blocks;
 			sourceTree = "<group>";
@@ -152,6 +165,7 @@
 				A4D633B71883164000DA51CB /* ToastTests */,
 				A4D633971883164000DA51CB /* Frameworks */,
 				A4D633961883164000DA51CB /* Products */,
+				BCA7BDBC837C4B16812ADD3A /* Pods-ToastTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -171,6 +185,7 @@
 				A4D6339A1883164000DA51CB /* CoreGraphics.framework */,
 				A4D6339C1883164000DA51CB /* UIKit.framework */,
 				A4D633B11883164000DA51CB /* XCTest.framework */,
+				22A07E2E64D14C2EA63FBE64 /* libPods-ToastTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -178,12 +193,12 @@
 		A4D6339E1883164000DA51CB /* ExampleApplication */ = {
 			isa = PBXGroup;
 			children = (
+				A43C03391884FEC2000F9753 /* ToastExamples.plist */,
 				A4D633E01883914600DA51CB /* TWTAppDelegate.h */,
 				A4D633E11883914600DA51CB /* TWTAppDelegate.m */,
-				A4DF78EC1884F30000E77FBE /* ToastExamples.plist */,
-				A4DF78E51884EF0800E77FBE /* TWTSampleViewController.h */,
-				A4DF78E61884EF0800E77FBE /* TWTSampleViewController.m */,
-				A4DF78F11884FAEA00E77FBE /* Sample ViewControllers */,
+				A43C03361884FEB6000F9753 /* TWTSampleViewController.h */,
+				A43C03371884FEB6000F9753 /* TWTSampleViewController.m */,
+				A43C03321884FE7B000F9753 /* Sample ViewControllers */,
 				A4D633DF1883914600DA51CB /* Images.xcassets */,
 				A4D6339F1883164000DA51CB /* Supporting Files */,
 			);
@@ -257,15 +272,6 @@
 			path = ExampleApplication/en.lproj;
 			sourceTree = SOURCE_ROOT;
 		};
-		A4DF78F11884FAEA00E77FBE /* Sample ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				A4DF78EE1884F37900E77FBE /* TWTUIKitBlockSampleViewController.h */,
-				A4DF78EF1884F37900E77FBE /* TWTUIKitBlockSampleViewController.m */,
-			);
-			name = "Sample ViewControllers";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -290,9 +296,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A4D633C41883164000DA51CB /* Build configuration list for PBXNativeTarget "ToastTests" */;
 			buildPhases = (
+				FD9BD339230C424285698D74 /* Check Pods Manifest.lock */,
 				A4D633AC1883164000DA51CB /* Sources */,
 				A4D633AD1883164000DA51CB /* Frameworks */,
 				A4D633AE1883164000DA51CB /* Resources */,
+				1FA0EC10D2BF493590C832A5 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -342,7 +350,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4DF78ED1884F30000E77FBE /* ToastExamples.plist in Resources */,
+				A43C033A1884FEC2000F9753 /* ToastExamples.plist in Resources */,
 				A4D633E21883914600DA51CB /* Images.xcassets in Resources */,
 				A4D633EA1883916A00DA51CB /* InfoPlist.strings in Resources */,
 			);
@@ -358,20 +366,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1FA0EC10D2BF493590C832A5 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-ToastTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD9BD339230C424285698D74 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A4D633911883164000DA51CB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				A4D633EB1883916A00DA51CB /* main.m in Sources */,
+				A43C03401884FEF1000F9753 /* UIActionSheet+TWTBlocks.m in Sources */,
 				4C351FBD188495F4009AD246 /* UIColor+TWTColorHelpers.m in Sources */,
+				A43C03381884FEB6000F9753 /* TWTSampleViewController.m in Sources */,
 				4C351FBE188495F4009AD246 /* UIDevice+TWTSystemVersion.m in Sources */,
-				A4DF78F01884F37900E77FBE /* TWTUIKitBlockSampleViewController.m in Sources */,
+				A43C03351884FEA9000F9753 /* TWTUIKitBlockSampleViewController.m in Sources */,
 				A4D633EF18839EA900DA51CB /* TWTHighOrderFunctions.m in Sources */,
-				A4DF78E71884EF0800E77FBE /* TWTSampleViewController.m in Sources */,
-				4C55548A1884CDE700B2B24C /* UIAlertView+TWTBlocks.m in Sources */,
 				A4D633E31883914600DA51CB /* TWTAppDelegate.m in Sources */,
-				4C5554891884CDE700B2B24C /* UIActionSheet+TWTBlocks.m in Sources */,
+				A43C03411884FEF1000F9753 /* UIAlertView+TWTBlocks.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +559,7 @@
 		};
 		A4D633C51883164000DA51CB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BCA7BDBC837C4B16812ADD3A /* Pods-ToastTests.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Toast.app/Toast";
@@ -541,6 +583,7 @@
 		};
 		A4D633C61883164000DA51CB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BCA7BDBC837C4B16812ADD3A /* Pods-ToastTests.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Toast.app/Toast";

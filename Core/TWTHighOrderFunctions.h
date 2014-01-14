@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-typedef id (^TWTMapBlock)(id item, BOOL *stop);
+typedef id (^TWTMapBlock)(id item);
 
 /**
  @abstract Simple Implementation of Map. Map recieves an enumeration of objects and applies the block to each item, returning the resulting array.
