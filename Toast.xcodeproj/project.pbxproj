@@ -11,6 +11,7 @@
 		4C351FBD188495F4009AD246 /* UIColor+TWTColorHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FB9188495F4009AD246 /* UIColor+TWTColorHelpers.m */; };
 		4C351FBE188495F4009AD246 /* UIDevice+TWTSystemVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FBC188495F4009AD246 /* UIDevice+TWTSystemVersion.m */; };
 		4C351FC118849803009AD246 /* TWTRandomizedTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FC018849803009AD246 /* TWTRandomizedTestCase.m */; };
+		A420E1431885023F0019E986 /* UIView+TWTConvenientConstraintAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = A420E1421885023F0019E986 /* UIView+TWTConvenientConstraintAddition.m */; };
 		A43C03351884FEA9000F9753 /* TWTUIKitBlockSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A43C03341884FEA9000F9753 /* TWTUIKitBlockSampleViewController.m */; };
 		A43C03381884FEB6000F9753 /* TWTSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A43C03371884FEB6000F9753 /* TWTSampleViewController.m */; };
 		A43C033A1884FEC2000F9753 /* ToastExamples.plist in Resources */ = {isa = PBXBuildFile; fileRef = A43C03391884FEC2000F9753 /* ToastExamples.plist */; };
@@ -51,6 +52,8 @@
 		4C351FBC188495F4009AD246 /* UIDevice+TWTSystemVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+TWTSystemVersion.m"; sourceTree = "<group>"; };
 		4C351FBF18849803009AD246 /* TWTRandomizedTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTRandomizedTestCase.h; sourceTree = "<group>"; };
 		4C351FC018849803009AD246 /* TWTRandomizedTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTRandomizedTestCase.m; sourceTree = "<group>"; };
+		A420E1411885023F0019E986 /* UIView+TWTConvenientConstraintAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TWTConvenientConstraintAddition.h"; sourceTree = "<group>"; };
+		A420E1421885023F0019E986 /* UIView+TWTConvenientConstraintAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TWTConvenientConstraintAddition.m"; sourceTree = "<group>"; };
 		A43C03331884FEA9000F9753 /* TWTUIKitBlockSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTUIKitBlockSampleViewController.h; sourceTree = "<group>"; };
 		A43C03341884FEA9000F9753 /* TWTUIKitBlockSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTUIKitBlockSampleViewController.m; sourceTree = "<group>"; };
 		A43C03361884FEB6000F9753 /* TWTSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTSampleViewController.h; sourceTree = "<group>"; };
@@ -111,6 +114,7 @@
 		4C351FB6188495F4009AD246 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				A420E140188502310019E986 /* Auto Layout */,
 				A43C033B1884FEE0000F9753 /* Blocks */,
 				4C351FB7188495F4009AD246 /* Color */,
 				4C351FBA188495F4009AD246 /* Device */,
@@ -134,6 +138,15 @@
 				4C351FBC188495F4009AD246 /* UIDevice+TWTSystemVersion.m */,
 			);
 			path = Device;
+			sourceTree = "<group>";
+		};
+		A420E140188502310019E986 /* Auto Layout */ = {
+			isa = PBXGroup;
+			children = (
+				A420E1411885023F0019E986 /* UIView+TWTConvenientConstraintAddition.h */,
+				A420E1421885023F0019E986 /* UIView+TWTConvenientConstraintAddition.m */,
+			);
+			path = "Auto Layout";
 			sourceTree = "<group>";
 		};
 		A43C03321884FE7B000F9753 /* Sample ViewControllers */ = {
@@ -408,6 +421,7 @@
 				A43C03401884FEF1000F9753 /* UIActionSheet+TWTBlocks.m in Sources */,
 				4C351FBD188495F4009AD246 /* UIColor+TWTColorHelpers.m in Sources */,
 				A43C03381884FEB6000F9753 /* TWTSampleViewController.m in Sources */,
+				A420E1431885023F0019E986 /* UIView+TWTConvenientConstraintAddition.m in Sources */,
 				4C351FBE188495F4009AD246 /* UIDevice+TWTSystemVersion.m in Sources */,
 				A43C03351884FEA9000F9753 /* TWTUIKitBlockSampleViewController.m in Sources */,
 				A4D633EF18839EA900DA51CB /* TWTHighOrderFunctions.m in Sources */,

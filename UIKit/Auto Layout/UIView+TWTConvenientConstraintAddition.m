@@ -1,9 +1,9 @@
 //
-//  TWTHighOrderFunctions.h
+//  UIView+TWTConvenientConstraintAddition.m
 //  Toast
 //
-//  Created by Josh Johnson on 1/12/14.
-//  Copyright (c) 2014 Two Toasters, LLC.
+//  Created by Prachi Gauriar on 12/12/2013.
+//  Copyright (c) 2013 Two Toasters, LLC.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,20 +24,28 @@
 //  THE SOFTWARE.
 //
 
-#import "TWTHighOrderFunctions.h"
+#import "UIView+TWTConvenientConstraintAddition.h"
 
-NSArray *TWTSimpleMap(id<NSObject, NSFastEnumeration> enumeration, TWTMapBlock block)
+@implementation UIView (TWTConvenientConstraintAddition)
+
+- (void)twt_addConstraintsWithVisualFormatStrings:(NSArray *)formatStrings views:(NSDictionary *)views
 {
-    NSCParameterAssert(enumeration);
-    NSCParameterAssert(block);
-    
-    NSMutableArray *mappedArray = [[NSMutableArray alloc] init];
-    
-    for (id object in enumeration) {
-        id blockObject = block(object);
-        [mappedArray addObject:blockObject ? blockObject : [NSNull null]];
-    }
-    
-	return [mappedArray copy];
-    
+    [self twt_addConstraintsWithVisualFormatStrings:formatStrings options:0 metrics:nil views:views];
 }
+
+
+- (void)twt_addConstraintsWithVisualFormatStrings:(NSArray *)formatStrings metrics:(NSDictionary *)metrics views:(NSDictionary *)views
+{
+    [self twt_addConstraintsWithVisualFormatStrings:formatStrings options:0 metrics:metrics views:views];
+}
+
+
+- (void)twt_addConstraintsWithVisualFormatStrings:(NSArray *)formatStrings options:(NSLayoutFormatOptions)options
+                                          metrics:(NSDictionary *)metrics views:(NSDictionary *)views
+{
+    for (NSString *formatString in formatStrings) {
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:formatString options:options metrics:metrics views:views]];
+    }
+}
+
+@end
