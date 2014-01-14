@@ -1,5 +1,5 @@
 //
-//  TWTAppDelegate.m
+//  TWTSampleViewController.h
 //  Toast
 //
 //  Created by Josh Johnson on 1/12/14.
@@ -24,19 +24,8 @@
 //  THE SOFTWARE.
 //
 
-#import "TWTAppDelegate.h"
-#import "TWTSampleViewController.h"
+#import <UIKit/UIKit.h>
 
-@implementation TWTAppDelegate
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[TWTSampleViewController alloc] initWithStyle:UITableViewStylePlain]];
-    self.window.rootViewController = navigationController;
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-    return YES;
-}
+@interface TWTSampleViewController : UITableViewController
 
 @end

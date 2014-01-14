@@ -1,9 +1,10 @@
 //
-//  TWTAppDelegate.m
+//  UIAlertView+TWTBlocks.h
 //  Toast
 //
-//  Created by Josh Johnson on 1/12/14.
-//  Copyright (c) 2014 Two Toasters, LLC.
+//  Based on SXYAlertView, created by Jeremy Ellison on 2/9/12.
+//  Created by Andrew Hershberger on 6 February 2013
+//  Copyright (c) 2013 Two Toasters, LLC. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,19 +25,12 @@
 //  THE SOFTWARE.
 //
 
-#import "TWTAppDelegate.h"
-#import "TWTSampleViewController.h"
+#import <UIKit/UIKit.h>
 
-@implementation TWTAppDelegate
+typedef void(^TWTAlertBlock)(UIAlertView *alertView, NSInteger buttonIndex);
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[TWTSampleViewController alloc] initWithStyle:UITableViewStylePlain]];
-    self.window.rootViewController = navigationController;
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-    return YES;
-}
+@interface UIAlertView (TWTBlocks) <UIAlertViewDelegate>
+
+@property (nonatomic, copy, getter = twt_tapHandler, setter = twt_setTapHandler:) TWTAlertBlock twt_tapHandler;
 
 @end

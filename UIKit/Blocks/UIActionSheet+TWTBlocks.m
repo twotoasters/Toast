@@ -1,9 +1,10 @@
 //
-//  TWTAppDelegate.m
+//  UIActionSheet+TWTBlocks.m
 //  Toast
 //
-//  Created by Josh Johnson on 1/12/14.
-//  Copyright (c) 2014 Two Toasters, LLC.
+//  Based on SXYActionSheet, created by Jeremy Ellison on 2/9/12.
+//  Created by Andrew Hershberger on 6 February 2013
+//  Copyright (c) 2013 Two Toasters, LLC. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,19 +25,39 @@
 //  THE SOFTWARE.
 //
 
-#import "TWTAppDelegate.h"
-#import "TWTSampleViewController.h"
+#import "UIActionSheet+TWTBlocks.h"
+#import <objc/runtime.h>
 
-@implementation TWTAppDelegate
+static char kTapHandlerKey;
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+@implementation UIActionSheet (TWTBlocks)
+
+- (void)twt_setTapHandler:(TWTActionSheetBlock)tapHandler
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[TWTSampleViewController alloc] initWithStyle:UITableViewStylePlain]];
-    self.window.rootViewController = navigationController;
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-    return YES;
+    self.delegate = tapHandler ? self : nil;
+
+    objc_setAssociatedObject(self, &kTapHandlerKey, tapHandler, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (TWTActionSheetBlock)twt_tapHandler
+{
+    return objc_getAssociatedObject(self, &kTapHandlerKey);
+}
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    TWTActionSheetBlock tapHandler = self.twt_tapHandler;
+    if (tapHandler) {
+        tapHandler(self, buttonIndex);
+    }
+    self.twt_tapHandler = nil;
+}
+
+- (void)actionSheetCancel:(UIActionSheet *)actionSheet
+{
+    self.twt_tapHandler = nil;
 }
 
 @end

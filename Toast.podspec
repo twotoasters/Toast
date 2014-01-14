@@ -29,5 +29,9 @@ Pod::Spec.new do |s|
     sp.subspec 'Device' do |csp|
       csp.source_files = "UIKit/Device/*.{h,m}"
     end
+
+    sp.subspec 'Blocks' do |csp|
+      csp.source_files = "UIKit/Blocks/*.{h,m}"
+    end
   end
 end
