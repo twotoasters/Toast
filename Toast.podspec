@@ -18,6 +18,10 @@ Pod::Spec.new do |s|
   s.subspec 'UIKit' do |sp|
     sp.source_files = "UIKit/*.{h,m}"
 
+    sp.subspec 'AutoLayout' do |ss|
+      ss.source_files = "UIKit/Auto Layout/*.{h,m}"
+    end
+
     sp.subspec 'Color' do |csp|
       csp.source_files = "UIKit/Color/*.{h,m}"
     end
@@ -25,7 +29,5 @@ Pod::Spec.new do |s|
     sp.subspec 'Device' do |csp|
       csp.source_files = "UIKit/Device/*.{h,m}"
     end
-
   end
-
 end
