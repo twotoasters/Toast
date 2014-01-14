@@ -26,10 +26,40 @@
 
 #import <UIKit/UIKit.h>
 
+/*!
+ The TWTConvenientConstraintAddition category of UIView adds methods for adding constraints for several
+ visual format strings with a single message send.
+ */
 @interface UIView (TWTConvenientConstraintAddition)
 
+/*!
+ @abstract Adds constraints to the reciever for the specified visual format strings and views.
+ @discussion Constraints are generated with no special layout format options or metrics.
+ @param formatStrings An array of visual format strings for which to generate constraints.
+ @param views A dictionary of views that appear in the visual format strings. The keys must be the string
+     values used in the visual format strings, and the values must be the view objects.
+ */
 - (void)twt_addConstraintsWithVisualFormatStrings:(NSArray *)formatStrings views:(NSDictionary *)views;
+
+/*!
+ @abstract Adds constraints to the reciever for the specified visual format strings, metrics, and views.
+ @discussion Constraints are generated with no special layout format options.
+ @param formatStrings An array of visual format strings for which to generate constraints.
+ @param views A dictionary of views that appear in the visual format strings. The keys must be the string
+     values used in the visual format strings, and the values must be the view objects.
+ @param metrics A dictionary of constants that appear in the visual format strings. The keys must be the
+     string values used in the visual format strings, and the values must be NSNumber objects.
+ */
 - (void)twt_addConstraintsWithVisualFormatStrings:(NSArray *)formatStrings metrics:(NSDictionary *)metrics views:(NSDictionary *)views;
+
+/*!
+ @abstract Adds constraints to the reciever for the specified visual format strings, options, metrics, and views.
+ @param formatStrings An array of visual format strings for which to generate constraints.
+ @param views A dictionary of views that appear in the visual format strings. The keys must be the string
+     values used in the visual format strings, and the values must be the view objects.
+ @param metrics A dictionary of constants that appear in the visual format strings. The keys must be the
+     string values used in the visual format strings, and the values must be NSNumber objects.
+ */
 - (void)twt_addConstraintsWithVisualFormatStrings:(NSArray *)formatStrings options:(NSLayoutFormatOptions)options
                                           metrics:(NSDictionary *)metrics views:(NSDictionary *)views;
 

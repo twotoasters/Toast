@@ -25,6 +25,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <UMKErrorUtilities.h>
 
 /*!
  TWTRandomizedTestCases simply override +setUp to call srandomdev() and -setUp to generate and log a
@@ -43,5 +44,5 @@
      condition and placeholders for the arguments.
  @param ... The arguments displayed in the format string.
  */
-//#define UMKAssertTrueBeforeTimeout(timeoutInterval, expression, format...) \
-//    XCTAssertTrue(UMKWaitForCondition((timeoutInterval), ^BOOL{ return (expression); }), ## format)
+#define UMKAssertTrueBeforeTimeout(timeoutInterval, expression, format...) \
+    XCTAssertTrue(UMKWaitForCondition((timeoutInterval), ^BOOL{ return (expression); }), ## format)
