@@ -32,14 +32,14 @@ static char kTapHandlerKey;
 
 @implementation UIActionSheet (TWTBlocks)
 
-- (void)setTapHandler:(TWTActionSheetBlock)tapHandler
+- (void)twt_setTapHandler:(TWTActionSheetBlock)tapHandler
 {
     self.delegate = tapHandler ? self : nil;
 
     objc_setAssociatedObject(self, &kTapHandlerKey, tapHandler, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
-- (TWTActionSheetBlock)tapHandler
+- (TWTActionSheetBlock)twt_tapHandler
 {
     return objc_getAssociatedObject(self, &kTapHandlerKey);
 }
@@ -48,16 +48,16 @@ static char kTapHandlerKey;
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    TWTActionSheetBlock tapHandler = self.tapHandler;
+    TWTActionSheetBlock tapHandler = self.twt_tapHandler;
     if (tapHandler) {
         tapHandler(self, buttonIndex);
     }
-    self.tapHandler = nil;
+    self.twt_tapHandler = nil;
 }
 
 - (void)actionSheetCancel:(UIActionSheet *)actionSheet
 {
-    self.tapHandler = nil;
+    self.twt_tapHandler = nil;
 }
 
 @end

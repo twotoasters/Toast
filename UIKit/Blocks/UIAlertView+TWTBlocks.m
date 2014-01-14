@@ -32,14 +32,14 @@ static char kTapHandlerKey;
 
 @implementation UIAlertView (TWTBlocks)
 
-- (void)setTapHandler:(TWTAlertBlock)tapHandler
+- (void)twt_setTapHandler:(TWTAlertBlock)tapHandler
 {
     self.delegate = tapHandler ? self : nil;
 
     objc_setAssociatedObject(self, &kTapHandlerKey, tapHandler, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
-- (TWTAlertBlock)tapHandler
+- (TWTAlertBlock)twt_tapHandler
 {
     return objc_getAssociatedObject(self, &kTapHandlerKey);
 }
@@ -48,16 +48,16 @@ static char kTapHandlerKey;
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    TWTAlertBlock tapHandler = self.tapHandler;
+    TWTAlertBlock tapHandler = self.twt_tapHandler;
     if (tapHandler) {
         tapHandler(self, buttonIndex);
     }
-    self.tapHandler = nil;
+    self.twt_tapHandler = nil;
 }
 
 - (void)alertViewCancel:(UIAlertView *)alertView
 {
-    self.tapHandler = nil;
+    self.twt_tapHandler = nil;
 }
 
 @end

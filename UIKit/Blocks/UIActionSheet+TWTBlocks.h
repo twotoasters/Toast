@@ -31,6 +31,6 @@ typedef void(^TWTActionSheetBlock)(UIActionSheet *actionSheet, NSInteger buttonI
 
 @interface UIActionSheet (TWTBlocks) <UIActionSheetDelegate>
 
-@property (nonatomic, copy) TWTActionSheetBlock tapHandler;
+@property (nonatomic, copy, getter = twt_tapHandler, setter = twt_setTapHandler:) TWTActionSheetBlock twt_tapHandler;
 
 @end

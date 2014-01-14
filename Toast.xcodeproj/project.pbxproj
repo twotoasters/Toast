@@ -10,6 +10,8 @@
 		4C351FBD188495F4009AD246 /* UIColor+TWTColorHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FB9188495F4009AD246 /* UIColor+TWTColorHelpers.m */; };
 		4C351FBE188495F4009AD246 /* UIDevice+TWTSystemVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FBC188495F4009AD246 /* UIDevice+TWTSystemVersion.m */; };
 		4C351FC118849803009AD246 /* TWTRandomizedTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FC018849803009AD246 /* TWTRandomizedTestCase.m */; };
+		4C5554891884CDE700B2B24C /* UIActionSheet+TWTBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5554861884CDE700B2B24C /* UIActionSheet+TWTBlocks.m */; };
+		4C55548A1884CDE700B2B24C /* UIAlertView+TWTBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5554881884CDE700B2B24C /* UIAlertView+TWTBlocks.m */; };
 		A455D79218844EEA009EB4EA /* UIColorTWTColorHelpersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A455D79118844EEA009EB4EA /* UIColorTWTColorHelpersTests.m */; };
 		A4D633991883164000DA51CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D633981883164000DA51CB /* Foundation.framework */; };
 		A4D6339B1883164000DA51CB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D6339A1883164000DA51CB /* CoreGraphics.framework */; };
@@ -44,6 +46,10 @@
 		4C351FBC188495F4009AD246 /* UIDevice+TWTSystemVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+TWTSystemVersion.m"; sourceTree = "<group>"; };
 		4C351FBF18849803009AD246 /* TWTRandomizedTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTRandomizedTestCase.h; sourceTree = "<group>"; };
 		4C351FC018849803009AD246 /* TWTRandomizedTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTRandomizedTestCase.m; sourceTree = "<group>"; };
+		4C5554851884CDE700B2B24C /* UIActionSheet+TWTBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+TWTBlocks.h"; sourceTree = "<group>"; };
+		4C5554861884CDE700B2B24C /* UIActionSheet+TWTBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+TWTBlocks.m"; sourceTree = "<group>"; };
+		4C5554871884CDE700B2B24C /* UIAlertView+TWTBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+TWTBlocks.h"; sourceTree = "<group>"; };
+		4C5554881884CDE700B2B24C /* UIAlertView+TWTBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+TWTBlocks.m"; sourceTree = "<group>"; };
 		A455D79118844EEA009EB4EA /* UIColorTWTColorHelpersTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColorTWTColorHelpersTests.m; sourceTree = "<group>"; };
 		A4D633951883164000DA51CB /* Toast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Toast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4D633981883164000DA51CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -93,6 +99,7 @@
 		4C351FB6188495F4009AD246 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				4C5554841884CDE700B2B24C /* Blocks */,
 				4C351FB7188495F4009AD246 /* Color */,
 				4C351FBA188495F4009AD246 /* Device */,
 			);
@@ -115,6 +122,17 @@
 				4C351FBC188495F4009AD246 /* UIDevice+TWTSystemVersion.m */,
 			);
 			path = Device;
+			sourceTree = "<group>";
+		};
+		4C5554841884CDE700B2B24C /* Blocks */ = {
+			isa = PBXGroup;
+			children = (
+				4C5554851884CDE700B2B24C /* UIActionSheet+TWTBlocks.h */,
+				4C5554861884CDE700B2B24C /* UIActionSheet+TWTBlocks.m */,
+				4C5554871884CDE700B2B24C /* UIAlertView+TWTBlocks.h */,
+				4C5554881884CDE700B2B24C /* UIAlertView+TWTBlocks.m */,
+			);
+			path = Blocks;
 			sourceTree = "<group>";
 		};
 		A4D6338C1883164000DA51CB = {
@@ -328,7 +346,9 @@
 				4C351FBD188495F4009AD246 /* UIColor+TWTColorHelpers.m in Sources */,
 				4C351FBE188495F4009AD246 /* UIDevice+TWTSystemVersion.m in Sources */,
 				A4D633EF18839EA900DA51CB /* TWTHighOrderFunctions.m in Sources */,
+				4C55548A1884CDE700B2B24C /* UIAlertView+TWTBlocks.m in Sources */,
 				A4D633E31883914600DA51CB /* TWTAppDelegate.m in Sources */,
+				4C5554891884CDE700B2B24C /* UIActionSheet+TWTBlocks.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
