@@ -52,7 +52,6 @@ UITextRange * TWTUITextRangeFromNSRangeForTextField(NSRange range, UITextField *
 @interface TWTFormattedTextFieldDelegateInternal : NSObject <UITextFieldDelegate>
 
 @property (nonatomic, weak) id<UITextFieldDelegate> proxyDelegate;
-@property (nonatomic, strong) NSFormatter *formatter;
 
 @end
 
@@ -60,59 +59,80 @@ UITextRange * TWTUITextRangeFromNSRangeForTextField(NSRange range, UITextField *
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-    return YES;
+    BOOL delegateShouldBeginEditing = YES;
+    if ([self.proxyDelegate respondsToSelector:@selector(textFieldShouldBeginEditing:)]) {
+        delegateShouldBeginEditing = [self.proxyDelegate textFieldShouldBeginEditing:textField];
+    }
+    return delegateShouldBeginEditing;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    // todo: decide where to place the cursor base on current text
-    NSRange newSelectionRange;
-    NSString *partialStringPlaceholder = [textField.text copy];
+    // reset current text value to get correct cursor position
+    textField.text = [textField.text copy];
     
-    [self.formatter isPartialStringValid:&partialStringPlaceholder proposedSelectedRange:&newSelectionRange originalString:textField.text originalSelectedRange:TWTNSRangeFromUITextRangeForTextField(textField.selectedTextRange, textField) errorDescription:nil];
-    
-    textField.text = partialStringPlaceholder;
-    [textField setSelectedTextRange:TWTUITextRangeFromNSRangeForTextField(newSelectionRange, textField)];
+    if ([self.proxyDelegate respondsToSelector:@selector(textFieldDidBeginEditing:)]) {
+        [self.proxyDelegate textFieldDidBeginEditing:textField];
+    }
 }
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
-    return YES;
+    BOOL delegateShouldEndEditing = YES;
+    if ([self.proxyDelegate respondsToSelector:@selector(textFieldShouldEndEditing:)]) {
+        delegateShouldEndEditing = [self.proxyDelegate textFieldShouldEndEditing:textField];
+    }
+    return delegateShouldEndEditing;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    // todo: if invalid, update with invalid color
-    BOOL isValid = [self.formatter isPartialStringValid:textField.text newEditingString:NULL errorDescription:NULL];
+    // todo: if invalid, update with invalid color/marking?
+
+    if ([self.proxyDelegate respondsToSelector:@selector(textFieldDidEndEditing:)]) {
+        [self.proxyDelegate textFieldDidEndEditing:textField];
+    }
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    NSString *partialString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    NSRange proposedRange;
-    
-    BOOL isValid = [self.formatter isPartialStringValid:&partialString proposedSelectedRange:&proposedRange originalString:textField.text originalSelectedRange:range errorDescription:nil];
-    
-    if (isValid) {
-        textField.text = [partialString copy];
+    BOOL delegateShouldChange = YES;
+    if ([self.proxyDelegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
+        delegateShouldChange = [self.proxyDelegate textField:textField shouldChangeCharactersInRange:range replacementString:string];
     }
     
-    [textField setSelectedTextRange:TWTUITextRangeFromNSRangeForTextField(proposedRange, textField)];
+    UITextRange *textRange = TWTUITextRangeFromNSRangeForTextField(range, textField);
+    if (delegateShouldChange && [textField shouldChangeTextInRange:textRange replacementText:string]) {
+        [textField replaceRange:textRange withText:string];
+    }
     
-    // always return no so that we are driving the text input
+    // always return `no` so that we are driving the text input
     return NO;
 }
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField
 {
-    // todo: instead of clearing, return to default text for format
+    // by default, should clear. use the proxy delegate's value if it specifies
+    BOOL delegateShouldClear = YES;
     
-    return YES;
+    if ([self.proxyDelegate respondsToSelector:@selector(textFieldShouldClear:)]) {
+        delegateShouldClear = [self.proxyDelegate textFieldShouldClear:textField];
+    }
+    if (delegateShouldClear) {
+        [textField setText:@""];
+    }
+    
+    // always return `no` so that we are driving the text input
+    return NO;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    return YES;
+    BOOL delegateShouldReturn = YES;
+    if ([self.proxyDelegate respondsToSelector:@selector(textFieldShouldReturn:)]) {
+        delegateShouldReturn = [self.proxyDelegate textFieldShouldReturn:textField];
+    }
+    return delegateShouldReturn;
 }
 
 @end
@@ -124,13 +144,64 @@ UITextRange * TWTUITextRangeFromNSRangeForTextField(NSRange range, UITextField *
 @interface TWTFormattedTextField() <UITextFieldDelegate>
 
 @property (nonatomic, strong) TWTFormattedTextFieldDelegateInternal *internalDelegate;
-@property (nonatomic, strong) NSMutableString *internalCharacterBuffer;
+@property (nonatomic, strong) NSFormatter *formatter;
 
 @end
 
 @implementation TWTFormattedTextField
 
-#pragma mark - Formatter Type
+#pragma mark - UITextInput
+
+- (BOOL)shouldChangeTextInRange:(UITextRange *)range replacementText:(NSString *)text
+{
+    NSString *partialString = [self.text stringByReplacingCharactersInRange:TWTNSRangeFromUITextRangeForTextField(range, self) withString:text];
+    return [self.formatter isPartialStringValid:partialString newEditingString:NULL errorDescription:NULL];
+}
+
+- (void)replaceRange:(UITextRange *)range withText:(NSString *)text
+{
+    NSRange textRange = TWTNSRangeFromUITextRangeForTextField(range, self);
+    
+    NSString *partialString = [self.text stringByReplacingCharactersInRange:textRange withString:text];
+    NSRange proposedRange;
+
+    BOOL isValid = [self.formatter isPartialStringValid:&partialString proposedSelectedRange:&proposedRange originalString:self.text originalSelectedRange:textRange errorDescription:nil];
+
+    if (isValid) {
+        [super setText:[partialString copy]];
+    }
+
+    [self setSelectedTextRange:TWTUITextRangeFromNSRangeForTextField(proposedRange, self)];
+}
+
+#pragma mark - Setters
+
+- (void)setText:(NSString *)text
+{
+    NSRange rangeOfString = NSMakeRange(0, self.text.length);
+    [self replaceRange:TWTUITextRangeFromNSRangeForTextField(rangeOfString, self) withText:text];
+}
+
+// When a developer wants to assign the delegate of this textfield,
+// keep the internal delegate as the primary delegate and route
+// the developer's delegate to the proxy delegate
+- (void)setDelegate:(id<UITextFieldDelegate>)delegate
+{
+    [super setDelegate:_internalDelegate];
+    
+    // avoid delegate loops!
+    if (delegate != _internalDelegate) {
+        _internalDelegate.proxyDelegate = delegate;
+    }
+}
+
+- (void)setCustomFormatter:(NSFormatter *)customFormatter
+{
+    _type = TWTFormattedTextFieldTypeCustom;
+    self.formatter = customFormatter;
+}
+
+#pragma mark - Configuration
 
 - (void)configureTextFieldForFormatType:(TWTFormattedTextFieldType)type
 {
@@ -153,26 +224,7 @@ UITextRange * TWTUITextRangeFromNSRangeForTextField(NSRange range, UITextField *
             break;
     }
     
-    _internalDelegate.formatter = formatter;
-}
-
-#pragma mark - Setters
-
-// When a developer wants to assign the delegate of this textfield,
-// keep the internal delegate as the primary delegate and route
-// the developer's delegate to the proxy delegate
-- (void)setDelegate:(id<UITextFieldDelegate>)delegate
-{
-    [super setDelegate:_internalDelegate];
-    
-    _internalDelegate.proxyDelegate = delegate;
-}
-
-- (void)setCustomFormatter:(NSFormatter *)customFormatter
-{
-    if (self.type == TWTFormattedTextFieldTypeCustom) {
-        self.internalDelegate.formatter = customFormatter;
-    }
+    _formatter = formatter;
 }
 
 #pragma mark - Initializers
@@ -183,8 +235,6 @@ UITextRange * TWTUITextRangeFromNSRangeForTextField(NSRange range, UITextField *
     _internalDelegate = [[TWTFormattedTextFieldDelegateInternal alloc] init];
     self.delegate = _internalDelegate;
     
-    _internalCharacterBuffer = [[NSMutableString alloc] init];
- 
     _type = type;
     [self configureTextFieldForFormatType:_type];
 }

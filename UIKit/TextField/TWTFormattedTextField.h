@@ -31,6 +31,9 @@ typedef NS_ENUM(NSUInteger, TWTFormattedTextFieldType) {
     TWTFormattedTextFieldTypeCustom
 };
 
+extern NSRange TWTNSRangeFromUITextRangeForTextField(UITextRange *textRange, UITextField *textField);
+extern UITextRange * TWTUITextRangeFromNSRangeForTextField(NSRange range, UITextField *textField);
+
 @interface TWTFormattedTextField : UITextField
 
 - (id)initWithFormatType:(TWTFormattedTextFieldType)type;

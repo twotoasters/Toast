@@ -38,16 +38,6 @@
 
 #pragma mark - NSDateFormatter methods
 
-- (NSString *)stringForObjectValue:(id)obj
-{
-    return nil;
-}
-
-- (NSString *)editingStringForObjectValue:(id)obj
-{
-    return nil;
-}
-
 - (BOOL)isPartialStringValid:(NSString *)partialString
             newEditingString:(NSString *__autoreleasing *)newString
             errorDescription:(NSString *__autoreleasing *)error
@@ -89,7 +79,7 @@
         modelString = [modelString substringToIndex:modelString.length - 1];
     }
     
-    NSLog(@"New model string: %@", modelString);
+//    NSLog(@"New model string: %@", modelString);
     
     // put model string into back into template
     NSMutableString *modelBuffer = [modelString mutableCopy];
