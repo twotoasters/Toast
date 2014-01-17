@@ -68,6 +68,9 @@
     NSString *modelString = [partialString copy];
     NSString *previousModelString = [origString copy];
 
+    NSArray *filteredComponents = [partialString componentsSeparatedByCharactersInSet:[self.entryCharacterSet invertedSet]];
+    modelString = [filteredComponents componentsJoinedByString:@""];
+    
     NSArray *separatedComponents = [partialString componentsSeparatedByCharactersInSet:self.entryCharacterSet];
     for (NSString *component in separatedComponents) {
         modelString = [modelString stringByReplacingOccurrencesOfString:component withString:@""];

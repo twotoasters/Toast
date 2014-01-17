@@ -141,7 +141,11 @@ UITextRange * TWTUITextRangeFromNSRangeForTextField(NSRange range, UITextField *
         case TWTFormattedTextFieldTypePhoneNumber:
         {
             // TODO: refactor into a class!
-            formatter = [[TWTTemplatedTextEntryFormatter alloc] initWithTextEntryTemplate:@"(***) ***-****" templateCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@"() -"] entryCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@"1234567890"]];
+            NSString *template = @"(###) ___-____";
+            NSCharacterSet *templateCharacterSet = [NSCharacterSet characterSetWithCharactersInString:@"()- "];
+            NSCharacterSet *entryCharacterSet = [NSCharacterSet characterSetWithCharactersInString:@"1234567890"];
+            
+            formatter = [[TWTTemplatedTextEntryFormatter alloc] initWithTextEntryTemplate:template templateCharacterSet:templateCharacterSet entryCharacterSet:entryCharacterSet];
         }
             break;
             
