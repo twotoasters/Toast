@@ -143,7 +143,6 @@ UITextRange * TWTUITextRangeFromNSRangeForTextField(NSRange range, UITextField *
 @interface TWTFormattedTextField() <UITextFieldDelegate>
 
 @property (nonatomic, strong) TWTFormattedTextFieldDelegateInternal *internalDelegate;
-@property (nonatomic, strong) NSFormatter *formatter;
 
 @end
 
@@ -173,7 +172,7 @@ UITextRange * TWTUITextRangeFromNSRangeForTextField(NSRange range, UITextField *
     [self setSelectedTextRange:TWTUITextRangeFromNSRangeForTextField(proposedRange, self)];
 }
 
-#pragma mark - Setters
+#pragma mark - Properties
 
 - (void)setText:(NSString *)text
 {
@@ -194,9 +193,9 @@ UITextRange * TWTUITextRangeFromNSRangeForTextField(NSRange range, UITextField *
     }
 }
 
-- (void)setFormatter:(NSFormatter *)formatter
+- (id<UITextFieldDelegate>)delegate
 {
-    self.formatter = formatter;
+    return _internalDelegate.proxyDelegate;
 }
 
 #pragma mark - Initializers

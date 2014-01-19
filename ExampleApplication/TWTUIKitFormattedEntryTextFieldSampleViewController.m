@@ -28,6 +28,7 @@
 #import "TWTUIKitFormattedEntryTextFieldSampleViewController.h"
 
 #import "TWTFormattedTextField.h"
+#import "TWTTemplatedTextEntryFormatter.h"
 
 @interface TWTUIKitFormattedEntryTextFieldSampleViewController ()
 
@@ -41,6 +42,8 @@
 
     self.view.backgroundColor = [UIColor whiteColor];
     
+    TWTTemplatedTextEntryFormatter *formatter = [[TWTTemplatedTextEntryFormatter alloc] initWithTextEntryTemplate:@"(___) ___-____" templateCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@"()- "] entryCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@"1234567890"]];
+    
     UILabel *phoneEntryLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     phoneEntryLabel.backgroundColor = [UIColor clearColor];
     phoneEntryLabel.opaque = NO;
@@ -48,18 +51,20 @@
     phoneEntryLabel.font = [UIFont systemFontOfSize:12.0f];
     [self.view addSubview:phoneEntryLabel];
     
-    TWTFormattedTextField *phoneNumberEntryTextField = [[TWTFormattedTextField alloc] initWithFormatType:TWTFormattedTextFieldTypePhoneNumber];
+    TWTFormattedTextField *phoneNumberEntryTextField = [[TWTFormattedTextField alloc] initWithFrame:CGRectZero];
     phoneNumberEntryTextField.font = [UIFont systemFontOfSize:12.0f];
+    phoneNumberEntryTextField.formatter = formatter;
     [self.view addSubview:phoneNumberEntryTextField];
     
     UILabel *filledPhoneEntryLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     filledPhoneEntryLabel.backgroundColor = [UIColor clearColor];
     filledPhoneEntryLabel.opaque = NO;
-    filledPhoneEntryLabel.text = NSLocalizedString(@"Phone Number Entry", nil);
+    filledPhoneEntryLabel.text = NSLocalizedString(@"Programatically Formatted Field", nil);
     filledPhoneEntryLabel.font = [UIFont systemFontOfSize:12.0f];
     [self.view addSubview:filledPhoneEntryLabel];
     
-    TWTFormattedTextField *filledPhoneNumberEntryTextField = [[TWTFormattedTextField alloc] initWithFormatType:TWTFormattedTextFieldTypePhoneNumber];
+    TWTFormattedTextField *filledPhoneNumberEntryTextField = [[TWTFormattedTextField alloc] initWithFrame:CGRectZero];
+    filledPhoneNumberEntryTextField.formatter = formatter;
     filledPhoneNumberEntryTextField.font = [UIFont systemFontOfSize:12.0f];
     filledPhoneNumberEntryTextField.text = @"1234567890";
     [self.view addSubview:filledPhoneNumberEntryTextField];
