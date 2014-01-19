@@ -36,14 +36,10 @@ extern UITextRange * TWTUITextRangeFromNSRangeForTextField(NSRange range, UIText
 
 @interface TWTFormattedTextField : UITextField
 
-- (id)initWithFormatType:(TWTFormattedTextFieldType)type;
-
-@property (nonatomic, assign, readonly) TWTFormattedTextFieldType type;
-
 /**
  If the textfield's type is set to TWTFormattedTextFieldTypeCustom, the 
  text field will attempt to use the formatter set here by the developer
  */
-@property (nonatomic, strong) NSFormatter *customFormatter;
+@property (nonatomic, strong) NSFormatter *formatter;
 
 @end

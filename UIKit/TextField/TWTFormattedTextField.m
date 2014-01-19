@@ -33,8 +33,7 @@ NSRange TWTNSRangeFromUITextRangeForTextField(UITextRange *textRange, UITextFiel
 {
     NSInteger startOffset = [textField offsetFromPosition:textField.beginningOfDocument toPosition:textRange.start];
     NSInteger endOffset = [textField offsetFromPosition:textField.beginningOfDocument toPosition:textRange.end];
-    NSRange range = NSMakeRange(startOffset, endOffset - startOffset);
-    return range;
+    return NSMakeRange(startOffset, endOffset - startOffset);
 }
 
 UITextRange * TWTUITextRangeFromNSRangeForTextField(NSRange range, UITextField *textField)
@@ -42,8 +41,7 @@ UITextRange * TWTUITextRangeFromNSRangeForTextField(NSRange range, UITextField *
     UITextPosition *beginning = textField.beginningOfDocument;
     UITextPosition *start = [textField positionFromPosition:beginning offset:range.location];
     UITextPosition *end = [textField positionFromPosition:start offset:range.length];
-    UITextRange *textRange = [textField textRangeFromPosition:start toPosition:end];
-    return textRange;
+    return [textField textRangeFromPosition:start toPosition:end];
 }
 
 #pragma mark - TWTFormattedTextFieldDelegateInternal
@@ -59,11 +57,11 @@ UITextRange * TWTUITextRangeFromNSRangeForTextField(NSRange range, UITextField *
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-    BOOL delegateShouldBeginEditing = YES;
     if ([self.proxyDelegate respondsToSelector:@selector(textFieldShouldBeginEditing:)]) {
-        delegateShouldBeginEditing = [self.proxyDelegate textFieldShouldBeginEditing:textField];
+        return [self.proxyDelegate textFieldShouldBeginEditing:textField];
     }
-    return delegateShouldBeginEditing;
+    
+    return YES;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
@@ -78,11 +76,11 @@ UITextRange * TWTUITextRangeFromNSRangeForTextField(NSRange range, UITextField *
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
-    BOOL delegateShouldEndEditing = YES;
     if ([self.proxyDelegate respondsToSelector:@selector(textFieldShouldEndEditing:)]) {
-        delegateShouldEndEditing = [self.proxyDelegate textFieldShouldEndEditing:textField];
+        return [self.proxyDelegate textFieldShouldEndEditing:textField];
     }
-    return delegateShouldEndEditing;
+    
+    return YES;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
@@ -118,6 +116,7 @@ UITextRange * TWTUITextRangeFromNSRangeForTextField(NSRange range, UITextField *
     if ([self.proxyDelegate respondsToSelector:@selector(textFieldShouldClear:)]) {
         delegateShouldClear = [self.proxyDelegate textFieldShouldClear:textField];
     }
+    
     if (delegateShouldClear) {
         [textField setText:@""];
     }
@@ -128,11 +127,11 @@ UITextRange * TWTUITextRangeFromNSRangeForTextField(NSRange range, UITextField *
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    BOOL delegateShouldReturn = YES;
     if ([self.proxyDelegate respondsToSelector:@selector(textFieldShouldReturn:)]) {
-        delegateShouldReturn = [self.proxyDelegate textFieldShouldReturn:textField];
+        return [self.proxyDelegate textFieldShouldReturn:textField];
     }
-    return delegateShouldReturn;
+    
+    return YES;
 }
 
 @end
@@ -195,64 +194,25 @@ UITextRange * TWTUITextRangeFromNSRangeForTextField(NSRange range, UITextField *
     }
 }
 
-- (void)setCustomFormatter:(NSFormatter *)customFormatter
+- (void)setFormatter:(NSFormatter *)formatter
 {
-    _type = TWTFormattedTextFieldTypeCustom;
-    self.formatter = customFormatter;
-}
-
-#pragma mark - Configuration
-
-- (void)configureTextFieldForFormatType:(TWTFormattedTextFieldType)type
-{
-    NSFormatter *formatter = nil;
-    
-    switch (type) {
-            
-        case TWTFormattedTextFieldTypePhoneNumber:
-        {
-            // TODO: refactor into a class!
-            NSString *template = @"(###) ___-____";
-            NSCharacterSet *templateCharacterSet = [NSCharacterSet characterSetWithCharactersInString:@"()- "];
-            NSCharacterSet *entryCharacterSet = [NSCharacterSet characterSetWithCharactersInString:@"1234567890"];
-            
-            formatter = [[TWTTemplatedTextEntryFormatter alloc] initWithTextEntryTemplate:template templateCharacterSet:templateCharacterSet entryCharacterSet:entryCharacterSet];
-        }
-            break;
-            
-        default:
-            break;
-    }
-    
-    _formatter = formatter;
+    self.formatter = formatter;
 }
 
 #pragma mark - Initializers
 
-- (void)commonInitWithType:(TWTFormattedTextFieldType)type
+- (void)commonInit
 {
     // set up delegates
     _internalDelegate = [[TWTFormattedTextFieldDelegateInternal alloc] init];
     self.delegate = _internalDelegate;
-    
-    _type = type;
-    [self configureTextFieldForFormatType:_type];
-}
-
-- (id)initWithFormatType:(TWTFormattedTextFieldType)type
-{
-    self = [self initWithFrame:CGRectZero];
-    if (self) {
-        [self commonInitWithType:type];
-    }
-    return self;
 }
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self commonInitWithType:TWTFormattedTextFieldTypePhoneNumber];
+        [self commonInit];
     }
     return self;
 }
