@@ -185,12 +185,7 @@ UITextRange * TWTUITextRangeFromNSRangeForTextField(NSRange range, UITextField *
 // the developer's delegate to the proxy delegate
 - (void)setDelegate:(id<UITextFieldDelegate>)delegate
 {
-    [super setDelegate:_internalDelegate];
-    
-    // avoid delegate loops!
-    if (delegate != _internalDelegate) {
-        _internalDelegate.proxyDelegate = delegate;
-    }
+    _internalDelegate.proxyDelegate = delegate;
 }
 
 - (id<UITextFieldDelegate>)delegate
@@ -203,8 +198,10 @@ UITextRange * TWTUITextRangeFromNSRangeForTextField(NSRange range, UITextField *
 - (void)commonInit
 {
     // set up delegates
+    // during init, we set the textfield delegate to the internal delegate and then never touch it again
+    // the setDelegate: method will be overwritten to set the proxyDelegate property of the internal delegate
     _internalDelegate = [[TWTFormattedTextFieldDelegateInternal alloc] init];
-    self.delegate = _internalDelegate;
+    [super setDelegate:_internalDelegate];
 }
 
 - (id)initWithFrame:(CGRect)frame
