@@ -36,15 +36,7 @@
 
 @implementation TWTTemplatedTextEntryFormatter
 
-#pragma mark - NSDateFormatter methods
-
-- (BOOL)isPartialStringValid:(NSString *)partialString
-            newEditingString:(NSString *__autoreleasing *)newString
-            errorDescription:(NSString *__autoreleasing *)error
-{
-    // todo: implement
-    return YES;
-}
+#pragma mark - NSDateFormatter method
 
 - (BOOL)isPartialStringValid:(NSString *__autoreleasing *)partialStringPtr
        proposedSelectedRange:(NSRangePointer)proposedSelRangePtr
@@ -78,8 +70,6 @@
         // delete from the model string
         modelString = [modelString substringToIndex:modelString.length - 1];
     }
-    
-//    NSLog(@"New model string: %@", modelString);
     
     // put model string into back into template
     NSMutableString *modelBuffer = [modelString mutableCopy];

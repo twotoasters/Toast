@@ -159,9 +159,9 @@ UITextRange * TWTUITextRangeFromNSRangeForTextField(NSRange range, UITextField *
 - (void)replaceRange:(UITextRange *)range withText:(NSString *)text
 {
     NSRange textRange = TWTNSRangeFromUITextRangeForTextField(range, self);
+    NSRange proposedRange;
     
     NSString *partialString = [self.text stringByReplacingCharactersInRange:textRange withString:text];
-    NSRange proposedRange;
 
     BOOL isValid = [self.formatter isPartialStringValid:&partialString proposedSelectedRange:&proposedRange originalString:self.text originalSelectedRange:textRange errorDescription:nil];
 
