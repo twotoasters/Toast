@@ -31,14 +31,20 @@
 /**
  @abstract
  @param textEntryTemplate A template which defines a fixed length text-entry format.
-    Consists of characters from the templateCharacterSet and of other characters
-    niether a member of the templateCharacterSet nor the entryCharacterSet which will act
-    as placeholder characters for user input, and will be displayed in the resulting 
-    formatted string when lacking user input.
- @param templateCharacterSet 
- @param entryCharacterSet
+    It should consist of characters from the templateCharacterSet and of other characters
+    neither a member of the templateCharacterSet nor the entryCharacterSet which will act
+    as placeholder characters for user input.
+ @param templateCharacterSet A set of characters defining which characters in the 
+    template string are part of the template, and will not be replaced with user input.
+ @param entryCharacterSet A set of characters defining which characters should be 
+    accepted as user input into the template string.
  @return An instance of TWTTemplatedTextEntryFormatter
  */
 - (id)initWithTextEntryTemplate:(NSString *)textEntryTemplate templateCharacterSet:(NSCharacterSet *)templateCharacterSet entryCharacterSet:(NSCharacterSet *)entryCharacterSet;
+
+/**
+ 
+ */
+@property (nonatomic, assign) BOOL replacePlaceholdersWithSpaces;
 
 @end

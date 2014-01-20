@@ -43,6 +43,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     TWTTemplatedTextEntryFormatter *formatter = [[TWTTemplatedTextEntryFormatter alloc] initWithTextEntryTemplate:@"(___) ___-____" templateCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@"()- "] entryCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@"1234567890"]];
+    formatter.replacePlaceholdersWithSpaces = YES;
     
     UILabel *phoneEntryLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     phoneEntryLabel.backgroundColor = [UIColor clearColor];

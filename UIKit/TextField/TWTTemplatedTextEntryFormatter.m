@@ -103,7 +103,9 @@
                     proposedSelectionRange = NSMakeRange(i, 0);
                 }
                 
-                [mutableTemplate replaceCharactersInRange:templateCharacterRange withString:@" "];
+                if (self.replacePlaceholdersWithSpaces) {
+                    [mutableTemplate replaceCharactersInRange:templateCharacterRange withString:@" "];
+                }
             }
         }
     }
@@ -135,6 +137,7 @@
         _template = textEntryTemplate;
         _templateCharacterSet = templateCharacterSet;
         _entryCharacterSet = entryCharacterSet;
+        _replacePlaceholdersWithSpaces = NO;
     }
     return self;
 }
