@@ -100,7 +100,7 @@ UITextRange * TWTUITextRangeFromNSRangeForTextField(NSRange range, UITextField *
     }
     
     UITextRange *textRange = TWTUITextRangeFromNSRangeForTextField(range, textField);
-    if (delegateShouldChange && [textField shouldChangeTextInRange:textRange replacementText:string]) {
+    if (delegateShouldChange) {
         [textField replaceRange:textRange withText:string];
     }
     
@@ -149,12 +149,6 @@ UITextRange * TWTUITextRangeFromNSRangeForTextField(NSRange range, UITextField *
 @implementation TWTFormattedTextField
 
 #pragma mark - UITextInput
-
-- (BOOL)shouldChangeTextInRange:(UITextRange *)range replacementText:(NSString *)text
-{
-    NSString *partialString = [self.text stringByReplacingCharactersInRange:TWTNSRangeFromUITextRangeForTextField(range, self) withString:text];
-    return [self.formatter isPartialStringValid:partialString newEditingString:NULL errorDescription:NULL];
-}
 
 - (void)replaceRange:(UITextRange *)range withText:(NSString *)text
 {
