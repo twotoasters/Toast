@@ -1,3 +1,3 @@
 language: objective-c
-xcode_project: Toast.xcodeproj
+xcode_project: Toast.xcworkspace
 xcode_scheme: ToastTests
