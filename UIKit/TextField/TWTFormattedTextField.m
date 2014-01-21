@@ -153,17 +153,22 @@ UITextRange * TWTUITextRangeFromNSRangeForTextField(NSRange range, UITextField *
 - (void)replaceRange:(UITextRange *)range withText:(NSString *)text
 {
     NSRange textRange = TWTNSRangeFromUITextRangeForTextField(range, self);
-    NSRange proposedRange;
+    NSRange proposedRange = NSMakeRange(NSNotFound, -1);
     
     NSString *partialString = [self.text stringByReplacingCharactersInRange:textRange withString:text];
 
-    BOOL isValid = [self.formatter isPartialStringValid:&partialString proposedSelectedRange:&proposedRange originalString:self.text originalSelectedRange:textRange errorDescription:nil];
+    BOOL isValid = YES;
+    if (self.formatter) {
+        isValid = [self.formatter isPartialStringValid:&partialString proposedSelectedRange:&proposedRange originalString:self.text originalSelectedRange:textRange errorDescription:nil];
+    }
 
     if (isValid) {
         [super setText:[partialString copy]];
     }
 
-    [self setSelectedTextRange:TWTUITextRangeFromNSRangeForTextField(proposedRange, self)];
+    if (proposedRange.location != NSNotFound) {
+        [self setSelectedTextRange:TWTUITextRangeFromNSRangeForTextField(proposedRange, self)];
+    }
 }
 
 #pragma mark - Properties
@@ -191,7 +196,6 @@ UITextRange * TWTUITextRangeFromNSRangeForTextField(NSRange range, UITextField *
 
 - (void)commonInit
 {
-    // set up delegates
     // during init, we set the textfield delegate to the internal delegate and then never touch it again
     // the setDelegate: method will be overwritten to set the proxyDelegate property of the internal delegate
     _internalDelegate = [[TWTFormattedTextFieldDelegateInternal alloc] init];
