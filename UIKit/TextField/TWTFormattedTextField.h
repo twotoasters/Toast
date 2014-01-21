@@ -32,8 +32,11 @@ extern UITextRange * TWTUITextRangeFromNSRangeForTextField(NSRange range, UIText
 @interface TWTFormattedTextField : UITextField
 
 /**
- If the textfield's type is set to TWTFormattedTextFieldTypeCustom, the 
- text field will attempt to use the formatter set here by the developer
+ The formatter that the textfield uses to format text entered by the user. The
+ textfield expects the formatter to implement the isPartialStringValid:proposedSelectedRange:originalString:originalSelectedRange:errorDescription:
+ method. If the method returns YES, the textfield will display the string returned
+ in the partialString out parameter. The textfield will also move the text 
+ selection range to the range return in the proposedSelectedRange out parameter.
  */
 @property (nonatomic, strong) NSFormatter *formatter;
 
