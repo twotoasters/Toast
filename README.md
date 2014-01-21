@@ -1,5 +1,7 @@
 ## TWTToast
 
+[![Build Status](https://travis-ci.org/twotoasters/Toast.png?branch=travis-ci)](https://travis-ci.org/twotoasters/Toast)
+
 A repo for small utilities we use in Cocoa Development. Conveniently broken up into small subspecs for à la carte use.
 
 ### Subspecs
@@ -52,3 +54,4 @@ TWTToast was created by developers at Two Toasters(@twotoasters) in order to col
 ### License
 
 All code in TWTToast is released under the MIT License. See the LICENSE file for more info.
+
