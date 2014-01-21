@@ -1,6 +1,6 @@
 language: objective-c
 xcode_workspace: Toast.xcworkspace
-xcode_scheme: Pods-ToastTests
+xcode_scheme: ToastTests
 
 before_install:
     - gem install cocoapods
