@@ -26,11 +26,6 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSUInteger, TWTFormattedTextFieldType) {
-    TWTFormattedTextFieldTypePhoneNumber = 0,
-    TWTFormattedTextFieldTypeCustom
-};
-
 extern NSRange TWTNSRangeFromUITextRangeForTextField(UITextRange *textRange, UITextField *textField);
 extern UITextRange * TWTUITextRangeFromNSRangeForTextField(NSRange range, UITextField *textField);
 
