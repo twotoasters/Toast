@@ -32,6 +32,8 @@
 		A4D633EB1883916A00DA51CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D633E71883916A00DA51CB /* main.m */; };
 		A4D633EF18839EA900DA51CB /* TWTHighOrderFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D633EE18839EA900DA51CB /* TWTHighOrderFunctions.m */; };
 		A4D633F11883A1E100DA51CB /* TWTHighOrderFunctionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D633F01883A1E100DA51CB /* TWTHighOrderFunctionsTests.m */; };
+		A4F080C0188F3D11002F10F8 /* NSArray+TWTHighOrderFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F080BF188F3D11002F10F8 /* NSArray+TWTHighOrderFunctions.m */; };
+		A4F080C3188F4A36002F10F8 /* NSSet+TWTHighOrderFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F080C2188F4A36002F10F8 /* NSSet+TWTHighOrderFunctions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +85,10 @@
 		A4D633ED18839EA900DA51CB /* TWTHighOrderFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTHighOrderFunctions.h; sourceTree = "<group>"; };
 		A4D633EE18839EA900DA51CB /* TWTHighOrderFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTHighOrderFunctions.m; sourceTree = "<group>"; };
 		A4D633F01883A1E100DA51CB /* TWTHighOrderFunctionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTHighOrderFunctionsTests.m; sourceTree = "<group>"; };
+		A4F080BE188F3D11002F10F8 /* NSArray+TWTHighOrderFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+TWTHighOrderFunctions.h"; sourceTree = "<group>"; };
+		A4F080BF188F3D11002F10F8 /* NSArray+TWTHighOrderFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+TWTHighOrderFunctions.m"; sourceTree = "<group>"; };
+		A4F080C1188F4A36002F10F8 /* NSSet+TWTHighOrderFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+TWTHighOrderFunctions.h"; sourceTree = "<group>"; };
+		A4F080C2188F4A36002F10F8 /* NSSet+TWTHighOrderFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+TWTHighOrderFunctions.m"; sourceTree = "<group>"; };
 		BCA7BDBC837C4B16812ADD3A /* Pods-ToastTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToastTests.xcconfig"; path = "Pods/Pods-ToastTests.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -253,6 +259,7 @@
 		A4D633D618838DC900DA51CB /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A4F080BD188F3BC0002F10F8 /* Categories */,
 				A4D633ED18839EA900DA51CB /* TWTHighOrderFunctions.h */,
 				A4D633EE18839EA900DA51CB /* TWTHighOrderFunctions.m */,
 			);
@@ -284,6 +291,17 @@
 			name = en.lproj;
 			path = ExampleApplication/en.lproj;
 			sourceTree = SOURCE_ROOT;
+		};
+		A4F080BD188F3BC0002F10F8 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				A4F080BE188F3D11002F10F8 /* NSArray+TWTHighOrderFunctions.h */,
+				A4F080BF188F3D11002F10F8 /* NSArray+TWTHighOrderFunctions.m */,
+				A4F080C1188F4A36002F10F8 /* NSSet+TWTHighOrderFunctions.h */,
+				A4F080C2188F4A36002F10F8 /* NSSet+TWTHighOrderFunctions.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -417,9 +435,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4F080C0188F3D11002F10F8 /* NSArray+TWTHighOrderFunctions.m in Sources */,
 				A4D633EB1883916A00DA51CB /* main.m in Sources */,
 				A43C03401884FEF1000F9753 /* UIActionSheet+TWTBlocks.m in Sources */,
 				4C351FBD188495F4009AD246 /* UIColor+TWTColorHelpers.m in Sources */,
+				A4F080C3188F4A36002F10F8 /* NSSet+TWTHighOrderFunctions.m in Sources */,
 				A43C03381884FEB6000F9753 /* TWTSampleViewController.m in Sources */,
 				A420E1431885023F0019E986 /* UIView+TWTConvenientConstraintAddition.m in Sources */,
 				4C351FBE188495F4009AD246 /* UIDevice+TWTSystemVersion.m in Sources */,
