@@ -22,7 +22,7 @@
 		4CA4390E18CD04A40013B10E /* TWTMantleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4390D18CD04A40013B10E /* TWTMantleModel.m */; };
 		4CFCDD6D189FF9C900A7C3F2 /* NSException+TWTSubclassResponsibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFCDD6C189FF9C900A7C3F2 /* NSException+TWTSubclassResponsibility.m */; };
 		4CFCDD75189FFFB800A7C3F2 /* TWTErrorUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFCDD74189FFFB800A7C3F2 /* TWTErrorUtilities.m */; };
-		4C836511188F802400B0049E /* TWTEnumerable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C836510188F802400B0049E /* TWTEnumerable.m */; };
+		4C836511188F802400B0049E /* TWTHigherOrderFunctionEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C836510188F802400B0049E /* TWTHigherOrderFunctionEnumerator.m */; };
 		A420E1431885023F0019E986 /* UIView+TWTConvenientConstraintAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = A420E1421885023F0019E986 /* UIView+TWTConvenientConstraintAddition.m */; };
 		A43C03351884FEA9000F9753 /* TWTUIKitBlockSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A43C03341884FEA9000F9753 /* TWTUIKitBlockSampleViewController.m */; };
 		A43C03381884FEB6000F9753 /* TWTSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A43C03371884FEB6000F9753 /* TWTSampleViewController.m */; };
@@ -87,8 +87,8 @@
 		4CFCDD73189FFFB800A7C3F2 /* TWTErrorUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTErrorUtilities.h; sourceTree = "<group>"; };
 		4CFCDD74189FFFB800A7C3F2 /* TWTErrorUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTErrorUtilities.m; sourceTree = "<group>"; };
 		9F172785705C41EDA18A8A16 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		4C83650F188F802400B0049E /* TWTEnumerable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTEnumerable.h; sourceTree = "<group>"; };
-		4C836510188F802400B0049E /* TWTEnumerable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTEnumerable.m; sourceTree = "<group>"; };
+		4C83650F188F802400B0049E /* TWTHigherOrderFunctionEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTHigherOrderFunctionEnumerator.h; sourceTree = "<group>"; };
+		4C836510188F802400B0049E /* TWTHigherOrderFunctionEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTHigherOrderFunctionEnumerator.m; sourceTree = "<group>"; };
 		A420E1411885023F0019E986 /* UIView+TWTConvenientConstraintAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TWTConvenientConstraintAddition.h"; sourceTree = "<group>"; };
 		A420E1421885023F0019E986 /* UIView+TWTConvenientConstraintAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TWTConvenientConstraintAddition.m"; sourceTree = "<group>"; };
 		A43C03331884FEA9000F9753 /* TWTUIKitBlockSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTUIKitBlockSampleViewController.h; sourceTree = "<group>"; };
@@ -254,8 +254,8 @@
 				A4E7ACF518D0D8C1009FD889 /* KVO */,
 				4CFCDD6A189FF9C900A7C3F2 /* Subclass Responsibility */,
 				49BCBC7518CD4B49000B8706 /* NSArray Index Path Additions */,
-				4C83650F188F802400B0049E /* TWTEnumerable.h */,
-				4C836510188F802400B0049E /* TWTEnumerable.m */,
+				4C83650F188F802400B0049E /* TWTHigherOrderFunctionEnumerator.h */,
+				4C836510188F802400B0049E /* TWTHigherOrderFunctionEnumerator.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -630,7 +630,7 @@
 				4C73076A18CFAF1200398573 /* TWTSelectiveJSONAdapter.m in Sources */,
 				A420E1431885023F0019E986 /* UIView+TWTConvenientConstraintAddition.m in Sources */,
 				4C351FBE188495F4009AD246 /* UIDevice+TWTSystemVersion.m in Sources */,
-				4C836511188F802400B0049E /* TWTEnumerable.m in Sources */,
+				4C836511188F802400B0049E /* TWTHigherOrderFunctionEnumerator.m in Sources */,
 				A43C03351884FEA9000F9753 /* TWTUIKitBlockSampleViewController.m in Sources */,
 				49BCBC7818CD4BA1000B8706 /* NSArray+TWTIndexPath.m in Sources */,
 				4901313E18C61B0900117218 /* TWTSimpleAnimationController.m in Sources */,
