@@ -26,52 +26,36 @@
 
 #import <Foundation/Foundation.h>
 
+
 typedef id (^TWTCollectionBlock)(id object);
 typedef BOOL (^TWTBooleanBlock)(id object);
 typedef id (^TWTInjectionBlock)(id total, id object);
+typedef void (^TWTObjectAdditionBlock)(id collection, id enumeratedObject, id objectToAdd);
 
 
-@interface NSArray (TWTEnumerable)
+@interface NSObject (TWTEnumerable)
 
+// Default implementation returns nil. Subclasses override to return a block that adds
+// an object to an enumerable collection
++ (TWTObjectAdditionBlock)twt_objectAdditionBlock;
+
+// Default implementation returns nil. Subclasses override to return an empty collection
+// suitable for storing the results of an enumerable method.
++ (id)twt_collectionForReturningObjects;
+
+// Default implementation returns nil. Subclasses override to return fast enumerator
+// for the receiver's contents.
+- (id <NSFastEnumeration>)twt_fastEnumerator;
+
+// Default implementations of these methods should just work if the above methods are
+// implemented.
 - (id)twt_collectWithBlock:(TWTCollectionBlock)block;
 - (id)twt_detectWithBlock:(TWTBooleanBlock)block;
+- (id)twt_injectWithInitialObject:(id)initialObject block:(TWTInjectionBlock)block;
 - (id)twt_rejectWithBlock:(TWTBooleanBlock)block;
 - (id)twt_selectWithBlock:(TWTBooleanBlock)block;
-- (id)twt_injectWithInitialObject:(id)initialObject block:(TWTInjectionBlock)block;
 
 @end
 
 
-@interface NSDictionary (TWTEnumerable)
-
-- (id)twt_collectWithBlock:(TWTCollectionBlock)block;
-- (id)twt_detectWithBlock:(TWTBooleanBlock)block;
-- (id)twt_rejectWithBlock:(TWTBooleanBlock)block;
-- (id)twt_selectWithBlock:(TWTBooleanBlock)block;
-- (id)twt_injectWithInitialObject:(id)initialObject block:(TWTInjectionBlock)block;
-
-@end
-
-
-@interface NSOrderedSet (TWTEnumerable)
-
-- (id)twt_collectWithBlock:(TWTCollectionBlock)block;
-- (id)twt_detectWithBlock:(TWTBooleanBlock)block;
-- (id)twt_rejectWithBlock:(TWTBooleanBlock)block;
-- (id)twt_selectWithBlock:(TWTBooleanBlock)block;
-- (id)twt_injectWithInitialObject:(id)initialObject block:(TWTInjectionBlock)block;
-
-@end
-
-
-@interface NSSet (TWTEnumerable)
-
-- (id)twt_collectWithBlock:(TWTCollectionBlock)block;
-- (id)twt_detectWithBlock:(TWTBooleanBlock)block;
-- (id)twt_rejectWithBlock:(TWTBooleanBlock)block;
-- (id)twt_selectWithBlock:(TWTBooleanBlock)block;
-- (id)twt_injectWithInitialObject:(id)initialObject block:(TWTInjectionBlock)block;
-
-@end
-
-
+// Implementations for arrays, dictionaries, sets, ordered sets, and enumerators

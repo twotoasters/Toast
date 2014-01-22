@@ -26,23 +26,7 @@
 
 #import "TWTEnumerable.h"
 
-typedef void (^TWTObjectAdditionBlock)(id collection, id enumeratedElement, id newObject);
-
-@interface NSObject (TWTEnumerable)
-
-+ (TWTObjectAdditionBlock)twt_objectAdditionBlock;
-+ (id)twt_collectionForReturningObjectsWithCapacity:(NSUInteger)initialCapacity;
-- (NSUInteger)twt_count;
-- (id <NSFastEnumeration>)twt_fastEnumerator;
-
-- (id)twt_collectWithBlock:(TWTCollectionBlock)block;
-- (id)twt_detectWithBlock:(TWTBooleanBlock)block;
-- (id)twt_rejectWithBlock:(TWTBooleanBlock)block;
-- (id)twt_selectWithBlock:(TWTBooleanBlock)block;
-- (id)twt_injectWithInitialObject:(id)initialObject block:(TWTInjectionBlock)block;
-
-@end
-
+#pragma mark Base Implementation
 
 @implementation NSObject (TWTEnumerable)
 
@@ -52,15 +36,9 @@ typedef void (^TWTObjectAdditionBlock)(id collection, id enumeratedElement, id n
 }
 
 
-+ (id)twt_collectionForReturningObjectsWithCapacity:(NSUInteger)initialCapacity
++ (id)twt_collectionForReturningObjects
 {
     return nil;
-}
-
-
-- (NSUInteger)twt_count
-{
-    return 0;
 }
 
 
@@ -72,7 +50,7 @@ typedef void (^TWTObjectAdditionBlock)(id collection, id enumeratedElement, id n
 
 - (id)twt_collectWithBlock:(TWTCollectionBlock)block
 {
-    id collection = [[self class] twt_collectionForReturningObjectsWithCapacity:self.twt_count];
+    id collection = [[self class] twt_collectionForReturningObjects];
     TWTObjectAdditionBlock objectAdditionBlock = [[self class] twt_objectAdditionBlock];
 
     for (id object in [self twt_fastEnumerator]) {
@@ -96,6 +74,17 @@ typedef void (^TWTObjectAdditionBlock)(id collection, id enumeratedElement, id n
 }
 
 
+- (id)twt_injectWithInitialObject:(id)initialObject block:(TWTInjectionBlock)block
+{
+    id total = initialObject;
+    for (id object in [self twt_fastEnumerator]) {
+        total = block(total, object);
+    }
+    
+    return total;
+}
+
+
 - (id)twt_rejectWithBlock:(TWTBooleanBlock)block
 {
     return [self twt_selectWithBlock:^BOOL(id object) {
@@ -106,7 +95,7 @@ typedef void (^TWTObjectAdditionBlock)(id collection, id enumeratedElement, id n
 
 - (id)twt_selectWithBlock:(TWTBooleanBlock)block
 {
-    id collection = [[self class] twt_collectionForReturningObjectsWithCapacity:0];
+    id collection = [[self class] twt_collectionForReturningObjects];
     TWTObjectAdditionBlock objectAdditionBlock = [[self class] twt_objectAdditionBlock];
 
     for (id object in [self twt_fastEnumerator]) {
@@ -118,22 +107,10 @@ typedef void (^TWTObjectAdditionBlock)(id collection, id enumeratedElement, id n
     return collection;
 }
 
-
-- (id)twt_injectWithInitialObject:(id)initialObject block:(TWTInjectionBlock)block
-{
-    id total = initialObject;
-    for (id object in [self twt_fastEnumerator]) {
-        total = block(total, object);
-    }
-    
-    return total;
-}
-
 @end
 
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wincomplete-implementation"
+#pragma mark - Arrays
 
 @implementation NSArray (TWTEnumerable)
 
@@ -145,15 +122,9 @@ typedef void (^TWTObjectAdditionBlock)(id collection, id enumeratedElement, id n
 }
 
 
-+ (id)twt_collectionForReturningObjectsWithCapacity:(NSUInteger)initialCapacity
++ (id)twt_collectionForReturningObjects
 {
-    return [[NSMutableArray alloc] initWithCapacity:initialCapacity];
-}
-
-
-- (NSUInteger)twt_count
-{
-    return self.count;
+    return [NSMutableArray array];
 }
 
 
@@ -164,6 +135,8 @@ typedef void (^TWTObjectAdditionBlock)(id collection, id enumeratedElement, id n
 
 @end
 
+
+#pragma mark - Dictionaries
 
 @implementation NSDictionary (TWTEnumerable)
 
@@ -175,15 +148,9 @@ typedef void (^TWTObjectAdditionBlock)(id collection, id enumeratedElement, id n
 }
 
 
-+ (id)twt_collectionForReturningObjectsWithCapacity:(NSUInteger)initialCapacity
++ (id)twt_collectionForReturningObjects
 {
-    return [[NSMutableDictionary alloc] initWithCapacity:initialCapacity];
-}
-
-
-- (NSUInteger)twt_count
-{
-    return self.count;
+    return [NSMutableDictionary dictionary];
 }
 
 
@@ -194,6 +161,34 @@ typedef void (^TWTObjectAdditionBlock)(id collection, id enumeratedElement, id n
 
 @end
 
+
+#pragma mark - Enumerators
+
+@implementation NSEnumerator (TWTEnumerable)
+
++ (TWTObjectAdditionBlock)twt_objectAdditionBlock
+{
+    return ^(id collection, id enumeratedObject, id newObject) {
+        [collection addObject:newObject];
+    };
+}
+
+
++ (id)twt_collectionForReturningObjects
+{
+    return [NSMutableArray array];
+}
+
+
+- (id <NSFastEnumeration>)twt_fastEnumerator
+{
+    return self;
+}
+
+@end
+
+
+#pragma mark - Ordered Sets
 
 @implementation NSOrderedSet (TWTEnumerable)
 
@@ -205,15 +200,9 @@ typedef void (^TWTObjectAdditionBlock)(id collection, id enumeratedElement, id n
 }
 
 
-+ (id)twt_collectionForReturningObjectsWithCapacity:(NSUInteger)initialCapacity
++ (id)twt_collectionForReturningObjects
 {
-    return [[NSMutableOrderedSet alloc] initWithCapacity:initialCapacity];
-}
-
-
-- (NSUInteger)twt_count
-{
-    return self.count;
+    return [NSMutableOrderedSet orderedSet];
 }
 
 
@@ -224,6 +213,8 @@ typedef void (^TWTObjectAdditionBlock)(id collection, id enumeratedElement, id n
 
 @end
 
+
+#pragma mark - Sets
 
 @implementation NSSet (TWTEnumerable)
 
@@ -235,15 +226,9 @@ typedef void (^TWTObjectAdditionBlock)(id collection, id enumeratedElement, id n
 }
 
 
-+ (id)twt_collectionForReturningObjectsWithCapacity:(NSUInteger)initialCapacity
++ (id)twt_collectionForReturningObjects
 {
-    return [[NSMutableSet alloc] initWithCapacity:initialCapacity];
-}
-
-
-- (NSUInteger)twt_count
-{
-    return self.count;
+    return [NSMutableSet set];
 }
 
 
@@ -253,6 +238,3 @@ typedef void (^TWTObjectAdditionBlock)(id collection, id enumeratedElement, id n
 }
 
 @end
-
-#pragma clang diagnostic pop
-
