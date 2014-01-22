@@ -72,25 +72,29 @@ static NSString * const numberCharacters = @"0123456789";
     return [alphabetCharacters substringWithRange:NSMakeRange(random() % (alphabetCharacters.length - 1), 1)];
 }
 
+// TODO: these tests are failing because the UITextRange generation methods are returning nil. This behavior isn't seen outside of the test environment, investigate.
 - (void)testTWTFormattedTextFieldWithSingleInputCharacter
 {
-    NSString *inputString = [self randomAlphabetSingleCharacterString];
+    XCTFail(@"Test not implemented");
     
-    [self.textField replaceRange:TWTUITextRangeFromNSRangeForTextField(NSMakeRange(0, 1), self.textField) withText:inputString];
-    
-    XCTAssertEqualObjects(self.textField.text, [self.formatter expectedFormattedStringForInputString:inputString], @"TextField did not contain expected input string");
+//    NSString *inputString = [self randomAlphabetSingleCharacterString];
+//    
+//    [self.textField replaceRange:TWTUITextRangeFromNSRangeForTextField(NSMakeRange(0, 1), self.textField) withText:inputString];
+//    
+//    XCTAssertEqualObjects(self.textField.text, [self.formatter expectedFormattedStringForInputString:inputString], @"TextField did not contain expected input string");
 }
 
-// TODO: this test is failing because the UITextRange generation methods are returning nil. This behavior isn't seen outside of the test environment, investigate.
 - (void)testTWTFormattedTextFieldWithMultipleInputCharacters
 {
-    NSString *input1 = [self randomAlphabetSingleCharacterString];
-    NSString *input2 = [self randomAlphabetSingleCharacterString];
+    XCTFail(@"Test not implemented");
     
-    [self.textField replaceRange:TWTUITextRangeFromNSRangeForTextField(NSMakeRange(0, 1), self.textField) withText:input1];
-    [self.textField replaceRange:TWTUITextRangeFromNSRangeForTextField(NSMakeRange(1, 1), self.textField) withText:input2];
-    
-    XCTAssertEqualObjects(self.textField.text, [self.formatter expectedFormattedStringForInputString:[input1 stringByAppendingString:input2]], @"TextField did not contain expected input string");
+//    NSString *input1 = [self randomAlphabetSingleCharacterString];
+//    NSString *input2 = [self randomAlphabetSingleCharacterString];
+//    
+//    [self.textField replaceRange:TWTUITextRangeFromNSRangeForTextField(NSMakeRange(0, 1), self.textField) withText:input1];
+//    [self.textField replaceRange:TWTUITextRangeFromNSRangeForTextField(NSMakeRange(1, 1), self.textField) withText:input2];
+//    
+//    XCTAssertEqualObjects(self.textField.text, [self.formatter expectedFormattedStringForInputString:[input1 stringByAppendingString:input2]], @"TextField did not contain expected input string");
 }
 
 @end
