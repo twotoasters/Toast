@@ -152,6 +152,11 @@ UITextRange * TWTUITextRangeFromNSRangeForTextField(NSRange range, UITextField *
 
 - (void)replaceRange:(UITextRange *)range withText:(NSString *)text
 {
+    // don't allow setting nil as text
+    if (!text) {
+        text = @"";
+    }
+    
     NSRange textRange = TWTNSRangeFromUITextRangeForTextField(range, self);
     NSRange proposedRange = NSMakeRange(NSNotFound, -1);
     
