@@ -3,6 +3,12 @@
 <plist version="1.0">
 <array>
 	<dict>
+		<key>ViewController</key>
+		<string>TWTUIKitFormattedEntryTextFieldSampleViewController</string>
+		<key>Title</key>
+		<string>Formatted TextField Entry</string>
+	</dict>
+	<dict>
 		<key>Title</key>
 		<string>UIActionSheet and UIAlertView with Blocks</string>
 		<key>ViewController</key>
