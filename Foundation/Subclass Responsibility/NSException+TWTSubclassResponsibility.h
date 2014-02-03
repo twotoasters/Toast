@@ -1,6 +1,6 @@
 //
 //  NSException+TWTSubclassResponsibility.h
-//  URLMock
+//  TWTToast
 //
 //  Created by Prachi Gauriar on 1/5/2014.
 //  Copyright (c) 2014 Prachi Gauriar.

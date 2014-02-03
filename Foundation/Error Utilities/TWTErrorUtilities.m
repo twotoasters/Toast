@@ -1,6 +1,6 @@
 //
 //  TWTErrorUtilities.m
-//  URLMock
+//  TWTToast
 //
 //  Created by Prachi Gauriar on 12/6/2012.
 //  Copyright (c) 2013–2014 Prachi Gauriar.
