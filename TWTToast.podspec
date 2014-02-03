@@ -10,10 +10,24 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/twotoasters/Toast.git", :tag => "0.1" }
   s.requires_arc     = true
 
-  ## Subspec for Core files. Files that extend Foundation is an example
+  ## Subspec for Core files
   s.subspec 'Core' do |sp|
     sp.source_files = "Core/**/*.{h,m}"
   end
+
+  ## Subspec for files related to Foundation
+  s.subspec 'Foundation' do |sp|
+    sp.source_files = "UIKit/**/*.{h,m}"
+    
+    sp.subspec 'ErrorUtilities' do |ss|
+      ss.source_files = "Foundation/Error Utilities/*.{h,m}"
+    end
+
+    sp.subspec 'SubclassResponsibility' do |ss|
+      ss.dependency 'TWTToast/Foundation/ErrorUtilities'
+      ss.source_files = "Foundation/Subclass Responsibility/*.{h,m}"
+    end
+  end  
 
   ## Subspec for Files Related to UIKit
   s.subspec 'UIKit' do |sp|

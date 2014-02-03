@@ -11,6 +11,8 @@
 		4C351FBD188495F4009AD246 /* UIColor+TWTColorHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FB9188495F4009AD246 /* UIColor+TWTColorHelpers.m */; };
 		4C351FBE188495F4009AD246 /* UIDevice+TWTSystemVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FBC188495F4009AD246 /* UIDevice+TWTSystemVersion.m */; };
 		4C351FC118849803009AD246 /* TWTRandomizedTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FC018849803009AD246 /* TWTRandomizedTestCase.m */; };
+		4CFCDD6D189FF9C900A7C3F2 /* NSException+TWTSubclassResponsibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFCDD6C189FF9C900A7C3F2 /* NSException+TWTSubclassResponsibility.m */; };
+		4CFCDD71189FFB7A00A7C3F2 /* TWTErrorUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFCDD70189FFB7A00A7C3F2 /* TWTErrorUtilities.m */; };
 		A420E1431885023F0019E986 /* UIView+TWTConvenientConstraintAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = A420E1421885023F0019E986 /* UIView+TWTConvenientConstraintAddition.m */; };
 		A43C03351884FEA9000F9753 /* TWTUIKitBlockSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A43C03341884FEA9000F9753 /* TWTUIKitBlockSampleViewController.m */; };
 		A43C03381884FEB6000F9753 /* TWTSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A43C03371884FEB6000F9753 /* TWTSampleViewController.m */; };
@@ -52,6 +54,10 @@
 		4C351FBC188495F4009AD246 /* UIDevice+TWTSystemVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+TWTSystemVersion.m"; sourceTree = "<group>"; };
 		4C351FBF18849803009AD246 /* TWTRandomizedTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTRandomizedTestCase.h; sourceTree = "<group>"; };
 		4C351FC018849803009AD246 /* TWTRandomizedTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTRandomizedTestCase.m; sourceTree = "<group>"; };
+		4CFCDD6B189FF9C900A7C3F2 /* NSException+TWTSubclassResponsibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSException+TWTSubclassResponsibility.h"; sourceTree = "<group>"; };
+		4CFCDD6C189FF9C900A7C3F2 /* NSException+TWTSubclassResponsibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSException+TWTSubclassResponsibility.m"; sourceTree = "<group>"; };
+		4CFCDD6F189FFB7A00A7C3F2 /* TWTErrorUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTErrorUtilities.h; sourceTree = "<group>"; };
+		4CFCDD70189FFB7A00A7C3F2 /* TWTErrorUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTErrorUtilities.m; sourceTree = "<group>"; };
 		A420E1411885023F0019E986 /* UIView+TWTConvenientConstraintAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TWTConvenientConstraintAddition.h"; sourceTree = "<group>"; };
 		A420E1421885023F0019E986 /* UIView+TWTConvenientConstraintAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TWTConvenientConstraintAddition.m"; sourceTree = "<group>"; };
 		A43C03331884FEA9000F9753 /* TWTUIKitBlockSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTUIKitBlockSampleViewController.h; sourceTree = "<group>"; };
@@ -140,6 +146,32 @@
 			path = Device;
 			sourceTree = "<group>";
 		};
+		4CFCDD69189FF9C900A7C3F2 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				4CFCDD6A189FF9C900A7C3F2 /* Subclass Responsibility */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		4CFCDD6A189FF9C900A7C3F2 /* Subclass Responsibility */ = {
+			isa = PBXGroup;
+			children = (
+				4CFCDD6B189FF9C900A7C3F2 /* NSException+TWTSubclassResponsibility.h */,
+				4CFCDD6C189FF9C900A7C3F2 /* NSException+TWTSubclassResponsibility.m */,
+			);
+			path = "Subclass Responsibility";
+			sourceTree = "<group>";
+		};
+		4CFCDD6E189FFB7A00A7C3F2 /* Error Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				4CFCDD6F189FFB7A00A7C3F2 /* TWTErrorUtilities.h */,
+				4CFCDD70189FFB7A00A7C3F2 /* TWTErrorUtilities.m */,
+			);
+			path = "Error Utilities";
+			sourceTree = "<group>";
+		};
 		A420E140188502310019E986 /* Auto Layout */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				A4D633D618838DC900DA51CB /* Core */,
+				4CFCDD69189FF9C900A7C3F2 /* Foundation */,
 				4C351FB6188495F4009AD246 /* UIKit */,
 				A4D6339E1883164000DA51CB /* ExampleApplication */,
 				A4D633B71883164000DA51CB /* ToastTests */,
@@ -253,6 +286,7 @@
 		A4D633D618838DC900DA51CB /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				4CFCDD6E189FFB7A00A7C3F2 /* Error Utilities */,
 				A4D633ED18839EA900DA51CB /* TWTHighOrderFunctions.h */,
 				A4D633EE18839EA900DA51CB /* TWTHighOrderFunctions.m */,
 			);
@@ -422,10 +456,12 @@
 				4C351FBD188495F4009AD246 /* UIColor+TWTColorHelpers.m in Sources */,
 				A43C03381884FEB6000F9753 /* TWTSampleViewController.m in Sources */,
 				A420E1431885023F0019E986 /* UIView+TWTConvenientConstraintAddition.m in Sources */,
+				4CFCDD71189FFB7A00A7C3F2 /* TWTErrorUtilities.m in Sources */,
 				4C351FBE188495F4009AD246 /* UIDevice+TWTSystemVersion.m in Sources */,
 				A43C03351884FEA9000F9753 /* TWTUIKitBlockSampleViewController.m in Sources */,
 				A4D633EF18839EA900DA51CB /* TWTHighOrderFunctions.m in Sources */,
 				A4D633E31883914600DA51CB /* TWTAppDelegate.m in Sources */,
+				4CFCDD6D189FF9C900A7C3F2 /* NSException+TWTSubclassResponsibility.m in Sources */,
 				A43C03411884FEF1000F9753 /* UIAlertView+TWTBlocks.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
