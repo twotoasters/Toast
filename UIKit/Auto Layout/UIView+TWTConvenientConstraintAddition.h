@@ -38,8 +38,9 @@
  @param formatStrings An array of visual format strings for which to generate constraints.
  @param views A dictionary of views that appear in the visual format strings. The keys must be the string
      values used in the visual format strings, and the values must be the view objects.
+ @result The constraints that were added.
  */
-- (void)twt_addConstraintsWithVisualFormatStrings:(NSArray *)formatStrings views:(NSDictionary *)views;
+- (NSArray *)twt_addConstraintsWithVisualFormatStrings:(NSArray *)formatStrings views:(NSDictionary *)views;
 
 /*!
  @abstract Adds constraints to the reciever for the specified visual format strings, metrics, and views.
@@ -49,8 +50,9 @@
      string values used in the visual format strings, and the values must be NSNumber objects.
  @param views A dictionary of views that appear in the visual format strings. The keys must be the string
      values used in the visual format strings, and the values must be the view objects.
+ @result The constraints that were added.
  */
-- (void)twt_addConstraintsWithVisualFormatStrings:(NSArray *)formatStrings metrics:(NSDictionary *)metrics views:(NSDictionary *)views;
+- (NSArray *)twt_addConstraintsWithVisualFormatStrings:(NSArray *)formatStrings metrics:(NSDictionary *)metrics views:(NSDictionary *)views;
 
 /*!
  @abstract Adds constraints to the reciever for the specified visual format strings, options, metrics, and views.
@@ -61,8 +63,9 @@
      string values used in the visual format strings, and the values must be NSNumber objects.
  @param views A dictionary of views that appear in the visual format strings. The keys must be the string
      values used in the visual format strings, and the values must be the view objects.
+ @result The constraints that were added.
  */
-- (void)twt_addConstraintsWithVisualFormatStrings:(NSArray *)formatStrings options:(NSLayoutFormatOptions)options
-                                          metrics:(NSDictionary *)metrics views:(NSDictionary *)views;
+- (NSArray *)twt_addConstraintsWithVisualFormatStrings:(NSArray *)formatStrings options:(NSLayoutFormatOptions)options
+                                               metrics:(NSDictionary *)metrics views:(NSDictionary *)views;
 
 @end

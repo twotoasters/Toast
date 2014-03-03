@@ -28,24 +28,29 @@
 
 @implementation UIView (TWTConvenientConstraintAddition)
 
-- (void)twt_addConstraintsWithVisualFormatStrings:(NSArray *)formatStrings views:(NSDictionary *)views
+- (NSArray *)twt_addConstraintsWithVisualFormatStrings:(NSArray *)formatStrings views:(NSDictionary *)views
 {
-    [self twt_addConstraintsWithVisualFormatStrings:formatStrings options:0 metrics:nil views:views];
+    return [self twt_addConstraintsWithVisualFormatStrings:formatStrings options:0 metrics:nil views:views];
 }
 
 
-- (void)twt_addConstraintsWithVisualFormatStrings:(NSArray *)formatStrings metrics:(NSDictionary *)metrics views:(NSDictionary *)views
+- (NSArray *)twt_addConstraintsWithVisualFormatStrings:(NSArray *)formatStrings metrics:(NSDictionary *)metrics views:(NSDictionary *)views
 {
-    [self twt_addConstraintsWithVisualFormatStrings:formatStrings options:0 metrics:metrics views:views];
+    return [self twt_addConstraintsWithVisualFormatStrings:formatStrings options:0 metrics:metrics views:views];
 }
 
 
-- (void)twt_addConstraintsWithVisualFormatStrings:(NSArray *)formatStrings options:(NSLayoutFormatOptions)options
+- (NSArray *)twt_addConstraintsWithVisualFormatStrings:(NSArray *)formatStrings options:(NSLayoutFormatOptions)options
                                           metrics:(NSDictionary *)metrics views:(NSDictionary *)views
 {
+    NSMutableArray *constraints = [[NSMutableArray alloc] init];
+    
     for (NSString *formatString in formatStrings) {
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:formatString options:options metrics:metrics views:views]];
+        [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:formatString options:options metrics:metrics views:views]];
     }
+    
+    [self addConstraints:constraints];
+    return [constraints copy];
 }
 
 @end
