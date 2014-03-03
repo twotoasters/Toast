@@ -10,11 +10,30 @@ A repo for small utilities we use in Cocoa Development. Conveniently broken up i
 
 `pod 'TWTToast/Core'`
 
-A subspec chock full of Foundation extensions and similar utilities.
+A subspec chock full of low-level extensions.
 
 ##### TWTHighOrderFunctions
 
 * **`TWTSimpleMap(id<NSObject, NSFastEnumeration> enumeration, TWTMapBlock block)`** provides a simple implementation of Map. Map recieves an enumeration of objects and applies the block to each item, returning the resulting array.
+
+#### Foundation
+
+`pod TWTToast/Foundation`
+
+A subspec for Foundation-level classes and categories.
+
+##### ErrorUtilities
+
+`pod TWTToast/Foundation/ErrorUtilities`
+
+* **`TWTErrorUtilities`** defines utility functions for creating assertions and exception messages.
+
+##### SubclassResponsibility
+
+`pod TWTToast/Foundation/SubclassResponsibility`
+
+* **`NSException+TWTSubclassResponsibility`** provides a convenience factory method for creating exceptions when implementing a given method is a subclass's responsibility.
+
 
 #### UIKit
 
