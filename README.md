@@ -66,6 +66,13 @@ A subspec containing our humble extensions to UIKit.
 * **`UIActionSheet+TWTBlocks`** establishes a block-based means of handling UIActionSheets.
 * **`UIAlertView+TWTBlocks`** does the same for UIAlertView, enabling easy block-based handling of UIAlertView input.
 
+##### View Controller Transitions
+
+`pod 'TWTToast/UIKit/ViewControllerTransitions'`
+
+* **`TWTNavigationControllerDelegate`** conforms to the `UINavigationControllerDelegate` protocol and adds properties to UIViewController for specifying push and pop animation controllers.
+* **`TWTSimpleAnimationController`** conforms to the `UIViewControllerAnimatedTransitioning` protocol and wraps `+[UIView transitionFromView:toView:duration:options:completion:]` to facilitate using built-in transitions provided by UIKit.
+
 ### Credits
 
 TWTToast was created by developers at Two Toasters(@twotoasters) in order to collect our reusable code into one common repository, easily accessible via Cocoapods subspecs.
