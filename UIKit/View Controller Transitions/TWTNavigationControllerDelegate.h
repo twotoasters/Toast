@@ -1,8 +1,8 @@
 //
-//  TWTAppDelegate.m
+//  TWTNavigationControllerDelegate.h
 //  Toast
 //
-//  Created by Josh Johnson on 1/12/14.
+//  Created by Andrew Hershberger on 3/3/14.
 //  Copyright (c) 2014 Two Toasters, LLC.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,34 +24,16 @@
 //  THE SOFTWARE.
 //
 
-#import "TWTAppDelegate.h"
-
-#import "TWTNavigationControllerDelegate.h"
-#import "TWTSampleViewController.h"
+#import <Foundation/Foundation.h>
 
 
-@interface TWTAppDelegate ()
-
-@property (nonatomic, strong) TWTNavigationControllerDelegate *navigationControllerDelegate;
-
+@interface TWTNavigationControllerDelegate : NSObject <UINavigationControllerDelegate>
 @end
 
 
-@implementation TWTAppDelegate
+@interface UIViewController (TWTNavigationControllerDelegate)
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    TWTSampleViewController *viewController = [[TWTSampleViewController alloc] initWithStyle:UITableViewStylePlain];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    self.navigationControllerDelegate = [[TWTNavigationControllerDelegate alloc] init];
-    navigationController.delegate = self.navigationControllerDelegate;
-
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = navigationController;
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-
-    return YES;
-}
+@property (nonatomic, strong) id<UIViewControllerAnimatedTransitioning> twt_pushAnimationController;
+@property (nonatomic, strong) id<UIViewControllerAnimatedTransitioning> twt_popAnimationController;
 
 @end

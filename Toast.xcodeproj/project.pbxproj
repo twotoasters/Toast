@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		38D001530B13452CBE5DDB73 /* libPods-ToastTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A07E2E64D14C2EA63FBE64 /* libPods-ToastTests.a */; };
+		4901313B18C5830500117218 /* TWTNavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4901313A18C5830500117218 /* TWTNavigationControllerDelegate.m */; };
+		4901313E18C61B0900117218 /* TWTSimpleAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4901313D18C61B0900117218 /* TWTSimpleAnimationController.m */; };
+		4901314118C61D4600117218 /* TWTCustomTransitionsSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4901314018C61D4600117218 /* TWTCustomTransitionsSampleViewController.m */; };
 		4C351FBD188495F4009AD246 /* UIColor+TWTColorHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FB9188495F4009AD246 /* UIColor+TWTColorHelpers.m */; };
 		4C351FBE188495F4009AD246 /* UIDevice+TWTSystemVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FBC188495F4009AD246 /* UIDevice+TWTSystemVersion.m */; };
 		4C351FC118849803009AD246 /* TWTRandomizedTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FC018849803009AD246 /* TWTRandomizedTestCase.m */; };
@@ -48,6 +51,12 @@
 
 /* Begin PBXFileReference section */
 		22A07E2E64D14C2EA63FBE64 /* libPods-ToastTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ToastTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4901313918C5830500117218 /* TWTNavigationControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTNavigationControllerDelegate.h; sourceTree = "<group>"; };
+		4901313A18C5830500117218 /* TWTNavigationControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTNavigationControllerDelegate.m; sourceTree = "<group>"; };
+		4901313C18C61B0900117218 /* TWTSimpleAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTSimpleAnimationController.h; sourceTree = "<group>"; };
+		4901313D18C61B0900117218 /* TWTSimpleAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTSimpleAnimationController.m; sourceTree = "<group>"; };
+		4901313F18C61D4600117218 /* TWTCustomTransitionsSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTCustomTransitionsSampleViewController.h; sourceTree = "<group>"; };
+		4901314018C61D4600117218 /* TWTCustomTransitionsSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTCustomTransitionsSampleViewController.m; sourceTree = "<group>"; };
 		4C351FB8188495F4009AD246 /* UIColor+TWTColorHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+TWTColorHelpers.h"; sourceTree = "<group>"; };
 		4C351FB9188495F4009AD246 /* UIColor+TWTColorHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+TWTColorHelpers.m"; sourceTree = "<group>"; };
 		4C351FBB188495F4009AD246 /* UIDevice+TWTSystemVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+TWTSystemVersion.h"; sourceTree = "<group>"; };
@@ -117,6 +126,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4901313818C582B600117218 /* View Controller Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				4901313918C5830500117218 /* TWTNavigationControllerDelegate.h */,
+				4901313A18C5830500117218 /* TWTNavigationControllerDelegate.m */,
+				4901313C18C61B0900117218 /* TWTSimpleAnimationController.h */,
+				4901313D18C61B0900117218 /* TWTSimpleAnimationController.m */,
+			);
+			path = "View Controller Transitions";
+			sourceTree = "<group>";
+		};
 		4C351FB6188495F4009AD246 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +144,7 @@
 				A43C033B1884FEE0000F9753 /* Blocks */,
 				4C351FB7188495F4009AD246 /* Color */,
 				4C351FBA188495F4009AD246 /* Device */,
+				4901313818C582B600117218 /* View Controller Transitions */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -187,6 +208,8 @@
 			children = (
 				A43C03331884FEA9000F9753 /* TWTUIKitBlockSampleViewController.h */,
 				A43C03341884FEA9000F9753 /* TWTUIKitBlockSampleViewController.m */,
+				4901313F18C61D4600117218 /* TWTCustomTransitionsSampleViewController.h */,
+				4901314018C61D4600117218 /* TWTCustomTransitionsSampleViewController.m */,
 			);
 			name = "Sample ViewControllers";
 			sourceTree = "<group>";
@@ -459,8 +482,11 @@
 				A420E1431885023F0019E986 /* UIView+TWTConvenientConstraintAddition.m in Sources */,
 				4C351FBE188495F4009AD246 /* UIDevice+TWTSystemVersion.m in Sources */,
 				A43C03351884FEA9000F9753 /* TWTUIKitBlockSampleViewController.m in Sources */,
+				4901313E18C61B0900117218 /* TWTSimpleAnimationController.m in Sources */,
+				4901314118C61D4600117218 /* TWTCustomTransitionsSampleViewController.m in Sources */,
 				A4D633EF18839EA900DA51CB /* TWTHighOrderFunctions.m in Sources */,
 				A4D633E31883914600DA51CB /* TWTAppDelegate.m in Sources */,
+				4901313B18C5830500117218 /* TWTNavigationControllerDelegate.m in Sources */,
 				4CFCDD6D189FF9C900A7C3F2 /* NSException+TWTSubclassResponsibility.m in Sources */,
 				A43C03411884FEF1000F9753 /* UIAlertView+TWTBlocks.m in Sources */,
 			);
