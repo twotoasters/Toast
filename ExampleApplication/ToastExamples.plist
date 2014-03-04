@@ -8,5 +8,11 @@
 		<key>ViewController</key>
 		<string>TWTUIKitBlockSampleViewController</string>
 	</dict>
+	<dict>
+		<key>Title</key>
+		<string>Custom View Controller Transitions</string>
+		<key>ViewController</key>
+		<string>TWTCustomTransitionsSampleViewController</string>
+	</dict>
 </array>
 </plist>

@@ -1,8 +1,8 @@
 //
-//  TWTAppDelegate.m
+//  TWTSimpleAnimationController.m
 //  Toast
 //
-//  Created by Josh Johnson on 1/12/14.
+//  Created by Andrew Hershberger on 3/4/14.
 //  Copyright (c) 2014 Two Toasters, LLC.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,34 +24,30 @@
 //  THE SOFTWARE.
 //
 
-#import "TWTAppDelegate.h"
-
-#import "TWTNavigationControllerDelegate.h"
-#import "TWTSampleViewController.h"
+#import "TWTSimpleAnimationController.h"
 
 
-@interface TWTAppDelegate ()
+@implementation TWTSimpleAnimationController
 
-@property (nonatomic, strong) TWTNavigationControllerDelegate *navigationControllerDelegate;
-
-@end
-
-
-@implementation TWTAppDelegate
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+- (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
 {
-    TWTSampleViewController *viewController = [[TWTSampleViewController alloc] initWithStyle:UITableViewStylePlain];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    self.navigationControllerDelegate = [[TWTNavigationControllerDelegate alloc] init];
-    navigationController.delegate = self.navigationControllerDelegate;
+    return self.duration;
+}
 
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = navigationController;
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
 
-    return YES;
+- (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
+{
+    UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    toViewController.view.frame = [transitionContext finalFrameForViewController:toViewController];
+
+    [UIView transitionFromView:fromViewController.view
+                        toView:toViewController.view
+                      duration:self.duration
+                       options:self.options
+                    completion:^(BOOL finished) {
+                        [transitionContext completeTransition:YES];
+                    }];
 }
 
 @end
