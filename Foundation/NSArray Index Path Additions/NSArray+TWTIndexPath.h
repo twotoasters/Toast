@@ -30,8 +30,8 @@
 
 @interface NSArray (TWTIndexPath)
 
-- (id)objectAtIndexPath:(NSIndexPath *)indexPath;
+- (id)twt_objectAtIndexPath:(NSIndexPath *)indexPath;
 
-- (NSIndexPath *)indexPathOfObject:(id)object;
+- (NSIndexPath *)twt_indexPathOfObject:(id)object;
 
 @end

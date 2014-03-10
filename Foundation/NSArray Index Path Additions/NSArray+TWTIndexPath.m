@@ -30,7 +30,7 @@
 
 @implementation NSArray (TWTIndexPath)
 
-- (id)objectAtIndexPath:(NSIndexPath *)indexPath
+- (id)twt_objectAtIndexPath:(NSIndexPath *)indexPath
 {
     NSParameterAssert(indexPath.length > 0);
 
@@ -45,7 +45,7 @@
         [indexPath getIndexes:indexes];
         NSIndexPath *subIndexPath = [NSIndexPath indexPathWithIndexes:indexes+1 length:length-1];
         free(indexes);
-        return [object objectAtIndexPath:subIndexPath];
+        return [object twt_objectAtIndexPath:subIndexPath];
     }
     else {
         return nil;
@@ -53,7 +53,7 @@
 }
 
 
-- (NSIndexPath *)indexPathOfObject:(id)object
+- (NSIndexPath *)twt_indexPathOfObject:(id)object
 {
     NSUInteger index = [self indexOfObject:object];
 
@@ -65,7 +65,7 @@
 
         [self enumerateObjectsUsingBlock:^(id arrayElement, NSUInteger idx, BOOL *stop) {
             if ([arrayElement isKindOfClass:[NSArray class]]) {
-                NSIndexPath *arrayElementIndexPath = [object indexPathOfObject:object];
+                NSIndexPath *arrayElementIndexPath = [object twt_indexPathOfObject:object];
                 if (arrayElementIndexPath) {
                     NSUInteger length = arrayElementIndexPath.length + 1;
                     NSUInteger *indexes = malloc(length * sizeof(NSUInteger));
