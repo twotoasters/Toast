@@ -32,7 +32,9 @@
 
 - (id)twt_objectAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSParameterAssert(indexPath.length > 0);
+    if (indexPath.length == 0) {
+        return nil;
+    }
 
     NSUInteger length = indexPath.length;
     id object = [self objectAtIndex:[indexPath indexAtPosition:0]];
