@@ -27,6 +27,10 @@ Pod::Spec.new do |s|
       ss.dependency 'TWTToast/Foundation/ErrorUtilities'
       ss.source_files = "Foundation/Subclass Responsibility/*.{h,m}"
     end
+
+    sp.subspec 'NSArrayIndexPathAdditions' do |ss|
+      ss.source_files = "Foundation/NSArray Index Path Additions/*.{h,m}"
+    end
   end  
 
   ## Subspec for Files Related to UIKit
