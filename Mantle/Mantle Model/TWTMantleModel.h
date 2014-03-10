@@ -29,18 +29,23 @@
 @interface TWTMantleModel : MTLModel
 
 /*!
- @abstract Returns a set of property keys that the receiver’s instances use to represent inverse relationships.
- @discussion Mantle can’t detect circular references, and thus its default implementations of -description,
-     -hash, and -isEqual: will recurse infinitely unless inverse relationships are excluded. By implementing
-     this method and returning any inverse relationships for class’s inverse relationships, the aforementioned
-     methods will just work. The default implementation returns the empty set.
+ @abstract Returns a set of property keys that should be excluded from Mantle operations on the receiver’s 
+     instances.
+ @discussion Subclasses should override this method to return any keys that should not be automatically
+     encoded/decoded or included in calculations of -hash, -isEqual:, or -description. The default 
+     implementation returns the empty set.
 
-     Subclasses should take care that their implementation of this method returns their inverse relationship
-     property keys and their superclass’s. A typical implementation looks like this:
+     One important use of this method is to handle inverse relationships. Mantle can’t detect circular 
+     references, and thus its default implementations of -description, -hash, and -isEqual: will recurse
+     infinitely unless inverse relationships are excluded. By implementing this method and returning any
+     inverse relationships for class’s inverse relationships, the aforementioned methods will just work. 
  
-         return [[super inverseRelationshipPropertyKeys] setByAddingObjectsFromArray:@[ o1, o2, …, oN ]];
- @result A set of property keys that the receiver’s instances use for inverse relationships.
+     Subclasses should take care that their implementation of this method adds their excluded property keys
+     to those of their superclass’s. A typical implementation looks like:
+ 
+         return [[super excludedPropertyKeys] setByAddingObjectsFromArray:@[ o1, o2, …, oN ]];
+ @result A set of property keys that should be excluded from Mantle operations on the receiver’s instances.
  */
-+ (NSSet *)inverseRelationshipPropertyKeys;
++ (NSSet *)excludedPropertyKeys;
 
 @end

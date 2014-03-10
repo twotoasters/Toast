@@ -26,9 +26,14 @@
 
 #import "TWTMantleModel.h"
 
+@import ObjectiveC.runtime;
+
+static void *TWTMantleModelCachedPropertyKeysKey = &TWTMantleModelCachedPropertyKeysKey;
+
+
 @implementation TWTMantleModel
 
-+ (NSSet *)inverseRelationshipPropertyKeys
++ (NSSet *)excludedPropertyKeys
 {
     return [NSSet set];
 }
@@ -36,9 +41,15 @@
 
 + (NSSet *)propertyKeys
 {
-    NSMutableSet *propertyKeys = [[super propertyKeys] mutableCopy];
-    [propertyKeys minusSet:[self inverseRelationshipPropertyKeys]];
-    return [propertyKeys copy];
+    NSSet *propertyKeys = objc_getAssociatedObject(self, TWTMantleModelCachedPropertyKeysKey);
+    if (!propertyKeys) {
+        NSMutableSet *keys = [[super propertyKeys] mutableCopy];
+        [keys minusSet:[self excludedPropertyKeys]];
+        propertyKeys = [keys copy];
+        objc_setAssociatedObject(self, TWTMantleModelCachedPropertyKeysKey, propertyKeys, OBJC_ASSOCIATION_RETAIN);
+    }
+
+    return propertyKeys;
 }
 
 @end
