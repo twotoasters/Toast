@@ -76,6 +76,8 @@
                     indexPath = [NSIndexPath indexPathWithIndexes:indexes length:length];
 
                     free(indexes);
+
+                    *stop = YES;
                 }
             }
         }];
@@ -83,6 +85,5 @@
         return indexPath;
     }
 }
-
 
 @end
