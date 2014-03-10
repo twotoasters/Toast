@@ -65,7 +65,7 @@
 
         [self enumerateObjectsUsingBlock:^(id arrayElement, NSUInteger idx, BOOL *stop) {
             if ([arrayElement isKindOfClass:[NSArray class]]) {
-                NSIndexPath *arrayElementIndexPath = [object twt_indexPathOfObject:object];
+                NSIndexPath *arrayElementIndexPath = [arrayElement twt_indexPathOfObject:object];
                 if (arrayElementIndexPath) {
                     NSUInteger length = arrayElementIndexPath.length + 1;
                     NSUInteger *indexes = malloc(length * sizeof(NSUInteger));
