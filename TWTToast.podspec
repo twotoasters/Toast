@@ -11,42 +11,55 @@ Pod::Spec.new do |s|
   s.requires_arc     = true
 
   ## Subspec for Core files
-  s.subspec 'Core' do |sp|
-    sp.source_files = "Core/**/*.{h,m}"
+  s.subspec 'Core' do |ss|
+    ss.source_files = "Core/**/*.{h,m}"
   end
 
   ## Subspec for files related to Foundation
-  s.subspec 'Foundation' do |sp|
-    sp.source_files = "UIKit/**/*.{h,m}"
+  s.subspec 'Foundation' do |ss|
+    ss.source_files = "UIKit/**/*.{h,m}"
     
-    sp.subspec 'ErrorUtilities' do |ss|
-      ss.source_files = "Foundation/Error Utilities/*.{h,m}"
+    ss.subspec 'ErrorUtilities' do |sss|
+      sss.source_files = "Foundation/Error Utilities/*.{h,m}"
     end
 
-    sp.subspec 'SubclassResponsibility' do |ss|
-      ss.dependency 'TWTToast/Foundation/ErrorUtilities'
-      ss.source_files = "Foundation/Subclass Responsibility/*.{h,m}"
+    ss.subspec 'SubclassResponsibility' do |sss|
+      sss.dependency 'TWTToast/Foundation/ErrorUtilities'
+      sss.source_files = "Foundation/Subclass Responsibility/*.{h,m}"
     end
   end  
 
-  ## Subspec for Files Related to UIKit
-  s.subspec 'UIKit' do |sp|
-    sp.source_files = "UIKit/**/*.{h,m}"
 
-    sp.subspec 'AutoLayout' do |ss|
-      ss.source_files = "UIKit/Auto Layout/*.{h,m}"
+  ## Subspec for files related to UIKit
+  s.subspec 'UIKit' do |ss|
+    ss.source_files = "UIKit/**/*.{h,m}"
+
+    ss.subspec 'AutoLayout' do |sss|
+      sss.source_files = "UIKit/Auto Layout/*.{h,m}"
     end
 
-    sp.subspec 'Color' do |csp|
-      csp.source_files = "UIKit/Color/*.{h,m}"
+    ss.subspec 'Color' do |sss|
+      sss.source_files = "UIKit/Color/*.{h,m}"
     end
 
-    sp.subspec 'Device' do |csp|
-      csp.source_files = "UIKit/Device/*.{h,m}"
+    ss.subspec 'Device' do |sss|
+      sss.source_files = "UIKit/Device/*.{h,m}"
     end
 
-    sp.subspec 'Blocks' do |csp|
-      csp.source_files = "UIKit/Blocks/*.{h,m}"
+    ss.subspec 'Blocks' do |sss|
+      sss.source_files = "UIKit/Blocks/*.{h,m}"
+    end
+  end
+
+
+  ## Subspec for files related to Mantle
+  s.subspec 'Mantle' do |ss|
+    ss.dependency 'Mantle', '1.3.1'
+
+    ss.source_files = "Mantle/**/*.{h,m}"
+    
+    ss.subspec 'MantleModel' do |sss|
+      sss.source_files = "Mantle/Mantle Model/*.{h,m}"
     end
   end
 end
