@@ -37,8 +37,8 @@
 
      One important use of this method is to handle inverse relationships. Mantle can’t detect circular 
      references, and thus its default implementations of -description, -hash, and -isEqual: will recurse
-     infinitely unless inverse relationships are excluded. By implementing this method and returning any
-     inverse relationships for class’s inverse relationships, the aforementioned methods will just work. 
+     infinitely unless inverse relationships are excluded. By implementing this method and returning keys
+     for the inverse relationships, the aforementioned methods will just work.
  
      Subclasses should take care that their implementation of this method adds their excluded property keys
      to those of their superclass’s. A typical implementation looks like:
