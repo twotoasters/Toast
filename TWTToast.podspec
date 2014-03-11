@@ -54,7 +54,7 @@ Pod::Spec.new do |s|
 
   ## Subspec for files related to Mantle
   s.subspec 'Mantle' do |ss|
-    ss.dependency 'Mantle', '1.3.1'
+    ss.dependency 'Mantle', '~> 1.4.0'
 
     ss.source_files = "Mantle/**/*.{h,m}"
     
