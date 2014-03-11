@@ -28,9 +28,6 @@
 
 @import ObjectiveC.runtime;
 
-static void *TWTMantleModelCachedPropertyKeysKey = &TWTMantleModelCachedPropertyKeysKey;
-
-
 @implementation TWTMantleModel
 
 + (NSSet *)excludedPropertyKeys
@@ -41,12 +38,12 @@ static void *TWTMantleModelCachedPropertyKeysKey = &TWTMantleModelCachedProperty
 
 + (NSSet *)propertyKeys
 {
-    NSSet *propertyKeys = objc_getAssociatedObject(self, TWTMantleModelCachedPropertyKeysKey);
+    NSSet *propertyKeys = objc_getAssociatedObject(self, _cmd);
     if (!propertyKeys) {
         NSMutableSet *keys = [[super propertyKeys] mutableCopy];
         [keys minusSet:[self excludedPropertyKeys]];
         propertyKeys = [keys copy];
-        objc_setAssociatedObject(self, TWTMantleModelCachedPropertyKeysKey, propertyKeys, OBJC_ASSOCIATION_RETAIN);
+        objc_setAssociatedObject(self, _cmd, propertyKeys, OBJC_ASSOCIATION_RETAIN);
     }
 
     return propertyKeys;
