@@ -28,8 +28,8 @@ Pod::Spec.new do |s|
       ss.source_files = "Foundation/Subclass Responsibility/*.{h,m}"
     end
 
-    sp.subspec 'NSArrayIndexPathAdditions' do |ss|
-      ss.source_files = "Foundation/NSArray Index Path Additions/*.{h,m}"
+    ss.subspec 'NSArrayIndexPathAdditions' do |sss|
+      sss.source_files = "Foundation/NSArray Index Path Additions/*.{h,m}"
     end
   end  
 
