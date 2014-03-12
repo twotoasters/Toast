@@ -1,13 +1,13 @@
 Pod::Spec.new do |s|
   s.name             = "TWTToast"
-  s.version          = "0.2"
+  s.version          = "0.3"
   s.summary          = "Tools and Utilities for Cocoa Development"
   s.homepage         = "https://github.com/twotoasters/Toast"
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { "Two Toasters" => "general@twotoasters.com" }
   s.social_media_url = "http://twitter.com/twotoasters"
   s.platform         = :ios, '7.0'
-  s.source           = { :git => "https://github.com/twotoasters/Toast.git", :tag => "0.2" }
+  s.source           = { :git => "https://github.com/twotoasters/Toast.git", :tag => s.version.to_s }
   s.requires_arc     = true
 
   ## Subspec for Core files
