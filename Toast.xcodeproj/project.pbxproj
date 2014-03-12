@@ -13,6 +13,7 @@
 		4C351FBE188495F4009AD246 /* UIDevice+TWTSystemVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FBC188495F4009AD246 /* UIDevice+TWTSystemVersion.m */; };
 		4C351FC118849803009AD246 /* TWTRandomizedTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FC018849803009AD246 /* TWTRandomizedTestCase.m */; };
 		4C73076A18CFAF1200398573 /* TWTSelectiveJSONAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C73076918CFAF1200398573 /* TWTSelectiveJSONAdapter.m */; };
+		4C73076E18CFC1B900398573 /* UIView+TWTSnapshotImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C73076D18CFC1B900398573 /* UIView+TWTSnapshotImage.m */; };
 		4CA4390E18CD04A40013B10E /* TWTMantleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4390D18CD04A40013B10E /* TWTMantleModel.m */; };
 		4CFCDD6D189FF9C900A7C3F2 /* NSException+TWTSubclassResponsibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFCDD6C189FF9C900A7C3F2 /* NSException+TWTSubclassResponsibility.m */; };
 		4CFCDD75189FFFB800A7C3F2 /* TWTErrorUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFCDD74189FFFB800A7C3F2 /* TWTErrorUtilities.m */; };
@@ -59,6 +60,8 @@
 		4C351FC018849803009AD246 /* TWTRandomizedTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTRandomizedTestCase.m; sourceTree = "<group>"; };
 		4C73076818CFAF1200398573 /* TWTSelectiveJSONAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTSelectiveJSONAdapter.h; sourceTree = "<group>"; };
 		4C73076918CFAF1200398573 /* TWTSelectiveJSONAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTSelectiveJSONAdapter.m; sourceTree = "<group>"; };
+		4C73076C18CFC1B900398573 /* UIView+TWTSnapshotImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TWTSnapshotImage.h"; sourceTree = "<group>"; };
+		4C73076D18CFC1B900398573 /* UIView+TWTSnapshotImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TWTSnapshotImage.m"; sourceTree = "<group>"; };
 		4C829E1DA3404341A2C58BB6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CA4390C18CD04A40013B10E /* TWTMantleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTMantleModel.h; sourceTree = "<group>"; };
 		4CA4390D18CD04A40013B10E /* TWTMantleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTMantleModel.m; sourceTree = "<group>"; };
@@ -134,6 +137,7 @@
 				A43C033B1884FEE0000F9753 /* Blocks */,
 				4C351FB7188495F4009AD246 /* Color */,
 				4C351FBA188495F4009AD246 /* Device */,
+				4C73076B18CFC19100398573 /* Snapshot Image */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -163,6 +167,15 @@
 				4C73076918CFAF1200398573 /* TWTSelectiveJSONAdapter.m */,
 			);
 			path = "Selective JSON Adapter";
+			sourceTree = "<group>";
+        };
+		4C73076B18CFC19100398573 /* Snapshot Image */ = {
+			isa = PBXGroup;
+			children = (
+				4C73076C18CFC1B900398573 /* UIView+TWTSnapshotImage.h */,
+				4C73076D18CFC1B900398573 /* UIView+TWTSnapshotImage.m */,
+			);
+			path = "Snapshot Image";
 			sourceTree = "<group>";
 		};
 		4CA4390618CD03BB0013B10E /* Mantle */ = {
@@ -525,6 +538,7 @@
 			files = (
 				A4D633EB1883916A00DA51CB /* main.m in Sources */,
 				4CA4390E18CD04A40013B10E /* TWTMantleModel.m in Sources */,
+				4C73076E18CFC1B900398573 /* UIView+TWTSnapshotImage.m in Sources */,
 				A43C03401884FEF1000F9753 /* UIActionSheet+TWTBlocks.m in Sources */,
 				4C351FBD188495F4009AD246 /* UIColor+TWTColorHelpers.m in Sources */,
 				4CFCDD75189FFFB800A7C3F2 /* TWTErrorUtilities.m in Sources */,
