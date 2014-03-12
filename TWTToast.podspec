@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "TWTToast"
-  s.version          = "0.3"
+  s.version          = "0.3.1"
   s.summary          = "Tools and Utilities for Cocoa Development"
   s.homepage         = "https://github.com/twotoasters/Toast"
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -17,8 +17,6 @@ Pod::Spec.new do |s|
 
   ## Subspec for files related to Foundation
   s.subspec 'Foundation' do |ss|
-    ss.source_files = "UIKit/**/*.{h,m}"
-    
     ss.subspec 'ErrorUtilities' do |sss|
       sss.source_files = "Foundation/Error Utilities/*.{h,m}"
     end
@@ -29,11 +27,8 @@ Pod::Spec.new do |s|
     end
   end  
 
-
   ## Subspec for files related to UIKit
   s.subspec 'UIKit' do |ss|
-    ss.source_files = "UIKit/**/*.{h,m}"
-
     ss.subspec 'AutoLayout' do |sss|
       sss.source_files = "UIKit/Auto Layout/*.{h,m}"
     end
@@ -55,12 +50,9 @@ Pod::Spec.new do |s|
     end
   end
 
-
   ## Subspec for files related to Mantle
   s.subspec 'Mantle' do |ss|
     ss.dependency 'Mantle', '~> 1.4.0'
-
-    ss.source_files = "Mantle/**/*.{h,m}"
     
     ss.subspec 'MantleModel' do |sss|
       sss.source_files = "Mantle/Mantle Model/*.{h,m}"
