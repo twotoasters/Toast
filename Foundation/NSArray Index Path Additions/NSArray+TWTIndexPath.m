@@ -32,7 +32,9 @@
 
 - (id)twt_objectAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSParameterAssert(indexPath.length > 0);
+    if (indexPath.length == 0) {
+        return nil;
+    }
 
     NSUInteger length = indexPath.length;
     id object = [self objectAtIndex:[indexPath indexAtPosition:0]];
@@ -65,7 +67,7 @@
 
         [self enumerateObjectsUsingBlock:^(id arrayElement, NSUInteger idx, BOOL *stop) {
             if ([arrayElement isKindOfClass:[NSArray class]]) {
-                NSIndexPath *arrayElementIndexPath = [object twt_indexPathOfObject:object];
+                NSIndexPath *arrayElementIndexPath = [arrayElement twt_indexPathOfObject:object];
                 if (arrayElementIndexPath) {
                     NSUInteger length = arrayElementIndexPath.length + 1;
                     NSUInteger *indexes = malloc(length * sizeof(NSUInteger));
