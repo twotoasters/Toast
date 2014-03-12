@@ -38,6 +38,10 @@ Pod::Spec.new do |s|
       sss.source_files = "UIKit/Auto Layout/*.{h,m}"
     end
 
+    ss.subspec 'Blocks' do |sss|
+      sss.source_files = "UIKit/Blocks/*.{h,m}"
+    end
+
     ss.subspec 'Color' do |sss|
       sss.source_files = "UIKit/Color/*.{h,m}"
     end
@@ -46,8 +50,8 @@ Pod::Spec.new do |s|
       sss.source_files = "UIKit/Device/*.{h,m}"
     end
 
-    ss.subspec 'Blocks' do |sss|
-      sss.source_files = "UIKit/Blocks/*.{h,m}"
+    ss.subspec 'SnapshotImage' do |sss|
+      sss.source_files = "UIKit/Snapshot Image/*.{h,m}"
     end
   end
 
@@ -60,6 +64,10 @@ Pod::Spec.new do |s|
     
     ss.subspec 'MantleModel' do |sss|
       sss.source_files = "Mantle/Mantle Model/*.{h,m}"
+    end
+
+    ss.subspec 'SelectiveJSONAdapter' do |sss|
+      sss.source_files = "Mantle/Selective JSON Adapter/*.{h,m}"
     end
   end
 end
