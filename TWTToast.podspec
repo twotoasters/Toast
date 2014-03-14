@@ -48,6 +48,10 @@ Pod::Spec.new do |s|
     ss.subspec 'SnapshotImage' do |sss|
       sss.source_files = "UIKit/Snapshot Image/*.{h,m}"
     end
+
+    ss.subspec 'ViewControllerTransitions' do |sss|
+      sss.source_files = "UIKit/View Controller Transitions/*.{h,m}"
+    end
   end
 
   ## Subspec for files related to Mantle
