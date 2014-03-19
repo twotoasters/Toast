@@ -1,8 +1,8 @@
 //
-//  TWTAppDelegate.m
+//  UIView+TWTSnapshotImage.h
 //  Toast
 //
-//  Created by Josh Johnson on 1/12/14.
+//  Created by Prachi Gauriar on 3/11/2014.
 //  Copyright (c) 2014 Two Toasters, LLC.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,34 +24,22 @@
 //  THE SOFTWARE.
 //
 
-#import "TWTAppDelegate.h"
+#import <UIKit/UIKit.h>
 
-#import "TWTNavigationControllerDelegate.h"
-#import "TWTSampleViewController.h"
+/*!
+ The TWTSnapshotImage category of UIView provides a convenient method for getting a snapshot image of a view’s hiearachy.
+ */
+@interface UIView (TWTSnapshotImage)
 
-
-@interface TWTAppDelegate ()
-
-@property (nonatomic, strong) TWTNavigationControllerDelegate *navigationControllerDelegate;
-
-@end
-
-
-@implementation TWTAppDelegate
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    TWTSampleViewController *viewController = [[TWTSampleViewController alloc] initWithStyle:UITableViewStylePlain];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    self.navigationControllerDelegate = [[TWTNavigationControllerDelegate alloc] init];
-    navigationController.delegate = self.navigationControllerDelegate;
-
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = navigationController;
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-
-    return YES;
-}
+/*!
+ @abstract Renders and returns a snapshot image of the receiver’s view hiearachy with the specified background color.
+ @param backgroundColor The background color to draw under the view’s non-opaque regions. If nil, no background
+     color is drawn.
+ @param afterUpdates Whether the snapshot should be rendered after recent changes have been incorporated. Specify 
+     the value NO if you want to render a snapshot in the view hierarchy’s current state, which might not include
+     recent changes.
+ @result A snapshot image of the receiver and its subviews.
+ */
+- (UIImage *)twt_snapshotImageWithBackgroundColor:(UIColor *)backgroundColor afterScreenUpdates:(BOOL)afterUpdates;
 
 @end

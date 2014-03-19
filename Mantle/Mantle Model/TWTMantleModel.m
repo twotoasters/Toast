@@ -1,8 +1,8 @@
 //
-//  TWTAppDelegate.m
+//  TWTMantleModel.m
 //  Toast
 //
-//  Created by Josh Johnson on 1/12/14.
+//  Created by Prachi Gauriar on 3/8/2014.
 //  Copyright (c) 2014 Two Toasters, LLC.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,34 +24,29 @@
 //  THE SOFTWARE.
 //
 
-#import "TWTAppDelegate.h"
+#import "TWTMantleModel.h"
 
-#import "TWTNavigationControllerDelegate.h"
-#import "TWTSampleViewController.h"
+@import ObjectiveC.runtime;
 
+@implementation TWTMantleModel
 
-@interface TWTAppDelegate ()
-
-@property (nonatomic, strong) TWTNavigationControllerDelegate *navigationControllerDelegate;
-
-@end
-
-
-@implementation TWTAppDelegate
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
++ (NSSet *)excludedPropertyKeys
 {
-    TWTSampleViewController *viewController = [[TWTSampleViewController alloc] initWithStyle:UITableViewStylePlain];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    self.navigationControllerDelegate = [[TWTNavigationControllerDelegate alloc] init];
-    navigationController.delegate = self.navigationControllerDelegate;
+    return [NSSet set];
+}
 
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = navigationController;
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
 
-    return YES;
++ (NSSet *)propertyKeys
+{
+    NSSet *propertyKeys = objc_getAssociatedObject(self, _cmd);
+    if (!propertyKeys) {
+        NSMutableSet *keys = [[super propertyKeys] mutableCopy];
+        [keys minusSet:[self excludedPropertyKeys]];
+        propertyKeys = [keys copy];
+        objc_setAssociatedObject(self, _cmd, propertyKeys, OBJC_ASSOCIATION_RETAIN);
+    }
+
+    return propertyKeys;
 }
 
 @end

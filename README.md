@@ -52,6 +52,13 @@ A subspec containing our humble extensions to UIKit.
 
 * **`UIView+TWTConvenientConstraintAddition`** provides methods for adding constraints for several visual format strings with a single message send.
 
+##### Blocks
+
+`pod 'TWTToast/UIKit/Blocks'`
+
+* **`UIActionSheet+TWTBlocks`** establishes a block-based means of handling UIActionSheets.
+* **`UIAlertView+TWTBlocks`** does the same for UIAlertView, enabling easy block-based handling of UIAlertView input.
+
 ##### Color
 
 `pod 'TWTToast/UIKit/Color'`
@@ -64,12 +71,38 @@ A subspec containing our humble extensions to UIKit.
 
 * **`UIDevice+TWTSystemVersion`** provides convenient methods of retrieving and comparing iOS version information in a more performant way, using NSIntegers rather than string comparison.
 
-##### Blocks
+##### Snapshot Image
 
-`pod 'TWTToast/UIKit/Blocks'`
+`pod 'TWTToast/UIKit/SnapshotImage'`
 
-* **`UIActionSheet+TWTBlocks`** establishes a block-based means of handling UIActionSheets.
-* **`UIAlertView+TWTBlocks`** does the same for UIAlertView, enabling easy block-based handling of UIAlertView input.
+* **`UIView+TWTSnapshotImage`** provides a convenient method for getting a snapshot image of a view’s hiearachy.
+
+##### View Controller Transitions
+
+`pod 'TWTToast/UIKit/ViewControllerTransitions'`
+
+* **`TWTNavigationControllerDelegate`** conforms to the `UINavigationControllerDelegate` protocol and adds properties to UIViewController for specifying push and pop animation controllers.
+* **`TWTSimpleAnimationController`** conforms to the `UIViewControllerAnimatedTransitioning` protocol and wraps `+[UIView transitionFromView:toView:duration:options:completion:]` to facilitate using built-in transitions provided by UIKit.
+
+
+#### Mantle
+
+`pod 'TWTToast/Mantle'`
+
+A subspec containing various Mantle extensions used by Two Toasters.
+
+##### Mantle Model
+
+`pod 'TWTToast/Mantle/MantleModel'`
+
+* **`TWTMantleModel`** contains basic extensions to `MTLModel`. For now, it simply adds the ability to exclude property keys from archiving, description, and equality checking.
+
+##### Selective JSON Adapter
+
+`pod 'TWTToast/Mantle/SelectiveJSONAdapter'`
+
+* **`TWTSelectiveJSONAdapter`** extends `MTLJSONAdapter` to serialize only a subset of a model object’s property keys.
+
 
 ### Credits
 

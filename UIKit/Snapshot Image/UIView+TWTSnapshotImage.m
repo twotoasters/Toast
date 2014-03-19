@@ -1,8 +1,8 @@
 //
-//  TWTAppDelegate.m
+//  UIView+TWTSnapshotImage.m
 //  Toast
 //
-//  Created by Josh Johnson on 1/12/14.
+//  Created by Prachi Gauriar on 3/11/2014.
 //  Copyright (c) 2014 Two Toasters, LLC.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,34 +24,25 @@
 //  THE SOFTWARE.
 //
 
-#import "TWTAppDelegate.h"
+#import "UIView+TWTSnapshotImage.h"
 
-#import "TWTNavigationControllerDelegate.h"
-#import "TWTSampleViewController.h"
+@implementation UIView (TWTSnapshotImage)
 
-
-@interface TWTAppDelegate ()
-
-@property (nonatomic, strong) TWTNavigationControllerDelegate *navigationControllerDelegate;
-
-@end
-
-
-@implementation TWTAppDelegate
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+- (UIImage *)twt_snapshotImageWithBackgroundColor:(UIColor *)backgroundColor afterScreenUpdates:(BOOL)afterUpdates
 {
-    TWTSampleViewController *viewController = [[TWTSampleViewController alloc] initWithStyle:UITableViewStylePlain];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    self.navigationControllerDelegate = [[TWTNavigationControllerDelegate alloc] init];
-    navigationController.delegate = self.navigationControllerDelegate;
+    BOOL isOpaque = CGColorGetAlpha(backgroundColor.CGColor) == 1.0 || CGColorGetAlpha(self.backgroundColor.CGColor) == 1.0 || self.isOpaque;
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, isOpaque, 0.0);
 
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = navigationController;
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
+    if (backgroundColor) {
+        [backgroundColor setFill];
+        UIRectFill(self.bounds);
+    }
 
-    return YES;
+    [self drawViewHierarchyInRect:self.bounds afterScreenUpdates:afterUpdates];
+
+    UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return snapshotImage;
 }
 
 @end

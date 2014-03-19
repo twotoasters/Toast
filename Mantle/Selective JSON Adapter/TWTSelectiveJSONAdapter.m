@@ -1,8 +1,8 @@
 //
-//  TWTAppDelegate.m
+//  TWTSelectiveJSONAdapter.m
 //  Toast
 //
-//  Created by Josh Johnson on 1/12/14.
+//  Created by Prachi Gauriar on 3/11/2014.
 //  Copyright (c) 2014 Two Toasters, LLC.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,34 +24,31 @@
 //  THE SOFTWARE.
 //
 
-#import "TWTAppDelegate.h"
+#import "TWTSelectiveJSONAdapter.h"
 
-#import "TWTNavigationControllerDelegate.h"
-#import "TWTSampleViewController.h"
+@implementation TWTSelectiveJSONAdapter
 
-
-@interface TWTAppDelegate ()
-
-@property (nonatomic, strong) TWTNavigationControllerDelegate *navigationControllerDelegate;
-
-@end
-
-
-@implementation TWTAppDelegate
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+- (instancetype)initWithModel:(MTLModel<MTLJSONSerializing> *)model propertyKeys:(NSSet *)propertyKeys
 {
-    TWTSampleViewController *viewController = [[TWTSampleViewController alloc] initWithStyle:UITableViewStylePlain];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    self.navigationControllerDelegate = [[TWTNavigationControllerDelegate alloc] init];
-    navigationController.delegate = self.navigationControllerDelegate;
+    self = [super initWithModel:model];
+    if (self) {
+        _propertyKeys = [propertyKeys copy];
+    }
 
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = navigationController;
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
+    return self;
+}
 
-    return YES;
+
++ (NSDictionary *)JSONDictionaryWithPropertyKeys:(NSSet *)propertyKeys fromModel:(MTLModel<MTLJSONSerializing> *)model
+{
+    TWTSelectiveJSONAdapter *adapter = [[self alloc] initWithModel:model propertyKeys:propertyKeys];
+    return adapter.JSONDictionary;
+}
+
+
+- (NSString *)JSONKeyPathForPropertyKey:(NSString *)key
+{
+    return [self.propertyKeys containsObject:key] ? [super JSONKeyPathForPropertyKey:key] : nil;
 }
 
 @end

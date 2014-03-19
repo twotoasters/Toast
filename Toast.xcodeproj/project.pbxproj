@@ -7,11 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02CBF53B02574915A5B18D20 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C829E1DA3404341A2C58BB6 /* libPods.a */; };
 		38D001530B13452CBE5DDB73 /* libPods-ToastTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A07E2E64D14C2EA63FBE64 /* libPods-ToastTests.a */; };
 		49BCBC7818CD4BA1000B8706 /* NSArray+TWTIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BCBC7718CD4BA1000B8706 /* NSArray+TWTIndexPath.m */; };
+		4901313B18C5830500117218 /* TWTNavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4901313A18C5830500117218 /* TWTNavigationControllerDelegate.m */; };
+		4901313E18C61B0900117218 /* TWTSimpleAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4901313D18C61B0900117218 /* TWTSimpleAnimationController.m */; };
+		4901314118C61D4600117218 /* TWTCustomTransitionsSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4901314018C61D4600117218 /* TWTCustomTransitionsSampleViewController.m */; };
 		4C351FBD188495F4009AD246 /* UIColor+TWTColorHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FB9188495F4009AD246 /* UIColor+TWTColorHelpers.m */; };
 		4C351FBE188495F4009AD246 /* UIDevice+TWTSystemVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FBC188495F4009AD246 /* UIDevice+TWTSystemVersion.m */; };
 		4C351FC118849803009AD246 /* TWTRandomizedTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FC018849803009AD246 /* TWTRandomizedTestCase.m */; };
+		4C73076A18CFAF1200398573 /* TWTSelectiveJSONAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C73076918CFAF1200398573 /* TWTSelectiveJSONAdapter.m */; };
+		4C73076E18CFC1B900398573 /* UIView+TWTSnapshotImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C73076D18CFC1B900398573 /* UIView+TWTSnapshotImage.m */; };
+		4CA4390E18CD04A40013B10E /* TWTMantleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4390D18CD04A40013B10E /* TWTMantleModel.m */; };
 		4CFCDD6D189FF9C900A7C3F2 /* NSException+TWTSubclassResponsibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFCDD6C189FF9C900A7C3F2 /* NSException+TWTSubclassResponsibility.m */; };
 		4CFCDD75189FFFB800A7C3F2 /* TWTErrorUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFCDD74189FFFB800A7C3F2 /* TWTErrorUtilities.m */; };
 		A420E1431885023F0019E986 /* UIView+TWTConvenientConstraintAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = A420E1421885023F0019E986 /* UIView+TWTConvenientConstraintAddition.m */; };
@@ -51,16 +58,30 @@
 		22A07E2E64D14C2EA63FBE64 /* libPods-ToastTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ToastTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49BCBC7618CD4BA1000B8706 /* NSArray+TWTIndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+TWTIndexPath.h"; sourceTree = "<group>"; };
 		49BCBC7718CD4BA1000B8706 /* NSArray+TWTIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+TWTIndexPath.m"; sourceTree = "<group>"; };
+		4901313918C5830500117218 /* TWTNavigationControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTNavigationControllerDelegate.h; sourceTree = "<group>"; };
+		4901313A18C5830500117218 /* TWTNavigationControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTNavigationControllerDelegate.m; sourceTree = "<group>"; };
+		4901313C18C61B0900117218 /* TWTSimpleAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTSimpleAnimationController.h; sourceTree = "<group>"; };
+		4901313D18C61B0900117218 /* TWTSimpleAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTSimpleAnimationController.m; sourceTree = "<group>"; };
+		4901313F18C61D4600117218 /* TWTCustomTransitionsSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTCustomTransitionsSampleViewController.h; sourceTree = "<group>"; };
+		4901314018C61D4600117218 /* TWTCustomTransitionsSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTCustomTransitionsSampleViewController.m; sourceTree = "<group>"; };
 		4C351FB8188495F4009AD246 /* UIColor+TWTColorHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+TWTColorHelpers.h"; sourceTree = "<group>"; };
 		4C351FB9188495F4009AD246 /* UIColor+TWTColorHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+TWTColorHelpers.m"; sourceTree = "<group>"; };
 		4C351FBB188495F4009AD246 /* UIDevice+TWTSystemVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+TWTSystemVersion.h"; sourceTree = "<group>"; };
 		4C351FBC188495F4009AD246 /* UIDevice+TWTSystemVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+TWTSystemVersion.m"; sourceTree = "<group>"; };
 		4C351FBF18849803009AD246 /* TWTRandomizedTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTRandomizedTestCase.h; sourceTree = "<group>"; };
 		4C351FC018849803009AD246 /* TWTRandomizedTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTRandomizedTestCase.m; sourceTree = "<group>"; };
+		4C73076818CFAF1200398573 /* TWTSelectiveJSONAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTSelectiveJSONAdapter.h; sourceTree = "<group>"; };
+		4C73076918CFAF1200398573 /* TWTSelectiveJSONAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTSelectiveJSONAdapter.m; sourceTree = "<group>"; };
+		4C73076C18CFC1B900398573 /* UIView+TWTSnapshotImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TWTSnapshotImage.h"; sourceTree = "<group>"; };
+		4C73076D18CFC1B900398573 /* UIView+TWTSnapshotImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TWTSnapshotImage.m"; sourceTree = "<group>"; };
+		4C829E1DA3404341A2C58BB6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CA4390C18CD04A40013B10E /* TWTMantleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTMantleModel.h; sourceTree = "<group>"; };
+		4CA4390D18CD04A40013B10E /* TWTMantleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTMantleModel.m; sourceTree = "<group>"; };
 		4CFCDD6B189FF9C900A7C3F2 /* NSException+TWTSubclassResponsibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSException+TWTSubclassResponsibility.h"; sourceTree = "<group>"; };
 		4CFCDD6C189FF9C900A7C3F2 /* NSException+TWTSubclassResponsibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSException+TWTSubclassResponsibility.m"; sourceTree = "<group>"; };
 		4CFCDD73189FFFB800A7C3F2 /* TWTErrorUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTErrorUtilities.h; sourceTree = "<group>"; };
 		4CFCDD74189FFFB800A7C3F2 /* TWTErrorUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTErrorUtilities.m; sourceTree = "<group>"; };
+		9F172785705C41EDA18A8A16 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		A420E1411885023F0019E986 /* UIView+TWTConvenientConstraintAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TWTConvenientConstraintAddition.h"; sourceTree = "<group>"; };
 		A420E1421885023F0019E986 /* UIView+TWTConvenientConstraintAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TWTConvenientConstraintAddition.m"; sourceTree = "<group>"; };
 		A43C03331884FEA9000F9753 /* TWTUIKitBlockSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTUIKitBlockSampleViewController.h; sourceTree = "<group>"; };
@@ -103,6 +124,7 @@
 				A4D6339B1883164000DA51CB /* CoreGraphics.framework in Frameworks */,
 				A4D6339D1883164000DA51CB /* UIKit.framework in Frameworks */,
 				A4D633991883164000DA51CB /* Foundation.framework in Frameworks */,
+				02CBF53B02574915A5B18D20 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +151,17 @@
 			path = "NSArray Index Path Additions";
 			sourceTree = "<group>";
 		};
+		4901313818C582B600117218 /* View Controller Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				4901313918C5830500117218 /* TWTNavigationControllerDelegate.h */,
+				4901313A18C5830500117218 /* TWTNavigationControllerDelegate.m */,
+				4901313C18C61B0900117218 /* TWTSimpleAnimationController.h */,
+				4901313D18C61B0900117218 /* TWTSimpleAnimationController.m */,
+			);
+			path = "View Controller Transitions";
+			sourceTree = "<group>";
+		};
 		4C351FB6188495F4009AD246 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +169,8 @@
 				A43C033B1884FEE0000F9753 /* Blocks */,
 				4C351FB7188495F4009AD246 /* Color */,
 				4C351FBA188495F4009AD246 /* Device */,
+				4C73076B18CFC19100398573 /* Snapshot Image */,
+				4901313818C582B600117218 /* View Controller Transitions */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -156,6 +191,42 @@
 				4C351FBC188495F4009AD246 /* UIDevice+TWTSystemVersion.m */,
 			);
 			path = Device;
+			sourceTree = "<group>";
+		};
+		4C73076718CFAEFE00398573 /* Selective JSON Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				4C73076818CFAF1200398573 /* TWTSelectiveJSONAdapter.h */,
+				4C73076918CFAF1200398573 /* TWTSelectiveJSONAdapter.m */,
+			);
+			path = "Selective JSON Adapter";
+			sourceTree = "<group>";
+		};
+		4C73076B18CFC19100398573 /* Snapshot Image */ = {
+			isa = PBXGroup;
+			children = (
+				4C73076C18CFC1B900398573 /* UIView+TWTSnapshotImage.h */,
+				4C73076D18CFC1B900398573 /* UIView+TWTSnapshotImage.m */,
+			);
+			path = "Snapshot Image";
+			sourceTree = "<group>";
+		};
+		4CA4390618CD03BB0013B10E /* Mantle */ = {
+			isa = PBXGroup;
+			children = (
+				4CA4390B18CD04A40013B10E /* Mantle Model */,
+				4C73076718CFAEFE00398573 /* Selective JSON Adapter */,
+			);
+			path = Mantle;
+			sourceTree = "<group>";
+		};
+		4CA4390B18CD04A40013B10E /* Mantle Model */ = {
+			isa = PBXGroup;
+			children = (
+				4CA4390C18CD04A40013B10E /* TWTMantleModel.h */,
+				4CA4390D18CD04A40013B10E /* TWTMantleModel.m */,
+			);
+			path = "Mantle Model";
 			sourceTree = "<group>";
 		};
 		4CFCDD69189FF9C900A7C3F2 /* Foundation */ = {
@@ -200,6 +271,8 @@
 			children = (
 				A43C03331884FEA9000F9753 /* TWTUIKitBlockSampleViewController.h */,
 				A43C03341884FEA9000F9753 /* TWTUIKitBlockSampleViewController.m */,
+				4901313F18C61D4600117218 /* TWTCustomTransitionsSampleViewController.h */,
+				4901314018C61D4600117218 /* TWTCustomTransitionsSampleViewController.m */,
 			);
 			name = "Sample ViewControllers";
 			sourceTree = "<group>";
@@ -221,11 +294,13 @@
 				A4D633D618838DC900DA51CB /* Core */,
 				4CFCDD69189FF9C900A7C3F2 /* Foundation */,
 				4C351FB6188495F4009AD246 /* UIKit */,
+				4CA4390618CD03BB0013B10E /* Mantle */,
 				A4D6339E1883164000DA51CB /* ExampleApplication */,
 				A4D633B71883164000DA51CB /* ToastTests */,
 				A4D633971883164000DA51CB /* Frameworks */,
 				A4D633961883164000DA51CB /* Products */,
 				BCA7BDBC837C4B16812ADD3A /* Pods-ToastTests.xcconfig */,
+				9F172785705C41EDA18A8A16 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -246,6 +321,7 @@
 				A4D6339C1883164000DA51CB /* UIKit.framework */,
 				A4D633B11883164000DA51CB /* XCTest.framework */,
 				22A07E2E64D14C2EA63FBE64 /* libPods-ToastTests.a */,
+				4C829E1DA3404341A2C58BB6 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -339,9 +415,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A4D633C11883164000DA51CB /* Build configuration list for PBXNativeTarget "Toast" */;
 			buildPhases = (
+				BD00F4A167424E67806BBB77 /* Check Pods Manifest.lock */,
 				A4D633911883164000DA51CB /* Sources */,
 				A4D633921883164000DA51CB /* Frameworks */,
 				A4D633931883164000DA51CB /* Resources */,
+				AFF7C09F6B9B440388F0BAE4 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -379,7 +457,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = TWT;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Two Toasters, LLC";
 				TargetAttributes = {
 					A4D633AF1883164000DA51CB = {
@@ -442,6 +520,36 @@
 			shellScript = "\"${SRCROOT}/Pods/Pods-ToastTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		AFF7C09F6B9B440388F0BAE4 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BD00F4A167424E67806BBB77 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		FD9BD339230C424285698D74 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -465,16 +573,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4D633EB1883916A00DA51CB /* main.m in Sources */,
+				4CA4390E18CD04A40013B10E /* TWTMantleModel.m in Sources */,
+				4C73076E18CFC1B900398573 /* UIView+TWTSnapshotImage.m in Sources */,
 				A43C03401884FEF1000F9753 /* UIActionSheet+TWTBlocks.m in Sources */,
 				4C351FBD188495F4009AD246 /* UIColor+TWTColorHelpers.m in Sources */,
 				4CFCDD75189FFFB800A7C3F2 /* TWTErrorUtilities.m in Sources */,
 				A43C03381884FEB6000F9753 /* TWTSampleViewController.m in Sources */,
+				4C73076A18CFAF1200398573 /* TWTSelectiveJSONAdapter.m in Sources */,
 				A420E1431885023F0019E986 /* UIView+TWTConvenientConstraintAddition.m in Sources */,
 				4C351FBE188495F4009AD246 /* UIDevice+TWTSystemVersion.m in Sources */,
 				A43C03351884FEA9000F9753 /* TWTUIKitBlockSampleViewController.m in Sources */,
 				49BCBC7818CD4BA1000B8706 /* NSArray+TWTIndexPath.m in Sources */,
+				4901313E18C61B0900117218 /* TWTSimpleAnimationController.m in Sources */,
+				4901314118C61D4600117218 /* TWTCustomTransitionsSampleViewController.m in Sources */,
 				A4D633EF18839EA900DA51CB /* TWTHighOrderFunctions.m in Sources */,
 				A4D633E31883914600DA51CB /* TWTAppDelegate.m in Sources */,
+				4901313B18C5830500117218 /* TWTNavigationControllerDelegate.m in Sources */,
 				4CFCDD6D189FF9C900A7C3F2 /* NSException+TWTSubclassResponsibility.m in Sources */,
 				A43C03411884FEF1000F9753 /* UIAlertView+TWTBlocks.m in Sources */,
 			);
@@ -525,7 +639,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -565,7 +678,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -597,6 +709,7 @@
 		};
 		A4D633C21883164000DA51CB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F172785705C41EDA18A8A16 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -610,6 +723,7 @@
 		};
 		A4D633C31883164000DA51CB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F172785705C41EDA18A8A16 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -625,7 +739,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCA7BDBC837C4B16812ADD3A /* Pods-ToastTests.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Toast.app/Toast";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -649,7 +762,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCA7BDBC837C4B16812ADD3A /* Pods-ToastTests.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Toast.app/Toast";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
