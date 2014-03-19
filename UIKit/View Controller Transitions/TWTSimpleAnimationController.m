@@ -61,11 +61,20 @@
     toViewController.view.frame = [transitionContext finalFrameForViewController:toViewController];
     [toViewController.view layoutIfNeeded];
 
+    BOOL optionsContainShowHideTransitionViews = (self.options & UIViewAnimationOptionShowHideTransitionViews) != 0;
+    if (!optionsContainShowHideTransitionViews) {
+        [[transitionContext containerView] addSubview:toViewController.view];
+    }
+
     [UIView transitionFromView:fromViewController.view
                         toView:toViewController.view
                       duration:self.duration
-                       options:self.options
+                       options:self.options | UIViewAnimationOptionShowHideTransitionViews
                     completion:^(BOOL finished) {
+                        if (!optionsContainShowHideTransitionViews) {
+                            [fromViewController.view removeFromSuperview];
+                        }
+
                         [transitionContext completeTransition:YES];
                     }];
 }
