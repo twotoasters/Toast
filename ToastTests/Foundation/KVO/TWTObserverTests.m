@@ -57,6 +57,12 @@
 }
 
 
+- (void)performSelectorTestWithAction:(SEL)action
+{
+    TWTSampleObservableObject *object = [[TWTSampleObservableObject alloc] init];
+    XCTAssertThrows([TWTObserver observerWithObject:object keyPath:NSStringFromSelector(@selector(sampleProperty)) target:self action:action], @"Should throw for invalid method signature");
+}
+
 #pragma mark - Tests
 
 - (void)testObserverWithBlockBasedChange
@@ -97,13 +103,23 @@
 
 - (void)testObserverWithInvalidMethodSignature
 {
-    TWTSampleObservableObject *object = [[TWTSampleObservableObject alloc] init];
-    
-    XCTAssertThrows([TWTObserver observerWithObject:object keyPath:NSStringFromSelector(@selector(sampleProperty)) target:self action:@selector(badMethodWithValueArgument:)], @"Should throw for invalid method signature");
+    [self performSelectorTestWithAction:@selector(badMethodWithValueArgument:)];
+}
+
+
+- (void)testObserverWithInvalidMethodSignature_BadReturnType
+{
+    [self performSelectorTestWithAction:@selector(badMethodWithValueReturnType)];
 }
 
 
 #pragma mark - Observer Actions
+
+- (float)badMethodWithValueReturnType
+{
+    // no need to do anything, should throw exception
+    return 0.0;
+}
 
 - (void)badMethodWithValueArgument:(float)someValue
 {

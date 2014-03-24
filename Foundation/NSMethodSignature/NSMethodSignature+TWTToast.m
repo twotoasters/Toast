@@ -33,6 +33,9 @@
     BOOL signatureIsEqual = NO;
     
     if (self.numberOfArguments == methodSignature.numberOfArguments) {
+        signatureIsEqual = YES;
+        
+        // check arguments for matching types
         for (NSUInteger argumentIndex = 0; argumentIndex < methodSignature.numberOfArguments; argumentIndex++) {
             const char *modelArgumentType = [methodSignature getArgumentTypeAtIndex:argumentIndex];
             const char *actionArgumentType = [self getArgumentTypeAtIndex:argumentIndex];
@@ -41,8 +44,11 @@
                 signatureIsEqual = NO;
                 break;
             }
-            
-            signatureIsEqual = YES;
+        }
+        
+        // check return type for matching types
+        if (strcmp(self.methodReturnType, methodSignature.methodReturnType) != 0) {
+            signatureIsEqual = NO;
         }
     }
     
