@@ -37,10 +37,12 @@
             const char *modelArgumentType = [methodSignature getArgumentTypeAtIndex:argumentIndex];
             const char *actionArgumentType = [self getArgumentTypeAtIndex:argumentIndex];
             
-            if (strcmp(modelArgumentType, actionArgumentType) == 0) {
-                signatureIsEqual = YES;
+            if (strcmp(modelArgumentType, actionArgumentType) != 0) {
+                signatureIsEqual = NO;
                 break;
             }
+            
+            signatureIsEqual = YES;
         }
     }
     

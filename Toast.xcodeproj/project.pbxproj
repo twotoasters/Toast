@@ -377,9 +377,9 @@
 		A4D633B71883164000DA51CB /* ToastTests */ = {
 			isa = PBXGroup;
 			children = (
-				A4BD768018E06D570021BEF3 /* Foundation */,
 				4C351FBF18849803009AD246 /* TWTRandomizedTestCase.h */,
 				4C351FC018849803009AD246 /* TWTRandomizedTestCase.m */,
+				A4BD768018E06D570021BEF3 /* Foundation */,
 				A4D633DC18838EFD00DA51CB /* Core */,
 				A4D633DB18838EF700DA51CB /* UIKit */,
 				A4D633B81883164000DA51CB /* Supporting Files */,

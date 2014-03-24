@@ -43,6 +43,22 @@
 
 @implementation TWTObserverTests
 
+#pragma mark - Helpers
+
+- (void)performTestWithAction:(SEL)action
+{
+    TWTSampleObservableObject *object = [[TWTSampleObservableObject alloc] init];
+    object.targetValue = UMKRandomUnicodeString();
+    object.sampleProperty = UMKRandomUnicodeString();
+    
+    __unused TWTObserver *testObserver = [TWTObserver observerWithObject:object keyPath:NSStringFromSelector(@selector(sampleProperty)) target:self action:action];
+    
+    object.sampleProperty = object.targetValue;
+}
+
+
+#pragma mark - Tests
+
 - (void)testObserverWithBlockBasedChange
 {
     NSString *oldValue = UMKRandomUnicodeString();
@@ -78,19 +94,22 @@
     [self performTestWithAction:@selector(objectChanged:changes:)];
 }
 
-- (void)performTestWithAction:(SEL)action
+
+- (void)testObserverWithInvalidMethodSignature
 {
     TWTSampleObservableObject *object = [[TWTSampleObservableObject alloc] init];
-    object.targetValue = UMKRandomUnicodeString();
-    object.sampleProperty = UMKRandomUnicodeString();
     
-    __unused TWTObserver *testObserver = [TWTObserver observerWithObject:object keyPath:NSStringFromSelector(@selector(sampleProperty)) target:self action:action];
-    
-    object.sampleProperty = object.targetValue;
+    XCTAssertThrows([TWTObserver observerWithObject:object keyPath:NSStringFromSelector(@selector(sampleProperty)) target:self action:@selector(badMethodWithValueArgument:)], @"Should throw for invalid method signature");
 }
 
 
 #pragma mark - Observer Actions
+
+- (void)badMethodWithValueArgument:(float)someValue
+{
+    // no need to do anything, should throw exception
+}
+
 
 - (void)objectChanged
 {
