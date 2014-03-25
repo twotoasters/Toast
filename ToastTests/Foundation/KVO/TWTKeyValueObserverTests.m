@@ -80,8 +80,8 @@
     TWTSampleObservableObject *object = [[TWTSampleObservableObject alloc] init];
     object.sampleProperty = oldValue;
     
-    __unused TWTKeyValueObserver *testObserver = [TWTKeyValueObserver observerWithObject:object keyPath:NSStringFromSelector(@selector(sampleProperty)) options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew changeBlock:^(id changingObject, NSDictionary *changeDictionary) {
-        XCTAssertEqual(changingObject, object, @"Observed Objects are not the same");
+    __unused TWTKeyValueObserver *testObserver = [TWTKeyValueObserver observerWithObject:object keyPath:NSStringFromSelector(@selector(sampleProperty)) options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew changeBlock:^(id observedObject, NSDictionary *changeDictionary) {
+        XCTAssertEqual(observedObject, object, @"Observed Objects are not the same");
         XCTAssertNotNil(changeDictionary, @"Change dictionary should be presented");
         XCTAssertEqual(newValue, changeDictionary[ NSKeyValueChangeNewKey ], @"Change Dictionary values are not equal");
     }];

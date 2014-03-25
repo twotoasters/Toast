@@ -26,7 +26,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^TWTKeyValueObserverChangeBlock)(id changingObject, NSDictionary *changeDictionary);
+typedef void(^TWTKeyValueObserverChangeBlock)(id observedObject, NSDictionary *changeDictionary);
 
 @interface TWTKeyValueObserver : NSObject
 
