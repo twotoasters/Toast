@@ -34,21 +34,25 @@ typedef void(^TWTKeyValueObserverChangeBlock)(id changingObject, NSDictionary *c
  @abstract Create and return an observer object that can be stored and released as needed
  @param object The object to observe
  @param keyPath The keyPath to observe on the object
+ @param options Options to use for observations
  @param changeBlock A block to invoke when the observation occurs
  */
 + (instancetype)observerWithObject:(id)object
                            keyPath:(NSString *)keyPath
+                           options:(NSKeyValueObservingOptions)options
                        changeBlock:(TWTKeyValueObserverChangeBlock)changeBlock;
 
 /*! 
  @abstract Create and return an observer object that can be stored and released as needed
  @param object The object to observe
  @param keyPath The keyPath to observe on the object
+ @param options Options to use for observations
  @param target An object to notify of changes.
  @param action A selector to call on the target object to notify of changes. 
  */
 + (instancetype)observerWithObject:(id)object
                            keyPath:(NSString *)keyPath
+                           options:(NSKeyValueObservingOptions)options
                             target:(id)target
                             action:(SEL)action;
 
@@ -56,21 +60,25 @@ typedef void(^TWTKeyValueObserverChangeBlock)(id changingObject, NSDictionary *c
  @abstract Create an observer object that can be stored and released as needed
  @param object The object to observe
  @param keyPath The keyPath to observe on the object
+ @param options Options to use for observations
  @param changeBlock A block to invoke when the observation occurs
  */
 - (instancetype)initWithObject:(id)object
                        keyPath:(NSString *)keyPath
+                       options:(NSKeyValueObservingOptions)options
                    changeBlock:(TWTKeyValueObserverChangeBlock)changeBlock;
 
 /*! 
  @abstract Create an observer object that can be stored and released as needed
  @param object The object to observe
  @param keyPath The keyPath to observe on the object
+ @param options Options to use for observations
  @param target An object to notify of changes.
  @param action A selector to call on the target object to notify of changes. 
  */
 - (instancetype)initWithObject:(id)object
                        keyPath:(NSString *)keyPath
+                       options:(NSKeyValueObservingOptions)options
                         target:(id)target
                         action:(SEL)action;
 

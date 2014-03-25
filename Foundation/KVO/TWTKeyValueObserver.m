@@ -31,6 +31,7 @@
 
 @property (nonatomic, weak) id object;
 @property (nonatomic, copy) NSString *keyPath;
+@property (nonatomic, assign) NSKeyValueObservingOptions options;
 
 @property (nonatomic, weak) id target;
 @property (nonatomic, assign) SEL action;
@@ -42,29 +43,30 @@
 
 #pragma mark - TWTKeyValueObserver
 
-+ (instancetype)observerWithObject:(id)object keyPath:(NSString *)keyPath changeBlock:(TWTKeyValueObserverChangeBlock)changeBlock
++ (instancetype)observerWithObject:(id)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options changeBlock:(TWTKeyValueObserverChangeBlock)changeBlock
 {
-    return [[self alloc] initWithObject:object keyPath:keyPath changeBlock:changeBlock];
+    return [[self alloc] initWithObject:object keyPath:keyPath options:options changeBlock:changeBlock];
 }
 
 
-+ (instancetype)observerWithObject:(id)object keyPath:(NSString *)keyPath target:(id)target action:(SEL)action
++ (instancetype)observerWithObject:(id)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options target:(id)target action:(SEL)action
 {
-    return [[self alloc] initWithObject:object keyPath:keyPath target:target action:action];
+    return [[self alloc] initWithObject:object keyPath:keyPath options:options target:target action:action];
 }
 
 
-- (instancetype)initWithObject:(id)object keyPath:(NSString *)keyPath changeBlock:(TWTKeyValueObserverChangeBlock)changeBlock
+- (instancetype)initWithObject:(id)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options changeBlock:(TWTKeyValueObserverChangeBlock)changeBlock
 {
     self = [super init];
     if (self) {
         self.object = object;
         self.keyPath = keyPath;
+        self.options = options;
         self.changeBlock = changeBlock;
         
         [object addObserver:self
                  forKeyPath:keyPath
-                    options: NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld 
+                    options:options
                     context:(__bridge void *)self];
     }
     return self;
@@ -78,12 +80,13 @@
 }
 
 
-- (instancetype)initWithObject:(id)object keyPath:(NSString *)keyPath target:(id)target action:(SEL)action
+- (instancetype)initWithObject:(id)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options target:(id)target action:(SEL)action
 {
     self = [super init];
     if (self) {
         self.object = object;
         self.keyPath = keyPath;
+        self.options = options;
         self.target = target;
         self.action = action;
         
@@ -96,7 +99,7 @@
         
         [object addObserver:self
                  forKeyPath:keyPath
-                    options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                    options:options
                     context:(__bridge void *)self];
     }
     return self;

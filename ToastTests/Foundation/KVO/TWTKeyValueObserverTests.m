@@ -51,7 +51,11 @@
     object.targetValue = UMKRandomUnicodeString();
     object.sampleProperty = UMKRandomUnicodeString();
     
-    __unused TWTKeyValueObserver *testObserver = [TWTKeyValueObserver observerWithObject:object keyPath:NSStringFromSelector(@selector(sampleProperty)) target:self action:action];
+    __unused TWTKeyValueObserver *testObserver = [TWTKeyValueObserver observerWithObject:object
+                                                                                 keyPath:NSStringFromSelector(@selector(sampleProperty))
+                                                                                 options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew
+                                                                                  target:self
+                                                                                  action:action];
     
     object.sampleProperty = object.targetValue;
 }
@@ -60,7 +64,10 @@
 - (void)performSelectorTestWithAction:(SEL)action
 {
     TWTSampleObservableObject *object = [[TWTSampleObservableObject alloc] init];
-    XCTAssertThrows([TWTKeyValueObserver observerWithObject:object keyPath:NSStringFromSelector(@selector(sampleProperty)) target:self action:action], @"Should throw for invalid method signature");
+    XCTAssertThrows([TWTKeyValueObserver observerWithObject:object keyPath:NSStringFromSelector(@selector(sampleProperty))
+                                                    options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew
+                                                     target:self
+                                                     action:action], @"Should throw for invalid method signature");
 }
 
 #pragma mark - Tests
@@ -73,7 +80,7 @@
     TWTSampleObservableObject *object = [[TWTSampleObservableObject alloc] init];
     object.sampleProperty = oldValue;
     
-    __unused TWTKeyValueObserver *testObserver = [TWTKeyValueObserver observerWithObject:object keyPath:NSStringFromSelector(@selector(sampleProperty)) changeBlock:^(id changingObject, NSDictionary *changeDictionary) {
+    __unused TWTKeyValueObserver *testObserver = [TWTKeyValueObserver observerWithObject:object keyPath:NSStringFromSelector(@selector(sampleProperty)) options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew changeBlock:^(id changingObject, NSDictionary *changeDictionary) {
         XCTAssertEqual(changingObject, object, @"Observed Objects are not the same");
         XCTAssertNotNil(changeDictionary, @"Change dictionary should be presented");
         XCTAssertEqual(newValue, changeDictionary[ NSKeyValueChangeNewKey ], @"Change Dictionary values are not equal");
