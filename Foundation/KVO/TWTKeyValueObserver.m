@@ -165,7 +165,7 @@
 
 - (BOOL)target:(id)target hasValidSignatureForSelector:(SEL)action;
 {
-    if (action == NULL) {
+    if (target == nil || action == NULL) {
         return NO;
     }
     
