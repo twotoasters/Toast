@@ -22,6 +22,14 @@ A subspec chock full of low-level extensions.
 
 A subspec for Foundation-level classes and categories.
 
+`pod TWTToast/Foundation/MethodSignatureEquality`
+
+A subspec that provides equality checking as a category on NSMethodSignature
+
+`pod TWTToast/Foundation/KVO`
+
+* **`TWTKeyValueObserver`** exposes a method for encapsulating a KVO-based observation such that it can be more easily released.
+
 ##### ErrorUtilities
 
 `pod TWTToast/Foundation/ErrorUtilities`
