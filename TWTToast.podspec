@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "TWTToast"
-  s.version          = "0.4"
+  s.version          = "0.5"
   s.summary          = "Tools and Utilities for Cocoa Development"
   s.homepage         = "https://github.com/twotoasters/Toast"
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -17,9 +17,8 @@ Pod::Spec.new do |s|
 
   ## Subspec for files related to Foundation
   s.subspec 'Foundation' do |ss|
-
-    ss.subspec 'MethodSignatureEquality' do |sss|
-      sss.source_files = "Foundation/Method Signature Equality/*.{h,m}"
+    ss.subspec 'ErrorUtilities' do |sss|
+      sss.source_files = "Foundation/Error Utilities/*.{h,m}"
     end
 
     ss.subspec 'KVO' do |sss|
@@ -27,8 +26,8 @@ Pod::Spec.new do |s|
       sss.source_files = "Foundation/KVO/*.{h,m}"
     end
 
-    ss.subspec 'ErrorUtilities' do |sss|
-      sss.source_files = "Foundation/Error Utilities/*.{h,m}"
+    ss.subspec 'MethodSignatureEquality' do |sss|
+      sss.source_files = "Foundation/Method Signature Equality/*.{h,m}"
     end
 
     ss.subspec 'SubclassResponsibility' do |sss|
