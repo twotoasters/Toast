@@ -1,5 +1,5 @@
 //
-//  TWTObserverTests.m
+//  TWTKeyValueObserverTests.m
 //  Toast
 //
 //  Created by Josh Johnson on 3/23/2014.
@@ -27,7 +27,7 @@
 #import <XCTest/XCTest.h>
 #import <URLMock/UMKTestUtilities.h>
 #import "TWTRandomizedTestCase.h"
-#import "TWTObserver.h"
+#import "TWTKeyValueObserver.h"
 
 @interface TWTSampleObservableObject : NSObject
 @property (nonatomic, copy) NSString *targetValue;
@@ -37,11 +37,11 @@
 @implementation TWTSampleObservableObject
 @end
 
-@interface TWTObserverTests : TWTRandomizedTestCase
+@interface TWTKeyValueObserverTests : TWTRandomizedTestCase
 
 @end
 
-@implementation TWTObserverTests
+@implementation TWTKeyValueObserverTests
 
 #pragma mark - Helpers
 
@@ -51,7 +51,7 @@
     object.targetValue = UMKRandomUnicodeString();
     object.sampleProperty = UMKRandomUnicodeString();
     
-    __unused TWTObserver *testObserver = [TWTObserver observerWithObject:object keyPath:NSStringFromSelector(@selector(sampleProperty)) target:self action:action];
+    __unused TWTKeyValueObserver *testObserver = [TWTKeyValueObserver observerWithObject:object keyPath:NSStringFromSelector(@selector(sampleProperty)) target:self action:action];
     
     object.sampleProperty = object.targetValue;
 }
@@ -60,7 +60,7 @@
 - (void)performSelectorTestWithAction:(SEL)action
 {
     TWTSampleObservableObject *object = [[TWTSampleObservableObject alloc] init];
-    XCTAssertThrows([TWTObserver observerWithObject:object keyPath:NSStringFromSelector(@selector(sampleProperty)) target:self action:action], @"Should throw for invalid method signature");
+    XCTAssertThrows([TWTKeyValueObserver observerWithObject:object keyPath:NSStringFromSelector(@selector(sampleProperty)) target:self action:action], @"Should throw for invalid method signature");
 }
 
 #pragma mark - Tests
@@ -73,7 +73,7 @@
     TWTSampleObservableObject *object = [[TWTSampleObservableObject alloc] init];
     object.sampleProperty = oldValue;
     
-    __unused TWTObserver *testObserver = [TWTObserver observerWithObject:object keyPath:NSStringFromSelector(@selector(sampleProperty)) changeBlock:^(id changingObject, NSDictionary *changeDictionary) {
+    __unused TWTKeyValueObserver *testObserver = [TWTKeyValueObserver observerWithObject:object keyPath:NSStringFromSelector(@selector(sampleProperty)) changeBlock:^(id changingObject, NSDictionary *changeDictionary) {
         XCTAssertEqual(changingObject, object, @"Observed Objects are not the same");
         XCTAssertNotNil(changeDictionary, @"Change dictionary should be presented");
         XCTAssertEqual(newValue, changeDictionary[ NSKeyValueChangeNewKey ], @"Change Dictionary values are not equal");

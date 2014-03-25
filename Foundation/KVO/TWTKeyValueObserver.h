@@ -1,5 +1,5 @@
 //
-//  TWTObserver.h
+//  TWTKeyValueObserver.h
 //  Toast
 //
 //  Created by Josh Johnson on 3/12/14.
@@ -26,9 +26,9 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^TWTObserverChangeBlock)(id changingObject, NSDictionary *changeDictionary);
+typedef void(^TWTKeyValueObserverChangeBlock)(id changingObject, NSDictionary *changeDictionary);
 
-@interface TWTObserver : NSObject
+@interface TWTKeyValueObserver : NSObject
 
 /*! 
  @abstract Create and return an observer object that can be stored and released as needed
@@ -38,7 +38,7 @@ typedef void(^TWTObserverChangeBlock)(id changingObject, NSDictionary *changeDic
  */
 + (instancetype)observerWithObject:(id)object
                            keyPath:(NSString *)keyPath
-                       changeBlock:(TWTObserverChangeBlock)changeBlock;
+                       changeBlock:(TWTKeyValueObserverChangeBlock)changeBlock;
 
 /*! 
  @abstract Create and return an observer object that can be stored and released as needed

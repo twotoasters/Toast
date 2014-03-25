@@ -1,5 +1,5 @@
 //
-//  TWTObserver.m
+//  TWTKeyValueObserver.m
 //  Toast
 //
 //  Created by Josh Johnson on 3/12/14.
@@ -24,25 +24,25 @@
 //  THE SOFTWARE.
 //
 
-#import "TWTObserver.h"
+#import "TWTKeyValueObserver.h"
 #import "NSMethodSignature+TWTToast.h"
 
-@interface TWTObserver ()
+@interface TWTKeyValueObserver ()
 
 @property (nonatomic, weak) id object;
 @property (nonatomic, copy) NSString *keyPath;
 
 @property (nonatomic, weak) id target;
 @property (nonatomic, assign) SEL action;
-@property (nonatomic, copy) TWTObserverChangeBlock changeBlock;
+@property (nonatomic, copy) TWTKeyValueObserverChangeBlock changeBlock;
 
 @end
 
-@implementation TWTObserver
+@implementation TWTKeyValueObserver
 
-#pragma mark - TWTObserver
+#pragma mark - TWTKeyValueObserver
 
-+ (instancetype)observerWithObject:(id)object keyPath:(NSString *)keyPath changeBlock:(TWTObserverChangeBlock)changeBlock
++ (instancetype)observerWithObject:(id)object keyPath:(NSString *)keyPath changeBlock:(TWTKeyValueObserverChangeBlock)changeBlock
 {
     return [[self alloc] initWithObject:object keyPath:keyPath changeBlock:changeBlock];
 }
@@ -54,7 +54,7 @@
 }
 
 
-- (instancetype)initWithObject:(id)object keyPath:(NSString *)keyPath changeBlock:(TWTObserverChangeBlock)changeBlock
+- (instancetype)initWithObject:(id)object keyPath:(NSString *)keyPath changeBlock:(TWTKeyValueObserverChangeBlock)changeBlock
 {
     self = [super init];
     if (self) {
