@@ -166,20 +166,18 @@
         return NO;
     }
     
-    BOOL validMethodSignature = NO;
     NSMethodSignature *actionMethodSignature = [target methodSignatureForSelector:action];
     NSArray *validMethodSignatures = @[ [self methodSignatureForSelector:@selector(model_objectChanged)],
                                         [self methodSignatureForSelector:@selector(model_objectChanged:)],
                                         [self methodSignatureForSelector:@selector(model_objectChanged:changeDictionary:)] ];
     
     for (NSMethodSignature *modelMethodSignature in validMethodSignatures) {
-        if ([actionMethodSignature twt_isEqualToMethodSignature:modelMethodSignature]) {
-            validMethodSignature = YES;
-            break;
+        if ([actionMethodSignature isEqual:modelMethodSignature]) {
+            return YES;
         }
     }
     
-    return validMethodSignature;
+    return NO;
 }
 
 

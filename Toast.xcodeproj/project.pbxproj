@@ -27,8 +27,6 @@
 		A43C03401884FEF1000F9753 /* UIActionSheet+TWTBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = A43C033D1884FEF1000F9753 /* UIActionSheet+TWTBlocks.m */; };
 		A43C03411884FEF1000F9753 /* UIAlertView+TWTBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = A43C033F1884FEF1000F9753 /* UIAlertView+TWTBlocks.m */; };
 		A455D79218844EEA009EB4EA /* UIColorTWTColorHelpersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A455D79118844EEA009EB4EA /* UIColorTWTColorHelpersTests.m */; };
-		A46AA10C18E1461F005489AA /* TWTMethodSignatureCategoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A46AA10B18E1461F005489AA /* TWTMethodSignatureCategoryTests.m */; };
-		A4BD767F18E06A900021BEF3 /* NSMethodSignature+TWTToast.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BD767E18E06A900021BEF3 /* NSMethodSignature+TWTToast.m */; };
 		A4BD768318E06DA40021BEF3 /* TWTKeyValueObserverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BD768218E06DA40021BEF3 /* TWTKeyValueObserverTests.m */; };
 		A4D633991883164000DA51CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D633981883164000DA51CB /* Foundation.framework */; };
 		A4D6339B1883164000DA51CB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D6339A1883164000DA51CB /* CoreGraphics.framework */; };
@@ -95,9 +93,6 @@
 		A43C033E1884FEF1000F9753 /* UIAlertView+TWTBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+TWTBlocks.h"; sourceTree = "<group>"; };
 		A43C033F1884FEF1000F9753 /* UIAlertView+TWTBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+TWTBlocks.m"; sourceTree = "<group>"; };
 		A455D79118844EEA009EB4EA /* UIColorTWTColorHelpersTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColorTWTColorHelpersTests.m; sourceTree = "<group>"; };
-		A46AA10B18E1461F005489AA /* TWTMethodSignatureCategoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTMethodSignatureCategoryTests.m; sourceTree = "<group>"; };
-		A4BD767D18E06A900021BEF3 /* NSMethodSignature+TWTToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMethodSignature+TWTToast.h"; sourceTree = "<group>"; };
-		A4BD767E18E06A900021BEF3 /* NSMethodSignature+TWTToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMethodSignature+TWTToast.m"; sourceTree = "<group>"; };
 		A4BD768218E06DA40021BEF3 /* TWTKeyValueObserverTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTKeyValueObserverTests.m; sourceTree = "<group>"; };
 		A4D633951883164000DA51CB /* Toast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Toast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4D633981883164000DA51CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -231,7 +226,6 @@
 			isa = PBXGroup;
 			children = (
 				A4E7ACF518D0D8C1009FD889 /* KVO */,
-				A4BD767C18E06A3F0021BEF3 /* Method Signature Equality */,
 				4CFCDD72189FFFB700A7C3F2 /* Error Utilities */,
 				4CFCDD6A189FF9C900A7C3F2 /* Subclass Responsibility */,
 			);
@@ -287,27 +281,9 @@
 			path = Blocks;
 			sourceTree = "<group>";
 		};
-		A46AA10A18E145E6005489AA /* NSMethodSignature */ = {
-			isa = PBXGroup;
-			children = (
-				A46AA10B18E1461F005489AA /* TWTMethodSignatureCategoryTests.m */,
-			);
-			path = NSMethodSignature;
-			sourceTree = "<group>";
-		};
-		A4BD767C18E06A3F0021BEF3 /* Method Signature Equality */ = {
-			isa = PBXGroup;
-			children = (
-				A4BD767D18E06A900021BEF3 /* NSMethodSignature+TWTToast.h */,
-				A4BD767E18E06A900021BEF3 /* NSMethodSignature+TWTToast.m */,
-			);
-			path = "Method Signature Equality";
-			sourceTree = "<group>";
-		};
 		A4BD768018E06D570021BEF3 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				A46AA10A18E145E6005489AA /* NSMethodSignature */,
 				A4BD768118E06D5D0021BEF3 /* KVO */,
 			);
 			path = Foundation;
@@ -625,7 +601,6 @@
 				4C73076A18CFAF1200398573 /* TWTSelectiveJSONAdapter.m in Sources */,
 				A420E1431885023F0019E986 /* UIView+TWTConvenientConstraintAddition.m in Sources */,
 				4C351FBE188495F4009AD246 /* UIDevice+TWTSystemVersion.m in Sources */,
-				A4BD767F18E06A900021BEF3 /* NSMethodSignature+TWTToast.m in Sources */,
 				A43C03351884FEA9000F9753 /* TWTUIKitBlockSampleViewController.m in Sources */,
 				4901313E18C61B0900117218 /* TWTSimpleAnimationController.m in Sources */,
 				4901314118C61D4600117218 /* TWTCustomTransitionsSampleViewController.m in Sources */,
@@ -645,7 +620,6 @@
 				A455D79218844EEA009EB4EA /* UIColorTWTColorHelpersTests.m in Sources */,
 				A4D633F11883A1E100DA51CB /* TWTHighOrderFunctionsTests.m in Sources */,
 				A4BD768318E06DA40021BEF3 /* TWTKeyValueObserverTests.m in Sources */,
-				A46AA10C18E1461F005489AA /* TWTMethodSignatureCategoryTests.m in Sources */,
 				4C351FC118849803009AD246 /* TWTRandomizedTestCase.m in Sources */,
 				A4D633DE18838FF400DA51CB /* UIDeviceTWTSystemVersionTests.m in Sources */,
 			);
