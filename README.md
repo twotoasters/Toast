@@ -22,9 +22,9 @@ A subspec chock full of low-level extensions.
 
 A subspec for Foundation-level classes and categories.
 
-`pod TWTToast/Foundation/Categories`
+`pod TWTToast/Foundation/MethodSignatureEquality`
 
-A subspec for loading just categories on Foundation-level classes.
+A subspec that provides equality checking as a category on NSMethodSignature
 
 `pod TWTToast/Foundation/KVO`
 
