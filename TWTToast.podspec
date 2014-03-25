@@ -18,12 +18,12 @@ Pod::Spec.new do |s|
   ## Subspec for files related to Foundation
   s.subspec 'Foundation' do |ss|
 
-    ss.subspec 'Categories' do |sss|
-      sss.source_files = "Foundation/NSMethodSignature/*.{h,m}"
+    ss.subspec 'MethodSignatureEquality' do |sss|
+      sss.source_files = "Foundation/Method Signature Equality/*.{h,m}"
     end
 
     ss.subspec 'KVO' do |sss|
-      sss.dependency 'TWTToast/Foundation/Categories'
+      sss.dependency 'TWTToast/Foundation/MethodSignatureEquality'
       sss.source_files = "Foundation/KVO/*.{h,m}"
     end
 

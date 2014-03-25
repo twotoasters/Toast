@@ -230,8 +230,8 @@
 		4CFCDD69189FF9C900A7C3F2 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				A4BD767C18E06A3F0021BEF3 /* NSMethodSignature */,
 				A4E7ACF518D0D8C1009FD889 /* KVO */,
+				A4BD767C18E06A3F0021BEF3 /* Method Signature Equality */,
 				4CFCDD72189FFFB700A7C3F2 /* Error Utilities */,
 				4CFCDD6A189FF9C900A7C3F2 /* Subclass Responsibility */,
 			);
@@ -295,13 +295,13 @@
 			path = NSMethodSignature;
 			sourceTree = "<group>";
 		};
-		A4BD767C18E06A3F0021BEF3 /* NSMethodSignature */ = {
+		A4BD767C18E06A3F0021BEF3 /* Method Signature Equality */ = {
 			isa = PBXGroup;
 			children = (
 				A4BD767D18E06A900021BEF3 /* NSMethodSignature+TWTToast.h */,
 				A4BD767E18E06A900021BEF3 /* NSMethodSignature+TWTToast.m */,
 			);
-			path = NSMethodSignature;
+			path = "Method Signature Equality";
 			sourceTree = "<group>";
 		};
 		A4BD768018E06D570021BEF3 /* Foundation */ = {
