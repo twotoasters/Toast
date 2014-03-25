@@ -25,7 +25,6 @@
 //
 
 #import "TWTKeyValueObserver.h"
-#import "NSMethodSignature+TWTToast.h"
 
 @interface TWTKeyValueObserver ()
 
@@ -38,9 +37,10 @@
 
 @end
 
-@implementation TWTKeyValueObserver
 
 #pragma mark - TWTKeyValueObserver
+
+@implementation TWTKeyValueObserver
 
 + (instancetype)observerWithObject:(id)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options changeBlock:(TWTKeyValueObserverChangeBlock)changeBlock
 {
@@ -106,6 +106,7 @@
 {
     [_object removeObserver:self forKeyPath:_keyPath context:(__bridge void *)self];
 }
+
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
@@ -179,6 +180,5 @@
     
     return NO;
 }
-
 
 @end

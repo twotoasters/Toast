@@ -225,8 +225,8 @@
 		4CFCDD69189FF9C900A7C3F2 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				A4E7ACF518D0D8C1009FD889 /* KVO */,
 				4CFCDD72189FFFB700A7C3F2 /* Error Utilities */,
+				A4E7ACF518D0D8C1009FD889 /* KVO */,
 				4CFCDD6A189FF9C900A7C3F2 /* Subclass Responsibility */,
 			);
 			path = Foundation;
