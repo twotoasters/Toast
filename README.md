@@ -22,6 +22,8 @@ A subspec chock full of low-level extensions.
 
 A subspec for Foundation-level classes and categories.
 
+##### KVO
+
 `pod TWTToast/Foundation/KVO`
 
 * **`TWTKeyValueObserver`** exposes a method for encapsulating a KVO-based observation such that it can be more easily released.
