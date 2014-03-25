@@ -92,9 +92,8 @@
         
         if (![self target:target hasValidSignatureForSelector:action]) {
             @throw [NSException exceptionWithName:NSInvalidArgumentException
-                                           reason:@"Action Method must conform to -(void)object:(id)object changeDictionary:(NSDictionary *)changeDictionary;"
+                                           reason:@"Action method must have a signature that conforms. A conforming signature recieves at most a changed object and a change dictionary."
                                          userInfo:nil];
-            return nil;
         }
         
         [object addObserver:self
@@ -166,25 +165,18 @@
 
 - (BOOL)target:(id)target hasValidSignatureForSelector:(SEL)action;
 {
-    if (self.action == NULL) {
+    if (action == NULL) {
         return NO;
     }
     
-    NSMethodSignature *actionMethodSignature = [self.target methodSignatureForSelector:self.action];
+    BOOL validMethodSignature = NO;
+    NSMethodSignature *actionMethodSignature = [target methodSignatureForSelector:action];
     NSArray *validMethodSignatures = @[ [self methodSignatureForSelector:@selector(model_objectChanged)],
                                         [self methodSignatureForSelector:@selector(model_objectChanged:)],
                                         [self methodSignatureForSelector:@selector(model_objectChanged:changeDictionary:)] ];
     
-    return [self methodSignature:actionMethodSignature matchesMethodSignatures:validMethodSignatures];
-}
-
-
-- (BOOL)methodSignature:(NSMethodSignature *)methodSignature matchesMethodSignatures:(NSArray *)methodSignatures
-{
-    BOOL validMethodSignature = NO;
-    
-    for (NSMethodSignature *modelMethodSignature in methodSignatures) {
-        if ([methodSignature twt_isEqualToMethodSignature:modelMethodSignature]) {
+    for (NSMethodSignature *modelMethodSignature in validMethodSignatures) {
+        if ([actionMethodSignature twt_isEqualToMethodSignature:modelMethodSignature]) {
             validMethodSignature = YES;
             break;
         }
