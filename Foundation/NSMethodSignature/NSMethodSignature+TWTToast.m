@@ -30,26 +30,27 @@
 
 - (BOOL)twt_isEqualToMethodSignature:(NSMethodSignature *)methodSignature
 {
-    BOOL signatureIsEqual = NO;
+    // If this method doesn't even have the same number of arguments exit early
+    if (self.numberOfArguments != methodSignature.numberOfArguments) {
+        return NO;
+    }
     
-    if (self.numberOfArguments == methodSignature.numberOfArguments) {
-        signatureIsEqual = YES;
+    BOOL signatureIsEqual = YES;
+    
+    // check arguments for matching types
+    for (NSUInteger argumentIndex = 0; argumentIndex < methodSignature.numberOfArguments; argumentIndex++) {
+        const char *modelArgumentType = [methodSignature getArgumentTypeAtIndex:argumentIndex];
+        const char *actionArgumentType = [self getArgumentTypeAtIndex:argumentIndex];
         
-        // check arguments for matching types
-        for (NSUInteger argumentIndex = 0; argumentIndex < methodSignature.numberOfArguments; argumentIndex++) {
-            const char *modelArgumentType = [methodSignature getArgumentTypeAtIndex:argumentIndex];
-            const char *actionArgumentType = [self getArgumentTypeAtIndex:argumentIndex];
-            
-            if (strcmp(modelArgumentType, actionArgumentType) != 0) {
-                signatureIsEqual = NO;
-                break;
-            }
-        }
-        
-        // check return type for matching types
-        if (strcmp(self.methodReturnType, methodSignature.methodReturnType) != 0) {
+        if (strcmp(modelArgumentType, actionArgumentType) != 0) {
             signatureIsEqual = NO;
+            break;
         }
+    }
+    
+    // check return type for matching types
+    if (strcmp(self.methodReturnType, methodSignature.methodReturnType) != 0) {
+        signatureIsEqual = NO;
     }
     
     return signatureIsEqual;

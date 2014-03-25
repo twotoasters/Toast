@@ -29,7 +29,8 @@
 @interface NSMethodSignature (TWTToast)
 
 /*!
- @abstract Compare this method signature to the provided method signature for equality. Verifies argument count and arguments are correct. Does not differentiate between id and a concrete object.
+ @abstract Compare this method signature to the provided method signature for equality. 
+ @discussion Verifies argument count and arguments are correct. This check does not differentiate between id and a specific type.
  @param methodSignature The method signature to compare against.
  @return BOOL YES or NO if the methods are equal
  */
