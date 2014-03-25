@@ -70,6 +70,7 @@
     // empty implementation
 }
 
+
 - (id)model_methodWithNoArgumentsObjectReturn
 {
     // empty implementation
