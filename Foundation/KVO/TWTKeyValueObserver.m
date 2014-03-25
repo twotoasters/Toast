@@ -29,9 +29,8 @@
 
 @interface TWTKeyValueObserver ()
 
-@property (nonatomic, weak) id object;
-@property (nonatomic, copy) NSString *keyPath;
-@property (nonatomic, assign) NSKeyValueObservingOptions options;
+@property (nonatomic, weak, readwrite) id object;
+@property (nonatomic, copy, readwrite) NSString *keyPath;
 
 @property (nonatomic, weak) id target;
 @property (nonatomic, assign) SEL action;
@@ -61,7 +60,6 @@
     if (self) {
         self.object = object;
         self.keyPath = keyPath;
-        self.options = options;
         self.changeBlock = changeBlock;
         
         [object addObserver:self
@@ -86,7 +84,6 @@
     if (self) {
         self.object = object;
         self.keyPath = keyPath;
-        self.options = options;
         self.target = target;
         self.action = action;
         

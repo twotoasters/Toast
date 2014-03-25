@@ -30,6 +30,9 @@ typedef void(^TWTKeyValueObserverChangeBlock)(id observedObject, NSDictionary *c
 
 @interface TWTKeyValueObserver : NSObject
 
+@property (nonatomic, weak, readonly) id object;
+@property (nonatomic, copy, readonly) NSString *keyPath;
+
 /*! 
  @abstract Create and return an observer object that can be stored and released as needed
  @param object The object to observe
