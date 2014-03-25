@@ -71,6 +71,13 @@
 }
 
 
+- (id)init
+{
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
+}
+
+
 - (instancetype)initWithObject:(id)object keyPath:(NSString *)keyPath target:(id)target action:(SEL)action
 {
     self = [super init];

@@ -113,6 +113,11 @@
 }
 
 
+- (void)testObserverCreationWithInit
+{
+    XCTAssertThrows([[TWTKeyValueObserver alloc] init], @"Should not allow accessing with init. Use custom initializers instead");
+}
+
 #pragma mark - Observer Actions
 
 - (float)badMethodWithValueReturnType

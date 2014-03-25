@@ -52,4 +52,26 @@ typedef void(^TWTKeyValueObserverChangeBlock)(id changingObject, NSDictionary *c
                             target:(id)target
                             action:(SEL)action;
 
+/*! 
+ @abstract Create an observer object that can be stored and released as needed
+ @param object The object to observe
+ @param keyPath The keyPath to observe on the object
+ @param changeBlock A block to invoke when the observation occurs
+ */
+- (instancetype)initWithObject:(id)object
+                       keyPath:(NSString *)keyPath
+                   changeBlock:(TWTKeyValueObserverChangeBlock)changeBlock;
+
+/*! 
+ @abstract Create an observer object that can be stored and released as needed
+ @param object The object to observe
+ @param keyPath The keyPath to observe on the object
+ @param target An object to notify of changes.
+ @param action A selector to call on the target object to notify of changes. 
+ */
+- (instancetype)initWithObject:(id)object
+                       keyPath:(NSString *)keyPath
+                        target:(id)target
+                        action:(SEL)action;
+
 @end
