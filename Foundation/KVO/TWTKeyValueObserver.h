@@ -30,7 +30,11 @@ typedef void(^TWTKeyValueObserverChangeBlock)(id observedObject, NSDictionary *c
 
 /*!
  @abstract An opaque observer object that manages KVO against a single object
- @discussion Under ARC, if the object you are observing is the same as the object that will retain this observer class you need to take extra care as to when observation starts or stops. In these cases you should use the `startObserving`-based methods to not start observing the object at init but rather use the `-startObserving` and `-stopObserving` methods to control observation. This is especially important when the object you are observing (which is stored as a weak reference) is released before this observer object can remove itself as an observer.
+ @discussion Generally, observers automatically begin observing their objects at initialization and stop observing
+     them upon deallocation. This presents problems under ARC if the observer's object is the same as the one that
+     will retain the observer. In this case, you should manually stop observing changes (using -stopObserving) 
+     before -dealloc is called on the observer's owner. Failure to do so could result in runtime warnings from the
+     KVO system.
  */
 @interface TWTKeyValueObserver : NSObject
 
