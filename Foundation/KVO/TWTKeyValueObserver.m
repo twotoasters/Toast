@@ -30,6 +30,7 @@
 
 @property (nonatomic, weak, readwrite) id object;
 @property (nonatomic, copy, readwrite) NSString *keyPath;
+@property (nonatomic, assign) NSKeyValueObservingOptions options;
 
 @property (nonatomic, weak) id target;
 @property (nonatomic, assign) SEL action;
@@ -38,38 +39,9 @@
 @end
 
 
-#pragma mark - TWTKeyValueObserver
-
 @implementation TWTKeyValueObserver
 
-+ (instancetype)observerWithObject:(id)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options changeBlock:(TWTKeyValueObserverChangeBlock)changeBlock
-{
-    return [[self alloc] initWithObject:object keyPath:keyPath options:options changeBlock:changeBlock];
-}
-
-
-+ (instancetype)observerWithObject:(id)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options target:(id)target action:(SEL)action
-{
-    return [[self alloc] initWithObject:object keyPath:keyPath options:options target:target action:action];
-}
-
-
-- (instancetype)initWithObject:(id)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options changeBlock:(TWTKeyValueObserverChangeBlock)changeBlock
-{
-    self = [super init];
-    if (self) {
-        self.object = object;
-        self.keyPath = keyPath;
-        self.changeBlock = changeBlock;
-        
-        [object addObserver:self
-                 forKeyPath:keyPath
-                    options:options
-                    context:(__bridge void *)self];
-    }
-    return self;
-}
-
+#pragma mark - NSObject
 
 - (id)init
 {
@@ -78,12 +50,68 @@
 }
 
 
-- (instancetype)initWithObject:(id)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options target:(id)target action:(SEL)action
+- (void)dealloc
+{
+    if ([self isObserving]) {
+        [self stopObserving];
+    }
+}
+
+#pragma mark - TWTKeyValueObserver
+
++ (instancetype)observerWithObject:(id)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options changeBlock:(TWTKeyValueObserverChangeBlock)changeBlock
+{
+    return [self observerWithObject:object keyPath:keyPath options:options startObserver:YES changeBlock:changeBlock];
+}
+
+
++ (instancetype)observerWithObject:(id)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options target:(id)target action:(SEL)action
+{
+    return [self observerWithObject:object keyPath:keyPath options:options startObserver:YES target:target action:action];
+}
+
+
++ (instancetype)observerWithObject:(id)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options startObserver:(BOOL)startObserver changeBlock:(TWTKeyValueObserverChangeBlock)changeBlock
+{
+    return [[self alloc] initWithObject:object keyPath:keyPath options:options startObserving:startObserver changeBlock:changeBlock];
+}
+
+
++ (instancetype)observerWithObject:(id)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options startObserver:(BOOL)startObserver target:(id)target action:(SEL)action
+{
+    return [[self alloc] initWithObject:object keyPath:keyPath options:options startObserving:startObserver target:target action:action];
+}
+
+
+- (instancetype)initWithObject:(id)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options startObserving:(BOOL)startObserving changeBlock:(TWTKeyValueObserverChangeBlock)changeBlock
 {
     self = [super init];
     if (self) {
         self.object = object;
         self.keyPath = keyPath;
+        self.options = options;
+        self.changeBlock = changeBlock;
+        
+        if (startObserving) {
+            [self startObserving];
+        }
+    }
+    return self;
+}
+
+- (instancetype)initWithObject:(id)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options changeBlock:(TWTKeyValueObserverChangeBlock)changeBlock
+{
+    return [self initWithObject:object keyPath:keyPath options:options startObserving:YES changeBlock:changeBlock];
+}
+
+
+- (instancetype)initWithObject:(id)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options startObserving:(BOOL)startObserving target:(id)target action:(SEL)action
+{
+    self = [super init];
+    if (self) {
+        self.object = object;
+        self.keyPath = keyPath;
+        self.options = options;
         self.target = target;
         self.action = action;
         
@@ -93,20 +121,44 @@
                                          userInfo:nil];
         }
         
-        [object addObserver:self
-                 forKeyPath:keyPath
-                    options:options
-                    context:(__bridge void *)self];
+        if (startObserving) {
+            [self startObserving];
+        }
     }
     return self;
 }
 
 
-- (void)dealloc
+- (instancetype)initWithObject:(id)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options target:(id)target action:(SEL)action
 {
-    [_object removeObserver:self forKeyPath:_keyPath context:(__bridge void *)self];
+    return [self initWithObject:object keyPath:keyPath options:options startObserving:YES target:target action:action];
 }
 
+
+- (void)startObserving
+{
+    if (![self isObserving]) {
+        [self.object addObserver:self
+                      forKeyPath:self.keyPath
+                         options:self.options
+                         context:(__bridge void *)self];
+        self.observing = YES;
+    }
+}
+
+
+- (void)stopObserving
+{
+    if ([self isObserving]) {
+        [self.object removeObserver:self
+                         forKeyPath:self.keyPath
+                            context:(__bridge void *)self];
+        self.observing = NO;
+    }
+}
+
+
+#pragma mark - Observation
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
