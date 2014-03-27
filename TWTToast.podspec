@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "TWTToast"
-  s.version          = "0.4"
+  s.version          = "0.5"
   s.summary          = "Tools and Utilities for Cocoa Development"
   s.homepage         = "https://github.com/twotoasters/Toast"
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -19,6 +19,10 @@ Pod::Spec.new do |s|
   s.subspec 'Foundation' do |ss|
     ss.subspec 'ErrorUtilities' do |sss|
       sss.source_files = "Foundation/Error Utilities/*.{h,m}"
+    end
+
+    ss.subspec 'KVO' do |sss|
+      sss.source_files = "Foundation/KVO/*.{h,m}"
     end
 
     ss.subspec 'SubclassResponsibility' do |sss|
