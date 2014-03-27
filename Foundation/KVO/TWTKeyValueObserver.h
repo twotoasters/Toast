@@ -28,13 +28,23 @@
 
 typedef void(^TWTKeyValueObserverChangeBlock)(id observedObject, NSDictionary *changeDictionary);
 
+/*!
+ @abstract An opaque observer object that manages KVO against a single object
+ @discussion Generally, observers automatically begin observing their objects at initialization and stop observing
+     them upon deallocation. This presents problems under ARC if the observer's object is the same as the one that
+     will retain the observer. In this case, you should manually stop observing changes (using -stopObserving) 
+     before -dealloc is called on the observer's owner. Failure to do so could result in runtime warnings from the
+     KVO system.
+ */
 @interface TWTKeyValueObserver : NSObject
 
 @property (nonatomic, weak, readonly) id object;
 @property (nonatomic, copy, readonly) NSString *keyPath;
+@property (nonatomic, assign, getter = isObserving, readonly) BOOL observing;
 
 /*! 
- @abstract Create and return an observer object that can be stored and released as needed
+ @abstract Create and return an observer object that can be stored and released as needed.
+ @discussion This will automatically start observing the specified object.
  @param object The object to observe
  @param keyPath The keyPath to observe on the object
  @param options Options to use for observations
@@ -47,6 +57,7 @@ typedef void(^TWTKeyValueObserverChangeBlock)(id observedObject, NSDictionary *c
 
 /*! 
  @abstract Create and return an observer object that can be stored and released as needed
+ @discussion This will automatically start observing the specified object.
  @param object The object to observe
  @param keyPath The keyPath to observe on the object
  @param options Options to use for observations
@@ -60,7 +71,38 @@ typedef void(^TWTKeyValueObserverChangeBlock)(id observedObject, NSDictionary *c
                             action:(SEL)action;
 
 /*! 
+ @abstract Create and return an observer object that can be stored and released as needed
+ @param object The object to observe
+ @param keyPath The keyPath to observe on the object
+ @param options Options to use for observations
+ @param startObserving Specify whether this should start the observer on creation
+ @param changeBlock A block to invoke when the observation occurs
+ */
++ (instancetype)observerWithObject:(id)object
+                           keyPath:(NSString *)keyPath
+                           options:(NSKeyValueObservingOptions)options
+                    startObserving:(BOOL)startObserving
+                       changeBlock:(TWTKeyValueObserverChangeBlock)changeBlock;
+
+/*! 
+ @abstract Create and return an observer object that can be stored and released as needed
+ @param object The object to observe
+ @param keyPath The keyPath to observe on the object
+ @param options Options to use for observations
+ @param startObserving Specify whether this should start the observer on creation
+ @param target An object to notify of changes.
+ @param action A selector to call on the target object to notify of changes. 
+ */
++ (instancetype)observerWithObject:(id)object
+                           keyPath:(NSString *)keyPath
+                           options:(NSKeyValueObservingOptions)options
+                    startObserving:(BOOL)startObserving
+                            target:(id)target
+                            action:(SEL)action;
+
+/*! 
  @abstract Create an observer object that can be stored and released as needed
+ @discussion This will automatically start observing the specified object.
  @param object The object to observe
  @param keyPath The keyPath to observe on the object
  @param options Options to use for observations
@@ -84,5 +126,46 @@ typedef void(^TWTKeyValueObserverChangeBlock)(id observedObject, NSDictionary *c
                        options:(NSKeyValueObservingOptions)options
                         target:(id)target
                         action:(SEL)action;
+
+/*! 
+ @abstract Create an observer object that can be stored and released as needed
+ @discussion This will automatically start observing the specified object.
+ @param object The object to observe
+ @param keyPath The keyPath to observe on the object
+ @param options Options to use for observations
+ @param startObserving Specify whether this should start the observer on creation
+ @param changeBlock A block to invoke when the observation occurs
+ */
+- (instancetype)initWithObject:(id)object
+                       keyPath:(NSString *)keyPath
+                       options:(NSKeyValueObservingOptions)options
+                startObserving:(BOOL)startObserving
+                   changeBlock:(TWTKeyValueObserverChangeBlock)changeBlock;
+
+/*! 
+ @abstract Create an observer object that can be stored and released as needed
+ @param object The object to observe
+ @param keyPath The keyPath to observe on the object
+ @param options Options to use for observations
+ @param startObserving Specify whether this should start the observer on creation
+ @param target An object to notify of changes.
+ @param action A selector to call on the target object to notify of changes. 
+ */
+- (instancetype)initWithObject:(id)object
+                       keyPath:(NSString *)keyPath
+                       options:(NSKeyValueObservingOptions)options
+                startObserving:(BOOL)startObserving
+                        target:(id)target
+                        action:(SEL)action;
+
+/*!
+ @abstract Start observing the object if it isn't already observing.
+ */
+- (void)startObserving;
+
+/*!
+ @abstract Stop observing the object if it is already observing.
+ */
+- (void)stopObserving;
 
 @end
