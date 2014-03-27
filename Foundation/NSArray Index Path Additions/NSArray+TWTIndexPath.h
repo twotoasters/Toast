@@ -32,8 +32,8 @@
 
 /*!
  @abstract returns the object at the specified index path or nil if no such index path exists
- @param indexPath the index path used to look up the object
- @return the object found at the index path or nil if the index path is invalid for the receiver
+ @param indexPath the index path used to look up the object. All intermediate objects must be also arrays.
+ @return the object found at the index path or nil if the index path is nil or has 0 length
  */
 - (id)twt_objectAtIndexPath:(NSIndexPath *)indexPath;
 

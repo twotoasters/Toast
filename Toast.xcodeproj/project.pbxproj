@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		02CBF53B02574915A5B18D20 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C829E1DA3404341A2C58BB6 /* libPods.a */; };
 		38D001530B13452CBE5DDB73 /* libPods-ToastTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A07E2E64D14C2EA63FBE64 /* libPods-ToastTests.a */; };
-		49BCBC7818CD4BA1000B8706 /* NSArray+TWTIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BCBC7718CD4BA1000B8706 /* NSArray+TWTIndexPath.m */; };
 		4901313B18C5830500117218 /* TWTNavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4901313A18C5830500117218 /* TWTNavigationControllerDelegate.m */; };
 		4901313E18C61B0900117218 /* TWTSimpleAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4901313D18C61B0900117218 /* TWTSimpleAnimationController.m */; };
 		4901314118C61D4600117218 /* TWTCustomTransitionsSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4901314018C61D4600117218 /* TWTCustomTransitionsSampleViewController.m */; };
+		4997421218E4A78B001A2CD1 /* NSArrayTWTIndexPathTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4997421118E4A78B001A2CD1 /* NSArrayTWTIndexPathTests.m */; };
+		49BCBC7818CD4BA1000B8706 /* NSArray+TWTIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BCBC7718CD4BA1000B8706 /* NSArray+TWTIndexPath.m */; };
 		4C351FBD188495F4009AD246 /* UIColor+TWTColorHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FB9188495F4009AD246 /* UIColor+TWTColorHelpers.m */; };
 		4C351FBE188495F4009AD246 /* UIDevice+TWTSystemVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FBC188495F4009AD246 /* UIDevice+TWTSystemVersion.m */; };
 		4C351FC118849803009AD246 /* TWTRandomizedTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FC018849803009AD246 /* TWTRandomizedTestCase.m */; };
@@ -58,14 +59,15 @@
 
 /* Begin PBXFileReference section */
 		22A07E2E64D14C2EA63FBE64 /* libPods-ToastTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ToastTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		49BCBC7618CD4BA1000B8706 /* NSArray+TWTIndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+TWTIndexPath.h"; sourceTree = "<group>"; };
-		49BCBC7718CD4BA1000B8706 /* NSArray+TWTIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+TWTIndexPath.m"; sourceTree = "<group>"; };
 		4901313918C5830500117218 /* TWTNavigationControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTNavigationControllerDelegate.h; sourceTree = "<group>"; };
 		4901313A18C5830500117218 /* TWTNavigationControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTNavigationControllerDelegate.m; sourceTree = "<group>"; };
 		4901313C18C61B0900117218 /* TWTSimpleAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTSimpleAnimationController.h; sourceTree = "<group>"; };
 		4901313D18C61B0900117218 /* TWTSimpleAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTSimpleAnimationController.m; sourceTree = "<group>"; };
 		4901313F18C61D4600117218 /* TWTCustomTransitionsSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTCustomTransitionsSampleViewController.h; sourceTree = "<group>"; };
 		4901314018C61D4600117218 /* TWTCustomTransitionsSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTCustomTransitionsSampleViewController.m; sourceTree = "<group>"; };
+		4997421118E4A78B001A2CD1 /* NSArrayTWTIndexPathTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayTWTIndexPathTests.m; sourceTree = "<group>"; };
+		49BCBC7618CD4BA1000B8706 /* NSArray+TWTIndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+TWTIndexPath.h"; sourceTree = "<group>"; };
+		49BCBC7718CD4BA1000B8706 /* NSArray+TWTIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+TWTIndexPath.m"; sourceTree = "<group>"; };
 		4C351FB8188495F4009AD246 /* UIColor+TWTColorHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+TWTColorHelpers.h"; sourceTree = "<group>"; };
 		4C351FB9188495F4009AD246 /* UIColor+TWTColorHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+TWTColorHelpers.m"; sourceTree = "<group>"; };
 		4C351FBB188495F4009AD246 /* UIDevice+TWTSystemVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+TWTSystemVersion.h"; sourceTree = "<group>"; };
@@ -147,15 +149,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		49BCBC7518CD4B49000B8706 /* NSArray Index Path Additions */ = {
-			isa = PBXGroup;
-			children = (
-				49BCBC7618CD4BA1000B8706 /* NSArray+TWTIndexPath.h */,
-				49BCBC7718CD4BA1000B8706 /* NSArray+TWTIndexPath.m */,
-			);
-			path = "NSArray Index Path Additions";
-			sourceTree = "<group>";
-		};
 		4901313818C582B600117218 /* View Controller Transitions */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +158,23 @@
 				4901313D18C61B0900117218 /* TWTSimpleAnimationController.m */,
 			);
 			path = "View Controller Transitions";
+			sourceTree = "<group>";
+		};
+		4997421018E4A6EE001A2CD1 /* NSArray Index Path Additions */ = {
+			isa = PBXGroup;
+			children = (
+				4997421118E4A78B001A2CD1 /* NSArrayTWTIndexPathTests.m */,
+			);
+			path = "NSArray Index Path Additions";
+			sourceTree = "<group>";
+		};
+		49BCBC7518CD4B49000B8706 /* NSArray Index Path Additions */ = {
+			isa = PBXGroup;
+			children = (
+				49BCBC7618CD4BA1000B8706 /* NSArray+TWTIndexPath.h */,
+				49BCBC7718CD4BA1000B8706 /* NSArray+TWTIndexPath.m */,
+			);
+			path = "NSArray Index Path Additions";
 			sourceTree = "<group>";
 		};
 		4C351FB6188495F4009AD246 /* UIKit */ = {
@@ -298,6 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				A4BD768118E06D5D0021BEF3 /* KVO */,
+				4997421018E4A6EE001A2CD1 /* NSArray Index Path Additions */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -635,6 +646,7 @@
 				A4D633F11883A1E100DA51CB /* TWTHighOrderFunctionsTests.m in Sources */,
 				A4BD768318E06DA40021BEF3 /* TWTKeyValueObserverTests.m in Sources */,
 				4C351FC118849803009AD246 /* TWTRandomizedTestCase.m in Sources */,
+				4997421218E4A78B001A2CD1 /* NSArrayTWTIndexPathTests.m in Sources */,
 				A4D633DE18838FF400DA51CB /* UIDeviceTWTSystemVersionTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

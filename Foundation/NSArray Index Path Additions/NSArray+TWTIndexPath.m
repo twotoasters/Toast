@@ -36,22 +36,14 @@
         return nil;
     }
 
+    id object = self;
     NSUInteger length = indexPath.length;
-    id object = [self objectAtIndex:[indexPath indexAtPosition:0]];
 
-    if (length == 1) {
-        return object;
+    for (NSUInteger position=0; position<length; position++) {
+        object = [object objectAtIndex:[indexPath indexAtPosition:position]];
     }
-    else if ([object isKindOfClass:[NSArray class]]) {
-        NSUInteger *indexes = malloc(length * sizeof(NSUInteger));
-        [indexPath getIndexes:indexes];
-        NSIndexPath *subIndexPath = [NSIndexPath indexPathWithIndexes:indexes+1 length:length-1];
-        free(indexes);
-        return [object twt_objectAtIndexPath:subIndexPath];
-    }
-    else {
-        return nil;
-    }
+
+    return object;
 }
 
 
@@ -62,30 +54,33 @@
     if (index != NSNotFound) {
         return [NSIndexPath indexPathWithIndex:index];
     }
-    else {
-        __block NSIndexPath *indexPath = nil;
 
-        [self enumerateObjectsUsingBlock:^(id arrayElement, NSUInteger idx, BOOL *stop) {
-            if ([arrayElement isKindOfClass:[NSArray class]]) {
-                NSIndexPath *arrayElementIndexPath = [arrayElement twt_indexPathOfObject:object];
-                if (arrayElementIndexPath) {
-                    NSUInteger length = arrayElementIndexPath.length + 1;
-                    NSUInteger *indexes = malloc(length * sizeof(NSUInteger));
+    __block NSIndexPath *indexPath = nil;
 
-                    *indexes = idx;
-                    [arrayElementIndexPath getIndexes:indexes+1];
+    [self enumerateObjectsUsingBlock:^(id arrayElement, NSUInteger idx, BOOL *stop) {
+        if (![arrayElement isKindOfClass:[NSArray class]]) {
+            return;
+        }
 
-                    indexPath = [NSIndexPath indexPathWithIndexes:indexes length:length];
+        NSIndexPath *arrayElementIndexPath = [arrayElement twt_indexPathOfObject:object];
+        if (!arrayElementIndexPath) {
+            return;
+        }
 
-                    free(indexes);
+        NSUInteger length = arrayElementIndexPath.length + 1;
+        NSUInteger *indexes = malloc(length * sizeof(NSUInteger));
 
-                    *stop = YES;
-                }
-            }
-        }];
+        *indexes = idx;
+        [arrayElementIndexPath getIndexes:indexes+1];
 
-        return indexPath;
-    }
+        indexPath = [NSIndexPath indexPathWithIndexes:indexes length:length];
+
+        free(indexes);
+
+        *stop = YES;
+    }];
+
+    return indexPath;
 }
 
 @end
