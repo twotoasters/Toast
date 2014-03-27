@@ -28,14 +28,19 @@
 
 typedef void(^TWTKeyValueObserverChangeBlock)(id observedObject, NSDictionary *changeDictionary);
 
+/*!
+ @abstract An opaque observer object that manages KVO against a single object
+ @discussion Under ARC, if the object you are observing is the same as the object that will retain this observer class you need to take extra care as to when observation starts or stops. In these cases you should use the `startObserving`-based methods to not start observing the object at init but rather use the `-startObserving` and `-stopObserving` methods to control observation. This is especially important when the object you are observing (which is stored as a weak reference) is released before this observer object can remove itself as an observer.
+ */
 @interface TWTKeyValueObserver : NSObject
 
 @property (nonatomic, weak, readonly) id object;
 @property (nonatomic, copy, readonly) NSString *keyPath;
-@property (nonatomic, assign, getter = isObserving) BOOL observing;
+@property (nonatomic, assign, getter = isObserving, readonly) BOOL observing;
 
 /*! 
- @abstract Create and return an observer object that can be stored and released as needed
+ @abstract Create and return an observer object that can be stored and released as needed.
+ @discussion This will automatically start observing the specified object.
  @param object The object to observe
  @param keyPath The keyPath to observe on the object
  @param options Options to use for observations
@@ -48,6 +53,7 @@ typedef void(^TWTKeyValueObserverChangeBlock)(id observedObject, NSDictionary *c
 
 /*! 
  @abstract Create and return an observer object that can be stored and released as needed
+ @discussion This will automatically start observing the specified object.
  @param object The object to observe
  @param keyPath The keyPath to observe on the object
  @param options Options to use for observations
@@ -71,7 +77,7 @@ typedef void(^TWTKeyValueObserverChangeBlock)(id observedObject, NSDictionary *c
 + (instancetype)observerWithObject:(id)object
                            keyPath:(NSString *)keyPath
                            options:(NSKeyValueObservingOptions)options
-                     startObserver:(BOOL)startObserver
+                    startObserving:(BOOL)startObserving
                        changeBlock:(TWTKeyValueObserverChangeBlock)changeBlock;
 
 /*! 
@@ -86,12 +92,13 @@ typedef void(^TWTKeyValueObserverChangeBlock)(id observedObject, NSDictionary *c
 + (instancetype)observerWithObject:(id)object
                            keyPath:(NSString *)keyPath
                            options:(NSKeyValueObservingOptions)options
-                     startObserver:(BOOL)startObserver
+                    startObserving:(BOOL)startObserving
                             target:(id)target
                             action:(SEL)action;
 
 /*! 
  @abstract Create an observer object that can be stored and released as needed
+ @discussion This will automatically start observing the specified object.
  @param object The object to observe
  @param keyPath The keyPath to observe on the object
  @param options Options to use for observations
@@ -118,6 +125,7 @@ typedef void(^TWTKeyValueObserverChangeBlock)(id observedObject, NSDictionary *c
 
 /*! 
  @abstract Create an observer object that can be stored and released as needed
+ @discussion This will automatically start observing the specified object.
  @param object The object to observe
  @param keyPath The keyPath to observe on the object
  @param options Options to use for observations

@@ -30,8 +30,9 @@
 
 @property (nonatomic, weak, readwrite) id object;
 @property (nonatomic, copy, readwrite) NSString *keyPath;
-@property (nonatomic, assign) NSKeyValueObservingOptions options;
+@property (nonatomic, assign, getter = isObserving, readwrite) BOOL observing;
 
+@property (nonatomic, assign) NSKeyValueObservingOptions options;
 @property (nonatomic, weak) id target;
 @property (nonatomic, assign) SEL action;
 @property (nonatomic, copy) TWTKeyValueObserverChangeBlock changeBlock;
@@ -61,25 +62,25 @@
 
 + (instancetype)observerWithObject:(id)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options changeBlock:(TWTKeyValueObserverChangeBlock)changeBlock
 {
-    return [self observerWithObject:object keyPath:keyPath options:options startObserver:YES changeBlock:changeBlock];
+    return [self observerWithObject:object keyPath:keyPath options:options startObserving:YES changeBlock:changeBlock];
 }
 
 
 + (instancetype)observerWithObject:(id)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options target:(id)target action:(SEL)action
 {
-    return [self observerWithObject:object keyPath:keyPath options:options startObserver:YES target:target action:action];
+    return [self observerWithObject:object keyPath:keyPath options:options startObserving:YES target:target action:action];
 }
 
 
-+ (instancetype)observerWithObject:(id)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options startObserver:(BOOL)startObserver changeBlock:(TWTKeyValueObserverChangeBlock)changeBlock
++ (instancetype)observerWithObject:(id)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options startObserving:(BOOL)startObserving changeBlock:(TWTKeyValueObserverChangeBlock)changeBlock
 {
-    return [[self alloc] initWithObject:object keyPath:keyPath options:options startObserving:startObserver changeBlock:changeBlock];
+    return [[self alloc] initWithObject:object keyPath:keyPath options:options startObserving:startObserving changeBlock:changeBlock];
 }
 
 
-+ (instancetype)observerWithObject:(id)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options startObserver:(BOOL)startObserver target:(id)target action:(SEL)action
++ (instancetype)observerWithObject:(id)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options startObserving:(BOOL)startObserving target:(id)target action:(SEL)action
 {
-    return [[self alloc] initWithObject:object keyPath:keyPath options:options startObserving:startObserver target:target action:action];
+    return [[self alloc] initWithObject:object keyPath:keyPath options:options startObserving:startObserving target:target action:action];
 }
 
 
