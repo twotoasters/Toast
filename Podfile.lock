@@ -3,16 +3,16 @@ PODS:
     - Mantle/extobjc
   - Mantle/extobjc (1.4.1)
   - OCMock (2.2.3)
-  - URLMock/TestHelpers (1.0.1):
+  - URLMock/TestHelpers (1.1.1):
     - OCMock (~> 2.0)
 
 DEPENDENCIES:
   - Mantle (~> 1.4.0)
-  - URLMock/TestHelpers (~> 1.0.1)
+  - URLMock/TestHelpers (~> 1.1)
 
 SPEC CHECKSUMS:
   Mantle: 0714cdb2b8559d9e6c2410d6a8529e3307bff189
   OCMock: 74e4ddbcef134170dcc844f91c691f13868075d7
-  URLMock: 08cae4152944ae46d2bc20567c15a13aa961bf1b
+  URLMock: 58755b77105ceba0f21f3a00cf1d84219e8954e1
 
 COCOAPODS: 0.29.0

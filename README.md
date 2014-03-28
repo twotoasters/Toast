@@ -34,17 +34,17 @@ A subspec for Foundation-level classes and categories.
 
 * **`TWTErrorUtilities`** defines utility functions for creating assertions and exception messages.
 
-##### SubclassResponsibility
-
-`pod TWTToast/Foundation/SubclassResponsibility`
-
-* **`NSException+TWTSubclassResponsibility`** provides a convenience factory method for creating exceptions when implementing a given method is a subclass's responsibility.
-
 ##### NSArray Index Path Additions
 
 `pod TWTToast/Foundation/NSArrayIndexPathAdditions`
 
 * **`NSArray+TWTIndexPath`** provides methods for working with arrays (or hierarchically organized arrays) by index path.
+
+##### SubclassResponsibility
+
+`pod TWTToast/Foundation/SubclassResponsibility`
+
+* **`NSException+TWTSubclassResponsibility`** provides a convenience factory method for creating exceptions when implementing a given method is a subclass's responsibility.
 
 #### UIKit
 

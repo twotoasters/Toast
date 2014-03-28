@@ -18,19 +18,11 @@ static const NSUInteger kIterationCount = 512;
 
 NSArray *TWTRandomArray(NSUInteger maxNestingDepth, NSUInteger maxElementCountPerCollection)
 {
-    NSNumber *countNumber = UMKRandomUnsignedNumberInRange(NSMakeRange(1, maxElementCountPerCollection));
-    NSUInteger count = countNumber.unsignedIntegerValue;
+    NSUInteger count = random() % maxElementCountPerCollection + 1;
 
-    NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:count];
-
-    for (NSUInteger i=0; i<count; i++) {
-        if (maxNestingDepth && UMKRandomBoolean()) {
-            [array addObject:TWTRandomArray(maxNestingDepth - 1, maxElementCountPerCollection)];
-        }
-        else {
-            [array addObject:UMKRandomAlphanumericStringWithLength(128)];
-        }
-    }
+    NSArray *array = UMKGeneratedArrayWithElementCount(count, ^id(NSUInteger index) {
+        return maxNestingDepth && UMKRandomBoolean() ? TWTRandomArray(maxNestingDepth - 1, maxElementCountPerCollection) : UMKRandomUnsignedNumber();
+    });
 
     return array;
 }
