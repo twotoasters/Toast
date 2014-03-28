@@ -18,7 +18,7 @@ static const NSUInteger kIterationCount = 512;
 
 NSArray *TWTRandomArray(NSUInteger maxNestingDepth, NSUInteger maxElementCountPerCollection)
 {
-    NSUInteger count = random() % maxElementCountPerCollection + 1;
+    NSUInteger count = maxElementCountPerCollection ? random() % maxElementCountPerCollection + 1 : 0;
 
     NSArray *array = UMKGeneratedArrayWithElementCount(count, ^id(NSUInteger index) {
         return maxNestingDepth && UMKRandomBoolean() ? TWTRandomArray(maxNestingDepth - 1, maxElementCountPerCollection) : UMKRandomUnsignedNumber();

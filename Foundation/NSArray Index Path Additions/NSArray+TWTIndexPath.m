@@ -70,7 +70,6 @@
         NSUInteger length = arrayElementIndexPath.length + 1;
         NSUInteger *indexes = malloc(length * sizeof(NSUInteger));
         if (!indexes) {
-            [NSException raise:NSInternalInconsistencyException format:@"Unable to allocate internal buffer."];
             *stop = YES;
             return;
         }
