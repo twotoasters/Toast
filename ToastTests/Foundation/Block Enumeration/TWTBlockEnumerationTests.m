@@ -132,7 +132,7 @@
         return [element compare:randomMaximumNumber] == NSOrderedDescending;
     }];
     
-    XCTAssertNotNil(actualValues, @"Rejected value is nil");
+    XCTAssertNotNil(actualValues, @"Rejected array is nil");
     
     for (NSNumber *number in actualValues) {
         NSComparisonResult comparisonResult = [number compare:randomMaximumNumber];
@@ -152,7 +152,7 @@
         return [element isEqualToNumber:expectedElement];
     }];
     
-    XCTAssertNotNil(actualValues, @"Rejected value is nil");
+    XCTAssertNotNil(actualValues, @"Selected array is nil");
     
     for (NSNumber *number in actualValues) {
         NSComparisonResult comparisonResult = [number compare:expectedElement];
