@@ -1,5 +1,5 @@
 //
-//  TWTBlockEnumerationOperations.h
+//  TWTBlockEnumeration.h
 //  Toast
 //
 //  Created by Prachi Gauriar on 1/21/2014.
@@ -56,7 +56,7 @@ typedef id (^TWTBlockEnumerationInjectBlock)(id total, id element);
 
 #pragma mark - Block Enumeration Operation Categories for Foundation Collections
 
-@interface NSArray (TWTBlockEnumerationOperations)
+@interface NSArray (TWTBlockEnumeration)
 
 - (instancetype)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block;
 - (id)twt_detectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
@@ -69,7 +69,7 @@ typedef id (^TWTBlockEnumerationInjectBlock)(id total, id element);
 
 #pragma mark
 
-@interface NSDictionary (TWTBlockEnumerationOperations)
+@interface NSDictionary (TWTBlockEnumeration)
 
 - (instancetype)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block;
 - (id)twt_detectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
@@ -82,7 +82,7 @@ typedef id (^TWTBlockEnumerationInjectBlock)(id total, id element);
 
 #pragma mark
 
-@interface NSEnumerator (TWTBlockEnumerationOperations)
+@interface NSEnumerator (TWTBlockEnumeration)
 
 - (NSArray *)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block;
 - (id)twt_detectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
@@ -95,7 +95,7 @@ typedef id (^TWTBlockEnumerationInjectBlock)(id total, id element);
 
 #pragma mark
 
-@interface NSOrderedSet (TWTBlockEnumerationOperations)
+@interface NSOrderedSet (TWTBlockEnumeration)
 
 - (instancetype)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block;
 - (instancetype)twt_detectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
@@ -108,7 +108,7 @@ typedef id (^TWTBlockEnumerationInjectBlock)(id total, id element);
 
 #pragma mark 
 
-@interface NSSet (TWTBlockEnumerationOperations)
+@interface NSSet (TWTBlockEnumeration)
 
 - (instancetype)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block;
 - (instancetype)twt_detectWithBlock:(TWTBlockEnumerationPredicateBlock)block;

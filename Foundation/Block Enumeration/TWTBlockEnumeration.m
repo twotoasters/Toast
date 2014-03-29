@@ -1,5 +1,5 @@
 //
-//  TWTBlockEnumerationOperations.m
+//  TWTBlockEnumeration.m
 //  Toast
 //
 //  Created by Prachi Gauriar on 1/21/2014.
@@ -24,7 +24,7 @@
 //  THE SOFTWARE.
 //
 
-#import "TWTBlockEnumerationOperations.h"
+#import "TWTBlockEnumeration.h"
 
 #pragma mark TWTBlockEnumerator
 
@@ -136,7 +136,7 @@
 
 #pragma mark - Arrays
 
-@implementation NSArray (TWTBlockEnumerationOperations)
+@implementation NSArray (TWTBlockEnumeration)
 
 - (instancetype)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block
 {
@@ -172,7 +172,7 @@
 
 #pragma mark - Dictionaries
 
-@implementation NSDictionary (TWTBlockEnumerationOperations)
+@implementation NSDictionary (TWTBlockEnumeration)
 
 - (instancetype)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block
 {
@@ -208,7 +208,7 @@
 
 #pragma mark - Enumerators
 
-@implementation NSEnumerator (TWTBlockEnumerationOperations)
+@implementation NSEnumerator (TWTBlockEnumeration)
 
 - (instancetype)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block
 {
@@ -244,7 +244,7 @@
 
 #pragma mark - Ordered Sets
 
-@implementation NSOrderedSet (TWTBlockEnumerationOperations)
+@implementation NSOrderedSet (TWTBlockEnumeration)
 
 - (instancetype)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block
 {
@@ -280,7 +280,7 @@
 
 #pragma mark - Sets
 
-@implementation NSSet (TWTBlockEnumerationOperations)
+@implementation NSSet (TWTBlockEnumeration)
 
 - (instancetype)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block
 {

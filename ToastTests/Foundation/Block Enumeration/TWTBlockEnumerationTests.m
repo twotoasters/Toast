@@ -1,9 +1,9 @@
 //
-//  TWTHighOrderFunctions.h
+//  TWTBlockEnumerationTests
 //  Toast
 //
-//  Created by Josh Johnson on 1/12/14.
-//  Copyright (c) 2014 Two Toasters, LLC.
+//  Created by Josh Johnson on 3/29/14.
+//  Copyright (c) 2014 Two Toasters.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,13 +24,23 @@
 //  THE SOFTWARE.
 //
 
-#import "TWTHighOrderFunctions.h"
+#import "TWTRandomizedTestCase.h"
+
+#import <URLMock/UMKTestUtilities.h>
+
 #import "TWTBlockEnumeration.h"
 
-NSArray *TWTSimpleMap(id<NSObject, NSFastEnumeration> enumeration, TWTMapBlock block)
+@interface TWTBlockEnumerationTests : TWTRandomizedTestCase
+
+@end
+
+@implementation TWTBlockEnumerationTests
+
+#pragma mark - NSArray Tests
+
+- (void)testExample
 {
-    NSCParameterAssert(enumeration);
-    NSCParameterAssert(block);
-    
-    return [(NSEnumerator *)enumeration twt_collectWithBlock:block];
+    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
 }
+
+@end
