@@ -121,10 +121,12 @@
     
     BOOL respondsToSetObjectForKey = [collection respondsToSelector:@selector(setObject:forKey:)];
     for (id element in object) {
-        if (respondsToSetObjectForKey) {
-            [collection setObject:[(id)object objectForKey:element] forKey:element];
-        } else {
-            [collection addObject:element];
+        if (block(element)) {
+            if (respondsToSetObjectForKey) {
+                [collection setObject:[(id)object objectForKey:element] forKey:element];
+            } else {
+                [collection addObject:element];
+            }
         }
     }
 
