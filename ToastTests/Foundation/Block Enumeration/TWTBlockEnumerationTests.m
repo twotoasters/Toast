@@ -38,53 +38,47 @@
 
 #pragma mark - Helpers
 
-- (NSArray *)randomArrayWithGeneratorBlock:(id (^)(void))generatorBlock
+- (NSArray *)randomStringArray
 {
-    NSParameterAssert(generatorBlock);
-    
-    NSUInteger count = random() % 1024;
-    NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:count];
-    for (NSUInteger i = 0; i < count; ++i) {
-        [array addObject:generatorBlock()];
-    }
-    
-    return array;
+    NSSet *stringSet = UMKGeneratedSetWithElementCount(random() % 12, ^id{
+        return UMKRandomUnicodeString();
+    });
+    return stringSet.allObjects;
 }
+
 
 - (NSArray *)randomNumberArray
 {
-    return [self randomArrayWithGeneratorBlock:^id{
+    return UMKGeneratedArrayWithElementCount(random() % 1024, ^id(NSUInteger index) {
         return UMKRandomUnsignedNumber();
-    }];
+    });
 }
 
 
-#pragma mark - NSArray Tests
-
-- (void)testNSArrayBlockEnumerationCollect
+- (NSArray *)collectionClasses
 {
-    NSArray *randomStrings = [self randomArrayWithGeneratorBlock:^id{
-        return UMKRandomUnicodeString();
-    }];
-    
-    NSMutableArray *randomNumbers = [[NSMutableArray alloc] initWithCapacity:randomStrings.count];
-    NSArray *mappedArray = [randomStrings twt_collectWithBlock:^id(id element) {
-        NSNumber *randomNumber = @(random());
-        [randomNumbers addObject:randomNumber];
+    return @[ [NSArray class], [NSSet class], [NSOrderedSet class] ];
+}
+
+
+#pragma mark - Collection Tests
+
+- (void)testCollectionBasedBlockEnumerationCollect
+{
+    for (Class class in [self collectionClasses]) {
+        NSString *randomString = UMKRandomUnicodeString();
         
-        return [element length] > 30 ? [NSString stringWithFormat:@"%@%@", element, randomNumber] : nil;
-    }];
-    
-    XCTAssertNotNil(mappedArray, @"Returned array is nil");
-    XCTAssertEqual(mappedArray.count, randomStrings.count, @"Returned array is the wrong size.");
-    
-    NSUInteger count = mappedArray.count;
-    for (NSUInteger i = 0; i < count; ++i) {
-        id actualValue = mappedArray[ i ];
-        id randomString = randomStrings[ i ];
-        id expectedValue = [randomString length] > 30 ? [NSString stringWithFormat:@"%@%@", randomString, randomNumbers[ i ]] : [NSNull null];
+        id randomCollection = [[class alloc] initWithArray:[self randomStringArray]];
+        id mappedCollection = [randomCollection twt_collectWithBlock:^id(id element) {
+            return [NSString stringWithFormat:@"%@%@", element, randomString];
+        }];
         
-        XCTAssertEqualObjects(expectedValue, mappedArray[ i ], @"Mapped value (%@) is incorrect for index %ld", actualValue, (unsigned long)i);
+        XCTAssertNotNil(mappedCollection, @"Returned collection is nil");
+        XCTAssertEqual([randomCollection count], [mappedCollection count], @"Returned collection does not match size of original collection");
+        
+        for (NSString *actualString in mappedCollection) {
+            XCTAssertTrue([actualString rangeOfString:randomString options:kNilOptions].length > 0, @"Actual String (%@) does not contain expected substring (%@)", actualString, randomString);
+        }
     }
 }
 
@@ -111,8 +105,7 @@
 - (void)testNSArrayBlockEnumerationDetect
 {
     NSArray *randomNumbers = [self randomNumberArray];
-    NSUInteger randomIndex = [UMKRandomUnsignedNumberInRange(NSMakeRange(0, randomNumbers.count)) unsignedIntegerValue];
-    NSNumber *expectedElement = [randomNumbers objectAtIndex:randomIndex];
+    NSNumber *expectedElement = [randomNumbers objectAtIndex:random() % randomNumbers.count];
     
     NSNumber *actualElement = [randomNumbers twt_detectWithBlock:^BOOL(id element) {
         return [element isEqualToNumber:expectedElement];
@@ -145,8 +138,7 @@
 - (void)testNSArrayBlockEnumerationSelect
 {
     NSArray *randomNumbers = [self randomNumberArray];
-    NSUInteger randomIndex = [UMKRandomUnsignedNumberInRange(NSMakeRange(0, randomNumbers.count)) unsignedIntegerValue];
-    NSNumber *expectedElement = [randomNumbers objectAtIndex:randomIndex];
+    NSNumber *expectedElement = [randomNumbers objectAtIndex:random() % randomNumbers.count];
     
     NSArray *actualValues = [randomNumbers twt_selectWithBlock:^BOOL(id element) {
         return [element isEqualToNumber:expectedElement];
