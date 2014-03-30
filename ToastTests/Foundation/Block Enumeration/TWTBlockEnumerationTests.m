@@ -69,16 +69,17 @@
         NSString *randomString = UMKRandomUnicodeString();
         
         id randomCollection = [[class alloc] initWithArray:[self randomStringArray]];
+        id expectedCollection = [[[class alloc] init] mutableCopy];
+                                
         id mappedCollection = [randomCollection twt_collectWithBlock:^id(id element) {
-            return [NSString stringWithFormat:@"%@%@", element, randomString];
+            NSString *mappedString = [NSString stringWithFormat:@"%@%@", element, randomString];
+            [expectedCollection addObject:mappedString];
+            return mappedString;
         }];
         
         XCTAssertNotNil(mappedCollection, @"Returned collection is nil");
         XCTAssertEqual([randomCollection count], [mappedCollection count], @"Returned collection does not match size of original collection");
-        
-        for (NSString *actualString in mappedCollection) {
-            XCTAssertTrue([actualString rangeOfString:randomString options:kNilOptions].length > 0, @"Actual String (%@) does not contain expected substring (%@)", actualString, randomString);
-        }
+        XCTAssertEqualObjects(mappedCollection, expectedCollection, @"Mapped collection does not match the expected collection");
     }
 }
 
