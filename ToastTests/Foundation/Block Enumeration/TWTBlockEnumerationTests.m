@@ -40,7 +40,7 @@
 
 - (NSArray *)randomStringArray
 {
-    NSSet *stringSet = UMKGeneratedSetWithElementCount(random() % 12, ^id{
+    NSSet *stringSet = UMKGeneratedSetWithElementCount((random() % 1024) + 1, ^id{
         return UMKRandomUnicodeString();
     });
     return stringSet.allObjects;
@@ -49,7 +49,7 @@
 
 - (NSArray *)randomNumberArray
 {
-    return UMKGeneratedArrayWithElementCount(random() % 1024, ^id(NSUInteger index) {
+    return UMKGeneratedArrayWithElementCount((random() % 1024) + 1, ^id(NSUInteger index) {
         return UMKRandomUnsignedNumber();
     });
 }
