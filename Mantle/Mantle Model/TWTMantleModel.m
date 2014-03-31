@@ -37,7 +37,9 @@
         for (NSString *key in dictionary) {
             id value = [dictionary objectForKey:key];
 
-            if ([value isEqual:NSNull.null]) value = nil;
+            if ([value isEqual:[NSNull null]]) {
+                value = nil;
+            }
 
             [self setValue:value forKey:key];
         }

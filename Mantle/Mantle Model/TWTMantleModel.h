@@ -29,10 +29,10 @@
 @interface TWTMantleModel : MTLModel
 
 /*!
- @abstract MTLModel's implementation of -initWithDictionary:error: runs validation and returns nil if
- validation fails. TWTMantleModel changes this behavior by removing the validation step. Validation
- is still available, but must be invoked manually. This change prevents validation from causing mapping
- or copying to fail which allows more flexibility about the decision of how to incorporate validation.
+ @abstract Overrides MTLModel's implementation of -initWithDictionary:error: to remove validation.
+ @discussion Validation is still available, but must be invoked manually. This change prevents
+ validation from causing mapping or copying to fail. This allows more flexibility about how to
+ incorporate validation.
  */
 - (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing *)error;
 
