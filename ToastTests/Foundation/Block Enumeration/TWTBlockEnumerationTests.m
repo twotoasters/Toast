@@ -55,24 +55,140 @@
 }
 
 
+- (NSDictionary *)randomStringDictionary
+{
+    return UMKRandomDictionaryOfStringsWithElementCount(random() % 1024);
+}
+
+- (NSDictionary *)randomNumberDictionary
+{
+    return UMKGeneratedDictionaryWithElementCount(random() % 1024, ^id{
+        return UMKRandomAlphanumericString();
+    }, ^id(id key) {
+        return UMKRandomUnsignedNumber();
+    });
+}
+
+
 - (NSArray *)collectionClasses
 {
     return @[ [NSArray class], [NSSet class], [NSOrderedSet class] ];
 }
 
 
+#pragma mark - Key Value Collection Tests
+
+- (void)testDictionaryBlockEnumerationCollect
+{
+    NSDictionary *randomNumberDictionary = [self randomStringDictionary];
+    NSMutableDictionary *expectedDictionary = [[NSMutableDictionary alloc] init];
+    
+    NSDictionary *mappedDictionary = [randomNumberDictionary twt_collectWithBlock:^id(id element) {
+        NSString *existingValue = [randomNumberDictionary objectForKey:element];
+        NSString *mappedString = [NSString stringWithFormat:@"%@%@", existingValue, UMKRandomUnicodeString()];
+        
+        [expectedDictionary setObject:mappedString forKey:element];
+        return mappedString;
+    }];
+    
+    XCTAssertNotNil(mappedDictionary, @"Returned dictionary is nil");
+    XCTAssertEqual(mappedDictionary.count, expectedDictionary.count, @"Returned dictionary does not match the size of the expected dictionary");
+    XCTAssertEqualObjects(mappedDictionary, expectedDictionary, @"Returned dictionary does not match the expected dictionary");
+}
+
+
+- (void)testDictionaryBlockEnumerationInject
+{
+    NSDictionary *randomNumberDictionary = [self randomNumberDictionary];
+    
+    NSNumber *initialNumber = @(random());
+    NSNumber *actualNumberValue = [randomNumberDictionary twt_injectWithInitialObject:initialNumber block:^id(id total, id element) {
+        NSNumber *number = [randomNumberDictionary objectForKey:element];
+        return @([total integerValue] + [number integerValue]);
+    }];
+    
+    XCTAssertNotNil(actualNumberValue, @"Returned number value is nil");
+    
+    long expectedValue = initialNumber.integerValue;
+    for (NSString *key in randomNumberDictionary) {
+        NSNumber *number = [randomNumberDictionary objectForKey:key];
+        expectedValue += number.integerValue;
+    }
+    
+    XCTAssertEqual(actualNumberValue.integerValue, expectedValue, @"Injected value (%@) does not match expected value %ld", actualNumberValue, expectedValue);
+}
+
+
+- (void)testDictionaryBlockEnumerationDetect
+{
+    NSDictionary *randomNumbers = [self randomNumberDictionary];
+    NSString *randomKey = [randomNumbers.allKeys objectAtIndex:random() % randomNumbers.count];
+    NSNumber *expectedNumber = [randomNumbers objectForKey:randomKey];
+    
+    NSNumber *actualNumber = [randomNumbers twt_detectWithBlock:^BOOL(id element) {
+        NSNumber *number = [randomNumbers objectForKey:element];
+        return [number isEqualToNumber:expectedNumber];
+    }];
+    
+    XCTAssertNotNil(actualNumber, @"Detected number value is nil");
+    XCTAssertEqualObjects(expectedNumber, actualNumber, @"Detected value (%@) does not match expected value (%@)", actualNumber, expectedNumber);
+}
+
+
+- (void)testDictionaryBlockEnumerationReject
+{
+    NSDictionary *randomNumbers = [self randomNumberDictionary];
+    NSNumber *randomMaximumNumber = UMKRandomUnsignedNumber();
+    
+    NSDictionary *actualValues = [randomNumbers twt_rejectWithBlock:^BOOL(id element) {
+        NSNumber *number = [randomNumbers objectForKey:element];
+        return [number compare:randomMaximumNumber] == NSOrderedDescending;
+    }];
+    
+    XCTAssertNotNil(actualValues, @"Rejected dictionary is nil");
+    
+    for (NSString *key in actualValues) {
+        NSNumber *number = [randomNumbers objectForKey:key];
+        NSComparisonResult comparisonResult = [number compare:randomMaximumNumber];
+        
+        XCTAssertTrue(comparisonResult == NSOrderedAscending || comparisonResult == NSOrderedSame, @"Rejected array did not reject number (%@) greater than maximum (%@)", number, randomMaximumNumber);
+    }
+    
+}
+
+
+- (void)testDictionaryBlockEnumerationSelect
+{
+    NSDictionary *randomNumbers = [self randomNumberDictionary];
+    NSString *randomKey = [randomNumbers.allKeys objectAtIndex:random() % randomNumbers.count];
+    NSNumber *expectedNumber = [randomNumbers objectForKey:randomKey];
+    
+    NSDictionary *actualValues = [randomNumbers twt_selectWithBlock:^BOOL(id element) {
+        NSNumber *number = [randomNumbers objectForKey:element];
+        return [number isEqualToNumber:expectedNumber];
+    }];
+    
+    XCTAssertNotNil(actualValues, @"Selected dictionary is nil");
+    
+    for (NSString *key in actualValues) {
+        NSNumber *number = [randomNumbers objectForKey:key];
+        NSComparisonResult comparisonResult = [number compare:expectedNumber];
+        
+        XCTAssertTrue(comparisonResult == NSOrderedSame, @"Selected array selected number (%@) that is not equal to the expected number (%@)", number, expectedNumber);
+    }
+}
+
+
 #pragma mark - Collection Tests
 
-- (void)testCollectionBasedBlockEnumerationCollect
+- (void)testCollectionBlockEnumerationCollect
 {
     for (Class class in [self collectionClasses]) {
-        NSString *randomString = UMKRandomUnicodeString();
-        
         id randomCollection = [[class alloc] initWithArray:[self randomStringArray]];
         id expectedCollection = [[[class alloc] init] mutableCopy];
                                 
         id mappedCollection = [randomCollection twt_collectWithBlock:^id(id element) {
-            NSString *mappedString = [NSString stringWithFormat:@"%@%@", element, randomString];
+            NSString *mappedString = [NSString stringWithFormat:@"%@%@", element, UMKRandomUnicodeString()];
             [expectedCollection addObject:mappedString];
             return mappedString;
         }];
@@ -84,73 +200,84 @@
 }
 
 
-- (void)testNSArrayBlockEnumerationInject
+- (void)testCollectionBlockEnumerationInject
 {
-    NSArray *randomNumbers = [self randomNumberArray];
-    NSNumber *initialNumber = @(random());
-    NSNumber *actualNumberValue = [randomNumbers twt_injectWithInitialObject:initialNumber block:^id(id total, id element) {
-        return @([total integerValue] + [element integerValue]);
-    }];
-    
-    XCTAssertNotNil(actualNumberValue, @"Returned number value is nil");
-    
-    long expectedValue = initialNumber.integerValue;
-    for (NSNumber *number in randomNumbers) {
-        expectedValue += number.integerValue;
-    }
-    
-    XCTAssertEqual(actualNumberValue.integerValue, expectedValue, @"Injected value (%@) does not match expected value %ld", actualNumberValue, expectedValue);
-}
-
-
-- (void)testNSArrayBlockEnumerationDetect
-{
-    NSArray *randomNumbers = [self randomNumberArray];
-    NSNumber *expectedElement = [randomNumbers objectAtIndex:random() % randomNumbers.count];
-    
-    NSNumber *actualElement = [randomNumbers twt_detectWithBlock:^BOOL(id element) {
-        return [element isEqualToNumber:expectedElement];
-    }];
-    
-    XCTAssertNotNil(actualElement, @"Detected number value is nil");
-    XCTAssertEqualObjects(expectedElement, actualElement, @"Detected value (%@) does not match expected value (%@)", actualElement, expectedElement);
-}
-
-
-- (void)testNSArrayBlockEnumerationReject
-{
-    NSArray *randomNumbers = [self randomNumberArray];
-    NSNumber *randomMaximumNumber = UMKRandomUnsignedNumber();
-    
-    NSArray *actualValues = [randomNumbers twt_rejectWithBlock:^BOOL(id element) {
-        return [element compare:randomMaximumNumber] == NSOrderedDescending;
-    }];
-    
-    XCTAssertNotNil(actualValues, @"Rejected array is nil");
-    
-    for (NSNumber *number in actualValues) {
-        NSComparisonResult comparisonResult = [number compare:randomMaximumNumber];
+    for (Class class in [self collectionClasses]) {
+        id randomCollection = [[class alloc] initWithArray:[self randomNumberArray]];
         
-        XCTAssertTrue(comparisonResult == NSOrderedAscending || comparisonResult == NSOrderedSame, @"Rejected array did not reject number (%@) greater than maximum (%@)", number, randomMaximumNumber);
+        NSNumber *initialNumber = @(random());
+        NSNumber *actualNumberValue = [randomCollection twt_injectWithInitialObject:initialNumber block:^id(id total, id element) {
+            return @([total integerValue] + [element integerValue]);
+        }];
+        
+        XCTAssertNotNil(actualNumberValue, @"Returned number value is nil");
+        
+        long expectedValue = initialNumber.integerValue;
+        for (NSNumber *number in randomCollection) {
+            expectedValue += number.integerValue;
+        }
+        
+        XCTAssertEqual(actualNumberValue.integerValue, expectedValue, @"Injected value (%@) does not match expected value %ld", actualNumberValue, expectedValue);
     }
 }
 
 
-- (void)testNSArrayBlockEnumerationSelect
+- (void)testCollectionBlockEnumerationDetect
 {
-    NSArray *randomNumbers = [self randomNumberArray];
-    NSNumber *expectedElement = [randomNumbers objectAtIndex:random() % randomNumbers.count];
-    
-    NSArray *actualValues = [randomNumbers twt_selectWithBlock:^BOOL(id element) {
-        return [element isEqualToNumber:expectedElement];
-    }];
-    
-    XCTAssertNotNil(actualValues, @"Selected array is nil");
-    
-    for (NSNumber *number in actualValues) {
-        NSComparisonResult comparisonResult = [number compare:expectedElement];
+    for (Class class in [self collectionClasses]) {
+        NSArray *randomNumbers = [self randomNumberArray];
+        NSNumber *expectedElement = [randomNumbers objectAtIndex:random() % randomNumbers.count];
         
-        XCTAssertTrue(comparisonResult == NSOrderedSame, @"Selected array selected number (%@) that is not equal to the expected number (%@)", number, expectedElement);
+        id randomCollection = [[class alloc] initWithArray:randomNumbers];
+        NSNumber *actualElement = [randomCollection twt_detectWithBlock:^BOOL(id element) {
+            return [element isEqualToNumber:expectedElement];
+        }];
+        
+        XCTAssertNotNil(actualElement, @"Detected number value is nil");
+        XCTAssertEqualObjects(expectedElement, actualElement, @"Detected value (%@) does not match expected value (%@)", actualElement, expectedElement);
+    }
+}
+
+
+- (void)testCollectionBlockEnumerationReject
+{
+    for (Class class in [self collectionClasses]) {
+        id randomCollection = [[class alloc] initWithArray:[self randomNumberArray]];
+        NSNumber *randomMaximumNumber = UMKRandomUnsignedNumber();
+        
+        NSArray *actualValues = [randomCollection twt_rejectWithBlock:^BOOL(id element) {
+            return [element compare:randomMaximumNumber] == NSOrderedDescending;
+        }];
+        
+        XCTAssertNotNil(actualValues, @"Rejected array is nil");
+        
+        for (NSNumber *number in actualValues) {
+            NSComparisonResult comparisonResult = [number compare:randomMaximumNumber];
+            
+            XCTAssertTrue(comparisonResult == NSOrderedAscending || comparisonResult == NSOrderedSame, @"Rejected array did not reject number (%@) greater than maximum (%@)", number, randomMaximumNumber);
+        }
+    }
+}
+
+
+- (void)testCollectionBlockEnumerationSelect
+{
+    for (Class class in [self collectionClasses]) {
+        NSArray *randomNumbers = [self randomNumberArray];
+        NSNumber *expectedElement = [randomNumbers objectAtIndex:random() % randomNumbers.count];
+        
+        id randomCollection = [[class alloc] initWithArray:randomNumbers];
+        NSArray *actualValues = [randomCollection twt_selectWithBlock:^BOOL(id element) {
+            return [element isEqualToNumber:expectedElement];
+        }];
+        
+        XCTAssertNotNil(actualValues, @"Selected array is nil");
+        
+        for (NSNumber *number in actualValues) {
+            NSComparisonResult comparisonResult = [number compare:expectedElement];
+            
+            XCTAssertTrue(comparisonResult == NSOrderedSame, @"Selected array selected number (%@) that is not equal to the expected number (%@)", number, expectedElement);
+        }
     }
 }
 

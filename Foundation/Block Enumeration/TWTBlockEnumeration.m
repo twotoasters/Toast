@@ -78,10 +78,17 @@
 {
     NSParameterAssert(object);
     NSParameterAssert(block);
-
-    for (id element in object) {
+    
+    id collection = object;
+    BOOL respondsToObjectForKey = [[collection class] instancesRespondToSelector:@selector(objectForKey:)];
+    
+    for (id element in collection) {
         if (block(element)) {
-            return element;
+            if (respondsToObjectForKey) {
+                return [collection objectForKey:element];
+            } else {
+                return element;
+            }
         }
     }
 
