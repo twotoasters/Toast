@@ -30,6 +30,23 @@
 
 @implementation TWTMantleModel
 
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary error:(NSError **)error
+{
+    self = [self init];
+    if (self) {
+        for (NSString *key in dictionary) {
+            id value = [dictionary objectForKey:key];
+
+            if ([value isEqual:NSNull.null]) value = nil;
+
+            [self setValue:value forKey:key];
+        }
+    }
+
+    return self;
+}
+
+
 + (NSSet *)excludedPropertyKeys
 {
     return [NSSet set];

@@ -29,6 +29,14 @@
 @interface TWTMantleModel : MTLModel
 
 /*!
+ @abstract MTLModel's implementation of -initWithDictionary:error: runs validation and returns nil if
+ validation fails. TWTMantleModel changes this behavior by removing the validation step. Validation
+ is still available, but must be invoked manually. This change prevents validation from causing mapping
+ or copying to fail which allows more flexibility about the decision of how to incorporate validation.
+ */
+- (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing *)error;
+
+/*!
  @abstract Returns a set of property keys that should be excluded from Mantle operations on the receiver’s 
      instances.
  @discussion Subclasses should override this method to return any keys that should not be automatically
