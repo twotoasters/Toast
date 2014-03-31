@@ -29,10 +29,10 @@
 @interface TWTMantleModel : MTLModel
 
 /*!
- @abstract Overrides MTLModel's implementation of -initWithDictionary:error: to remove validation.
+ @abstract Overrides superclass implementation to remove validation.
  @discussion Validation is still available, but must be invoked manually. This change prevents
- validation from causing mapping or copying to fail. This allows more flexibility about how to
- incorporate validation.
+     validation from causing mapping or copying to fail. This allows more flexibility about how to
+     incorporate validation.
  */
 - (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing *)error;
 
