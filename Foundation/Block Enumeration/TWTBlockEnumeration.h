@@ -29,7 +29,7 @@
 #pragma mark Block Types
 
 /*!
- @abstract Type for blocks that, when given an element of block enumerating object, returns an object.
+ @abstract Type for blocks that are given an object and return a object.
  @discussion This block type is used for collect operations.
  @param element The element being enumerated.
  @result An object.
@@ -37,7 +37,7 @@
 typedef id (^TWTBlockEnumerationCollectBlock)(id element);
 
 /*!
- @abstract Type for blocks that, when given an element of block enumerating object, returns a boolean.
+ @abstract Type for blocks that when given an element return a BOOL.
  @discussion This block type is used for detect, select, and reject operations.
  @param element The element being enumerated.
  @result A boolean value.
@@ -45,8 +45,8 @@ typedef id (^TWTBlockEnumerationCollectBlock)(id element);
 typedef BOOL (^TWTBlockEnumerationPredicateBlock)(id element);
 
 /*!
- @abstract Type for blocks that, when given a total and an element of block enumerating object, return an
-     object with the element (or some value derived from it) injected into the total.
+ @abstract Type for blocks that, when given a total and an object, return an object with the element 
+    (or some value derived from it).
  @discussion This block type is used for inject operations.
  @param memo Accumulator that is the result of the previous inject operation.
  @param element The element being enumerated.
