@@ -114,13 +114,13 @@
     
     XCTAssertNotNil(actualNumberValue, @"Returned number value is nil");
     
-    long expectedValue = initialNumber.integerValue;
+    NSNumber *expectedValue = initialNumber;
     for (NSString *key in randomNumberDictionary) {
         NSNumber *number = [randomNumberDictionary objectForKey:key];
-        expectedValue += number.integerValue;
+        expectedValue = @(expectedValue.integerValue + number.integerValue);
     }
     
-    XCTAssertEqual(actualNumberValue.integerValue, expectedValue, @"Injected value (%@) does not match expected value %ld", actualNumberValue, expectedValue);
+    XCTAssertEqualObjects(actualNumberValue, expectedValue, @"Injected value does not match expected value");
 }
 
 
