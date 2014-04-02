@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "TWTToast"
-  s.version          = "0.5.1"
+  s.version          = "0.6"
   s.summary          = "Tools and Utilities for Cocoa Development"
   s.homepage         = "https://github.com/twotoasters/Toast"
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -25,13 +25,13 @@ Pod::Spec.new do |s|
       sss.source_files = "Foundation/KVO/*.{h,m}"
     end
 
+    ss.subspec 'NSArrayIndexPathAdditions' do |sss|
+      sss.source_files = "Foundation/NSArray Index Path Additions/*.{h,m}"
+    end
+
     ss.subspec 'SubclassResponsibility' do |sss|
       sss.dependency 'TWTToast/Foundation/ErrorUtilities'
       sss.source_files = "Foundation/Subclass Responsibility/*.{h,m}"
-    end
-
-    ss.subspec 'NSArrayIndexPathAdditions' do |sss|
-      sss.source_files = "Foundation/NSArray Index Path Additions/*.{h,m}"
     end
   end  
 

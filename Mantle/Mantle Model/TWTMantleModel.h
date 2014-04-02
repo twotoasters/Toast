@@ -29,6 +29,14 @@
 @interface TWTMantleModel : MTLModel
 
 /*!
+ @abstract Overrides superclass implementation to remove validation.
+ @discussion Validation is still available, but must be invoked manually. This change prevents
+     validation from causing mapping or copying to fail. This allows more flexibility about how to
+     incorporate validation.
+ */
+- (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing *)error;
+
+/*!
  @abstract Returns a set of property keys that should be excluded from Mantle operations on the receiver’s 
      instances.
  @discussion Subclasses should override this method to return any keys that should not be automatically

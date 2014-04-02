@@ -25,7 +25,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import <UMKErrorUtilities.h>
+#import <URLMock/UMKTestUtilities.h>
 
 /*!
  TWTRandomizedTestCases simply override +setUp to call srandomdev() and -setUp to generate and log a
