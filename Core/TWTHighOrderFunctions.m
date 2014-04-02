@@ -32,5 +32,11 @@ NSArray *TWTSimpleMap(id<NSObject, NSFastEnumeration> enumeration, TWTMapBlock b
     NSCParameterAssert(enumeration);
     NSCParameterAssert(block);
     
-    return [(NSEnumerator *)enumeration twt_collectWithBlock:block];
+    id collection = enumeration;
+    
+    if ([collection respondsToSelector:@selector(twt_collectWithBlock:)]) {
+        return [collection twt_collectWithBlock:block];
+    }
+    
+    return collection;
 }

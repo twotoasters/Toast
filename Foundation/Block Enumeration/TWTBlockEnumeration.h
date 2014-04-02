@@ -30,7 +30,7 @@
 
 /*!
  @abstract Type for blocks that, when given an element of block enumerating object, returns an object.
- @discussion This block type is used for Collect operations.
+ @discussion This block type is used for collect operations.
  @param element The element being enumerated.
  @result An object.
  */
@@ -38,7 +38,7 @@ typedef id (^TWTBlockEnumerationCollectBlock)(id element);
 
 /*!
  @abstract Type for blocks that, when given an element of block enumerating object, returns a boolean.
- @discussion This block type is used for Detect, Select, and Reject operations.
+ @discussion This block type is used for detect, select, and reject operations.
  @param element The element being enumerated.
  @result A boolean value.
  */
@@ -47,161 +47,49 @@ typedef BOOL (^TWTBlockEnumerationPredicateBlock)(id element);
 /*!
  @abstract Type for blocks that, when given a total and an element of block enumerating object, return an
      object with the element (or some value derived from it) injected into the total.
- @discussion This block type is used for Inject operations.
+ @discussion This block type is used for inject operations.
  @param memo Accumulator that is the result of the previous inject operation.
  @param element The element being enumerated.
  @result A new object representing the element's value injected into the total.
  */
 typedef id (^TWTBlockEnumerationInjectBlock)(id memo, id element);
 
-
-#pragma mark - Block Enumeration Operation Categories for Foundation Collections
-
-@interface NSArray (TWTBlockEnumeration)
+/*! 
+ @abstract Protocol that exposes block enumeration methods.
+ */
+@protocol TWTBlockEnumeration <NSObject>
 
 /*!
- @abstract Return a newly created array that is the result of performing the given block on each
-    element in the original array.
- @discussion Given an array of [1, 2, 3] and a block that returns the square of the element, this 
+ @abstract Return a newly created collection that is the result of performing the given block on each
+    element in the original collection.
+ @discussion Given a collection of [1, 2, 3] and a block that returns the square of the element, this
     method will return [1, 4, 9]. If the result of the block is nil, that element in the resulting
-    array will be an instance of NSNull.
- @param block The block to invoke against each element of the array.
- @result A new array of the results of invoking the block on each element of the original array.
- */
-- (instancetype)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block;
-
-/*!
- @abstract Passes each entry in the array to the block and returns the first item that returns YES.
- @param block Predicate block to apply to each item in the array.
- @result The first item in the array that returns YES. If no item returns YES, this will return nil.
- */
-- (id)twt_detectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
-
-/*!
- @abstract Passes each item in the array and a memo to the provided block starting with an initial
-    object.
- @discussion Similar to a "reduce" operation. For each iteration through the array, the memo value
-    passed to each element is the result of the previous iteration. For the first iteration, the 
-    initial object is passed as the memo. For example, given an array of [1, 2, 3], a block that 
-    returns (memo + element), and an initial value of 0 the returned value will be the result of
-    (0 + 1) then (1 + 2) then (3 + 3) or 6.
- @param initialObject The initial object to pass as a memo to the first iteration of the array.
- @param block An inject block that is performed on each element of the array.
- @result The final returned value from the last iteration of the array.
- */
-- (id)twt_injectWithInitialObject:(id)initialObject block:(TWTBlockEnumerationInjectBlock)block;
-
-/*!
- @abstract Passes each item in the array to the block and returns a new array with the items that 
-    returned YES from the block removed.
- @param block Predicate block to test items in the array.
- @result A new array with the items that were not rejected.
- */
-- (instancetype)twt_rejectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
-
-/*!
- @abstract Passes each item in the array to the block and returns a new array with the only items 
-    that returned YES.
- @param block Predicate block to test items in the array.
- @result A new array with the items that return YES from the block.
- */
-- (instancetype)twt_selectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
-
-@end
-
-
-#pragma mark
-
-@interface NSDictionary (TWTBlockEnumeration)
-
-/*!
- @abstract Return a newly created dictionary that is the result of performing the given block on each
-    element in the original dictionary.
- @discussion Given an dictionary with values of [1, 2, 3] and a block that returns the square of the 
-    element, this method will return [1, 4, 9]. If the result of the block is nil, that element in 
-    the resulting dictionary will be an instance of NSNull.
- @param block The block to invoke against each element of the dictionary. The value passed to the block
-    is the key of the element in the original dictionary.
- @result A new dictionary of the results of invoking the block on each element of the original
-    dictionary.
- */
-- (instancetype)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block;
-
-/*!
- @abstract Passes each entry in the dictionary to the block and returns the first item that returns YES.
- @param block Predicate block to apply to each item in the dictionary. The key of the elemnt in the
-    dictionary is passed to the block.
- @result The first item in the dictionary that returns YES. If no item returns YES, this will return nil.
- */
-- (id)twt_detectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
-
-/*!
- @abstract Passes each item in the dictionary and a memo to the provided block starting with an initial
-    object.
- @discussion Similar to a "reduce" operation. For each iteration through the dictionary, the memo value
-    passed to each element is the result of the previous iteration. For the first iteration, the 
-    initial object is passed as the memo. For example, given an dictionary of [1, 2, 3], a block that
-    returns (memo + element), and an initial value of 0 the returned value will be the result of
-    (0 + 1) then (1 + 2) then (3 + 3) or 6.
- @param initialObject The initial object to pass as a memo to the first iteration of the dictionary.
- @param block An inject block that is performed on each element of the dictionary. The element passed
-    to the block is the key of the element in the dictionary.
- @result The final returned value from the last iteration of the dictionary.
- */
-- (id)twt_injectWithInitialObject:(id)initialObject block:(TWTBlockEnumerationInjectBlock)block;
-
-/*!
- @abstract Passes each item in the dictionary to the block and returns a new dictionary with the items that
-    returned YES from the block removed.
- @param block Predicate block to test items in the array. The element provided is the key to the original
-    dictionary.
- @result A new dictionary with the items that were not rejected.
- */
-- (instancetype)twt_rejectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
-
-/*!
- @abstract Passes each item in the dictionary to the block and returns a new dictionary with the only items
-    that returned YES.
- @param block Predicate block to test items in the dictionary. The element provided is the key to the original
-    dictionary.
- @result A new dictionary with the items that return YES from the block.
- */
-- (instancetype)twt_selectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
-
-@end
-
-
-#pragma mark
-
-@interface NSEnumerator (TWTBlockEnumeration)
-
-/*!
- @abstract Return a newly created array that is the result of performing the given block on each
-    element in the original enumerator.
- @discussion Given an collection of [1, 2, 3] and a block that returns the square of the element, this
-    method will return [1, 4, 9]. If the result of the block is nil, that element in the resulting
-    collection will be an instance of NSNull.
+    collection will be an instance of NSNull. If the original collection is a dictionary the key value
+    is sent to the block not the value itself.
  @param block The block to invoke against each element of the collection.
- @result A new array of the results of invoking the block on each element of the original
-    collection.
+ @result A new instance of the collection with the results of invoking the block on each element of
+    the original collection.
  */
-- (NSArray *)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block;
+- (instancetype)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block;
 
 /*!
- @abstract Passes each entry in the enumerator to the block and returns the first item that returns YES.
+ @abstract Passes each entry in the collection to the block and returns the first item for which the 
+    block returns YES.
+ @discussion If the collection is a dictionary the key is passed to the predicate block.
  @param block Predicate block to apply to each item in the collection.
- @result The first item in the collection that returns YES. If no item returns YES, this will return nil.
+ @result Returns the first item for which the block returns YES. If no item returns YES, this will return nil.
  */
 - (id)twt_detectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
 
 /*!
  @abstract Passes each item in the collection and a memo to the provided block starting with an initial
     object.
- @discussion Similar to a "reduce" operation. For each iteration through the collection, the memo value
-    passed to each element is the result of the previous iteration. For the first iteration, the 
-    initial object is passed as the memo. For example, given an collection of [1, 2, 3], a block that
-    returns (memo + element), and an initial value of 0 the returned value will be the result of
-    (0 + 1) then (1 + 2) then (3 + 3) or 6.
+ @discussion Similar to a "reduce" operation. For each item in the collection, the memo value
+    and the item is passed to the block. The return value from each iteration is the memo value for
+    the next iteration. For the first iteration, the initial object is passed as the memo. For example, 
+    given a collection of [1, 2, 3], a block that returns (memo + element), and an initial value of 0
+    the returned value will be the result of (0 + 1) then (1 + 2) then (3 + 3) or 6. If the collection
+    is a dictionary the value is the same, but the element is the key value.
  @param initialObject The initial object to pass as a memo to the first iteration of the collection.
  @param block An inject block that is performed on each element of the collection.
  @result The final returned value from the last iteration of the collection.
@@ -209,130 +97,38 @@ typedef id (^TWTBlockEnumerationInjectBlock)(id memo, id element);
 - (id)twt_injectWithInitialObject:(id)initialObject block:(TWTBlockEnumerationInjectBlock)block;
 
 /*!
- @abstract Passes each item in the collection to the block and returns a new array with the items that
-    returned YES from the block removed.
+ @abstract Passes each item in the collection to the block and returns a new collection with the items
+    that returned YES from the block removed.
+ @discussion If the collection is a dictionary the item pass to the block is the key value.
  @param block Predicate block to test items in the collection.
- @result A new array with the items that were not rejected.
+ @result A new instance of a collection with the items that were not rejected.
  */
-- (NSArray *)twt_rejectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
+- (instancetype)twt_rejectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
 
 /*!
- @abstract Passes each item in the collection to the block and returns a new array with the only items
-    that returned YES.
+ @abstract Passes each item in the collection to the block and returns a new collection with the items
+    for which the block returned YES.
+ @discussion If the collection is a dictionary the key value is passed to the block.
  @param block Predicate block to test items in the collection.
- @result A new array with the items that return YES from the block.
+ @result A new array with the items that were selected.
  */
-- (NSArray *)twt_selectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
+- (instancetype)twt_selectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
 
 @end
-
 
 #pragma mark
 
-@interface NSOrderedSet (TWTBlockEnumeration)
-
-/*!
- @abstract Return a newly created ordered set that is the result of performing the given block on each
-    element in the original ordered set.
- @discussion Given an collection of [1, 2, 3] and a block that returns the square of the element, this
-    method will return [1, 4, 9]. If the result of the block is nil, that element in the resulting
-    collection will be an instance of NSNull.
- @param block The block to invoke against each element of the collection.
- @result A new ordered set of the results of invoking the block on each element of the original
-    collection.
- */
-- (instancetype)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block;
-
-/*!
- @abstract Passes each entry in the ordered set to the block and returns the first item that returns YES.
- @param block Predicate block to apply to each item in the ordered set.
- @result The first item in the ordered set that returns YES. If no item returns YES, this will return nil.
- */
-- (instancetype)twt_detectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
-
-/*!
- @abstract Passes each item in the ordered set and a memo to the provided block starting with an initial
-    object.
- @discussion Similar to a "reduce" operation. For each iteration through the collection, the memo value
-    passed to each element is the result of the previous iteration. For the first iteration, the 
-    initial object is passed as the memo. For example, given an collection of [1, 2, 3], a block that
-    returns (memo + element), and an initial value of 0 the returned value will be the result of
-    (0 + 1) then (1 + 2) then (3 + 3) or 6.
- @param initialObject The initial object to pass as a memo to the first iteration of the collection.
- @param block An inject block that is performed on each element of the set.
- @result The final returned value from the last iteration of the set.
- */
-- (id)twt_injectWithInitialObject:(id)initialObject block:(TWTBlockEnumerationInjectBlock)block;
-
-/*!
- @abstract Passes each item in the ordered set to the block and returns a new ordered set with the
-    items that returned YES from the block removed.
- @param block Predicate block to test items in the ordered set.
- @result A new ordered set with the items that were not rejected.
- */
-- (instancetype)twt_rejectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
-
-/*!
- @abstract Passes each item in the ordered set to the block and returns a new ordered set with the only items
-    that returned YES.
- @param block Predicate block to test items in the ordered set.
- @result A new ordered set with the items that return YES from the block.
- */
-- (instancetype)twt_selectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
-
+@interface NSArray (TWTBlockEnumeration) <TWTBlockEnumeration>
 @end
 
+@interface NSDictionary (TWTBlockEnumeration) <TWTBlockEnumeration>
+@end
 
-#pragma mark 
+@interface NSEnumerator (TWTBlockEnumeration) <TWTBlockEnumeration>
+@end
 
-@interface NSSet (TWTBlockEnumeration)
+@interface NSOrderedSet (TWTBlockEnumeration) <TWTBlockEnumeration>
+@end
 
-/*!
- @abstract Return a newly created set that is the result of performing the given block on each
-    element in the original set.
- @discussion Given an collection of [1, 2, 3] and a block that returns the square of the element, this
-    method will return [1, 4, 9]. If the result of the block is nil, that element in the resulting
-    collection will be an instance of NSNull.
- @param block The block to invoke against each element of the set.
- @result A new set of the results of invoking the block on each element of the original set.
- */
-- (instancetype)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block;
-
-/*!
- @abstract Passes each entry in the set to the block and returns the first item that returns YES.
- @param block Predicate block to apply to each item in the set.
- @result The first item in the set that returns YES. If no item returns YES, this will return nil.
- */
-- (instancetype)twt_detectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
-
-/*!
- @abstract Passes each item in the set and a memo to the provided block starting with an initial
-    object.
- @discussion Similar to a "reduce" operation. For each iteration through the set, the memo value
-    passed to each element is the result of the previous iteration. For the first iteration, the 
-    initial object is passed as the memo. For example, given an collection of [1, 2, 3], a block that
-    returns (memo + element), and an initial value of 0 the returned value will be the result of
-    (0 + 1) then (1 + 2) then (3 + 3) or 6.
- @param initialObject The initial object to pass as a memo to the first iteration of the collection.
- @param block An inject block that is performed on each element of the set.
- @result The final returned value from the last iteration of the set.
- */
-- (id)twt_injectWithInitialObject:(id)initialObject block:(TWTBlockEnumerationInjectBlock)block;
-
-/*!
- @abstract Passes each item in the set to the block and returns a new set with the
-    items that returned YES from the block removed.
- @param block Predicate block to test items in the set.
- @result A new set with the items that were not rejected.
- */
-- (instancetype)twt_rejectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
-
-/*!
- @abstract Passes each item in the set to the block and returns a new set with the only items
-    that returned YES.
- @param block Predicate block to test items in the set.
- @result A new set with the items that return YES from the block.
- */
-- (instancetype)twt_selectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
-
+@interface NSSet (TWTBlockEnumeration) <TWTBlockEnumeration>
 @end

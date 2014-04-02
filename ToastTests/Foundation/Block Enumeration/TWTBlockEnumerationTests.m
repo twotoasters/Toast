@@ -38,9 +38,14 @@
 
 #pragma mark - Helpers
 
+- (NSUInteger)randomCount
+{
+    return (random() % 1024) + 1;
+}
+
 - (NSArray *)randomStringArray
 {
-    NSSet *stringSet = UMKGeneratedSetWithElementCount((random() % 1024) + 1, ^id{
+    NSSet *stringSet = UMKGeneratedSetWithElementCount([self randomCount], ^id{
         return UMKRandomUnicodeString();
     });
     return stringSet.allObjects;
@@ -49,7 +54,7 @@
 
 - (NSArray *)randomNumberArray
 {
-    return UMKGeneratedArrayWithElementCount((random() % 1024) + 1, ^id(NSUInteger index) {
+    return UMKGeneratedArrayWithElementCount([self randomCount], ^id(NSUInteger index) {
         return UMKRandomUnsignedNumber();
     });
 }
@@ -57,12 +62,12 @@
 
 - (NSDictionary *)randomStringDictionary
 {
-    return UMKRandomDictionaryOfStringsWithElementCount(random() % 1024);
+    return UMKRandomDictionaryOfStringsWithElementCount([self randomCount]);
 }
 
 - (NSDictionary *)randomNumberDictionary
 {
-    return UMKGeneratedDictionaryWithElementCount(random() % 1024, ^id{
+    return UMKGeneratedDictionaryWithElementCount([self randomCount], ^id{
         return UMKRandomAlphanumericString();
     }, ^id(id key) {
         return UMKRandomUnsignedNumber();
@@ -85,7 +90,7 @@
     
     NSDictionary *mappedDictionary = [randomNumberDictionary twt_collectWithBlock:^id(id element) {
         NSString *existingValue = [randomNumberDictionary objectForKey:element];
-        NSString *mappedString = [NSString stringWithFormat:@"%@%@", existingValue, UMKRandomUnicodeString()];
+        NSString *mappedString = [existingValue stringByAppendingString:UMKRandomUnicodeString()];
         
         [expectedDictionary setObject:mappedString forKey:element];
         return mappedString;
