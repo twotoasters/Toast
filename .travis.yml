@@ -4,3 +4,5 @@ xcode_scheme: Toast
 xcode_sdk: iphonesimulator
 before_install:
     - gem install cocoapods --no-rdoc --no-ri --no-document
+before_script:
+    - export LANG=en_US.UTF-8
