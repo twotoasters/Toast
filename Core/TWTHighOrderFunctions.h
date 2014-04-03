@@ -32,4 +32,4 @@ typedef id (^TWTMapBlock)(id item);
  @param block The block to apply to each item. The return object from this item is added to the resulting array.
  @result NSArray of the resulting enumeration.
  */
-extern NSArray *TWTSimpleMap(id<NSObject, NSFastEnumeration> enumeration, TWTMapBlock block);
+extern NSArray *TWTSimpleMap(id<NSObject, NSFastEnumeration> enumeration, TWTMapBlock block) __deprecated_msg("Use TWTBlockEnumeration's twt_collectWithBlock: instead.");

@@ -25,19 +25,18 @@
 //
 
 #import "TWTHighOrderFunctions.h"
+#import "TWTBlockEnumeration.h"
 
 NSArray *TWTSimpleMap(id<NSObject, NSFastEnumeration> enumeration, TWTMapBlock block)
 {
     NSCParameterAssert(enumeration);
     NSCParameterAssert(block);
     
-    NSMutableArray *mappedArray = [[NSMutableArray alloc] init];
+    id collection = enumeration;
     
-    for (id object in enumeration) {
-        id blockObject = block(object);
-        [mappedArray addObject:blockObject ? blockObject : [NSNull null]];
+    if ([collection respondsToSelector:@selector(twt_collectWithBlock:)]) {
+        return [collection twt_collectWithBlock:block];
     }
     
-	return [mappedArray copy];
-    
+    return collection;
 }

@@ -14,13 +14,19 @@ A subspec chock full of low-level extensions.
 
 ##### TWTHighOrderFunctions
 
-* **`TWTSimpleMap(id<NSObject, NSFastEnumeration> enumeration, TWTMapBlock block)`** provides a simple implementation of Map. Map recieves an enumeration of objects and applies the block to each item, returning the resulting array.
+* __DEPRECATED__ **`TWTSimpleMap(id<NSObject, NSFastEnumeration> enumeration, TWTMapBlock block)`** provides a simple implementation of Map. Map recieves an enumeration of objects and applies the block to each item, returning the resulting array.
 
 #### Foundation
 
 `pod TWTToast/Foundation`
 
 A subspec for Foundation-level classes and categories.
+
+##### Block Enumeration
+
+`pod TWTToast/Foundation/BlockEnumeration`
+
+* **`TWTBlockEnumeration`** exposes methods on NSArray, NSDictionary, NSEnumerator, NSOrderedSet, and NSSet for block based enumeration. These methods include functionality for `Collect`, `Inject`, `Detect`, `Reject`, and `Select`.
 
 ##### KVO
 
