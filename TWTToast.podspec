@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "TWTToast"
-  s.version          = "0.6.1"
+  s.version          = "0.7"
   s.summary          = "Tools and Utilities for Cocoa Development"
   s.homepage         = "https://github.com/twotoasters/Toast"
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
