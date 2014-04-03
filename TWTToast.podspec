@@ -12,6 +12,7 @@ Pod::Spec.new do |s|
 
   ## Subspec for Core files
   s.subspec 'Core' do |ss|
+    ss.dependency 'TWTToast/Foundation/BlockEnumeration'
     ss.source_files = "Core/**/*.{h,m}"
   end
 
