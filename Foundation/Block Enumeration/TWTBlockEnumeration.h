@@ -57,7 +57,7 @@ typedef id (^TWTBlockEnumerationInjectBlock)(id memo, id element);
 /*! 
  @abstract Protocol that exposes block enumeration methods.
  @discussion The terms used (`Collect`, `Select`, `Inject`, `Detect`, `Reject`) in this class are 
-    derived from common ideas in the Smalltalk (and Ruby).
+    derived from common ideas in Smalltalk (and Ruby).
  */
 @protocol TWTBlockEnumeration <NSObject>
 
