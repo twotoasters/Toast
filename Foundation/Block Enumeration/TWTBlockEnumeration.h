@@ -56,6 +56,8 @@ typedef id (^TWTBlockEnumerationInjectBlock)(id memo, id element);
 
 /*! 
  @abstract Protocol that exposes block enumeration methods.
+ @discussion The terms used (`Collect`, `Select`, `Inject`, `Detect`, `Reject`) in this class are 
+    derived from common ideas in the Smalltalk (and Ruby).
  */
 @protocol TWTBlockEnumeration <NSObject>
 
@@ -64,8 +66,8 @@ typedef id (^TWTBlockEnumerationInjectBlock)(id memo, id element);
     element in the original collection.
  @discussion Given a collection of [1, 2, 3] and a block that returns the square of the element, this
     method will return [1, 4, 9]. If the result of the block is nil, that element in the resulting
-    collection will be an instance of NSNull. If the original collection is a dictionary the key value
-    is sent to the block not the value itself.
+    collection will be the NSNull instance. If the collection is a dictionary the item passed to
+    the block is the key.
  @param block The block to invoke against each element of the collection.
  @result A new instance of the collection with the results of invoking the block on each element of
     the original collection.
@@ -75,7 +77,7 @@ typedef id (^TWTBlockEnumerationInjectBlock)(id memo, id element);
 /*!
  @abstract Passes each entry in the collection to the block and returns the first item for which the 
     block returns YES.
- @discussion If the collection is a dictionary the key is passed to the predicate block.
+ @discussion If the collection is a dictionary the item passed to the block is the key.
  @param block Predicate block to apply to each item in the collection.
  @result Returns the first item for which the block returns YES. If no item returns YES, this will return nil.
  */
@@ -89,7 +91,7 @@ typedef id (^TWTBlockEnumerationInjectBlock)(id memo, id element);
     the next iteration. For the first iteration, the initial object is passed as the memo. For example, 
     given a collection of [1, 2, 3], a block that returns (memo + element), and an initial value of 0
     the returned value will be the result of (0 + 1) then (1 + 2) then (3 + 3) or 6. If the collection
-    is a dictionary the value is the same, but the element is the key value.
+    is a dictionary the item passed to the block is the key.
  @param initialObject The initial object to pass as a memo to the first iteration of the collection.
  @param block An inject block that is performed on each element of the collection.
  @result The final returned value from the last iteration of the collection.
@@ -99,7 +101,7 @@ typedef id (^TWTBlockEnumerationInjectBlock)(id memo, id element);
 /*!
  @abstract Passes each item in the collection to the block and returns a new collection with the items
     that returned YES from the block removed.
- @discussion If the collection is a dictionary the item pass to the block is the key value.
+ @discussion If the collection is a dictionary the item passed to the block is the key.
  @param block Predicate block to test items in the collection.
  @result A new instance of a collection with the items that were not rejected.
  */
@@ -108,7 +110,7 @@ typedef id (^TWTBlockEnumerationInjectBlock)(id memo, id element);
 /*!
  @abstract Passes each item in the collection to the block and returns a new collection with the items
     for which the block returned YES.
- @discussion If the collection is a dictionary the key value is passed to the block.
+ @discussion If the collection is a dictionary the item passed to the block is the key.
  @param block Predicate block to test items in the collection.
  @result A new array with the items that were selected.
  */
