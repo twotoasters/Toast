@@ -67,6 +67,7 @@
 		4901313D18C61B0900117218 /* TWTSimpleAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTSimpleAnimationController.m; sourceTree = "<group>"; };
 		4901313F18C61D4600117218 /* TWTCustomTransitionsSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTCustomTransitionsSampleViewController.h; sourceTree = "<group>"; };
 		4901314018C61D4600117218 /* TWTCustomTransitionsSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTCustomTransitionsSampleViewController.m; sourceTree = "<group>"; };
+		491F93CB18F9C9E700BBC79C /* TWTTransitionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TWTTransitionController.h; sourceTree = "<group>"; };
 		4997421118E4A78B001A2CD1 /* NSArrayTWTIndexPathTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayTWTIndexPathTests.m; sourceTree = "<group>"; };
 		49BCBC7618CD4BA1000B8706 /* NSArray+TWTIndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+TWTIndexPath.h"; sourceTree = "<group>"; };
 		49BCBC7718CD4BA1000B8706 /* NSArray+TWTIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+TWTIndexPath.m"; sourceTree = "<group>"; };
@@ -161,6 +162,7 @@
 				4901313A18C5830500117218 /* TWTNavigationControllerDelegate.m */,
 				4901313C18C61B0900117218 /* TWTSimpleAnimationController.h */,
 				4901313D18C61B0900117218 /* TWTSimpleAnimationController.m */,
+				491F93CB18F9C9E700BBC79C /* TWTTransitionController.h */,
 			);
 			path = "View Controller Transitions";
 			sourceTree = "<group>";

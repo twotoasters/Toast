@@ -29,6 +29,8 @@
 
 #import <objc/runtime.h>
 
+#import "TWTTransitionController.h"
+
 
 @implementation TWTNavigationControllerDelegate
 
@@ -45,6 +47,18 @@
         default:
             return nil;
     }
+}
+
+
+- (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
+                         interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController
+{
+    if (   [animationController respondsToSelector:@selector(isInteractive)]
+        && [(id<TWTTransitionController>)animationController isInteractive]) {
+        return (id<TWTTransitionController>)animationController;
+    }
+
+    return nil;
 }
 
 @end
