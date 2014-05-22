@@ -1,8 +1,45 @@
 language: objective-c
+
+# These Travis settings are specific to `language: objective-c`
 xcode_workspace: Toast.xcworkspace
 xcode_scheme: Toast
 xcode_sdk: iphonesimulator
+
+env:
+
+  # global environment variables apply to every build in the build matrix
+  global:
+
+    # CocoaPods requires the environment to be using UTF-8 encoding.
+    - LANG=en_US.UTF-8
+
+    # Only enable tests if this is a pull request. You are welcome to modify the logic here, but the result
+    # must be to assign a valid xctool build action to TWT_XCODE_BUILD_ACTION
+    - TWT_XCODE_BUILD_ACTION=$(if [ "$TRAVIS_PULL_REQUEST" != 'false' ]; then echo 'test'; else echo 'build'; fi)
+
 before_install:
-    - gem install cocoapods --no-rdoc --no-ri --no-document
-before_script:
-    - export LANG=en_US.UTF-8
+
+  # Set the Ruby version to work around https://github.com/travis-ci/travis-ci/issues/2152
+  # This also makes it so that we can specify the ruby version in a single place:
+  # .ruby-version. This command cannot go in before_install.sh because it works by
+  # modifying the environment
+  - rvm use .
+
+  # Run travis-scripts/before_install.sh
+  # You can modify its contents to customize the setup that is performed here
+  - bash -v travis-scripts/before_install.sh
+
+install:
+
+  # Run travis-scripts/install.sh
+  # You can modify its contents to customize the setup that is performed here
+  - chmod +x ./travis-scripts/install.sh
+  - ./travis-scripts/install.sh
+
+# Run travis-scripts/install.sh
+# You can modify its contents to customize the setup that is performed here
+install: bash -v travis-scripts/install.sh
+
+# Run travis-scripts/script.sh
+# You can modify its contents if needed
+script: bash -v travis-scripts/script.sh
