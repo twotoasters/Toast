@@ -1,0 +1,67 @@
+//
+//  UIViewController+TWTCompletion.m
+//  Toast
+//
+//  Created by Andrew Hershberger on 5/22/14.
+//  Copyright (c) 2014 Two Toasters, LLC.
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
+//
+
+#import "UIViewController+TWTCompletion.h"
+
+#import <objc/runtime.h>
+
+
+@implementation UIViewController (TWTCompletion)
+
+- (void (^)(BOOL))twt_completion
+{
+    return objc_getAssociatedObject(self, _cmd);
+}
+
+
+- (void)setTwt_completion:(void (^)(BOOL))twt_completion
+{
+    objc_setAssociatedObject(self, @selector(twt_completion), twt_completion, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+
+- (void)twt_finish
+{
+    [self twt_complete:YES];
+}
+
+
+- (void)twt_cancel
+{
+    [self twt_complete:NO];
+}
+
+
+- (void)twt_complete:(BOOL)finished
+{
+    void (^completion)(BOOL) = self.twt_completion;
+    if (completion) {
+        self.twt_completion = nil;
+        completion(finished);
+    }
+}
+
+@end

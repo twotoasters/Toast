@@ -55,12 +55,15 @@
     }];
     
     NSMutableArray *randomNumbers = [[NSMutableArray alloc] initWithCapacity:randomStrings.count];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     NSArray *mappedArray = TWTSimpleMap(randomStrings, ^id(id item) {
         NSNumber *randomNumber = @(random());
         [randomNumbers addObject:randomNumber];
         return [item length] > 30 ? [NSString stringWithFormat:@"%@%@", item, randomNumber] : nil;
     });
-    
+#pragma clang diagnostic pop
+
     XCTAssertNotNil(mappedArray, @"Returned array is nil");
     XCTAssertEqual(mappedArray.count, randomStrings.count, @"Returned array is the wrong size");
     
