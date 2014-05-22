@@ -70,6 +70,11 @@ Pod::Spec.new do |s|
       sss.source_files = "UIKit/Device/*.{h,m}"
     end
 
+    ss.subspec 'PrepareForSegue' do |sss|
+      sss.requires_arc = true
+      sss.source_files = "UIKit/Prepare for Segue/*.{h,m}"
+    end
+
     ss.subspec 'SnapshotImage' do |sss|
       sss.requires_arc = true
       sss.source_files = "UIKit/Snapshot Image/*.{h,m}"
