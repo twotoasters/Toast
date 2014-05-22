@@ -80,6 +80,11 @@ Pod::Spec.new do |s|
       sss.source_files = "UIKit/Snapshot Image/*.{h,m}"
     end
 
+    ss.subspec 'ViewControllerCompletion' do |sss|
+      sss.requires_arc = true
+      sss.source_files = "UIKit/View Controller Completion/*.{h,m}"
+    end
+
     ss.subspec 'ViewControllerTransitions' do |sss|
       sss.requires_arc = true
       sss.source_files = "UIKit/View Controller Transitions/*.{h,m}"
