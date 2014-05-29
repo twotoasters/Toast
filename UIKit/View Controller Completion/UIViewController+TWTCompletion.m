@@ -43,13 +43,13 @@
 }
 
 
-- (void)twt_finish
+- (IBAction)twt_finish
 {
     [self twt_complete:YES];
 }
 
 
-- (void)twt_cancel
+- (IBAction)twt_cancel
 {
     [self twt_complete:NO];
 }

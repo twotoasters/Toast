@@ -37,8 +37,8 @@
  */
 @property (nonatomic, copy) void(^twt_completion)(BOOL finished);
 
-- (void)twt_finish;
+- (IBAction)twt_finish;
 
-- (void)twt_cancel;
+- (IBAction)twt_cancel;
 
 @end
