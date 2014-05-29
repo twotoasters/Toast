@@ -25,52 +25,76 @@
 //
 
 #import "UIDevice+TWTSystemVersion.h"
-#import <objc/runtime.h>
 
-@implementation UIDevice (TWTSystemVersion)
+@interface TWTDeviceSystemVersion : NSObject
 
-- (void)twt_updateSystemVersionNumbers
+@property (nonatomic, assign, readonly) NSInteger majorNumber;
+@property (nonatomic, assign, readonly) NSInteger minorNumber;
+@property (nonatomic, assign, readonly) NSInteger releaseNumber;
+
+- (instancetype)initWithVersionString:(NSString *)versionString;
+
+@end
+
+
+@implementation TWTDeviceSystemVersion
+
+- (instancetype)init
 {
-    NSArray *components = [[self systemVersion] componentsSeparatedByString:@"."];
-    
-    NSUInteger componentCount = [components count];
-    NSInteger major = componentCount > 0 ? [[components objectAtIndex:0] integerValue] : 0;
-    NSInteger minor = componentCount > 1 ? [[components objectAtIndex:1] integerValue] : 0;
-    NSInteger release = componentCount > 2 ? [[components objectAtIndex:2] integerValue] : 0;
-    
-    objc_setAssociatedObject(self, @selector(twt_systemMajorVersion), @(major), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    objc_setAssociatedObject(self, @selector(twt_systemMinorVersion), @(minor), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    objc_setAssociatedObject(self, @selector(twt_systemReleaseVersion), @(release), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
 }
 
 
-- (NSInteger)twt_versionNumberForSelector:(SEL)selector
+- (instancetype)initWithVersionString:(NSString *)versionString
 {
-    NSNumber *version = objc_getAssociatedObject(self, selector);
-    if (!version) {
-        [self twt_updateSystemVersionNumbers];
-        version = objc_getAssociatedObject(self, selector);
+    NSParameterAssert(versionString);
+    self = [super init];
+    if (self) {
+        NSArray *components = [versionString componentsSeparatedByString:@"."];
+        NSUInteger componentCount = components.count;
+        _majorNumber = componentCount > 0 ? [components[0] integerValue] : 0;
+        _minorNumber = componentCount > 1 ? [components[1] integerValue] : 0;
+        _releaseNumber = componentCount > 2 ? [components[2] integerValue] : 0;
     }
-    
-    return [version integerValue];
+
+    return self;
+}
+
+@end
+
+
+#pragma mark -
+
+@implementation UIDevice (TWTSystemVersion)
+
+- (TWTDeviceSystemVersion *)twt_deviceSystemVersion
+{
+    static TWTDeviceSystemVersion *systemVersion = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        systemVersion = [[TWTDeviceSystemVersion alloc] initWithVersionString:[self systemVersion]];
+    });
+
+    return systemVersion;
 }
 
 
 - (NSInteger)twt_systemMajorVersion
 {
-    return [self twt_versionNumberForSelector:_cmd];
+    return self.twt_deviceSystemVersion.majorNumber;
 }
 
 
 - (NSInteger)twt_systemMinorVersion
 {
-    return [self twt_versionNumberForSelector:_cmd];
+    return self.twt_deviceSystemVersion.minorNumber;
 }
 
 
 - (NSInteger)twt_systemReleaseVersion
 {
-    return [self twt_versionNumberForSelector:_cmd];
+    return self.twt_deviceSystemVersion.releaseNumber;
 }
 
 
