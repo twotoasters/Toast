@@ -26,6 +26,9 @@
 
 #import "UIDevice+TWTSystemVersion.h"
 
+@import ObjectiveC.runtime;
+
+
 @interface TWTDeviceSystemVersion : NSObject
 
 @property (nonatomic, assign, readonly) NSInteger majorNumber;
@@ -70,11 +73,11 @@
 
 - (TWTDeviceSystemVersion *)twt_deviceSystemVersion
 {
-    static TWTDeviceSystemVersion *systemVersion = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+    TWTDeviceSystemVersion *systemVersion = objc_getAssociatedObject(self, _cmd);
+    if (!systemVersion) {
         systemVersion = [[TWTDeviceSystemVersion alloc] initWithVersionString:[self systemVersion]];
-    });
+        objc_setAssociatedObject(self, _cmd, systemVersion, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
 
     return systemVersion;
 }
