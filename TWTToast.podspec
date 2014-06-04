@@ -101,6 +101,12 @@ Pod::Spec.new do |s|
       sss.source_files = "Mantle/Mantle Model/*.{h,m}"
     end
 
+    ss.subspec 'ModelClassDeserialization' do |sss|
+      sss.requires_arc = true
+      sss.dependency 'TWTToast/Foundation/BlockEnumeration'
+      sss.source_files = "Mantle/Model Class Deserialization/*.{h,m}"
+    end
+
     ss.subspec 'SelectiveJSONAdapter' do |sss|
       sss.requires_arc = true
       sss.source_files = "Mantle/Selective JSON Adapter/*.{h,m}"

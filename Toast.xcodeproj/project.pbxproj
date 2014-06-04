@@ -12,6 +12,7 @@
 		4901313B18C5830500117218 /* TWTNavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4901313A18C5830500117218 /* TWTNavigationControllerDelegate.m */; };
 		4901313E18C61B0900117218 /* TWTSimpleAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4901313D18C61B0900117218 /* TWTSimpleAnimationController.m */; };
 		4901314118C61D4600117218 /* TWTCustomTransitionsSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4901314018C61D4600117218 /* TWTCustomTransitionsSampleViewController.m */; };
+		496FBFF2193F525E0043F116 /* TWTModelClassDeserialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 496FBFF1193F525E0043F116 /* TWTModelClassDeserialization.m */; };
 		498BEEE9192E8A9B00DA38C3 /* UIViewController+TWTPrepareForSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 498BEEE8192E8A9B00DA38C3 /* UIViewController+TWTPrepareForSegue.m */; };
 		498BEEED192E8F1400DA38C3 /* UIViewController+TWTCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = 498BEEEC192E8F1400DA38C3 /* UIViewController+TWTCompletion.m */; };
 		4997421218E4A78B001A2CD1 /* NSArrayTWTIndexPathTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4997421118E4A78B001A2CD1 /* NSArrayTWTIndexPathTests.m */; };
@@ -70,6 +71,8 @@
 		4901313F18C61D4600117218 /* TWTCustomTransitionsSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTCustomTransitionsSampleViewController.h; sourceTree = "<group>"; };
 		4901314018C61D4600117218 /* TWTCustomTransitionsSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTCustomTransitionsSampleViewController.m; sourceTree = "<group>"; };
 		491F93CB18F9C9E700BBC79C /* TWTTransitionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TWTTransitionController.h; sourceTree = "<group>"; };
+		496FBFF0193F525E0043F116 /* TWTModelClassDeserialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTModelClassDeserialization.h; sourceTree = "<group>"; };
+		496FBFF1193F525E0043F116 /* TWTModelClassDeserialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTModelClassDeserialization.m; sourceTree = "<group>"; };
 		498BEEE7192E8A9B00DA38C3 /* UIViewController+TWTPrepareForSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+TWTPrepareForSegue.h"; sourceTree = "<group>"; };
 		498BEEE8192E8A9B00DA38C3 /* UIViewController+TWTPrepareForSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+TWTPrepareForSegue.m"; sourceTree = "<group>"; };
 		498BEEEB192E8F1400DA38C3 /* UIViewController+TWTCompletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+TWTCompletion.h"; sourceTree = "<group>"; };
@@ -173,6 +176,15 @@
 			path = "View Controller Transitions";
 			sourceTree = "<group>";
 		};
+		496FBFEF193E7AC30043F116 /* Model Class Deserialization */ = {
+			isa = PBXGroup;
+			children = (
+				496FBFF0193F525E0043F116 /* TWTModelClassDeserialization.h */,
+				496FBFF1193F525E0043F116 /* TWTModelClassDeserialization.m */,
+			);
+			path = "Model Class Deserialization";
+			sourceTree = "<group>";
+		};
 		498BEEE6192E8A7D00DA38C3 /* Prepare for Segue */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,6 +274,7 @@
 		4CA4390618CD03BB0013B10E /* Mantle */ = {
 			isa = PBXGroup;
 			children = (
+				496FBFEF193E7AC30043F116 /* Model Class Deserialization */,
 				4CA4390B18CD04A40013B10E /* Mantle Model */,
 				4C73076718CFAEFE00398573 /* Selective JSON Adapter */,
 			);
@@ -681,6 +694,7 @@
 				49BCBC7818CD4BA1000B8706 /* NSArray+TWTIndexPath.m in Sources */,
 				4901313E18C61B0900117218 /* TWTSimpleAnimationController.m in Sources */,
 				498BEEE9192E8A9B00DA38C3 /* UIViewController+TWTPrepareForSegue.m in Sources */,
+				496FBFF2193F525E0043F116 /* TWTModelClassDeserialization.m in Sources */,
 				4901314118C61D4600117218 /* TWTCustomTransitionsSampleViewController.m in Sources */,
 				A4D633EF18839EA900DA51CB /* TWTHighOrderFunctions.m in Sources */,
 				A4D633E31883914600DA51CB /* TWTAppDelegate.m in Sources */,
