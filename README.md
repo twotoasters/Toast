@@ -83,11 +83,23 @@ A subspec containing our humble extensions to UIKit.
 
 * **`UIDevice+TWTSystemVersion`** provides convenient methods of retrieving and comparing iOS version information in a more performant way, using NSIntegers rather than string comparison.
 
+##### Prepare For Segue
+
+`pod 'TWTToast/UIKit/PrepareForSegue'`
+
+* **`UIViewController+TWTPrepareForSegue`** adds `-twt_prepareFor«Identifier»Segue:sender:` to view controllers, where «Identifier» is the capitalized form of the segue’s identifier.
+
 ##### Snapshot Image
 
 `pod 'TWTToast/UIKit/SnapshotImage'`
 
 * **`UIView+TWTSnapshotImage`** provides a convenient method for getting a snapshot image of a view’s hiearachy.
+
+##### View Controller Completion
+
+`pod 'TWTToast/UIKit/ViewControllerCompletion'`
+
+* **`UIViewController+TWTCompletion`** adds a completion block and corresponding finish and cancel methods to view controllers, to provide an easy way for a presented view controller to signal to the presenting view controller when it is done.
 
 ##### View Controller Transitions
 
@@ -108,6 +120,12 @@ A subspec containing various Mantle extensions used by Two Toasters.
 `pod 'TWTToast/Mantle/MantleModel'`
 
 * **`TWTMantleModel`** contains basic extensions to `MTLModel`. For now, it simply adds the ability to exclude property keys from archiving, description, and equality checking.
+
+##### Model Class Deserialization
+
+`pod 'TWTToast/Mantle/ModelClassDeserialization'`
+
+* **`TWTModelClassDeserialization`** unifies deserialization of JSON objects into Mantle model objects.
 
 ##### Selective JSON Adapter
 
