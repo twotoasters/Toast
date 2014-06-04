@@ -14,9 +14,7 @@
 
 
 NSString *const kTWTModelClassDeserializationErrorDomain = @"TWTModelClassDeserializationErrorDomain";
-
 NSString *const kTWTModelClassDeserializationErrorUnexpectedObjectKey = @"TWTModelClassDeserializationErrorUnexpectedObjectKey";
-
 NSString *const kTWTModelClassDeserializationErrorUnderlyingErrorsKey = @"TWTModelClassDeserializationErrorUnderlyingErrorsKey";
 
 
@@ -43,7 +41,7 @@ NSString *const kTWTModelClassDeserializationErrorUnderlyingErrorsKey = @"TWTMod
     NSArray *result = [self twt_collectWithBlock:^(id item) {
         NSError *underlyingError = nil;
         id modelObject = [item twt_modelOfClass:class error:&underlyingError];
-        if (!modelObject) {
+        if (!modelObject && underlyingError) {
             [underlyingErrors addObject:underlyingError];
         }
         return modelObject;
@@ -72,9 +70,16 @@ NSString *const kTWTModelClassDeserializationErrorUnderlyingErrorsKey = @"TWTMod
     id modelObject = [MTLJSONAdapter modelOfClass:modelClass fromJSONDictionary:self error:&underlyingError];
 
     if (!modelObject && error) {
+
+        NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
+
+        if (underlyingError) {
+            userInfo[NSUnderlyingErrorKey] = underlyingError;
+        }
+
         *error = [NSError errorWithDomain:kTWTModelClassDeserializationErrorDomain
                                      code:TWTModelClassDeserializationErrorModelObjectCreation
-                                 userInfo:@{ NSUnderlyingErrorKey : underlyingError }];
+                                 userInfo:userInfo];
     }
 
     return modelObject;
