@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Two Toasters, LLC. All rights reserved.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 
 /*!
@@ -73,12 +73,14 @@ extern NSString *const kTWTModelClassDeserializationErrorUnderlyingErrorsKey;
  }
  else {
      // handle this error
- }@endcode
+ }
+ @endcode
 
  TWTModelClassDeserialization transforms this problem into:
 
  @code
- id resultObject = [object twt_modelOfClass:modelClass error:NULL];\endcode
+ id resultObject = [object twt_modelOfClass:modelClass error:NULL];
+ @endcode
 
  NSObject, NSArray, and NSDictionary conform to this protocol, so there should not be any need to make other
  classes conform.
