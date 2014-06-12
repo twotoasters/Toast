@@ -52,6 +52,12 @@ A subspec for Foundation-level classes and categories.
 
 * **`NSException+TWTSubclassResponsibility`** provides a convenience factory method for creating exceptions when implementing a given method is a subclass's responsibility.
 
+##### NSOperation
+
+`pod TWTToast/Foundation/NSOperation`
+
+* **`TWTAsynchronousOperation`** provides a NSOperation subclass that provides support for asynchronous execution during an operation's lifespan.
+
 #### UIKit
 
 `pod 'TWTToast/UIKit'`
