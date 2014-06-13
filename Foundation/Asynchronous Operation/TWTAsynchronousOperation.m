@@ -71,19 +71,23 @@ static NSString * TWTKeyFromOperationState(TWTOperationState state) {
     self.state = TWTOperationStateFinished;
 }
 
-- (BOOL)isReady {
+- (BOOL)isReady
+{
     return self.state == TWTOperationStateReady && [super isReady];
 }
 
-- (BOOL)isExecuting {
+- (BOOL)isExecuting
+{
     return self.state == TWTOperationStateExecuting;
 }
 
-- (BOOL)isFinished {
+- (BOOL)isFinished
+{
     return self.state == TWTOperationStateFinished;
 }
 
-- (BOOL)isConcurrent {
+- (BOOL)isConcurrent
+{
     return YES;
 }
 
@@ -109,11 +113,6 @@ static NSString * TWTKeyFromOperationState(TWTOperationState state) {
         _state = TWTOperationStateReady;
     }
     return self;
-}
-
-- (void)setOperationBlock:(TWTAsynchronousOperationBlock)operationBlock
-{
-    _operationBlock = [operationBlock copy];
 }
 
 @end

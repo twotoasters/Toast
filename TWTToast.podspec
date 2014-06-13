@@ -46,9 +46,9 @@ Pod::Spec.new do |s|
       sss.source_files = "Foundation/Subclass Responsibility/*.{h,m}"
     end
 
-    ss.subspec 'NSOperation' do |sss|
+    ss.subspec 'AsynchronousOperation' do |sss|
       sss.requires_arc = true
-      sss.source_files = "Foundation/NSOperation/*.{h,m}"
+      sss.source_files = "Foundation/AsynchronousOperation/*.{h,m}"
     end
   end  
 
