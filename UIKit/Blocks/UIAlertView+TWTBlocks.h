@@ -32,5 +32,6 @@ typedef void(^TWTAlertBlock)(UIAlertView *alertView, NSInteger buttonIndex);
 @interface UIAlertView (TWTBlocks) <UIAlertViewDelegate>
 
 @property (nonatomic, copy, getter = twt_tapHandler, setter = twt_setTapHandler:) TWTAlertBlock twt_tapHandler;
+@property (nonatomic, copy, getter = twt_dismissHandler, setter = twt_setDismissHandler:) TWTAlertBlock twt_dismissHandler;
 
 @end

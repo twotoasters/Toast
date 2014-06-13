@@ -29,19 +29,32 @@
 #import <objc/runtime.h>
 
 static char kTapHandlerKey;
+static char kDismissHandlerKey;
 
 @implementation UIAlertView (TWTBlocks)
 
 - (void)twt_setTapHandler:(TWTAlertBlock)tapHandler
 {
-    self.delegate = tapHandler ? self : nil;
-
+    self.delegate = (tapHandler || self.twt_dismissHandler) ? self : nil;
+    
     objc_setAssociatedObject(self, &kTapHandlerKey, tapHandler, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 - (TWTAlertBlock)twt_tapHandler
 {
     return objc_getAssociatedObject(self, &kTapHandlerKey);
+}
+
+- (void)twt_setDismissHandler:(TWTAlertBlock)dismissHandler
+{
+    self.delegate = (dismissHandler || self.twt_tapHandler) ? self : nil;
+    
+    objc_setAssociatedObject(self, &kDismissHandlerKey, dismissHandler, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (TWTAlertBlock)twt_dismissHandler
+{
+    return objc_getAssociatedObject(self, &kDismissHandlerKey);
 }
 
 #pragma mark - UIAlertViewDelegate
@@ -52,12 +65,24 @@ static char kTapHandlerKey;
     if (tapHandler) {
         tapHandler(self, buttonIndex);
     }
+    
     self.twt_tapHandler = nil;
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    TWTAlertBlock dismissHandler = self.twt_dismissHandler;
+    if (dismissHandler) {
+        dismissHandler(self, buttonIndex);
+    }
+    
+    self.twt_dismissHandler = nil;
 }
 
 - (void)alertViewCancel:(UIAlertView *)alertView
 {
     self.twt_tapHandler = nil;
+    self.twt_dismissHandler = nil;
 }
 
 @end
