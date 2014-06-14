@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "TWTToast"
-  s.version          = "0.8"
+  s.version          = "0.9"
   s.summary          = "Tools and Utilities for Cocoa Development"
   s.homepage         = "https://github.com/twotoasters/Toast"
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -20,14 +20,20 @@ Pod::Spec.new do |s|
   ## Subspec for files related to Foundation
   s.subspec 'Foundation' do |ss|
     ss.requires_arc = true
-    ss.subspec 'ErrorUtilities' do |sss|
+    
+    ss.subspec 'AsynchronousOperation' do |sss|
       sss.requires_arc = true
-      sss.source_files = "Foundation/Error Utilities/*.{h,m}"
+      sss.source_files = "Foundation/AsynchronousOperation/*.{h,m}"
     end
-
+    
     ss.subspec 'BlockEnumeration' do |sss|
       sss.requires_arc = true
       sss.source_files = "Foundation/Block Enumeration/*.{h,m}"
+    end
+
+    ss.subspec 'ErrorUtilities' do |sss|
+      sss.requires_arc = true
+      sss.source_files = "Foundation/Error Utilities/*.{h,m}"
     end
 
     ss.subspec 'KVO' do |sss|
@@ -44,11 +50,6 @@ Pod::Spec.new do |s|
       sss.requires_arc = true
       sss.dependency 'TWTToast/Foundation/ErrorUtilities'
       sss.source_files = "Foundation/Subclass Responsibility/*.{h,m}"
-    end
-
-    ss.subspec 'AsynchronousOperation' do |sss|
-      sss.requires_arc = true
-      sss.source_files = "Foundation/AsynchronousOperation/*.{h,m}"
     end
   end  
 
