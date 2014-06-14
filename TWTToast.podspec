@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
     
     ss.subspec 'AsynchronousOperation' do |sss|
       sss.requires_arc = true
-      sss.source_files = "Foundation/AsynchronousOperation/*.{h,m}"
+      sss.source_files = "Foundation/Asynchronous Operation/*.{h,m}"
     end
     
     ss.subspec 'BlockEnumeration' do |sss|
