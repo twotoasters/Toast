@@ -16,11 +16,18 @@ A subspec chock full of low-level extensions.
 
 * __DEPRECATED__ **`TWTSimpleMap(id<NSObject, NSFastEnumeration> enumeration, TWTMapBlock block)`** provides a simple implementation of Map. Map recieves an enumeration of objects and applies the block to each item, returning the resulting array.
 
+
 #### Foundation
 
 `pod TWTToast/Foundation`
 
 A subspec for Foundation-level classes and categories.
+
+##### Asynchronous Operation
+
+`pod TWTToast/Foundation/AsynchronousOperation`
+
+* **`TWTAsynchronousOperation`** provides an NSOperation subclass with support for asynchronous execution during an operation's lifespan.
 
 ##### Block Enumeration
 
@@ -28,17 +35,17 @@ A subspec for Foundation-level classes and categories.
 
 * **`TWTBlockEnumeration`** exposes methods on NSArray, NSDictionary, NSEnumerator, NSOrderedSet, and NSSet for block based enumeration. These methods include functionality for `Collect`, `Inject`, `Detect`, `Reject`, and `Select`.
 
-##### KVO
-
-`pod TWTToast/Foundation/KVO`
-
-* **`TWTKeyValueObserver`** exposes a method for encapsulating a KVO-based observation such that it can be more easily released.
-
 ##### ErrorUtilities
 
 `pod TWTToast/Foundation/ErrorUtilities`
 
 * **`TWTErrorUtilities`** defines utility functions for creating assertions and exception messages.
+
+##### KVO
+
+`pod TWTToast/Foundation/KVO`
+
+* **`TWTKeyValueObserver`** exposes a method for encapsulating a KVO-based observation such that it can be more easily released.
 
 ##### NSArray Index Path Additions
 
@@ -52,11 +59,6 @@ A subspec for Foundation-level classes and categories.
 
 * **`NSException+TWTSubclassResponsibility`** provides a convenience factory method for creating exceptions when implementing a given method is a subclass's responsibility.
 
-##### Asynchronous Operation
-
-`pod TWTToast/Foundation/AsynchronousOperation`
-
-* **`TWTAsynchronousOperation`** provides a NSOperation subclass that provides support for asynchronous execution during an operation's lifespan.
 
 #### UIKit
 
