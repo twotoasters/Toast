@@ -53,4 +53,24 @@
     return [constraints copy];
 }
 
+
+- (NSLayoutConstraint *)twt_addHeightConstraintWithConstant:(CGFloat)constant
+{
+    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:constant];
+
+    [self addConstraint:constraint];
+
+    return constraint;
+}
+
+
+- (NSLayoutConstraint *)twt_addWidthConstraintWithConstant:(CGFloat)constant
+{
+    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:constant];
+
+    [self addConstraint:constraint];
+
+    return constraint;
+}
+
 @end
