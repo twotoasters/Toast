@@ -68,4 +68,18 @@
 - (NSArray *)twt_addConstraintsWithVisualFormatStrings:(NSArray *)formatStrings options:(NSLayoutFormatOptions)options
                                                metrics:(NSDictionary *)metrics views:(NSDictionary *)views;
 
+/*!
+ @abstract Adds a height constraint to the reciever for the specified constant.
+ @param constant A CGFloat specifying the value of the height
+ @result The constraint that was added.
+ */
+- (NSLayoutConstraint *)twt_addHeightConstraintWithConstant:(CGFloat)constant;
+
+/*!
+ @abstract Adds a width constraint to the reciever for the specified constant.
+ @param constant A CGFloat specifying the value of the width
+ @result The constraint that was added.
+ */
+- (NSLayoutConstraint *)twt_addWidthConstraintWithConstant:(CGFloat)constant;
+
 @end
