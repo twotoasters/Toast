@@ -26,6 +26,10 @@
 
 #import "UIColor+TWTColorHelpers.h"
 
+
+NSString *const kTWTColorHelpersErrorDomain = @"TWTColorHelpersErrorDomain";
+
+
 @implementation UIColor (TWTColorHelpers)
 
 + (UIColor *)twt_colorWithHex:(uint32_t)hex alpha:(CGFloat)alpha
@@ -36,29 +40,58 @@
     return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
 }
 
-+ (UIColor *)twt_colorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha
++ (UIColor *)twt_colorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha error:(NSError * __autoreleasing *)outError
+{
+    NSString *normalizedHexString = [self twt_normalizedHexStringWithHexString:hexString];
+    UIColor *color = nil;
+    if (!normalizedHexString) {
+        if (outError) {
+            // TODO(Andrew): is there a strings table in Toast? If not, set one up.
+            NSString *localizedDescription = [NSString stringWithFormat:@"%@ is not a valid hex string. Hex strings must be in the format #FFFFFF, #FFF, FFFFFF, or FFF.", hexString];
+            *outError = [NSError errorWithDomain:kTWTColorHelpersErrorDomain
+                                            code:TWTColorHelpersErrorInvalidHexString
+                                        userInfo:@{ NSLocalizedDescriptionKey : localizedDescription }];
+        }
+        return nil;
+    }
+
+    NSScanner *scanner = [NSScanner scannerWithString:normalizedHexString];
+    unsigned int hex;
+    [scanner scanHexInt:&hex];
+    color = [UIColor twt_colorWithHex:hex alpha:alpha];
+
+    return color;
+}
+
+
++ (NSString *)twt_normalizedHexStringWithHexString:(NSString *)hexString
 {
     static NSRegularExpression *regex = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        regex = [NSRegularExpression regularExpressionWithPattern:@"^#?[0-9a-f]{6}$" options:NSRegularExpressionCaseInsensitive error:NULL];
+        regex = [NSRegularExpression regularExpressionWithPattern:@"^#?([0-9a-f]{1,2}?)([0-9a-f]{1,2}?)([0-9a-f]{1,2}?)$" options:NSRegularExpressionCaseInsensitive error:NULL];
     });
-    
+
     NSArray *matches = [regex matchesInString:hexString options:NSMatchingAnchored range:NSMakeRange(0, hexString.length)];
-    BOOL hexStringValid = (0 < matches.count);
+    NSTextCheckingResult *textCheckingResult = [matches firstObject];
 
-    NSAssert(hexStringValid, @"Tried to parse a hex color that was invalid: %@ (must be of the form #ffffff or ffffff)", hexString);
-
-    UIColor *color = nil;
-    if (hexStringValid) {
-        NSScanner *scanner = [NSScanner scannerWithString:hexString];
-        scanner.charactersToBeSkipped = [NSCharacterSet characterSetWithCharactersInString:@"#"];
-        unsigned int hex;
-        [scanner scanHexInt:&hex];
-        color = [UIColor twt_colorWithHex:hex alpha:alpha];
+    if (textCheckingResult.numberOfRanges != 4) {
+        return nil;
     }
-    
-    return color;
+
+    NSArray *componentStrings = @[ [hexString substringWithRange:[textCheckingResult rangeAtIndex:1]],
+                                   [hexString substringWithRange:[textCheckingResult rangeAtIndex:2]],
+                                   [hexString substringWithRange:[textCheckingResult rangeAtIndex:3]] ];
+    NSMutableString *normalizedHexString = [[NSMutableString alloc] init];
+    for (NSString *componentString in componentStrings) {
+        // Append twice if the component was only of length 1
+        if (componentString.length == 1) {
+            [normalizedHexString appendString:componentString];
+        }
+        [normalizedHexString appendString:componentString];
+    }
+
+    return normalizedHexString;
 }
 
 @end

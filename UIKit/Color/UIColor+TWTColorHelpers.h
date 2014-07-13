@@ -26,6 +26,15 @@
 
 #import <UIKit/UIKit.h>
 
+
+typedef NS_ENUM(NSInteger, TWTColorHelpersError) {
+    TWTColorHelpersErrorInvalidHexString
+};
+
+
+extern NSString *const kTWTColorHelpersErrorDomain;
+
+
 @interface UIColor (TWTColorHelpers)
 
 /**
@@ -38,10 +47,10 @@
 
 /**
  @abstract Create a UIColor with a Hex String.
- @param hexString A hex string conforming to #FFFFFF or FFFFFF defining the color to build.
+ @param hexString A hex string conforming to #FFFFFF, #FFF, FFFFFF, or FFF defining the color to build.
  @param alpha A CGFloat value to control the alpha of the color.
  @return A new instance of a UIColor
  */
-+ (UIColor *)twt_colorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha;
++ (UIColor *)twt_colorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha error:(NSError * __autoreleasing *)outError;
 
 @end
