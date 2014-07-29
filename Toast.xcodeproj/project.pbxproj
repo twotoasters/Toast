@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		02CBF53B02574915A5B18D20 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C829E1DA3404341A2C58BB6 /* libPods.a */; };
+		0A7A30FB1987F93D007EA571 /* TWTTextStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A30FA1987F93D007EA571 /* TWTTextStyle.m */; };
 		136DBCD0194B37050058F08B /* TWTAsynchronousOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 136DBCCF194B37050058F08B /* TWTAsynchronousOperation.m */; };
 		38D001530B13452CBE5DDB73 /* libPods-ToastTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A07E2E64D14C2EA63FBE64 /* libPods-ToastTests.a */; };
 		4901313B18C5830500117218 /* TWTNavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4901313A18C5830500117218 /* TWTNavigationControllerDelegate.m */; };
@@ -64,6 +65,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A7A30F91987F93D007EA571 /* TWTTextStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTTextStyle.h; sourceTree = "<group>"; };
+		0A7A30FA1987F93D007EA571 /* TWTTextStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTTextStyle.m; sourceTree = "<group>"; };
 		136DBCCE194B37050058F08B /* TWTAsynchronousOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTAsynchronousOperation.h; sourceTree = "<group>"; };
 		136DBCCF194B37050058F08B /* TWTAsynchronousOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTAsynchronousOperation.m; sourceTree = "<group>"; };
 		22A07E2E64D14C2EA63FBE64 /* libPods-ToastTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ToastTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,6 +170,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A7A30FC1987F940007EA571 /* Text Style */ = {
+			isa = PBXGroup;
+			children = (
+				0A7A30F91987F93D007EA571 /* TWTTextStyle.h */,
+				0A7A30FA1987F93D007EA571 /* TWTTextStyle.m */,
+			);
+			path = "Text Style";
+			sourceTree = "<group>";
+		};
 		136DBCCD194B37050058F08B /* Asynchronous Operation */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +255,7 @@
 				4C73076B18CFC19100398573 /* Snapshot Image */,
 				498BEEEA192E8D7100DA38C3 /* View Controller Completion */,
 				4901313818C582B600117218 /* View Controller Transitions */,
+				0A7A30FC1987F940007EA571 /* Text Style */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -693,6 +706,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A7A30FB1987F93D007EA571 /* TWTTextStyle.m in Sources */,
 				A4D633EB1883916A00DA51CB /* main.m in Sources */,
 				4CA4390E18CD04A40013B10E /* TWTMantleModel.m in Sources */,
 				4C73076E18CFC1B900398573 /* UIView+TWTSnapshotImage.m in Sources */,

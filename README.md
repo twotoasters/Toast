@@ -103,6 +103,12 @@ A subspec containing our humble extensions to UIKit.
 
 * **`UIView+TWTSnapshotImage`** provides a convenient method for getting a snapshot image of a view’s hiearachy.
 
+##### Text Style
+
+`pod 'TWTToast/UIKit/TextStyle'`
+
+* **`TWTTextStyle`** is a convenient way to package fonts and colors together as a style and apply them to different views. Keep a set of them as singletons or make class factory methods.
+
 ##### View Controller Completion
 
 `pod 'TWTToast/UIKit/ViewControllerCompletion'`

@@ -86,6 +86,11 @@ Pod::Spec.new do |s|
       sss.source_files = "UIKit/Snapshot Image/*.{h,m}"
     end
 
+    ss.subspec 'TextStyle' do |sss|
+      sss.requires_arc = true
+      sss.source_files = "UIKit/Text Style/*.{h,m}"
+    end
+
     ss.subspec 'ViewControllerCompletion' do |sss|
       sss.requires_arc = true
       sss.source_files = "UIKit/View Controller Completion/*.{h,m}"
