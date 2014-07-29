@@ -51,6 +51,11 @@ Pod::Spec.new do |s|
       sss.dependency 'TWTToast/Foundation/ErrorUtilities'
       sss.source_files = "Foundation/Subclass Responsibility/*.{h,m}"
     end
+
+    ss.subspec 'TreeNode' do |sss|
+      sss.requires_arc = true
+      sss.source_files = "Foundation/Tree Node/*.{h,m}"
+    end
   end  
 
   ## Subspec for files related to UIKit

@@ -53,6 +53,12 @@ A subspec for Foundation-level classes and categories.
 
 * **`NSArray+TWTIndexPath`** provides methods for working with arrays (or hierarchically organized arrays) by index path.
 
+##### Tree Node
+
+`pod TWTToast/Foundation/TreeNode`
+
+* **`TWTTreeNode`** is a simple tree implementation with a node object and a flag for whether the node is expanded. Nodes can be looked up by index paths, which they compute themselves. We used this model to build a tree view with expadable groups.
+
 ##### SubclassResponsibility
 
 `pod TWTToast/Foundation/SubclassResponsibility`

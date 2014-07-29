@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		02CBF53B02574915A5B18D20 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C829E1DA3404341A2C58BB6 /* libPods.a */; };
 		0A7A30FB1987F93D007EA571 /* TWTTextStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A30FA1987F93D007EA571 /* TWTTextStyle.m */; };
+		0A7A310419881056007EA571 /* TWTTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A310319881056007EA571 /* TWTTreeNode.m */; };
 		136DBCD0194B37050058F08B /* TWTAsynchronousOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 136DBCCF194B37050058F08B /* TWTAsynchronousOperation.m */; };
 		38D001530B13452CBE5DDB73 /* libPods-ToastTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A07E2E64D14C2EA63FBE64 /* libPods-ToastTests.a */; };
 		4901313B18C5830500117218 /* TWTNavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4901313A18C5830500117218 /* TWTNavigationControllerDelegate.m */; };
@@ -67,6 +68,8 @@
 /* Begin PBXFileReference section */
 		0A7A30F91987F93D007EA571 /* TWTTextStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTTextStyle.h; sourceTree = "<group>"; };
 		0A7A30FA1987F93D007EA571 /* TWTTextStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTTextStyle.m; sourceTree = "<group>"; };
+		0A7A310219881056007EA571 /* TWTTreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTTreeNode.h; sourceTree = "<group>"; };
+		0A7A310319881056007EA571 /* TWTTreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTTreeNode.m; sourceTree = "<group>"; };
 		136DBCCE194B37050058F08B /* TWTAsynchronousOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTAsynchronousOperation.h; sourceTree = "<group>"; };
 		136DBCCF194B37050058F08B /* TWTAsynchronousOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTAsynchronousOperation.m; sourceTree = "<group>"; };
 		22A07E2E64D14C2EA63FBE64 /* libPods-ToastTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ToastTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -177,6 +180,15 @@
 				0A7A30FA1987F93D007EA571 /* TWTTextStyle.m */,
 			);
 			path = "Text Style";
+			sourceTree = "<group>";
+		};
+		0A7A310119881024007EA571 /* Tree Node */ = {
+			isa = PBXGroup;
+			children = (
+				0A7A310219881056007EA571 /* TWTTreeNode.h */,
+				0A7A310319881056007EA571 /* TWTTreeNode.m */,
+			);
+			path = "Tree Node";
 			sourceTree = "<group>";
 		};
 		136DBCCD194B37050058F08B /* Asynchronous Operation */ = {
@@ -322,8 +334,9 @@
 				A418D83418E758050067CCCA /* Block Enumeration */,
 				4CFCDD72189FFFB700A7C3F2 /* Error Utilities */,
 				A4E7ACF518D0D8C1009FD889 /* KVO */,
-				4CFCDD6A189FF9C900A7C3F2 /* Subclass Responsibility */,
 				49BCBC7518CD4B49000B8706 /* NSArray Index Path Additions */,
+				4CFCDD6A189FF9C900A7C3F2 /* Subclass Responsibility */,
+				0A7A310119881024007EA571 /* Tree Node */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -724,6 +737,7 @@
 				498BEEE9192E8A9B00DA38C3 /* UIViewController+TWTPrepareForSegue.m in Sources */,
 				496FBFF2193F525E0043F116 /* TWTModelClassDeserialization.m in Sources */,
 				4901314118C61D4600117218 /* TWTCustomTransitionsSampleViewController.m in Sources */,
+				0A7A310419881056007EA571 /* TWTTreeNode.m in Sources */,
 				A4D633EF18839EA900DA51CB /* TWTHighOrderFunctions.m in Sources */,
 				A4D633E31883914600DA51CB /* TWTAppDelegate.m in Sources */,
 				4901313B18C5830500117218 /* TWTNavigationControllerDelegate.m in Sources */,
