@@ -40,19 +40,22 @@
 
 - (instancetype)initWithFont:(UIFont *)font color:(UIColor *)color highlightColor:(UIColor *)highlightColor disabledColor:(UIColor *)disabledColor
 {
+    NSParameterAssert(font);
+    NSParameterAssert(color);
+    
     self = [super init];
     if (self) {
         _font = font;
         _color = color;
-        _highlightColor = highlightColor;
-        _disabledColor = disabledColor;
+        _highlightColor = highlightColor ?: color;
+        _disabledColor = disabledColor ?: color;
     }
     return self;
 }
 
 - (instancetype)initWithFont:(UIFont *)font color:(UIColor *)color
 {
-    return [self initWithFont:font color:color highlightColor:color disabledColor:color];
+    return [self initWithFont:font color:color highlightColor:nil disabledColor:nil];
 }
 
 #pragma mark - Public interface

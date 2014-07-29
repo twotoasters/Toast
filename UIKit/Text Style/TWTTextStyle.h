@@ -28,10 +28,10 @@
 
 @interface TWTTextStyle : NSObject
 
-@property (nonatomic, strong) UIFont *font;
-@property (nonatomic, strong) UIColor *color;
-@property (nonatomic, strong) UIColor *highlightColor;
-@property (nonatomic, strong) UIColor *disabledColor;
+@property (nonatomic, readonly, strong) UIFont *font;
+@property (nonatomic, readonly, strong) UIColor *color;
+@property (nonatomic, readonly, strong) UIColor *highlightColor;
+@property (nonatomic, readonly, strong) UIColor *disabledColor;
 
 - (instancetype)initWithFont:(UIFont *)font color:(UIColor *)color highlightColor:(UIColor *)highlightColor disabledColor:(UIColor *)disabledColor;
 - (instancetype)initWithFont:(UIFont *)font color:(UIColor *)color;
