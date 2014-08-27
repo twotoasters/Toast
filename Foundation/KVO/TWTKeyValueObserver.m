@@ -183,6 +183,7 @@
                 [invocation setArgument:&change atIndex:3];
             }
             
+            [invocation retainArguments];
             [invocation invoke];
         }
     }

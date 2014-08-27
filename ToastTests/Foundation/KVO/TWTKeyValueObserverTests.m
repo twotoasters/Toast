@@ -37,6 +37,33 @@
 @implementation TWTSampleObservableObject
 @end
 
+
+@interface TWTDeallocationTestObject : NSObject
+- (void)samplePropertyDidChange;
+@property (nonatomic, copy) void(^samplePropertyDidChangeBlock)(void);
+@property (nonatomic, copy) void(^deallocationBlock)(void);
+@end
+
+@implementation TWTDeallocationTestObject
+
+- (void)samplePropertyDidChange
+{
+    void(^samplePropertyDidChangeBlock)(void) = self.samplePropertyDidChangeBlock;
+    if (samplePropertyDidChangeBlock) {
+        samplePropertyDidChangeBlock();
+    }
+}
+
+- (void)dealloc
+{
+    if (_deallocationBlock) {
+        _deallocationBlock();
+    }
+}
+
+@end
+
+
 @interface TWTKeyValueObserverTests : TWTRandomizedTestCase
 
 @end
@@ -123,6 +150,34 @@
 - (void)testObserverCreationWithInit
 {
     XCTAssertThrows([[TWTKeyValueObserver alloc] init], @"Should not allow accessing with init. Use custom initializers instead");
+}
+
+
+- (void)testTargetRetaining
+{
+    __block BOOL objectDeallocated = NO;
+    __block TWTDeallocationTestObject *sampleObject = [[TWTDeallocationTestObject alloc] init];
+    sampleObject.deallocationBlock = ^{
+        objectDeallocated = YES;
+    };
+
+    sampleObject.samplePropertyDidChangeBlock = ^{
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-retain-cycles"
+        sampleObject = nil;
+        XCTAssertFalse(objectDeallocated, @"object deallocated before KVO handler completed");
+#pragma clang diagnostic pop
+    };
+
+    TWTSampleObservableObject *observableObject = [[TWTSampleObservableObject alloc] init];
+    observableObject.sampleProperty = UMKRandomUnicodeString();
+    __unused TWTKeyValueObserver *observer = [TWTKeyValueObserver observerWithObject:observableObject
+                                                                             keyPath:NSStringFromSelector(@selector(sampleProperty))
+                                                                             options:NSKeyValueObservingOptionNew
+                                                                              target:sampleObject
+                                                                              action:@selector(samplePropertyDidChange)];
+    observableObject.sampleProperty = UMKRandomUnicodeString();
 }
 
 #pragma mark - Observer Actions
