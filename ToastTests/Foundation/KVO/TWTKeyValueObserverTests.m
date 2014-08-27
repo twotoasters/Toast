@@ -188,7 +188,6 @@
     // the property's value changes.
 
     TWTSampleObservableObject *observableObject = [[TWTSampleObservableObject alloc] init];
-    observableObject.sampleProperty = UMKRandomUnicodeString();
     __unused TWTKeyValueObserver *observer = [TWTKeyValueObserver observerWithObject:observableObject
                                                                              keyPath:NSStringFromSelector(@selector(sampleProperty))
                                                                              options:NSKeyValueObservingOptionNew
