@@ -153,31 +153,54 @@
 }
 
 
+/*! This test makes sure the target of a TWTKeyValueObserver does not get deallocated while the action method
+ is in progress. This behavior was possible with a previous implementation.
+ */
 - (void)testTargetRetaining
 {
-    __block BOOL objectDeallocated = NO;
-    __block TWTDeallocationTestObject *sampleObject = [[TWTDeallocationTestObject alloc] init];
-    sampleObject.deallocationBlock = ^{
-        objectDeallocated = YES;
+    // The test starts by creating a sample target object that calls a `deallocationBlock` when it gets
+    // deallocated. The block is configured to set `targetDeallocated` to YES when `target` is deallocated.
+    // Later, the flag will be checked to ensure that the target has not been deallocated.
+
+    __block BOOL targetDeallocated = NO;
+    __block TWTDeallocationTestObject *target = [[TWTDeallocationTestObject alloc] init];
+    target.deallocationBlock = ^{
+        targetDeallocated = YES;
     };
 
-    sampleObject.samplePropertyDidChangeBlock = ^{
+    // `target` will invoke this block when its `-samplePropertyDidChange` action method is called. This block
+    // sets the strong reference to `target` to `nil`, which could cause `target` to get deallocated if
+    // TWTKeyValueObserver fails to keep a strong reference to it while the action method is invoked. The
+    // `targetDeallocated` flag is checked inside the block after `target` is set to `nil` to see whether
+    // `target` was deallocated. The expected behavior is that `target` has not yet been deallocated.
+
+    target.samplePropertyDidChangeBlock = ^{
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-retain-cycles"
-        sampleObject = nil;
-        XCTAssertFalse(objectDeallocated, @"object deallocated before KVO handler completed");
+        target = nil;
+        XCTAssertFalse(targetDeallocated, @"target deallocated while action method is in progress");
 #pragma clang diagnostic pop
     };
+
+    // Now that the target is configured, a sample observable object is set up along with a
+    // TWTKeyValueObserver that observes the `sampleProperty` on `observableObject` and messages `target` when
+    // the property's value changes.
 
     TWTSampleObservableObject *observableObject = [[TWTSampleObservableObject alloc] init];
     observableObject.sampleProperty = UMKRandomUnicodeString();
     __unused TWTKeyValueObserver *observer = [TWTKeyValueObserver observerWithObject:observableObject
                                                                              keyPath:NSStringFromSelector(@selector(sampleProperty))
                                                                              options:NSKeyValueObservingOptionNew
-                                                                              target:sampleObject
+                                                                              target:target
                                                                               action:@selector(samplePropertyDidChange)];
     observableObject.sampleProperty = UMKRandomUnicodeString();
+
+    // At this point, target should have been deallocated. Checking this helps to ensure that the
+    // invocation of the action method by the TWTKeyValueObserver was the last strong reference to the target.
+    // Otherwise, the target may have survived for some unrelated reason.
+
+    XCTAssertTrue(targetDeallocated, @"target not deallocated");
 }
 
 #pragma mark - Observer Actions
