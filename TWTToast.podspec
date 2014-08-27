@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "TWTToast"
-  s.version          = "0.11"
+  s.version          = "0.12"
   s.summary          = "Tools and Utilities for Cocoa Development"
   s.homepage         = "https://github.com/twotoasters/Toast"
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -24,6 +24,11 @@ Pod::Spec.new do |s|
     ss.subspec 'AsynchronousOperation' do |sss|
       sss.requires_arc = true
       sss.source_files = "Foundation/Asynchronous Operation/*.{h,m}"
+    end
+    
+    ss.subspec 'CompositeAsynchronousTask' do |sss|
+      sss.requires_arc = true
+      sss.source_files = "Foundation/Composite Asynchronous Task/*.{h,m}"
     end
     
     ss.subspec 'BlockEnumeration' do |sss|

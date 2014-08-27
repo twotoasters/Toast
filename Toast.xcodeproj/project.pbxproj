@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		02CBF53B02574915A5B18D20 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C829E1DA3404341A2C58BB6 /* libPods.a */; };
+		0A0285D319AE860C0063E5AB /* TWTCompositeAsynchronousTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A0285D219AE860C0063E5AB /* TWTCompositeAsynchronousTask.m */; };
 		0A7A30FB1987F93D007EA571 /* TWTTextStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A30FA1987F93D007EA571 /* TWTTextStyle.m */; };
 		0A7A310419881056007EA571 /* TWTTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A310319881056007EA571 /* TWTTreeNode.m */; };
 		136DBCD0194B37050058F08B /* TWTAsynchronousOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 136DBCCF194B37050058F08B /* TWTAsynchronousOperation.m */; };
@@ -66,6 +67,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A0285D119AE860C0063E5AB /* TWTCompositeAsynchronousTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTCompositeAsynchronousTask.h; sourceTree = "<group>"; };
+		0A0285D219AE860C0063E5AB /* TWTCompositeAsynchronousTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTCompositeAsynchronousTask.m; sourceTree = "<group>"; };
 		0A7A30F91987F93D007EA571 /* TWTTextStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTTextStyle.h; sourceTree = "<group>"; };
 		0A7A30FA1987F93D007EA571 /* TWTTextStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTTextStyle.m; sourceTree = "<group>"; };
 		0A7A310219881056007EA571 /* TWTTreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTTreeNode.h; sourceTree = "<group>"; };
@@ -173,6 +176,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A0285D019AE85D70063E5AB /* Composite Asynchronous Task */ = {
+			isa = PBXGroup;
+			children = (
+				0A0285D119AE860C0063E5AB /* TWTCompositeAsynchronousTask.h */,
+				0A0285D219AE860C0063E5AB /* TWTCompositeAsynchronousTask.m */,
+			);
+			path = "Composite Asynchronous Task";
+			sourceTree = "<group>";
+		};
 		0A7A30FC1987F940007EA571 /* Text Style */ = {
 			isa = PBXGroup;
 			children = (
@@ -330,6 +342,7 @@
 		4CFCDD69189FF9C900A7C3F2 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				0A0285D019AE85D70063E5AB /* Composite Asynchronous Task */,
 				136DBCCD194B37050058F08B /* Asynchronous Operation */,
 				A418D83418E758050067CCCA /* Block Enumeration */,
 				4CFCDD72189FFFB700A7C3F2 /* Error Utilities */,
@@ -727,6 +740,7 @@
 				4C351FBD188495F4009AD246 /* UIColor+TWTColorHelpers.m in Sources */,
 				4CFCDD75189FFFB800A7C3F2 /* TWTErrorUtilities.m in Sources */,
 				A43C03381884FEB6000F9753 /* TWTSampleViewController.m in Sources */,
+				0A0285D319AE860C0063E5AB /* TWTCompositeAsynchronousTask.m in Sources */,
 				4C73076A18CFAF1200398573 /* TWTSelectiveJSONAdapter.m in Sources */,
 				136DBCD0194B37050058F08B /* TWTAsynchronousOperation.m in Sources */,
 				A420E1431885023F0019E986 /* UIView+TWTConvenientConstraintAddition.m in Sources */,

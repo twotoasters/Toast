@@ -29,6 +29,12 @@ A subspec for Foundation-level classes and categories.
 
 * **`TWTAsynchronousOperation`** provides an NSOperation subclass with support for asynchronous execution during an operation's lifespan.
 
+##### Composite Asynchronous Task
+
+`pod TWTToast/Foundation/CompositeAsynchronousTask`
+
+* **`TWTCompositeAsynchronousTask`** allows multiple asynchronous tasks to execute concurrently, and then finally run a single completion block.
+
 ##### Block Enumeration
 
 `pod TWTToast/Foundation/BlockEnumeration`
