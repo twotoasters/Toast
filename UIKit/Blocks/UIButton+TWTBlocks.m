@@ -18,7 +18,7 @@ static char kTapHandlerKey;
     return objc_getAssociatedObject(self, &kTapHandlerKey);
 }
 
-- (void)setTwt_tapHandler:(TWTButtonTapBlock)twt_tapHandler
+- (void)twt_setTapHandler:(TWTButtonTapBlock)twt_tapHandler
 {
     // remove old tap handler
     void (^oldTapHandler)(UIButton *) = objc_getAssociatedObject(self, &kTapHandlerKey);

@@ -12,6 +12,6 @@ typedef void(^TWTButtonTapBlock)(UIButton *button);
 
 @interface UIButton (TWTBlocks)
 
-@property (nonatomic, copy) TWTButtonTapBlock twt_tapHandler;
+@property (nonatomic, copy, getter = twt_tapHandler, setter = twt_setTapHandler:) TWTButtonTapBlock twt_tapHandler;
 
 @end
