@@ -10,6 +10,7 @@
 		02CBF53B02574915A5B18D20 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C829E1DA3404341A2C58BB6 /* libPods.a */; };
 		0A7A30FB1987F93D007EA571 /* TWTTextStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A30FA1987F93D007EA571 /* TWTTextStyle.m */; };
 		0A7A310419881056007EA571 /* TWTTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A310319881056007EA571 /* TWTTreeNode.m */; };
+		1312A644198C16550060EEA4 /* UIButton+TWTBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 1312A643198C16550060EEA4 /* UIButton+TWTBlocks.m */; };
 		136DBCD0194B37050058F08B /* TWTAsynchronousOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 136DBCCF194B37050058F08B /* TWTAsynchronousOperation.m */; };
 		38D001530B13452CBE5DDB73 /* libPods-ToastTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A07E2E64D14C2EA63FBE64 /* libPods-ToastTests.a */; };
 		4901313B18C5830500117218 /* TWTNavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4901313A18C5830500117218 /* TWTNavigationControllerDelegate.m */; };
@@ -70,6 +71,8 @@
 		0A7A30FA1987F93D007EA571 /* TWTTextStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTTextStyle.m; sourceTree = "<group>"; };
 		0A7A310219881056007EA571 /* TWTTreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTTreeNode.h; sourceTree = "<group>"; };
 		0A7A310319881056007EA571 /* TWTTreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTTreeNode.m; sourceTree = "<group>"; };
+		1312A642198C16550060EEA4 /* UIButton+TWTBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+TWTBlocks.h"; sourceTree = "<group>"; };
+		1312A643198C16550060EEA4 /* UIButton+TWTBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+TWTBlocks.m"; sourceTree = "<group>"; };
 		136DBCCE194B37050058F08B /* TWTAsynchronousOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTAsynchronousOperation.h; sourceTree = "<group>"; };
 		136DBCCF194B37050058F08B /* TWTAsynchronousOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTAsynchronousOperation.m; sourceTree = "<group>"; };
 		22A07E2E64D14C2EA63FBE64 /* libPods-ToastTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ToastTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -403,6 +406,8 @@
 				A43C033D1884FEF1000F9753 /* UIActionSheet+TWTBlocks.m */,
 				A43C033E1884FEF1000F9753 /* UIAlertView+TWTBlocks.h */,
 				A43C033F1884FEF1000F9753 /* UIAlertView+TWTBlocks.m */,
+				1312A642198C16550060EEA4 /* UIButton+TWTBlocks.h */,
+				1312A643198C16550060EEA4 /* UIButton+TWTBlocks.m */,
 			);
 			path = Blocks;
 			sourceTree = "<group>";
@@ -744,6 +749,7 @@
 				A418D83718E7586F0067CCCA /* TWTBlockEnumeration.m in Sources */,
 				4CFCDD6D189FF9C900A7C3F2 /* NSException+TWTSubclassResponsibility.m in Sources */,
 				A43C03411884FEF1000F9753 /* UIAlertView+TWTBlocks.m in Sources */,
+				1312A644198C16550060EEA4 /* UIButton+TWTBlocks.m in Sources */,
 				A4E7ACF818D0D97C009FD889 /* TWTKeyValueObserver.m in Sources */,
 				498BEEED192E8F1400DA38C3 /* UIViewController+TWTCompletion.m in Sources */,
 			);
