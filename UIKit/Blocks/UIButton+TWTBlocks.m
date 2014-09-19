@@ -21,8 +21,7 @@ static char kTapHandlerKey;
 - (void)twt_setTapHandler:(TWTButtonTapBlock)twt_tapHandler
 {
     // remove old tap handler
-    void (^oldTapHandler)(UIButton *) = objc_getAssociatedObject(self, &kTapHandlerKey);
-    if (oldTapHandler) {
+    if (self.twt_tapHandler) {
         [self removeTarget:self action:@selector(buttonWasTapped:) forControlEvents:UIControlEventTouchUpInside];
     }
     objc_setAssociatedObject(self, &kTapHandlerKey, twt_tapHandler, OBJC_ASSOCIATION_COPY_NONATOMIC);
