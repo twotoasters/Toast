@@ -209,7 +209,7 @@ typedef NS_ENUM(NSUInteger, TWTTaskState) {
 
 /*!
  @abstract Sets the task’s state to cancelled if it is pending, ready, or executing. 
- @discussion Regardless of the receiver’s state, sends the -cancel message to any of the
+ @discussion Regardless of the receiver’s state, sends the -cancel message to all of the
      receiver’s dependent tasks.
  
      Note that this only marks the task as cancelled. It is up individual subclasses of TWTTask to
@@ -223,7 +223,7 @@ typedef NS_ENUM(NSUInteger, TWTTaskState) {
 /*!
  @abstract Sets the task’s state to pending if it is pending, ready, cancelled or failed, and
      starts the task if its prerequisite tasks have all finished successfully.
- @discussion Regardless of the receiver’s state, sends the -retry message to any of the receiver’s
+ @discussion Regardless of the receiver’s state, sends the -retry message to all of the receiver’s
      dependent tasks.
 
      Subclasses should not override this method.
