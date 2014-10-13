@@ -60,6 +60,26 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
 @interface TWTTask ()
 
 @property (nonatomic, weak, readwrite) TWTTaskGraph *graph;
+
+// State transitions:
+//     Pending -> Ready: All of task’s prerequisite tasks are finished (-startIfReady)
+//     Pending -> Cancelled: Task is cancelled (-cancel)
+//
+//     Ready -> Pending: Task is added to a graph with at least one prerequisite task (-didAddPrerequisiteTask)
+//     Ready -> Executing: Task starts (-start)
+//     Ready -> Cancelled: Task is cancelled (-cancel)
+//
+//     Executing -> Cancelled: Task is cancelled (-cancel)
+//     Executing -> Finished: Task finishes (-finishWithResult:)
+//     Executing -> Failed: Task fails (-failWithError:)
+//
+//     Cancelled -> Pending: Task is retried (-retry)
+//     Cancelled -> Finished: Task is cancelled while executing but finishes anyway (-finishWithResult:)
+//     Cancelled -> Failed: Task is cancelled while executing but fails anyway (-failWithError:)
+//
+//     Finished -> (none): Finished is a terminal state
+//
+//     Failed -> Pending: Task is retried (-retry)
 @property (nonatomic, assign, readwrite) TWTTaskState state;
 
 @property (nonatomic, strong, readwrite) NSDate *finishDate;
@@ -412,7 +432,7 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
     static NSSet *fromStates = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        fromStates = [NSSet setWithObjects:@(TWTTaskStatePending), @(TWTTaskStateReady), @(TWTTaskStateExecuting), nil];
+        fromStates = [[NSSet alloc] initWithObjects:@(TWTTaskStatePending), @(TWTTaskStateReady), @(TWTTaskStateExecuting), nil];
     });
 
     [self transitionFromStateInSet:fromStates toState:TWTTaskStateCancelled andExecuteBlock:nil];
@@ -425,7 +445,7 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
     static NSSet *fromStates = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        fromStates = [NSSet setWithObjects:@(TWTTaskStatePending), @(TWTTaskStateReady), @(TWTTaskStateCancelled), @(TWTTaskStateFailed), nil];
+        fromStates = [[NSSet alloc] initWithObjects:@(TWTTaskStatePending), @(TWTTaskStateReady), @(TWTTaskStateCancelled), @(TWTTaskStateFailed), nil];
     });
 
     [self transitionFromStateInSet:fromStates toState:TWTTaskStatePending andExecuteBlock:^{
@@ -441,7 +461,13 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
 
 - (void)finishWithResult:(id)result
 {
-    [self transitionFromState:TWTTaskStateExecuting toState:TWTTaskStateFinished andExecuteBlock:^{
+    static NSSet *fromStates = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        fromStates = [[NSSet alloc] initWithObjects:@(TWTTaskStateExecuting), @(TWTTaskStateCancelled), nil];
+    });
+
+    [self transitionFromStateInSet:fromStates toState:TWTTaskStateFinished andExecuteBlock:^{
         self.finishDate = [NSDate date];
         self.result = result;
 
@@ -456,7 +482,13 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
 
 - (void)failWithError:(NSError *)error
 {
-    [self transitionFromState:TWTTaskStateExecuting toState:TWTTaskStateFailed andExecuteBlock:^{
+    static NSSet *fromStates = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        fromStates = [[NSSet alloc] initWithObjects:@(TWTTaskStateExecuting), @(TWTTaskStateCancelled), nil];
+    });
+
+    [self transitionFromStateInSet:fromStates toState:TWTTaskStateFailed andExecuteBlock:^{
         self.finishDate = [NSDate date];
         self.error = error;
 
