@@ -354,8 +354,8 @@ typedef NS_ENUM(NSUInteger, TWTTaskState) {
 #pragma mark - Task Delegate Protocol
 
 /*!
- The delegate of a TWTTask object implements this protocol to perform specialized actions when a
- task finishes successfully or fails.
+ The TWTTaskDelegate protocol defines an interface via which an task’s delegate can perform 
+ specialized actions when the task finishes successfully or fails.
  */
 @protocol TWTTaskDelegate <NSObject>
 
