@@ -62,15 +62,15 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
 @property (nonatomic, strong, readwrite) TWTTaskGraph *graph;
 @property (nonatomic, assign, readwrite) TWTTaskState state;
 
-/*! 
- @abstract A lock to control changes to task state. 
- @discussion This lock is only used within -transitionFromStateInSet:toState:andExecuteBlock:. 
- */
-@property (nonatomic, strong, readonly) NSLock *stateLock;
-
 @property (nonatomic, strong, readwrite) NSDate *finishDate;
 @property (nonatomic, strong, readwrite) NSError *error;
 @property (nonatomic, strong, readwrite) id result;
+
+/*!
+ @abstract A lock to control changes to task state.
+ @discussion This lock is only used within -transitionFromStateInSet:toState:andExecuteBlock:.
+ */
+@property (nonatomic, strong, readonly) NSLock *stateLock;
 
 /*!
  @abstract Returns a recursive description of the task and its dependent tasks starting at the
@@ -81,10 +81,34 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
 - (NSString *)recursiveDescriptionWithDepth:(NSUInteger)depth;
 
 /*!
+ @abstract If the receiver’s state is in the specified set of from-states, transitions to the specified
+     to-state and executes the block.
+ @param validFromStates The set of states from which the receiver can transition.
+ @param toState The state to which the receiver will transition.
+ @param block A block of code to execute after the state transition is completed successfully.
+ */
+- (void)transitionFromStateInSet:(NSSet *)validFromStates toState:(TWTTaskState)toState andExecuteBlock:(void (^)(void))block;
+
+/*!
+ @abstract If the receiver’s state is the specified from-state, transitions to the specified to-state 
+     and executes the block.
+ @param fromState The state from which the receiver can transition.
+ @param toState The state to which the receiver will transition.
+ @param block A block of code to execute after the state transition is completed successfully.
+ */
+- (void)transitionFromState:(TWTTaskState)fromState toState:(TWTTaskState)toState andExecuteBlock:(void (^)(void))block;
+
+/*!
  @abstract Indicates to the receiver that it has a prerequisite.
  @discussion This has the effect of transitioning the receiver from the ready state to the pending state.
  */
 - (void)didAddPrerequisiteTask;
+
+/*!
+ @abstract Returns whether all the receiver’s prerequisite tasks have finished successfully.
+ @result Whether all the receiver’s prerequisite tasks have finished successfully.
+ */
+- (BOOL)allPrerequisiteTasksFinished;
 
 /*!
  @abstract If all the receiver’s prerequisite tasks have finished successfully, transitions from 
@@ -122,17 +146,11 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
  */
 @property (nonatomic, strong, readonly) NSMapTable *dependentTasks;
 
-/*!
- @abstract Returns the set of tasks currently in the receiver that have no prerequisite tasks.
- @result The set of tasks currently in the receiver that have no prerequisite tasks.
- */
-- (NSSet *)tasksWithNoPrerequisiteTasks;
+/*! The set of tasks currently in the receiver that have no prerequisite tasks. */
+@property (nonatomic, copy) NSSet *tasksWithNoPrerequisiteTasks;
 
-/*!
- @abstract Returns the set of tasks currently in the receiver that have no dependent tasks.
- @result The set of tasks currently in the receiver that have no dependent tasks.
- */
-- (NSSet *)tasksWithNoDependentTasks;
+/*! The set of tasks currently in the receiver that have no dependent tasks. */
+@property (nonatomic, copy) NSSet *tasksWithNoDependentTasks;
 
 /*!
  @abstract Returns the set of prerequisite tasks for the specified task.
@@ -235,10 +253,10 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
 {
     // This avoids a deadlock condition in -transitionFromStateInSet:toState:andExecuteBlock: in
     // which the stateLock is locked, but KVO observers are notified of the change before the lock
-    // can be unlocked. This is a problem if, e.g., upon task failure, a KVO observer is notified on
-    // the same thread as the aforementioned method. If the KVO observer immediately sends the task
-    // -retry, that message will result in -transitionFromStateInSet:toState:andExecuteBlock: being
-    // invoked again before the stateLock from the original invocation can be unlocked, thus
+    // can be unlocked. This is a problem when, e.g., upon task failure, a KVO observer is notified
+    // on the same thread as the aforementioned method. If the KVO observer immediately sends the
+    // task -retry, that message will result in -transitionFromStateInSet:toState:andExecuteBlock:
+    // being invoked again before the stateLock from the original invocation can be unlocked, thus
     // resulting in deadlock.
     return NO;
 }
@@ -246,7 +264,7 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
 
 - (void)setState:(TWTTaskState)state
 {
-    // Implemented because we do not automatically notify observers of the @"state" key.
+    // Implemented because we do not automatically notify KVO observers of state changes
     if (state != _state) {
         [self willChangeValueForKey:@"state"];
         _state = state;
@@ -318,7 +336,7 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
         _state = toState;
     }
 
-    // Only after we have unlocked the state lock should we mark the state as changed.
+    // Only after we have unlocked the state lock should we mark the state as changed
     [self.stateLock unlock];
     if (fromState != toState) {
         [self didChangeValueForKey:@"state"];
@@ -369,16 +387,13 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
 
 - (BOOL)allPrerequisiteTasksFinished
 {
-    NSSet *unfinishedPrerequisites = [self.prerequisiteTasks objectsPassingTest:^BOOL(TWTTask *prerequisiteTask, BOOL *stop) {
-        BOOL unfinished = (prerequisiteTask.state != TWTTaskStateFinished);
-        if (unfinished) {
-            *stop = YES;
+    for (TWTTask *task in self.prerequisiteTasks) {
+        if (!task.isFinished) {
+            return NO;
         }
+    }
 
-        return unfinished;
-    }];
-
-    return unfinishedPrerequisites.count == 0;
+    return YES;
 }
 
 
@@ -414,6 +429,9 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
     });
 
     [self transitionFromStateInSet:fromStates toState:TWTTaskStatePending andExecuteBlock:^{
+        self.finishDate = nil;
+        self.result = nil;
+        self.error = nil;
         [self startIfReady];
     }];
 
@@ -587,7 +605,7 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
 - (NSString *)debugDescription
 {
     NSMutableArray *descriptions = [[NSMutableArray alloc] initWithObjects:[self description], nil];
-    for (TWTTask *task in [self tasksWithNoPrerequisiteTasks]) {
+    for (TWTTask *task in self.tasksWithNoPrerequisiteTasks) {
         [descriptions addObject:[task recursiveDescriptionWithDepth:1]];
     }
 
@@ -598,22 +616,6 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
 - (NSSet *)allTasks
 {
     return [self.tasks copy];
-}
-
-
-- (NSSet *)tasksWithNoPrerequisiteTasks
-{
-    return [self.tasks objectsPassingTest:^BOOL(TWTTask *task, BOOL *stop) {
-        return task.prerequisiteTasks.count == 0;
-    }];
-}
-
-
-- (NSSet *)tasksWithNoDependentTasks
-{
-    return [self.tasks objectsPassingTest:^BOOL(TWTTask *task, BOOL *stop) {
-        return task.dependentTasks.count == 0;
-    }];
 }
 
 
@@ -646,6 +648,14 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
     if (prerequisiteTasks.count != 0) {
         [task didAddPrerequisiteTask];
     }
+
+    self.tasksWithNoPrerequisiteTasks = [self.tasks objectsPassingTest:^BOOL(TWTTask *task, BOOL *stop) {
+        return task.prerequisiteTasks.count == 0;
+    }];
+
+    self.tasksWithNoDependentTasks = [self.tasks objectsPassingTest:^BOOL(TWTTask *task, BOOL *stop) {
+        return task.dependentTasks.count == 0;
+    }];
 }
 
 
@@ -679,23 +689,47 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
 }
 
 
+- (BOOL)hasUnfinishedTasks
+{
+    for (TWTTask *task in self.tasksWithNoDependentTasks) {
+        if (!task.isFinished) {
+            return YES;
+        }
+    }
+
+    return NO;
+}
+
+
+- (BOOL)hasFailedTasks
+{
+    for (TWTTask *task in self.tasks) {
+        if (task.isFailed) {
+            return YES;
+        }
+    }
+
+    return NO;
+}
+
+
 #pragma mark -
 
 - (void)start
 {
-    [[self tasksWithNoPrerequisiteTasks] makeObjectsPerformSelector:@selector(start)];
+    [self.tasksWithNoPrerequisiteTasks makeObjectsPerformSelector:@selector(start)];
 }
 
 
 - (void)cancel
 {
-    [[self tasksWithNoPrerequisiteTasks] makeObjectsPerformSelector:@selector(cancel)];
+    [self.tasksWithNoPrerequisiteTasks makeObjectsPerformSelector:@selector(cancel)];
 }
 
 
 - (void)retry
 {
-    [[self tasksWithNoPrerequisiteTasks] makeObjectsPerformSelector:@selector(retry)];
+    [self.tasksWithNoPrerequisiteTasks makeObjectsPerformSelector:@selector(retry)];
 }
 
 @end

@@ -62,9 +62,9 @@ typedef NS_ENUM(NSUInteger, TWTTaskState) {
 @protocol TWTTaskDelegate;
 
 /*!
- TWTTask objects model a unit of work that can finish successfully or fail. While similar to an
- NSOperation, the additional concepts of success and failure enable a greater range of behavior when
- executing a series of related tasks.
+ TWTTask objects model units of work that can finish successfully or fail. While similar to
+ NSOperations, the additional concepts of success and failure enable a greater range of behavior 
+ when executing a series of related tasks.
 
  For tasks to be useful, they must be added to a task graph — a TWTTaskGraph object. Task graphs
  provide an execution context for tasks and keep track of prerequisite and dependent relationships
@@ -499,5 +499,19 @@ typedef NS_ENUM(NSUInteger, TWTTaskState) {
      can be retried will be.
  */
 - (void)retry;
+
+/*!
+ @abstract Returns whether the receiver has any unfinished tasks.
+ @discussion This is not key-value observable.
+ @result Whether the receiver has any unfinished tasks.
+ */
+- (BOOL)hasUnfinishedTasks;
+
+/*!
+ @abstract Returns whether the receiver has any failed tasks.
+ @discussion This is not key-value observable.
+ @result Whether the receiver has any failed tasks.
+ */
+- (BOOL)hasFailedTasks;
 
 @end
