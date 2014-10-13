@@ -182,7 +182,7 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@ %p name = %@; state = %@>", self.class, self, self.name, TWTTaskStateDescription(self.state)];
+    return [NSString stringWithFormat:@"<%@: %p name = %@; state = %@>", self.class, self, self.name, TWTTaskStateDescription(self.state)];
 }
 
 
@@ -580,7 +580,7 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@ %p name = %@>", self.class, self, self.name];
+    return [NSString stringWithFormat:@"<%@: %p name = %@>", self.class, self, self.name];
 }
 
 
