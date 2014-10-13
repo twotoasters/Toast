@@ -232,10 +232,11 @@ typedef NS_ENUM(NSUInteger, TWTTaskState) {
 
 /*!
  @abstract Sets the task’s state to finished and updates its result and finishDate properties.
- @discussion If the receiver has a delegate, after the task’s state is updated, it is sent the
-     
  @discussion Subclasses should ensure that this message is sent to the task when the task’s work
-     finishes successfully. 
+     finishes successfully.
+ 
+     If the receiver’s delegate implements -task:didFinishWithResult:, it is sent that message
+     after the task’s state is updated.
  @param result An object that represents the result of performing the task’s work. May be nil.
  */
 - (void)finishWithResult:(id)result;
@@ -244,7 +245,10 @@ typedef NS_ENUM(NSUInteger, TWTTaskState) {
  @abstract Sets the task’s state to failed and updates its error and finishDate properties.
  @discussion Subclasses should ensure that this message is sent to the task when the task’s work
      fails. 
- @param error An error containing the reason for why the task failed. May be nil, though this is 
+
+     If the receiver’s delegate implements -task:didFinishWithResult:, it is sent that message
+     after the task’s state is updated.
+ @param error An error containing the reason for why the task failed. May be nil, though this is
      discouraged.
  */
 - (void)failWithError:(NSError *)error;
