@@ -59,7 +59,7 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
 
 @interface TWTTask ()
 
-@property (nonatomic, strong, readwrite) TWTTaskGraph *graph;
+@property (nonatomic, weak, readwrite) TWTTaskGraph *graph;
 @property (nonatomic, assign, readwrite) TWTTaskState state;
 
 @property (nonatomic, strong, readwrite) NSDate *finishDate;

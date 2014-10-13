@@ -101,7 +101,7 @@ typedef NS_ENUM(NSUInteger, TWTTaskState) {
  @discussion This property is set when the task is added to a graph. Once a task has been added to a
      graph, it may not be added (or moved) to another graph.
  */
-@property (nonatomic, strong, readonly) TWTTaskGraph *graph;
+@property (nonatomic, weak, readonly) TWTTaskGraph *graph;
 
 /*!
  @abstract The task’s prerequisite tasks.
