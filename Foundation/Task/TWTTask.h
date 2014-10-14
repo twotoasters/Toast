@@ -29,9 +29,16 @@
 
 #pragma mark Constants
 
-/*!
- @abstract TWTTaskState enumerates the various states that a TWTTask can be in.
- */
+/*! The error domain used for tasks declared in this header. */
+extern NSString *const TWTTaskErrorDomain;
+
+/*! TWTTaskErrorCode enumerates the various error codes used by TWTTask. */
+typedef NS_ENUM(NSInteger, TWTTaskErrorCode) {
+    /*! Error code indicating that a TWTExternalConditionTask is not fulfilled. */
+    TWTTaskErrorCodeExternalConditionNotFulfilled
+};
+
+/*! TWTTaskState enumerates the various states that a TWTTask can be in. */
 typedef NS_ENUM(NSUInteger, TWTTaskState) {
     /*! State indicating that the task’s prerequisites have not yet finished successfully. */
     TWTTaskStatePending,
@@ -77,9 +84,9 @@ typedef NS_ENUM(NSUInteger, TWTTaskState) {
  
  To make a task perform useful work, you must subclass TWTTask and override -main. Your implementation
  should execute any operations necessary to complete your task, and invoke either -finishWithResult: or
- -failWithError: when complete. TWTTask has two subclasses, TWTBlockTask and TWTSelectorTask, which
- can generally be used as an alternative to subclassing TWTTask yourself. See their respective class
- documentation for more information.
+ -failWithError: when complete. TWTTask has three built-in subclasses — TWTBlockTask, TWTSelectorTask, 
+ and TWTExternalConditionTask — which can generally be used as an alternative to subclassing TWTTask 
+ yourself. See their respective class documentation for more information.
  
  Every TWTTask has an optional delegate that can be informed when a task succeeds or fails. See the
  documentation for TWTTaskDelegate for more information.
@@ -260,8 +267,8 @@ typedef NS_ENUM(NSUInteger, TWTTaskState) {
 #pragma mark -
 
 /*!
- TWTBlockTasks perform a task’s work by executing a block. Together with TWTSelectorTask, this
- obviates the need to subclass TWTTask in most circumstances. 
+ TWTBlockTasks perform a task’s work by executing a block. Together with TWTSelectorTask and 
+ TWTExternalConditionTask, this obviates the need to subclass TWTTask in most circumstances.
  */
 @interface TWTBlockTask : TWTTask
 
@@ -301,7 +308,8 @@ typedef NS_ENUM(NSUInteger, TWTTaskState) {
 
 /*!
  TWTSelectorTasks perform a task’s work by sending a message to an object. Together with
- TWTBlockTask, this obviates the need to subclass TWTTask in most circumstances. 
+ TWTBlockTask and TWTExternalConditionTask, this obviates the need to subclass TWTTask in most 
+ circumstances.
  */
 @interface TWTSelectorTask : TWTTask
 
@@ -348,6 +356,32 @@ typedef NS_ENUM(NSUInteger, TWTTaskState) {
  @result A newly initialized TWTSelectorTask instance with the specified name, target, and action.
  */
 - (instancetype)initWithName:(NSString *)name target:(id)target selector:(SEL)selector NS_DESIGNATED_INITIALIZER;
+
+@end
+
+
+#pragma mark -
+
+/*!
+ TWTExternalConditionTask is special type of task that performs no actual work. Instead, it
+ represents an external condition that is either fulfilled or not. When run, the task will either
+ finish successfully if it is fulfilled, or fail immediately with an error.
+ 
+ When a TWTExternalConditionTask is fulfilled, it will automatically retry itself and thus its
+ dependent tasks.
+ */
+@interface TWTExternalConditionTask : TWTTask
+
+/*! Whether the task is fulfilled. This is initially NO. */
+@property (nonatomic, readonly, assign, getter = isFulfilled) BOOL fulfilled;
+
+/*!
+ @abstract Indicates that the external condition is fulfilled.
+ @param result The result that the task should finish with. May be nil.
+ @discussion Automatically sends itself the -retry message, thus starting itself if possible
+     and allowing its dependent tasks to be retried.
+ */
+- (void)fulfillWithResult:(id)result;
 
 @end
 

@@ -27,7 +27,9 @@
 #import "TWTTask.h"
 
 
-#pragma mark Functions and Constants 
+#pragma mark Constants and Functions
+
+NSString *const TWTTaskErrorDomain = @"TWTTaskErrorDomain";
 
 /*!
  @abstract Returns a string representation of the specified task state.
@@ -114,6 +116,18 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
      pending to ready and starts the task.
  */
 - (void)startIfReady;
+
+@end
+
+
+#pragma mark -
+
+@interface TWTExternalConditionTask ()
+
+@property (nonatomic, readwrite, assign, getter = isFulfilled) BOOL fulfilled;
+
+/*! Used to store the parameter of -fulfillWithResult: until the task is actually retried. */
+@property (nonatomic, strong) id fulfillmentResult;
 
 @end
 
@@ -565,6 +579,30 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     [self.target performSelector:self.selector withObject:self];
 #pragma clang diagnostic pop
+}
+
+@end
+
+
+#pragma mark - External Condition Task
+
+@implementation TWTExternalConditionTask
+
+- (void)main
+{
+    if (self.isFulfilled) {
+        [self finishWithResult:self.fulfillmentResult];
+    } else {
+        [self failWithError:[NSError errorWithDomain:TWTTaskErrorDomain code:TWTTaskErrorCodeExternalConditionNotFulfilled userInfo:nil]];
+    }
+}
+
+
+- (void)fulfillWithResult:(id)result
+{
+    self.fulfillmentResult = result;
+    self.fulfilled = YES;
+    [self retry];
 }
 
 @end
