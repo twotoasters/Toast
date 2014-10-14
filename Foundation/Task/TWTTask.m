@@ -379,6 +379,8 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
 
 - (void)start
 {
+    NSAssert(self.graph, @"Tasks must be in a graph before they can be started");
+
     // Because the operation queue is asynchronous, we need to be sure to do the state transition
     // after the operation starts executing. The alternative of adding the operation inside of the
     // state transition’s block could lead to a weird situation in which -main is invoked, but the

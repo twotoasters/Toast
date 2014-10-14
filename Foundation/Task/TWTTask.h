@@ -201,9 +201,10 @@ typedef NS_ENUM(NSUInteger, TWTTaskState) {
  @abstract Executes the task’s -main method if the task is in the ready state.
  @discussion More accurately, the receiver will enqueue an operation on its graph’s operation queue
      that executes the task’s -main method if and only if the task is ready when the operation is 
-     executed. 
+     executed.
      
-     Subclasses should not override this method.
+     This method should not be invoked if the task has not yet been added to a graph. Subclasses 
+     should not override this method.
  */
 - (void)start;
 
@@ -308,7 +309,7 @@ typedef NS_ENUM(NSUInteger, TWTTaskState) {
  @abstract The receiver of the task’s message-send. 
  @discussion May not be nil.
  */
-@property (nonatomic, strong, readonly) id target;
+@property (nonatomic, weak, readonly) id target;
 
 /*!
  @abstract The selector that the task’s target performs in order to do the task’s work. 
