@@ -26,6 +26,9 @@
 
 #import "TWTTask.h"
 
+#import "TWTTask+Private.h"
+#import "TWTTaskGraph.h"
+
 
 #pragma mark Constants and Functions
 
@@ -57,7 +60,7 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
 }
 
 
-#pragma mark - Private Interfaces
+#pragma mark -
 
 @interface TWTTask ()
 
@@ -72,14 +75,6 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
  @discussion This lock is only used within -transitionFromStateInSet:toState:andExecuteBlock:.
  */
 @property (nonatomic, strong, readonly) NSLock *stateLock;
-
-/*!
- @abstract Returns a recursive description of the task and its dependent tasks starting at the
-     specified depth.
- @param depth The number of levels deep this task is in the recursive description.
- @result A recursive description of the task and its dependent tasks starting at the specified depth.
- */
-- (NSString *)recursiveDescriptionWithDepth:(NSUInteger)depth;
 
 /*!
  @abstract If the receiver’s state is in the specified set of from-states, transitions to the specified
@@ -100,12 +95,6 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
 - (void)transitionFromState:(TWTTaskState)fromState toState:(TWTTaskState)toState andExecuteBlock:(void (^)(void))block;
 
 /*!
- @abstract Indicates to the receiver that it has a prerequisite.
- @discussion This has the effect of transitioning the receiver from the ready state to the pending state.
- */
-- (void)didAddPrerequisiteTask;
-
-/*!
  @abstract Returns whether all the receiver’s prerequisite tasks have finished successfully.
  @result Whether all the receiver’s prerequisite tasks have finished successfully.
  */
@@ -121,70 +110,6 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
 
 
 #pragma mark -
-
-@interface TWTExternalConditionTask ()
-
-@property (nonatomic, readwrite, assign, getter = isFulfilled) BOOL fulfilled;
-
-/*! Used to store the parameter of -fulfillWithResult: until the task is actually retried. */
-@property (nonatomic, strong) id fulfillmentResult;
-
-@end
-
-
-#pragma mark -
-
-@interface TWTTaskGraph ()
-
-/*!
- @abstract The set of tasks in the graph.
- @discussion Access to this object is not thread-safe. This shouldn’t be a problem, as typically a
-     graph’s tasks are created and added to the graph and then the graph is started.
- */
-@property (nonatomic, strong, readonly) NSMutableSet *tasks;
-
-/*!
- @abstract A map table that maps a task to its prerequisite tasks.
- @discussion The keys for this map table are TWTTask instances and their values are NSSets.
- */
-@property (nonatomic, strong, readonly) NSMapTable *prerequisiteTasks;
-
-/*!
- @abstract A map table that maps a task to its dependent tasks.
- @discussion The keys for this map table are TWTTask instances and their values are NSSets. We
-     use immutable sets instead of mutable ones because tasks are added to a graph far less 
-     frequently than a task gets its set of dependent tasks. Repeatedly copying a mutable set
-     is probably going to be more expensive than generated a new immutable set every time a 
-     task gains a new dependent.
- */
-@property (nonatomic, strong, readonly) NSMapTable *dependentTasks;
-
-/*! The set of tasks currently in the receiver that have no prerequisite tasks. */
-@property (nonatomic, copy) NSSet *tasksWithNoPrerequisiteTasks;
-
-/*! The set of tasks currently in the receiver that have no dependent tasks. */
-@property (nonatomic, copy) NSSet *tasksWithNoDependentTasks;
-
-/*!
- @abstract Returns the set of prerequisite tasks for the specified task.
- @param task The task.
- @result The set of prerequisite tasks for the specified task. Returns nil if the task is not in the
-     receiver.
- */
-- (NSSet *)prerequisiteTasksForTask:(TWTTask *)task;
-
-/*!
- @abstract Returns the set of dependent tasks for the specified task.
- @param task The task.
- @result The set of dependent tasks for the specified task. Returns nil if the task is not in the
-     receiver.
- */
-- (NSSet *)dependentTasksForTask:(TWTTask *)task;
-
-@end
-
-
-#pragma mark - Tasks
 
 @implementation TWTTask
 
@@ -500,300 +425,6 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
             [self.delegate task:self didFailWithError:error];
         }
     }];
-}
-
-@end
-
-
-#pragma mark - Block Task
-
-@implementation TWTBlockTask
-
-- (instancetype)initWithName:(NSString *)name
-{
-    return [self initWithName:name block:nil];
-}
-
-
-- (instancetype)initWithBlock:(void (^)(TWTTask *task))block
-{
-    return [self initWithName:nil block:block];
-}
-
-
-- (instancetype)initWithName:(NSString *)name block:(void (^)(TWTTask *task))block
-{
-    NSParameterAssert(block);
-
-    self = [super initWithName:name];
-    if (self) {
-        _block = [block copy];
-    }
-
-    return self;
-}
-
-
-- (void)main
-{
-    self.block(self);
-}
-
-@end
-
-
-#pragma mark - Selector Task
-
-@implementation TWTSelectorTask
-
-- (instancetype)initWithName:(NSString *)name
-{
-    return [self initWithName:name target:nil selector:NULL];
-}
-
-
-- (instancetype)initWithTarget:(id)target selector:(SEL)selector
-{
-    return [self initWithName:nil target:target selector:selector];
-}
-
-
-- (instancetype)initWithName:(NSString *)name target:(id)target selector:(SEL)selector
-{
-    NSParameterAssert(target);
-    NSParameterAssert(selector);
-
-    self = [super initWithName:name];
-    if (self) {
-        _target = target;
-        _selector = selector;
-    }
-
-    return self;
-}
-
-
-- (void)main
-{
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    [self.target performSelector:self.selector withObject:self];
-#pragma clang diagnostic pop
-}
-
-@end
-
-
-#pragma mark - External Condition Task
-
-@implementation TWTExternalConditionTask
-
-- (void)main
-{
-    if (self.isFulfilled) {
-        [self finishWithResult:self.fulfillmentResult];
-    } else {
-        [self failWithError:[NSError errorWithDomain:TWTTaskErrorDomain code:TWTTaskErrorCodeExternalConditionNotFulfilled userInfo:nil]];
-    }
-}
-
-
-- (void)fulfillWithResult:(id)result
-{
-    if (self.isFinished) {
-        return;
-    }
-
-    self.fulfillmentResult = result;
-    self.fulfilled = YES;
-    [self retry];
-}
-
-@end
-
-
-#pragma mark - Task Graph
-
-@implementation TWTTaskGraph
-
-- (instancetype)init
-{
-    return [self initWithName:nil operationQueue:nil];
-}
-
-
-- (instancetype)initWithName:(NSString *)name
-{
-    return [self initWithName:name operationQueue:nil];
-}
-
-
-- (instancetype)initWithOperationQueue:(NSOperationQueue *)operationQueue
-{
-    return [self initWithName:nil operationQueue:operationQueue];
-}
-
-
-- (instancetype)initWithName:(NSString *)name operationQueue:(NSOperationQueue *)operationQueue
-{
-    self = [super init];
-    if (self) {
-        // If no name was provided, use the default
-        if (!name) {
-            name = [[NSString alloc] initWithFormat:@"TWTTaskGraph %p", self];
-        }
-
-        // If no operation queue was provided, create one
-        if (!operationQueue) {
-            operationQueue = [[NSOperationQueue alloc] init];
-            operationQueue.name = [[NSString alloc] initWithFormat:@"com.twotoasters.TWTTaskGraph.operationQueue.%@", name];
-        }
-
-        _name = [name copy];
-        _operationQueue = operationQueue;
-        _tasks = [[NSMutableSet alloc] init];
-        _prerequisiteTasks = [NSMapTable strongToStrongObjectsMapTable];
-        _dependentTasks = [NSMapTable strongToStrongObjectsMapTable];
-    }
-
-    return self;
-}
-
-
-- (NSString *)description
-{
-    return [NSString stringWithFormat:@"<%@: %p name = %@>", self.class, self, self.name];
-}
-
-
-- (NSString *)debugDescription
-{
-    NSMutableArray *descriptions = [[NSMutableArray alloc] initWithObjects:[self description], nil];
-    for (TWTTask *task in self.tasksWithNoPrerequisiteTasks) {
-        [descriptions addObject:[task recursiveDescriptionWithDepth:1]];
-    }
-
-    return [descriptions componentsJoinedByString:@"\n"];
-}
-
-
-- (NSSet *)allTasks
-{
-    return [self.tasks copy];
-}
-
-
-#pragma mark -
-
-- (void)addTask:(TWTTask *)task prerequisiteTasks:(NSSet *)prerequisiteTasks
-{
-    NSParameterAssert(task);
-    NSAssert(!task.graph, @"Task (%@) has been previously added to a graph (%@)", task, task.graph);
-
-    prerequisiteTasks = prerequisiteTasks ? [prerequisiteTasks copy] : [[NSSet alloc] init];
-    NSAssert([prerequisiteTasks isSubsetOfSet:self.tasks], @"Prerequisite tasks have not been added to graph");
-
-    task.graph = self;
-    [self.tasks addObject:task];
-    [self.prerequisiteTasks setObject:prerequisiteTasks forKey:task];
-    [self.dependentTasks setObject:[[NSSet alloc] init] forKey:task];
-
-    for (TWTTask *prerequisiteTask in prerequisiteTasks) {
-        NSSet *dependentTasks = [self dependentTasksForTask:prerequisiteTask];
-
-        // We create an immutable set here, because -[TWTTask dependentTasks] just invokes
-        // -[TWTTaskGraph dependentTasksForTask:], which would need to return a copy of the set if
-        // we stored mutable sets. Since -[TWTTask dependentTasks] is likely to be invoked many more
-        // times than this method, and creating copies of mutable sets is not cheap, we’re better of
-        // using immutable sets.
-        [self.dependentTasks setObject:[dependentTasks setByAddingObject:task] forKey:prerequisiteTask];
-    }
-
-    if (prerequisiteTasks.count != 0) {
-        [task didAddPrerequisiteTask];
-    }
-
-    self.tasksWithNoPrerequisiteTasks = [self.tasks objectsPassingTest:^BOOL(TWTTask *task, BOOL *stop) {
-        return task.prerequisiteTasks.count == 0;
-    }];
-
-    self.tasksWithNoDependentTasks = [self.tasks objectsPassingTest:^BOOL(TWTTask *task, BOOL *stop) {
-        return task.dependentTasks.count == 0;
-    }];
-}
-
-
-- (void)addTask:(TWTTask *)task prerequisites:(TWTTask *)prerequisiteTask1, ...
-{
-    va_list argList;
-    va_start(argList, prerequisiteTask1);
-
-    NSMutableSet *prerequisiteTasks = [[NSMutableSet alloc] init];
-    TWTTask *prerequisiteTask = prerequisiteTask1;
-    while (prerequisiteTask) {
-        [prerequisiteTasks addObject:prerequisiteTask];
-        prerequisiteTask = va_arg(argList, TWTTask *);
-    }
-
-    va_end(argList);
-
-    [self addTask:task prerequisiteTasks:prerequisiteTasks];
-}
-
-
-- (NSSet *)prerequisiteTasksForTask:(TWTTask *)task
-{
-    return [self.prerequisiteTasks objectForKey:task];
-}
-
-
-- (NSSet *)dependentTasksForTask:(TWTTask *)task
-{
-    return [self.dependentTasks objectForKey:task];
-}
-
-
-- (BOOL)hasUnfinishedTasks
-{
-    for (TWTTask *task in self.tasksWithNoDependentTasks) {
-        if (!task.isFinished) {
-            return YES;
-        }
-    }
-
-    return NO;
-}
-
-
-- (BOOL)hasFailedTasks
-{
-    for (TWTTask *task in self.tasks) {
-        if (task.isFailed) {
-            return YES;
-        }
-    }
-
-    return NO;
-}
-
-
-#pragma mark -
-
-- (void)start
-{
-    [self.tasksWithNoPrerequisiteTasks makeObjectsPerformSelector:@selector(start)];
-}
-
-
-- (void)cancel
-{
-    [self.tasksWithNoPrerequisiteTasks makeObjectsPerformSelector:@selector(cancel)];
-}
-
-
-- (void)retry
-{
-    [self.tasksWithNoPrerequisiteTasks makeObjectsPerformSelector:@selector(retry)];
 }
 
 @end
