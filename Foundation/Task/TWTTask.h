@@ -77,7 +77,7 @@ typedef NS_ENUM(NSUInteger, TWTTaskState) {
  
  To make a task perform useful work, you must subclass TWTTask and override -main. Your implementation
  should execute any operations necessary to complete your task, and invoke either -finishWithResult: or
- -failWithError: when complete. TWTTask has two subclasses, TWTBlockTask and TWTInvocationTask, which
+ -failWithError: when complete. TWTTask has two subclasses, TWTBlockTask and TWTSelectorTask, which
  can generally be used as an alternative to subclassing TWTTask yourself. See their respective class
  documentation for more information.
  
@@ -259,7 +259,7 @@ typedef NS_ENUM(NSUInteger, TWTTaskState) {
 #pragma mark -
 
 /*!
- TWTBlockTasks perform a task’s work by executing a block. Together with TWTInvocationTask, this 
+ TWTBlockTasks perform a task’s work by executing a block. Together with TWTSelectorTask, this 
  obviates the need to subclass TWTTask in most circumstances. 
  */
 @interface TWTBlockTask : TWTTask
