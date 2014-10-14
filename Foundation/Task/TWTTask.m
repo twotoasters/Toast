@@ -600,6 +600,10 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
 
 - (void)fulfillWithResult:(id)result
 {
+    if (self.isFinished) {
+        return;
+    }
+
     self.fulfillmentResult = result;
     self.fulfilled = YES;
     [self retry];
