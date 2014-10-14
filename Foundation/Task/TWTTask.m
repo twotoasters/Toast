@@ -61,27 +61,6 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
 
 @property (nonatomic, weak, readwrite) TWTTaskGraph *graph;
 
-// State transitions:
-//     Pending -> Ready: All of task’s prerequisite tasks are finished (-startIfReady)
-//     Pending -> Cancelled: Task is cancelled (-cancel)
-//
-//     Ready -> Pending: Task is added to a graph with at least one prerequisite task (-didAddPrerequisiteTask)
-//     Ready -> Executing: Task starts (-start)
-//     Ready -> Cancelled: Task is cancelled (-cancel)
-//
-//     Executing -> Cancelled: Task is cancelled (-cancel)
-//     Executing -> Finished: Task finishes (-finishWithResult:)
-//     Executing -> Failed: Task fails (-failWithError:)
-//
-//     Cancelled -> Pending: Task is retried (-retry)
-//     Cancelled -> Finished: Task is cancelled while executing but finishes anyway (-finishWithResult:)
-//     Cancelled -> Failed: Task is cancelled while executing but fails anyway (-failWithError:)
-//
-//     Finished -> (none): Finished is a terminal state
-//
-//     Failed -> Pending: Task is retried (-retry)
-@property (nonatomic, assign, readwrite) TWTTaskState state;
-
 @property (nonatomic, strong, readwrite) NSDate *finishDate;
 @property (nonatomic, strong, readwrite) NSError *error;
 @property (nonatomic, strong, readwrite) id result;
@@ -282,17 +261,6 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
 }
 
 
-- (void)setState:(TWTTaskState)state
-{
-    // Implemented because we do not automatically notify KVO observers of state changes
-    if (state != _state) {
-        [self willChangeValueForKey:@"state"];
-        _state = state;
-        [self didChangeValueForKey:@"state"];
-    }
-}
-
-
 + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key
 {
     static NSSet *stateKeys = nil;
@@ -338,6 +306,26 @@ static inline NSString *const TWTTaskStateDescription(TWTTaskState state)
 - (void)transitionFromStateInSet:(NSSet *)validFromStates toState:(TWTTaskState)toState andExecuteBlock:(void (^)(void))block
 {
     NSParameterAssert(validFromStates);
+
+    // State transitions:
+    //     Pending -> Ready: All of task’s prerequisite tasks are finished (-startIfReady)
+    //     Pending -> Cancelled: Task is cancelled (-cancel)
+    //
+    //     Ready -> Pending: Task is added to a graph with at least one prerequisite task (-didAddPrerequisiteTask)
+    //     Ready -> Executing: Task starts (-start)
+    //     Ready -> Cancelled: Task is cancelled (-cancel)
+    //
+    //     Executing -> Cancelled: Task is cancelled (-cancel)
+    //     Executing -> Finished: Task finishes (-finishWithResult:)
+    //     Executing -> Failed: Task fails (-failWithError:)
+    //
+    //     Cancelled -> Pending: Task is retried (-retry)
+    //     Cancelled -> Finished: Task is cancelled while executing but finishes anyway (-finishWithResult:)
+    //     Cancelled -> Failed: Task is cancelled while executing but fails anyway (-failWithError:)
+    //
+    //     Finished -> (none): Finished is a terminal state
+    //
+    //     Failed -> Pending: Task is retried (-retry)
 
     // Get the state lock. If the current state is not in the set of valid from-states, just unlock
     // and return.

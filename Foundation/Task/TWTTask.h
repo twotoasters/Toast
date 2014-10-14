@@ -259,7 +259,7 @@ typedef NS_ENUM(NSUInteger, TWTTaskState) {
 #pragma mark -
 
 /*!
- TWTBlockTasks perform a task’s work by executing a block. Together with TWTSelectorTask, this 
+ TWTBlockTasks perform a task’s work by executing a block. Together with TWTSelectorTask, this
  obviates the need to subclass TWTTask in most circumstances. 
  */
 @interface TWTBlockTask : TWTTask
