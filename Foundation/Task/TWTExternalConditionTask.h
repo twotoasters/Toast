@@ -1,9 +1,9 @@
 //
-//  TWTTreeNode.h
+//  TWTExternalConditionTask.h
 //  Toast
 //
-//  Created by Kevin Conner on 7/29/14.
-//  Copyright (c) 2014 Two Toasters, LLC. 
+//  Created by Prachi Gauriar on 10/14/2014.
+//  Copyright (c) 2014 Two Toasters, LLC.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,19 +24,29 @@
 //  THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "TWTTask.h"
 
-@interface TWTTreeNode : NSObject
 
-@property (nonatomic, strong) id item;
-@property (nonatomic, assign, getter = isExpanded) BOOL expanded;
-@property (nonatomic, copy) NSArray *children; // TWTTreeNode
+/*!
+ TWTExternalConditionTask is special type of task that performs no actual work. Instead, it
+ represents an external condition that is either fulfilled or not. When run, the task will either
+ finish successfully if it is fulfilled, or fail immediately with an error.
 
-@property (nonatomic, readonly, weak) TWTTreeNode *parent;
-@property (nonatomic, readonly, strong) NSIndexPath *indexPath;
+ When a TWTExternalConditionTask is fulfilled, it will automatically retry itself and thus its
+ dependent tasks.
+ */
+@interface TWTExternalConditionTask : TWTTask
 
-- (NSUInteger)depth;
-- (instancetype)nodeAtIndexPath:(NSIndexPath *)indexPath; // Use from the root node.
-- (BOOL)hasAncestor:(TWTTreeNode *)ancestor;
+/*! Whether the task is fulfilled. This is initially NO. */
+@property (nonatomic, readonly, assign, getter = isFulfilled) BOOL fulfilled;
+
+/*!
+ @abstract Indicates that the external condition is fulfilled.
+ @param result The result that the task should finish with. May be nil.
+ @discussion Automatically sends itself the -retry message, thus starting itself if possible
+     and allowing its dependent tasks to be retried. Does nothing if the receiver is already
+ finished.
+ */
+- (void)fulfillWithResult:(id)result;
 
 @end

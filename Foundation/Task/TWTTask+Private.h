@@ -1,9 +1,9 @@
 //
-//  TWTTreeNode.h
+//  TWTTask+Private.h
 //  Toast
 //
-//  Created by Kevin Conner on 7/29/14.
-//  Copyright (c) 2014 Two Toasters, LLC. 
+//  Created by Prachi Gauriar on 10/14/2014.
+//  Copyright (c) 2014 Two Toasters, LLC.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,19 +24,25 @@
 //  THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "TWTTask.h"
 
-@interface TWTTreeNode : NSObject
 
-@property (nonatomic, strong) id item;
-@property (nonatomic, assign, getter = isExpanded) BOOL expanded;
-@property (nonatomic, copy) NSArray *children; // TWTTreeNode
+@interface TWTTask (Private)
 
-@property (nonatomic, readonly, weak) TWTTreeNode *parent;
-@property (nonatomic, readonly, strong) NSIndexPath *indexPath;
+@property (nonatomic, weak, readwrite) TWTTaskGraph *graph;
 
-- (NSUInteger)depth;
-- (instancetype)nodeAtIndexPath:(NSIndexPath *)indexPath; // Use from the root node.
-- (BOOL)hasAncestor:(TWTTreeNode *)ancestor;
+/*!
+ @abstract Returns a recursive description of the task and its dependent tasks starting at the
+     specified depth.
+ @param depth The number of levels deep this task is in the recursive description.
+ @result A recursive description of the task and its dependent tasks starting at the specified depth.
+ */
+- (NSString *)recursiveDescriptionWithDepth:(NSUInteger)depth;
+
+/*!
+ @abstract Indicates to the receiver that it has a prerequisite.
+ @discussion This has the effect of transitioning the receiver from the ready state to the pending state.
+ */
+- (void)didAddPrerequisiteTask;
 
 @end

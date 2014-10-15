@@ -1,9 +1,9 @@
 //
-//  TWTTreeNode.h
+//  TWTBlockTask.m
 //  Toast
 //
-//  Created by Kevin Conner on 7/29/14.
-//  Copyright (c) 2014 Two Toasters, LLC. 
+//  Created by Prachi Gauriar on 10/14/2014.
+//  Copyright (c) 2014 Two Toasters, LLC.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,19 +24,39 @@
 //  THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "TWTBlockTask.h"
 
-@interface TWTTreeNode : NSObject
 
-@property (nonatomic, strong) id item;
-@property (nonatomic, assign, getter = isExpanded) BOOL expanded;
-@property (nonatomic, copy) NSArray *children; // TWTTreeNode
+@implementation TWTBlockTask
 
-@property (nonatomic, readonly, weak) TWTTreeNode *parent;
-@property (nonatomic, readonly, strong) NSIndexPath *indexPath;
+- (instancetype)initWithName:(NSString *)name
+{
+    return [self initWithName:name block:nil];
+}
 
-- (NSUInteger)depth;
-- (instancetype)nodeAtIndexPath:(NSIndexPath *)indexPath; // Use from the root node.
-- (BOOL)hasAncestor:(TWTTreeNode *)ancestor;
+
+- (instancetype)initWithBlock:(void (^)(TWTTask *task))block
+{
+    return [self initWithName:nil block:block];
+}
+
+
+- (instancetype)initWithName:(NSString *)name block:(void (^)(TWTTask *task))block
+{
+    NSParameterAssert(block);
+
+    self = [super initWithName:name];
+    if (self) {
+        _block = [block copy];
+    }
+
+    return self;
+}
+
+
+- (void)main
+{
+    self.block(self);
+}
 
 @end

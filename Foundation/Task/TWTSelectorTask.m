@@ -1,9 +1,9 @@
 //
-//  TWTTreeNode.h
+//  TWTSelectorTask.m
 //  Toast
 //
-//  Created by Kevin Conner on 7/29/14.
-//  Copyright (c) 2014 Two Toasters, LLC. 
+//  Created by Prachi Gauriar on 10/14/2014.
+//  Copyright (c) 2014 Two Toasters, LLC.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,19 +24,44 @@
 //  THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "TWTSelectorTask.h"
 
-@interface TWTTreeNode : NSObject
 
-@property (nonatomic, strong) id item;
-@property (nonatomic, assign, getter = isExpanded) BOOL expanded;
-@property (nonatomic, copy) NSArray *children; // TWTTreeNode
+@implementation TWTSelectorTask
 
-@property (nonatomic, readonly, weak) TWTTreeNode *parent;
-@property (nonatomic, readonly, strong) NSIndexPath *indexPath;
+- (instancetype)initWithName:(NSString *)name
+{
+    return [self initWithName:name target:nil selector:NULL];
+}
 
-- (NSUInteger)depth;
-- (instancetype)nodeAtIndexPath:(NSIndexPath *)indexPath; // Use from the root node.
-- (BOOL)hasAncestor:(TWTTreeNode *)ancestor;
+
+- (instancetype)initWithTarget:(id)target selector:(SEL)selector
+{
+    return [self initWithName:nil target:target selector:selector];
+}
+
+
+- (instancetype)initWithName:(NSString *)name target:(id)target selector:(SEL)selector
+{
+    NSParameterAssert(target);
+    NSParameterAssert(selector);
+
+    self = [super initWithName:name];
+    if (self) {
+        _target = target;
+        _selector = selector;
+    }
+
+    return self;
+}
+
+
+- (void)main
+{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    [self.target performSelector:self.selector withObject:self];
+#pragma clang diagnostic pop
+}
 
 @end
