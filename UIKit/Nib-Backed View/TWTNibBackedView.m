@@ -27,13 +27,6 @@
 #import "TWTNibBackedView.h"
 
 
-@interface TWTNibBackedView ()
-
-@property (nonatomic, copy, readwrite) NSArray *contentViewConstraints;
-
-@end
-
-
 @implementation TWTNibBackedView
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -61,6 +54,11 @@
 - (void)instantiateObjectsInBackingNib
 {
     [[[self class] nib] instantiateWithOwner:self options:nil];
+
+    NSAssert(self.contentView, @"contentView outlet was not set in nib");
+    self.contentView.frame = self.bounds;
+    self.contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    [self addSubview:self.contentView];
     [self didInstantiateObjectsInBackingNib];
 }
 
@@ -79,26 +77,6 @@
 + (NSString *)nibName
 {
     return NSStringFromClass(self);
-}
-
-
-- (void)setContentView:(UIView *)contentView
-{
-    if (_contentView == contentView) {
-        return;
-    }
-
-    [_contentView removeFromSuperview];
-    [self removeConstraints:self.contentViewConstraints];
-
-    _contentView = contentView;
-    _contentView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self addSubview:_contentView];
-
-    NSDictionary *views = NSDictionaryOfVariableBindings(_contentView);
-    NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:[_contentView]" options:0 metrics:nil views:views];
-    [constraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_contentView]" options:0 metrics:nil views:views]];
-    self.contentViewConstraints = constraints;
 }
 
 @end
