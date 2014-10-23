@@ -91,7 +91,8 @@
 + (NSString *)nibName;
 
 /*!
- @abstract Indicates that objects in the backing nib have been instantiated.
+ @abstract Indicates that objects in the backing nib have been instantiated and the content view
+     has been added to the receiver as a subview.
  @discussion The base implementation of this method does nothing. Subclasses should override this
      if they wish to perform some initialization after the nib has been loaded.
  */
