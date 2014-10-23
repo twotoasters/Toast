@@ -36,6 +36,10 @@
  */
 @protocol TWTNibBacking
 
+/*!
+ @abstract Returns the nib that backs instances of the receiver.
+ @result A nib that backs instances of the receiver.
+ */
 + (UINib *)nib;
 
 @end
