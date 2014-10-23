@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "TWTToast"
-  s.version          = "0.11.1"
+  s.version          = "0.12"
   s.summary          = "Tools and Utilities for Cocoa Development"
   s.homepage         = "https://github.com/twotoasters/Toast"
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -79,6 +79,11 @@ Pod::Spec.new do |s|
     ss.subspec 'Device' do |sss|
       sss.requires_arc = true
       sss.source_files = "UIKit/Device/*.{h,m}"
+    end
+
+    ss.subspec 'NibBackedView' do |sss|
+      sss.requires_arc = true
+      sss.source_files = "UIKit/Nib-Backed View/*.{h,m}"
     end
 
     ss.subspec 'PrepareForSegue' do |sss|
