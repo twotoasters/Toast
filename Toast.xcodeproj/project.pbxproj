@@ -23,6 +23,7 @@
 		4C351FBD188495F4009AD246 /* UIColor+TWTColorHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FB9188495F4009AD246 /* UIColor+TWTColorHelpers.m */; };
 		4C351FBE188495F4009AD246 /* UIDevice+TWTSystemVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FBC188495F4009AD246 /* UIDevice+TWTSystemVersion.m */; };
 		4C351FC118849803009AD246 /* TWTRandomizedTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FC018849803009AD246 /* TWTRandomizedTestCase.m */; };
+		4C54941019FA0C6300EFEC50 /* UIControl+TWTBlockActions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C54940F19FA0C6300EFEC50 /* UIControl+TWTBlockActions.m */; };
 		4C62E9B419F7D7F700BB8253 /* TWTNibBackedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C62E9B319F7D7F700BB8253 /* TWTNibBackedView.m */; };
 		4C73076A18CFAF1200398573 /* TWTSelectiveJSONAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C73076918CFAF1200398573 /* TWTSelectiveJSONAdapter.m */; };
 		4C73076E18CFC1B900398573 /* UIView+TWTSnapshotImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C73076D18CFC1B900398573 /* UIView+TWTSnapshotImage.m */; };
@@ -96,6 +97,8 @@
 		4C351FBC188495F4009AD246 /* UIDevice+TWTSystemVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+TWTSystemVersion.m"; sourceTree = "<group>"; };
 		4C351FBF18849803009AD246 /* TWTRandomizedTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTRandomizedTestCase.h; sourceTree = "<group>"; };
 		4C351FC018849803009AD246 /* TWTRandomizedTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTRandomizedTestCase.m; sourceTree = "<group>"; };
+		4C54940E19FA0C6300EFEC50 /* UIControl+TWTBlockActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+TWTBlockActions.h"; sourceTree = "<group>"; };
+		4C54940F19FA0C6300EFEC50 /* UIControl+TWTBlockActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+TWTBlockActions.m"; sourceTree = "<group>"; };
 		4C62E9B219F7D7F700BB8253 /* TWTNibBackedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTNibBackedView.h; sourceTree = "<group>"; };
 		4C62E9B319F7D7F700BB8253 /* TWTNibBackedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTNibBackedView.m; sourceTree = "<group>"; };
 		4C73076818CFAF1200398573 /* TWTSelectiveJSONAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTSelectiveJSONAdapter.h; sourceTree = "<group>"; };
@@ -263,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				A420E140188502310019E986 /* Auto Layout */,
+				4C54940D19FA0C6300EFEC50 /* Block Actions */,
 				A43C033B1884FEE0000F9753 /* Blocks */,
 				4C351FB7188495F4009AD246 /* Color */,
 				4C351FBA188495F4009AD246 /* Device */,
@@ -292,6 +296,15 @@
 				4C351FBC188495F4009AD246 /* UIDevice+TWTSystemVersion.m */,
 			);
 			path = Device;
+			sourceTree = "<group>";
+		};
+		4C54940D19FA0C6300EFEC50 /* Block Actions */ = {
+			isa = PBXGroup;
+			children = (
+				4C54940E19FA0C6300EFEC50 /* UIControl+TWTBlockActions.h */,
+				4C54940F19FA0C6300EFEC50 /* UIControl+TWTBlockActions.m */,
+			);
+			path = "Block Actions";
 			sourceTree = "<group>";
 		};
 		4C62E9B119F7D7D500BB8253 /* Nib-Backed View */ = {
@@ -756,6 +769,7 @@
 				A4D633E31883914600DA51CB /* TWTAppDelegate.m in Sources */,
 				4901313B18C5830500117218 /* TWTNavigationControllerDelegate.m in Sources */,
 				A418D83718E7586F0067CCCA /* TWTBlockEnumeration.m in Sources */,
+				4C54941019FA0C6300EFEC50 /* UIControl+TWTBlockActions.m in Sources */,
 				4CFCDD6D189FF9C900A7C3F2 /* NSException+TWTSubclassResponsibility.m in Sources */,
 				A43C03411884FEF1000F9753 /* UIAlertView+TWTBlocks.m in Sources */,
 				A4E7ACF818D0D97C009FD889 /* TWTKeyValueObserver.m in Sources */,
