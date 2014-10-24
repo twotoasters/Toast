@@ -35,7 +35,8 @@
 @property (nonatomic, copy, readonly) void (^block)(id sender, UIEvent *event);
 
 - (instancetype)initWithControlEvents:(UIControlEvents)controlEvents block:(void (^)(id sender, UIEvent *event))block NS_DESIGNATED_INITIALIZER;
-- (void)performActionWithSender:(id)sender event:(UIEvent *)event;
+- (void)addActionToControl:(UIControl *)control;
+- (void)removeActionFromControl:(UIControl *)control;
 
 @end
 
@@ -60,6 +61,18 @@
     }
 
     return self;
+}
+
+
+- (void)addActionToControl:(UIControl *)control
+{
+    [control addTarget:self action:@selector(performActionWithSender:event:) forControlEvents:self.controlEvents];
+}
+
+
+- (void)removeActionFromControl:(UIControl *)control
+{
+    [control removeTarget:self action:@selector(performActionWithSender:event:) forControlEvents:self.controlEvents];
 }
 
 
@@ -90,7 +103,7 @@
 - (id)twt_addBlockActionForControlEvents:(UIControlEvents)controlEvents block:(void (^)(id sender, UIEvent *event))block
 {
     TWTBlockAction *blockAction = [[TWTBlockAction alloc] initWithControlEvents:controlEvents block:block];
-    [self addTarget:blockAction action:@selector(performActionWithSender:event:) forControlEvents:controlEvents];
+    [blockAction addActionToControl:self];
     [[self twt_blockActions] addObject:blockAction];
     return blockAction;
 }
@@ -98,7 +111,7 @@
 
 - (void)twt_removeBlockAction:(id)blockAction
 {
-    [self removeTarget:blockAction action:@selector(performActionWithSender:event:) forControlEvents:[blockAction controlEvents]];
+    [blockAction removeActionFromControl:self];
     [[self twt_blockActions] removeObject:blockAction];
 }
 

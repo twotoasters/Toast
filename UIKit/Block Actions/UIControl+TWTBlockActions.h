@@ -34,16 +34,22 @@
 @interface UIControl (TWTBlockActions)
 
 /*!
- @abstract Adds the specified block as a block action that fires when the specified control events occur.
+ @abstract Adds the specified block as a block action that fires when the specified control events
+     occur.
  @param controlEvents A bitmask specifying the control events associated with the block action.
  @param block The block to execute when the specified control events occur. May not be nil.
- @result An opaque object representing the block action. This may be used to remove a block action from 
-     the receiver using -twt_removeBlockAction.
+ @result An opaque object representing the block action. This may be used to remove a block action
+     from the receiver using -twt_removeBlockAction.
  */
 - (id)twt_addBlockActionForControlEvents:(UIControlEvents)controlEvents block:(void (^)(id sender, UIEvent *event))block;
 
 /*!
  @abstract Removes the specified block action from the receiver.
+ @discussion Removing block actions by invoking -removeTarget:action:forControlEvents:, e.g., with a
+     nil target and NULL action will also remove block actions. However, doing so will defer
+     releasing the memory associated with the block action until the receiver is deallocated. Using
+     this method will release the memory earlier, if possible. The memory footprint of a block action
+     is small, so this should not be a huge concern.
  @param action The opaque block action object that was returned by -twt_addBlockActionForControlEvents:block:
  */
 - (void)twt_removeBlockAction:(id)action;
