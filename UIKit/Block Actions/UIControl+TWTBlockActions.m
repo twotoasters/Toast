@@ -104,7 +104,7 @@
 {
     TWTBlockAction *blockAction = [[TWTBlockAction alloc] initWithControlEvents:controlEvents block:block];
     [blockAction addActionToControl:self];
-    [[self twt_blockActions] addObject:blockAction];
+    [self.twt_blockActions addObject:blockAction];
     return blockAction;
 }
 
@@ -112,7 +112,7 @@
 - (void)twt_removeBlockAction:(id)blockAction
 {
     [blockAction removeActionFromControl:self];
-    [[self twt_blockActions] removeObject:blockAction];
+    [self.twt_blockActions removeObject:blockAction];
 }
 
 @end
