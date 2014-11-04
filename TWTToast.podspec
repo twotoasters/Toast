@@ -56,7 +56,7 @@ Pod::Spec.new do |s|
       sss.requires_arc = true
       sss.source_files = "Foundation/Tree Node/*.{h,m}"
     end
-  end  
+  end
 
   ## Subspec for files related to UIKit
   s.subspec 'UIKit' do |ss|
@@ -120,7 +120,7 @@ Pod::Spec.new do |s|
   ## Subspec for files related to Mantle
   s.subspec 'Mantle' do |ss|
     ss.requires_arc = true
-    ss.dependency 'Mantle', '~> 1.4.0'
+    ss.dependency 'Mantle', '~> 1.5.0'
     
     ss.subspec 'MantleModel' do |sss|
       sss.requires_arc = true
