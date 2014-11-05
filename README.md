@@ -97,6 +97,12 @@ A subspec containing our humble extensions to UIKit.
 
 * **`UIDevice+TWTSystemVersion`** provides convenient methods of retrieving and comparing iOS version information in a more performant way, using NSIntegers rather than string comparison.
 
+##### Nib-backed View
+
+`pod 'TWTToast/UIKit/NibBackedView'`
+
+* **`TWTNibBacking`** protocol simply declares the +nib message. This allows users of a class to easily get the nib that backs it. 
+
 ##### Prepare For Segue
 
 `pod 'TWTToast/UIKit/PrepareForSegue'`
