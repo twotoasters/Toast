@@ -20,6 +20,7 @@
 		498BEEED192E8F1400DA38C3 /* UIViewController+TWTCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = 498BEEEC192E8F1400DA38C3 /* UIViewController+TWTCompletion.m */; };
 		4997421218E4A78B001A2CD1 /* NSArrayTWTIndexPathTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4997421118E4A78B001A2CD1 /* NSArrayTWTIndexPathTests.m */; };
 		49BCBC7818CD4BA1000B8706 /* NSArray+TWTIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BCBC7718CD4BA1000B8706 /* NSArray+TWTIndexPath.m */; };
+		49E0163E19CA869D00FCA010 /* TWTCollectionViewTableLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E0163D19CA869D00FCA010 /* TWTCollectionViewTableLayout.m */; };
 		4C351FBD188495F4009AD246 /* UIColor+TWTColorHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FB9188495F4009AD246 /* UIColor+TWTColorHelpers.m */; };
 		4C351FBE188495F4009AD246 /* UIDevice+TWTSystemVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FBC188495F4009AD246 /* UIDevice+TWTSystemVersion.m */; };
 		4C351FC118849803009AD246 /* TWTRandomizedTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FC018849803009AD246 /* TWTRandomizedTestCase.m */; };
@@ -91,6 +92,8 @@
 		4997421118E4A78B001A2CD1 /* NSArrayTWTIndexPathTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayTWTIndexPathTests.m; sourceTree = "<group>"; };
 		49BCBC7618CD4BA1000B8706 /* NSArray+TWTIndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+TWTIndexPath.h"; sourceTree = "<group>"; };
 		49BCBC7718CD4BA1000B8706 /* NSArray+TWTIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+TWTIndexPath.m"; sourceTree = "<group>"; };
+		49E0163C19CA869D00FCA010 /* TWTCollectionViewTableLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTCollectionViewTableLayout.h; sourceTree = "<group>"; };
+		49E0163D19CA869D00FCA010 /* TWTCollectionViewTableLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTCollectionViewTableLayout.m; sourceTree = "<group>"; };
 		4C351FB8188495F4009AD246 /* UIColor+TWTColorHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+TWTColorHelpers.h"; sourceTree = "<group>"; };
 		4C351FB9188495F4009AD246 /* UIColor+TWTColorHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+TWTColorHelpers.m"; sourceTree = "<group>"; };
 		4C351FBB188495F4009AD246 /* UIDevice+TWTSystemVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+TWTSystemVersion.h"; sourceTree = "<group>"; };
@@ -262,12 +265,22 @@
 			path = "NSArray Index Path Additions";
 			sourceTree = "<group>";
 		};
+		49E0163B19CA866E00FCA010 /* Collection View Table Layout */ = {
+			isa = PBXGroup;
+			children = (
+				49E0163C19CA869D00FCA010 /* TWTCollectionViewTableLayout.h */,
+				49E0163D19CA869D00FCA010 /* TWTCollectionViewTableLayout.m */,
+			);
+			path = "Collection View Table Layout";
+			sourceTree = "<group>";
+		};
 		4C351FB6188495F4009AD246 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
 				A420E140188502310019E986 /* Auto Layout */,
 				4C54940D19FA0C6300EFEC50 /* Block Actions */,
 				A43C033B1884FEE0000F9753 /* Blocks */,
+				49E0163B19CA866E00FCA010 /* Collection View Table Layout */,
 				4C351FB7188495F4009AD246 /* Color */,
 				4C351FBA188495F4009AD246 /* Device */,
 				4C62E9B119F7D7D500BB8253 /* Nib-Backed View */,
@@ -754,6 +767,7 @@
 				4CFCDD75189FFFB800A7C3F2 /* TWTErrorUtilities.m in Sources */,
 				A43C03381884FEB6000F9753 /* TWTSampleViewController.m in Sources */,
 				4C73076A18CFAF1200398573 /* TWTSelectiveJSONAdapter.m in Sources */,
+				49E0163E19CA869D00FCA010 /* TWTCollectionViewTableLayout.m in Sources */,
 				136DBCD0194B37050058F08B /* TWTAsynchronousOperation.m in Sources */,
 				A420E1431885023F0019E986 /* UIView+TWTConvenientConstraintAddition.m in Sources */,
 				4C351FBE188495F4009AD246 /* UIDevice+TWTSystemVersion.m in Sources */,
