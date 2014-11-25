@@ -23,6 +23,7 @@
 		4C351FBD188495F4009AD246 /* UIColor+TWTColorHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FB9188495F4009AD246 /* UIColor+TWTColorHelpers.m */; };
 		4C351FBE188495F4009AD246 /* UIDevice+TWTSystemVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FBC188495F4009AD246 /* UIDevice+TWTSystemVersion.m */; };
 		4C351FC118849803009AD246 /* TWTRandomizedTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FC018849803009AD246 /* TWTRandomizedTestCase.m */; };
+		4C3CD4DF1A2406F800435484 /* CAMediaTimingFunction+TWTEasingFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3CD4DE1A2406F800435484 /* CAMediaTimingFunction+TWTEasingFunctions.m */; };
 		4C54941019FA0C6300EFEC50 /* UIControl+TWTBlockActions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C54940F19FA0C6300EFEC50 /* UIControl+TWTBlockActions.m */; };
 		4C62E9B419F7D7F700BB8253 /* TWTNibBackedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C62E9B319F7D7F700BB8253 /* TWTNibBackedView.m */; };
 		4C73076A18CFAF1200398573 /* TWTSelectiveJSONAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C73076918CFAF1200398573 /* TWTSelectiveJSONAdapter.m */; };
@@ -97,6 +98,8 @@
 		4C351FBC188495F4009AD246 /* UIDevice+TWTSystemVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+TWTSystemVersion.m"; sourceTree = "<group>"; };
 		4C351FBF18849803009AD246 /* TWTRandomizedTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTRandomizedTestCase.h; sourceTree = "<group>"; };
 		4C351FC018849803009AD246 /* TWTRandomizedTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTRandomizedTestCase.m; sourceTree = "<group>"; };
+		4C3CD4DD1A2406F800435484 /* CAMediaTimingFunction+TWTEasingFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAMediaTimingFunction+TWTEasingFunctions.h"; sourceTree = "<group>"; };
+		4C3CD4DE1A2406F800435484 /* CAMediaTimingFunction+TWTEasingFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAMediaTimingFunction+TWTEasingFunctions.m"; sourceTree = "<group>"; };
 		4C54940E19FA0C6300EFEC50 /* UIControl+TWTBlockActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+TWTBlockActions.h"; sourceTree = "<group>"; };
 		4C54940F19FA0C6300EFEC50 /* UIControl+TWTBlockActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+TWTBlockActions.m"; sourceTree = "<group>"; };
 		4C62E9B219F7D7F700BB8253 /* TWTNibBackedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTNibBackedView.h; sourceTree = "<group>"; };
@@ -298,6 +301,24 @@
 			path = Device;
 			sourceTree = "<group>";
 		};
+		4C3CD4DB1A2406BD00435484 /* CoreAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				4C3CD4DC1A2406BD00435484 /* Easing Functions */,
+			);
+			name = CoreAnimation;
+			path = Core/CoreAnimation;
+			sourceTree = "<group>";
+		};
+		4C3CD4DC1A2406BD00435484 /* Easing Functions */ = {
+			isa = PBXGroup;
+			children = (
+				4C3CD4DD1A2406F800435484 /* CAMediaTimingFunction+TWTEasingFunctions.h */,
+				4C3CD4DE1A2406F800435484 /* CAMediaTimingFunction+TWTEasingFunctions.m */,
+			);
+			path = "Easing Functions";
+			sourceTree = "<group>";
+		};
 		4C54940D19FA0C6300EFEC50 /* Block Actions */ = {
 			isa = PBXGroup;
 			children = (
@@ -455,6 +476,7 @@
 			isa = PBXGroup;
 			children = (
 				A4D633D618838DC900DA51CB /* Core */,
+				4C3CD4DB1A2406BD00435484 /* CoreAnimation */,
 				4CFCDD69189FF9C900A7C3F2 /* Foundation */,
 				4C351FB6188495F4009AD246 /* UIKit */,
 				4CA4390618CD03BB0013B10E /* Mantle */,
@@ -754,6 +776,7 @@
 				4CFCDD75189FFFB800A7C3F2 /* TWTErrorUtilities.m in Sources */,
 				A43C03381884FEB6000F9753 /* TWTSampleViewController.m in Sources */,
 				4C73076A18CFAF1200398573 /* TWTSelectiveJSONAdapter.m in Sources */,
+				4C3CD4DF1A2406F800435484 /* CAMediaTimingFunction+TWTEasingFunctions.m in Sources */,
 				136DBCD0194B37050058F08B /* TWTAsynchronousOperation.m in Sources */,
 				A420E1431885023F0019E986 /* UIView+TWTConvenientConstraintAddition.m in Sources */,
 				4C351FBE188495F4009AD246 /* UIDevice+TWTSystemVersion.m in Sources */,

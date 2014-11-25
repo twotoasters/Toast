@@ -20,6 +20,20 @@ A subspec chock full of low-level extensions.
   block to each item, returning the resulting array.
 
 
+#### Core Animation
+
+`pod 'TWTToast/CoreAnimation'`
+
+A subspec for Core Animation-level classes and categories.
+
+##### Easing Functions
+
+`pod TWTToast/CoreAnimation/EasingFunctions`
+
+* **`CAMediaTimingFunction+TWTEasingFunctions`** provides factory methods for conveniently creating
+common easing timing functions.
+
+
 #### Foundation
 
 `pod TWTToast/Foundation`
