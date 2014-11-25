@@ -17,6 +17,16 @@ Pod::Spec.new do |s|
     ss.source_files = "Core/**/*.{h,m}"
   end
 
+  ## Subspec for CoreAnimation files
+  s.subspec 'CoreAnimation' do |ss|
+    ss.requires_arc = true
+
+    ss.subspec 'EasingFunctions' do |sss|
+      sss.requires_arc = true
+      sss.source_files = "CoreAnimation/Easing Functions/*.{h,m}"
+    end
+  end
+
   ## Subspec for files related to Foundation
   s.subspec 'Foundation' do |ss|
     ss.requires_arc = true

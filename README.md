@@ -17,6 +17,20 @@ A subspec chock full of low-level extensions.
 * __DEPRECATED__ **`TWTSimpleMap(id<NSObject, NSFastEnumeration> enumeration, TWTMapBlock block)`** provides a simple implementation of Map. Map recieves an enumeration of objects and applies the block to each item, returning the resulting array.
 
 
+#### Core Animation
+
+`pod 'TWTToast/CoreAnimation'`
+
+A subspec for Core Animation-level classes and categories.
+
+##### Easing Functions
+
+`pod TWTToast/CoreAnimation/EasingFunctions`
+
+* **`CAMediaTimingFunction+TWTEasingFunctions`** provides factory methods for conveniently creating
+common easing timing functions.
+
+
 #### Foundation
 
 `pod TWTToast/Foundation`
