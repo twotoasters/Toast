@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "TWTToast"
-  s.version          = "0.13"
+  s.version          = "0.14"
   s.summary          = "Tools and Utilities for Cocoa Development"
   s.homepage         = "https://github.com/twotoasters/Toast"
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -76,7 +76,7 @@ Pod::Spec.new do |s|
       sss.source_files = "UIKit/Auto Layout/*.{h,m}"
     end
 
-    ss.subspec 'Block Actions' do |sss|
+    ss.subspec 'BlockActions' do |sss|
       sss.requires_arc = true
       sss.source_files = "UIKit/Block Actions/*.{h,m}"
     end
