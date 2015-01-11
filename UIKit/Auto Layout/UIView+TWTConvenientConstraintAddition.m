@@ -73,4 +73,23 @@
     return constraint;
 }
 
+- (NSLayoutConstraint *)twt_addVerticalCenteringConstraintWithView:(UIView *)view
+{
+    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:view attribute:NSLayoutAttributeCenterY multiplier:1.0f constant:0.0f];
+    
+    [self addConstraint:constraint];
+    
+    return constraint;
+
+}
+
+- (NSLayoutConstraint *)twt_addHorizontalCenteringConstraintWithView:(UIView *)view
+{
+    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:view attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f];
+    
+    [self addConstraint:constraint];
+    
+    return constraint;
+}
+
 @end

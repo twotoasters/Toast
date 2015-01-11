@@ -82,4 +82,18 @@
  */
 - (NSLayoutConstraint *)twt_addWidthConstraintWithConstant:(CGFloat)constant;
 
+/*!
+ @abstract Adds a vertical centering constraint to the reciever for the specified view.
+ @param view The UIView to be vertically centered.
+ @result The constraint that was added.
+ */
+- (NSLayoutConstraint *)twt_addVerticalCenteringConstraintWithView:(UIView *)view;
+
+/*!
+ @abstract Adds a horizontal centering constraint to the reciever for the specified view.
+ @param view The UIView to be horizontally centered.
+ @result The constraint that was added.
+ */
+- (NSLayoutConstraint *)twt_addHorizontalCenteringConstraintWithView:(UIView *)view;
+
 @end
