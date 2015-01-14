@@ -188,12 +188,16 @@
     // the property's value changes.
 
     TWTSampleObservableObject *observableObject = [[TWTSampleObservableObject alloc] init];
+    
     __unused TWTKeyValueObserver *observer = [TWTKeyValueObserver observerWithObject:observableObject
                                                                              keyPath:NSStringFromSelector(@selector(sampleProperty))
                                                                              options:NSKeyValueObservingOptionNew
+                                                                      startObserving:NO
                                                                               target:target
                                                                               action:@selector(samplePropertyDidChange)];
+    [observer startObserving];
     observableObject.sampleProperty = UMKRandomUnicodeString();
+    [observer stopObserving];
 
     // At this point, `target` should have been deallocated. Checking this helps to ensure that the invocation
     // of the action method by the `TWTKeyValueObserver` was the last strong reference to `target`. Otherwise,
