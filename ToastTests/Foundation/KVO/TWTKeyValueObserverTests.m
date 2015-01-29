@@ -175,7 +175,6 @@
     // `target` was deallocated. The expected behavior is that `target` has not yet been deallocated.
 
     target.samplePropertyDidChangeBlock = ^{
-
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-retain-cycles"
         target = nil;
@@ -192,10 +191,8 @@
     __unused TWTKeyValueObserver *observer = [TWTKeyValueObserver observerWithObject:observableObject
                                                                              keyPath:NSStringFromSelector(@selector(sampleProperty))
                                                                              options:NSKeyValueObservingOptionNew
-                                                                      startObserving:NO
                                                                               target:target
                                                                               action:@selector(samplePropertyDidChange)];
-    [observer startObserving];
     observableObject.sampleProperty = UMKRandomUnicodeString();
     [observer stopObserving];
 
