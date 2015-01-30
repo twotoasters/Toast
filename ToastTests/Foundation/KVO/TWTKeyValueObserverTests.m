@@ -175,7 +175,6 @@
     // `target` was deallocated. The expected behavior is that `target` has not yet been deallocated.
 
     target.samplePropertyDidChangeBlock = ^{
-
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-retain-cycles"
         target = nil;
@@ -188,12 +187,14 @@
     // the property's value changes.
 
     TWTSampleObservableObject *observableObject = [[TWTSampleObservableObject alloc] init];
+    
     __unused TWTKeyValueObserver *observer = [TWTKeyValueObserver observerWithObject:observableObject
                                                                              keyPath:NSStringFromSelector(@selector(sampleProperty))
                                                                              options:NSKeyValueObservingOptionNew
                                                                               target:target
                                                                               action:@selector(samplePropertyDidChange)];
     observableObject.sampleProperty = UMKRandomUnicodeString();
+    [observer stopObserving];
 
     // At this point, `target` should have been deallocated. Checking this helps to ensure that the invocation
     // of the action method by the `TWTKeyValueObserver` was the last strong reference to `target`. Otherwise,
