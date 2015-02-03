@@ -26,6 +26,10 @@
 
 #import "TWTSampleViewController.h"
 
+@import CoreLocation;
+
+#import "TWTLocationController.h"
+
 NSString * const kToastSampleFileName = @"ToastExamples";
 NSString * const kToastSampleKeyTitle = @"Title";
 NSString * const kToastSampleKeyViewController = @"ViewController";
@@ -52,6 +56,13 @@ static NSString *twt_cellIdentifier = @"com.twotoasters.toast.sampleCell";
     self.examples = [NSArray arrayWithContentsOfFile:toastSamplesURLString];
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:twt_cellIdentifier];
+
+    // TWTLocationController
+    // Update info.plist with either NSLocationWhenInUseUsageDescription and/or NSLocationAlwaysUsageDescription
+    [[TWTLocationController sharedInstance] fetchCurrentLocationWithCompletion:^(CLLocation *location, NSError *error) {
+        NSTimeInterval diff = [[NSDate date] timeIntervalSinceDate:location.timestamp];
+        NSLog(@"\nLocation:%@ \nError:%@ \nTimestamp%@ \nAge:%f", location, error, location.timestamp, diff);
+    }];
 }
 
 #pragma mark - Table view data source
