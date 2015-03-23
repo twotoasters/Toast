@@ -37,6 +37,7 @@
 
 + (id)performCollectOnObject:(id <NSFastEnumeration>)object resultsCollectionClass:(Class)collectionClass block:(TWTBlockEnumerationCollectBlock)block;
 + (id)performDetectOnObject:(id <NSFastEnumeration>)object block:(TWTBlockEnumerationPredicateBlock)block;
++ (NSDictionary *)performGroupOnObject:(id <NSFastEnumeration>)object resultsCollectionClass:(Class)collectionClass block:(TWTBlockEnumerationGroupBlock)block;
 + (id)performInjectOnObject:(id <NSFastEnumeration>)object initialObject:(id)initialObject block:(TWTBlockEnumerationInjectBlock)block;
 + (id)performRejectOnObject:(id <NSFastEnumeration>)object resultsCollectionClass:(Class)collectionClass block:(TWTBlockEnumerationPredicateBlock)block;
 + (id)performSelectOnObject:(id <NSFastEnumeration>)object resultsCollectionClass:(Class)collectionClass block:(TWTBlockEnumerationPredicateBlock)block;
@@ -96,6 +97,37 @@
 }
 
 
++ (NSDictionary *)performGroupOnObject:(id <NSFastEnumeration>)object resultsCollectionClass:(Class)collectionClass block:(TWTBlockEnumerationGroupBlock)block
+{
+    NSParameterAssert(object);
+    NSParameterAssert(collectionClass);
+    NSParameterAssert(block);
+
+    NSMutableDictionary *groups = [[NSMutableDictionary alloc] init];
+
+    id collection = object;
+    BOOL respondsToSetObjectForKey = [collection respondsToSelector:@selector(setObject:forKey:)];
+
+    for (id element in collection) {
+        id<NSCopying> groupKey = block(element);
+
+        id group = groups[groupKey];
+        if (!group) {
+            group = [[collectionClass alloc] init];
+            groups[groupKey] = group;
+        }
+
+        if (respondsToSetObjectForKey) {
+            [group setObject:[collection objectForKey:element] forKey:element];
+        } else {
+            [group addObject:element];
+        }
+    }
+
+    return groups;
+}
+
+
 + (id)performInjectOnObject:(id <NSFastEnumeration>)object initialObject:(id)initialObject block:(TWTBlockEnumerationInjectBlock)block;
 {
     NSParameterAssert(object);
@@ -147,7 +179,7 @@
 
 @implementation NSArray (TWTBlockEnumeration)
 
-- (instancetype)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block
+- (id)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block
 {
     return [TWTBlockEnumerator performCollectOnObject:self resultsCollectionClass:[NSMutableArray class] block:block];
 }
@@ -159,19 +191,25 @@
 }
 
 
+- (id)twt_groupWithBlock:(TWTBlockEnumerationGroupBlock)block
+{
+    return [TWTBlockEnumerator performGroupOnObject:self resultsCollectionClass:[NSMutableArray class] block:block];
+}
+
+
 - (id)twt_injectWithInitialObject:(id)initialObject block:(TWTBlockEnumerationInjectBlock)block
 {
     return [TWTBlockEnumerator performInjectOnObject:self initialObject:initialObject block:block];
 }
 
 
-- (instancetype)twt_rejectWithBlock:(TWTBlockEnumerationPredicateBlock)block
+- (id)twt_rejectWithBlock:(TWTBlockEnumerationPredicateBlock)block
 {
     return [TWTBlockEnumerator performRejectOnObject:self resultsCollectionClass:[NSMutableArray class] block:block];
 }
 
 
-- (instancetype)twt_selectWithBlock:(TWTBlockEnumerationPredicateBlock)block
+- (id)twt_selectWithBlock:(TWTBlockEnumerationPredicateBlock)block
 {
     return [TWTBlockEnumerator performSelectOnObject:self resultsCollectionClass:[NSMutableArray class] block:block];
 }
@@ -183,7 +221,7 @@
 
 @implementation NSDictionary (TWTBlockEnumeration)
 
-- (instancetype)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block
+- (id)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block
 {
     return [TWTBlockEnumerator performCollectOnObject:self resultsCollectionClass:[NSMutableDictionary class] block:block];
 }
@@ -195,19 +233,25 @@
 }
 
 
+- (id)twt_groupWithBlock:(TWTBlockEnumerationGroupBlock)block
+{
+    return [TWTBlockEnumerator performGroupOnObject:self resultsCollectionClass:[NSMutableDictionary class] block:block];
+}
+
+
 - (id)twt_injectWithInitialObject:(id)initialObject block:(TWTBlockEnumerationInjectBlock)block
 {
     return [TWTBlockEnumerator performInjectOnObject:self initialObject:initialObject block:block];
 }
 
 
-- (instancetype)twt_rejectWithBlock:(TWTBlockEnumerationPredicateBlock)block
+- (id)twt_rejectWithBlock:(TWTBlockEnumerationPredicateBlock)block
 {
     return [TWTBlockEnumerator performRejectOnObject:self resultsCollectionClass:[NSMutableDictionary class] block:block];
 }
 
 
-- (instancetype)twt_selectWithBlock:(TWTBlockEnumerationPredicateBlock)block
+- (id)twt_selectWithBlock:(TWTBlockEnumerationPredicateBlock)block
 {
     return [TWTBlockEnumerator performSelectOnObject:self resultsCollectionClass:[NSMutableDictionary class] block:block];
 }
@@ -219,7 +263,7 @@
 
 @implementation NSEnumerator (TWTBlockEnumeration)
 
-- (instancetype)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block
+- (id)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block
 {
     return [TWTBlockEnumerator performCollectOnObject:self resultsCollectionClass:[NSMutableArray class] block:block];
 }
@@ -231,19 +275,25 @@
 }
 
 
+- (id)twt_groupWithBlock:(TWTBlockEnumerationGroupBlock)block
+{
+    return [TWTBlockEnumerator performGroupOnObject:self resultsCollectionClass:[NSMutableArray class] block:block];
+}
+
+
 - (id)twt_injectWithInitialObject:(id)initialObject block:(TWTBlockEnumerationInjectBlock)block
 {
     return [TWTBlockEnumerator performInjectOnObject:self initialObject:initialObject block:block];
 }
 
 
-- (instancetype)twt_rejectWithBlock:(TWTBlockEnumerationPredicateBlock)block
+- (id)twt_rejectWithBlock:(TWTBlockEnumerationPredicateBlock)block
 {
     return [TWTBlockEnumerator performRejectOnObject:self resultsCollectionClass:[NSMutableArray class] block:block];
 }
 
 
-- (instancetype)twt_selectWithBlock:(TWTBlockEnumerationPredicateBlock)block
+- (id)twt_selectWithBlock:(TWTBlockEnumerationPredicateBlock)block
 {
     return [TWTBlockEnumerator performSelectOnObject:self resultsCollectionClass:[NSMutableArray class] block:block];
 }
@@ -255,7 +305,7 @@
 
 @implementation NSOrderedSet (TWTBlockEnumeration)
 
-- (instancetype)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block
+- (id)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block
 {
     return [TWTBlockEnumerator performCollectOnObject:self resultsCollectionClass:[NSMutableOrderedSet class] block:block];
 }
@@ -267,19 +317,25 @@
 }
 
 
+- (id)twt_groupWithBlock:(TWTBlockEnumerationGroupBlock)block
+{
+    return [TWTBlockEnumerator performGroupOnObject:self resultsCollectionClass:[NSMutableOrderedSet class] block:block];
+}
+
+
 - (id)twt_injectWithInitialObject:(id)initialObject block:(TWTBlockEnumerationInjectBlock)block
 {
     return [TWTBlockEnumerator performInjectOnObject:self initialObject:initialObject block:block];
 }
 
 
-- (instancetype)twt_rejectWithBlock:(TWTBlockEnumerationPredicateBlock)block
+- (id)twt_rejectWithBlock:(TWTBlockEnumerationPredicateBlock)block
 {
     return [TWTBlockEnumerator performRejectOnObject:self resultsCollectionClass:[NSMutableOrderedSet class] block:block];
 }
 
 
-- (instancetype)twt_selectWithBlock:(TWTBlockEnumerationPredicateBlock)block
+- (id)twt_selectWithBlock:(TWTBlockEnumerationPredicateBlock)block
 {
     return [TWTBlockEnumerator performSelectOnObject:self resultsCollectionClass:[NSMutableOrderedSet class] block:block];
 }
@@ -291,7 +347,7 @@
 
 @implementation NSSet (TWTBlockEnumeration)
 
-- (instancetype)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block
+- (id)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block
 {
     return [TWTBlockEnumerator performCollectOnObject:self resultsCollectionClass:[NSMutableSet class] block:block];
 }
@@ -303,19 +359,25 @@
 }
 
 
+- (id)twt_groupWithBlock:(TWTBlockEnumerationGroupBlock)block
+{
+    return [TWTBlockEnumerator performGroupOnObject:self resultsCollectionClass:[NSMutableSet class] block:block];
+}
+
+
 - (id)twt_injectWithInitialObject:(id)initialObject block:(TWTBlockEnumerationInjectBlock)block
 {
     return [TWTBlockEnumerator performInjectOnObject:self initialObject:initialObject block:block];
 }
 
 
-- (instancetype)twt_rejectWithBlock:(TWTBlockEnumerationPredicateBlock)block
+- (id)twt_rejectWithBlock:(TWTBlockEnumerationPredicateBlock)block
 {
     return [TWTBlockEnumerator performRejectOnObject:self resultsCollectionClass:[NSMutableSet class] block:block];
 }
 
 
-- (instancetype)twt_selectWithBlock:(TWTBlockEnumerationPredicateBlock)block
+- (id)twt_selectWithBlock:(TWTBlockEnumerationPredicateBlock)block
 {
     return [TWTBlockEnumerator performSelectOnObject:self resultsCollectionClass:[NSMutableSet class] block:block];
 }
