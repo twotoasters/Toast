@@ -53,7 +53,6 @@
 		A4D633E31883914600DA51CB /* TWTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D633E11883914600DA51CB /* TWTAppDelegate.m */; };
 		A4D633EA1883916A00DA51CB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A4D633E51883916A00DA51CB /* InfoPlist.strings */; };
 		A4D633EB1883916A00DA51CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D633E71883916A00DA51CB /* main.m */; };
-		A4D633F11883A1E100DA51CB /* TWTHighOrderFunctionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D633F01883A1E100DA51CB /* TWTHighOrderFunctionsTests.m */; };
 		A4E7ACF818D0D97C009FD889 /* TWTKeyValueObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E7ACF718D0D97C009FD889 /* TWTKeyValueObserver.m */; };
 /* End PBXBuildFile section */
 
@@ -148,7 +147,6 @@
 		A4D633E71883916A00DA51CB /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ExampleApplication/main.m; sourceTree = SOURCE_ROOT; };
 		A4D633E81883916A00DA51CB /* Toast-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Toast-Info.plist"; path = "ExampleApplication/Toast-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A4D633E91883916A00DA51CB /* Toast-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Toast-Prefix.pch"; path = "ExampleApplication/Toast-Prefix.pch"; sourceTree = SOURCE_ROOT; };
-		A4D633F01883A1E100DA51CB /* TWTHighOrderFunctionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTHighOrderFunctionsTests.m; sourceTree = "<group>"; };
 		A4E7ACF618D0D97C009FD889 /* TWTKeyValueObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTKeyValueObserver.h; sourceTree = "<group>"; };
 		A4E7ACF718D0D97C009FD889 /* TWTKeyValueObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTKeyValueObserver.m; sourceTree = "<group>"; };
 		ADDFB2E2F8D7DC73BFA59580 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -550,7 +548,6 @@
 				4C351FBF18849803009AD246 /* TWTRandomizedTestCase.h */,
 				4C351FC018849803009AD246 /* TWTRandomizedTestCase.m */,
 				A4BD768018E06D570021BEF3 /* Foundation */,
-				A4D633DC18838EFD00DA51CB /* Core */,
 				A4D633DB18838EF700DA51CB /* UIKit */,
 				A4D633B81883164000DA51CB /* Supporting Files */,
 			);
@@ -573,14 +570,6 @@
 				A455D79118844EEA009EB4EA /* UIColorTWTColorHelpersTests.m */,
 			);
 			path = UIKit;
-			sourceTree = "<group>";
-		};
-		A4D633DC18838EFD00DA51CB /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				A4D633F01883A1E100DA51CB /* TWTHighOrderFunctionsTests.m */,
-			);
-			path = Core;
 			sourceTree = "<group>";
 		};
 		A4D633E41883916A00DA51CB /* en.lproj */ = {
@@ -802,7 +791,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A455D79218844EEA009EB4EA /* UIColorTWTColorHelpersTests.m in Sources */,
-				A4D633F11883A1E100DA51CB /* TWTHighOrderFunctionsTests.m in Sources */,
 				A4BD768318E06DA40021BEF3 /* TWTKeyValueObserverTests.m in Sources */,
 				4C351FC118849803009AD246 /* TWTRandomizedTestCase.m in Sources */,
 				4997421218E4A78B001A2CD1 /* NSArrayTWTIndexPathTests.m in Sources */,
