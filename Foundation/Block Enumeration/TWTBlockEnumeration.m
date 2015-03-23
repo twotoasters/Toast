@@ -110,6 +110,9 @@
 
     for (id element in collection) {
         id<NSCopying> groupKey = block(element);
+        if (!groupKey) {
+            groupKey = [NSNull null];
+        }
 
         id group = groups[groupKey];
         if (!group) {
