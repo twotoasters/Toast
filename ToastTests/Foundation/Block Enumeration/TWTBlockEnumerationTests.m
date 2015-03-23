@@ -30,9 +30,11 @@
 
 #import "TWTBlockEnumeration.h"
 
+
 @interface TWTBlockEnumerationTests : TWTRandomizedTestCase
 
 @end
+
 
 @implementation TWTBlockEnumerationTests
 
@@ -85,11 +87,11 @@
 
 - (void)testDictionaryBlockEnumerationCollect
 {
-    NSDictionary *randomNumberDictionary = [self randomStringDictionary];
+    NSDictionary *randomStringDictionary = [self randomStringDictionary];
     NSMutableDictionary *expectedDictionary = [[NSMutableDictionary alloc] init];
     
-    NSDictionary *mappedDictionary = [randomNumberDictionary twt_collectWithBlock:^id(id element) {
-        NSString *existingValue = [randomNumberDictionary objectForKey:element];
+    NSDictionary *mappedDictionary = [randomStringDictionary twt_collectWithBlock:^id(id element) {
+        NSString *existingValue = [randomStringDictionary objectForKey:element];
         NSString *mappedString = [existingValue stringByAppendingString:UMKRandomUnicodeString()];
         
         [expectedDictionary setObject:mappedString forKey:element];
@@ -99,6 +101,36 @@
     XCTAssertNotNil(mappedDictionary, @"Returned dictionary is nil");
     XCTAssertEqual(mappedDictionary.count, expectedDictionary.count, @"Returned dictionary does not match the size of the expected dictionary");
     XCTAssertEqualObjects(mappedDictionary, expectedDictionary, @"Returned dictionary does not match the expected dictionary");
+}
+
+
+- (void)testDictionaryBlockEnumerationGroup
+{
+    NSDictionary *randomStringDictionary = [self randomStringDictionary];
+    NSMutableDictionary *expectedGroups = [[NSMutableDictionary alloc] init];
+
+    NSDictionary *groups = [randomStringDictionary twt_groupWithBlock:^id<NSCopying>(NSString *element) {
+        NSNumber *groupKey = @(element.length);
+
+        id group = expectedGroups[groupKey];
+        if (!group) {
+            group = [[NSMutableDictionary alloc] init];
+            expectedGroups[groupKey] = group;
+        }
+
+        [group setObject:randomStringDictionary[element] forKey:element];
+
+        return @([element length]);
+    }];
+
+    XCTAssertNotNil(expectedGroups, @"Returned collection is nil");
+
+    NSUInteger groupElementsCount = [[groups twt_injectWithInitialObject:@0 block:^id(NSNumber *sum, id key) {
+        return @(sum.unsignedIntegerValue + [groups[key] count]);
+    }] unsignedIntegerValue];
+
+    XCTAssertEqual([randomStringDictionary count], groupElementsCount, @"Number of grouped elements does not match size of original collection");
+    XCTAssertEqualObjects(groups, expectedGroups, @"Group dictionary does not match the expected group dictionary");
 }
 
 
@@ -205,6 +237,38 @@
 }
 
 
+- (void)testCollectionBlockEnumerationGroup
+{
+    for (Class class in [self collectionClasses]) {
+        id randomCollection = [[class alloc] initWithArray:[self randomStringArray]];
+        NSMutableDictionary *expectedGroups = [[NSMutableDictionary alloc] init];
+
+        NSDictionary *groups = [randomCollection twt_groupWithBlock:^id<NSCopying>(NSString *element) {
+            NSNumber *groupKey = @(element.length);
+
+            id group = expectedGroups[groupKey];
+            if (!group) {
+                group = [[[class alloc] init] mutableCopy];
+                expectedGroups[groupKey] = group;
+            }
+
+            [group addObject:element];
+
+            return groupKey;
+        }];
+
+        XCTAssertNotNil(expectedGroups, @"Returned collection is nil");
+
+        NSUInteger groupElementsCount = [[groups twt_injectWithInitialObject:@0 block:^id(NSNumber *sum, id key) {
+            return @(sum.unsignedIntegerValue + [groups[key] count]);
+        }] unsignedIntegerValue];
+
+         XCTAssertEqual([randomCollection count], groupElementsCount, @"Number of grouped elements does not match size of original collection");
+         XCTAssertEqualObjects(groups, expectedGroups, @"Group dictionary does not match the expected group dictionary");
+    }
+}
+
+
 - (void)testCollectionBlockEnumerationInject
 {
     for (Class class in [self collectionClasses]) {
@@ -285,6 +349,5 @@
         }
     }
 }
-
 
 @end

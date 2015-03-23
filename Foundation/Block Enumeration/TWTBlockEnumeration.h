@@ -37,6 +37,14 @@
 typedef id (^TWTBlockEnumerationCollectBlock)(id element);
 
 /*!
+ @abstract Type for blocks that are given an object and return an object with which to group the parameter.
+ @discussion This block type is used for group operations.
+ @param element The element being enumerated.
+ @result An object that represents the group in which the element belongs.
+ */
+typedef id<NSCopying> (^TWTBlockEnumerationGroupBlock)(id element);
+
+/*!
  @abstract Type for blocks that when given an element return a BOOL.
  @discussion This block type is used for detect, select, and reject operations.
  @param element The element being enumerated.
@@ -72,16 +80,29 @@ typedef id (^TWTBlockEnumerationInjectBlock)(id memo, id element);
  @result A new instance of the collection with the results of invoking the block on each element of
     the original collection.
  */
-- (instancetype)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block;
+- (id)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block;
 
 /*!
  @abstract Passes each entry in the collection to the block and returns the first item for which the 
     block returns YES.
  @discussion If the collection is a dictionary the item passed to the block is the key.
  @param block Predicate block to apply to each item in the collection.
- @result Returns the first item for which the block returns YES. If no item returns YES, this will return nil.
+ @result The first item for which the block returns YES. If no item returns YES, this will return nil.
  */
 - (id)twt_detectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
+
+/*!
+ @abstract Returns a dictionary that groups elements in the collection by the values returned by the block.
+ @discussion Given a collection of [2, 3, 6, 7, 9] and a block that returns the element’s integer value modulo
+     2, this method will return { 0 : [2, 6], 1 : { [3, 7, 9] } }. If the result of the block is nil, the grouping
+     element in the resulting collection will be the NSNull instance. If the collection is a dictionary the item
+     passed to the block is the key. The values in the resulting dictionary are the type of the receiver except
+     when the receiver is an NSEnumerator, in which case it is an array.
+ @param block Block that returns the group key that should be used for a given collection element.
+ @result A dictionary whose keys are the return values of the block and whose values are collections of elements
+     for which the block returned that value.
+ */
+- (NSDictionary *)twt_groupWithBlock:(TWTBlockEnumerationGroupBlock)block;
 
 /*!
  @abstract Passes each item in the collection and a memo to the provided block starting with an initial
@@ -105,7 +126,7 @@ typedef id (^TWTBlockEnumerationInjectBlock)(id memo, id element);
  @param block Predicate block to test items in the collection.
  @result A new instance of a collection with the items that were not rejected.
  */
-- (instancetype)twt_rejectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
+- (id)twt_rejectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
 
 /*!
  @abstract Passes each item in the collection to the block and returns a new collection with the items
@@ -114,9 +135,10 @@ typedef id (^TWTBlockEnumerationInjectBlock)(id memo, id element);
  @param block Predicate block to test items in the collection.
  @result A new array with the items that were selected.
  */
-- (instancetype)twt_selectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
+- (id)twt_selectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
 
 @end
+
 
 #pragma mark
 
