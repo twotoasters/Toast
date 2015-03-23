@@ -10,13 +10,6 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/twotoasters/Toast.git", :tag => s.version.to_s }
   s.requires_arc     = true
 
-  ## Subspec for Core files
-  s.subspec 'Core' do |ss|
-    ss.requires_arc = true
-    ss.dependency 'TWTToast/Foundation/BlockEnumeration'
-    ss.source_files = "Core/**/*.{h,m}"
-  end
-
   ## Subspec for CoreAnimation files
   s.subspec 'CoreAnimation' do |ss|
     ss.requires_arc = true
