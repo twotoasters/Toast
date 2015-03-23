@@ -103,6 +103,25 @@
     XCTAssertEqualObjects(mappedDictionary, expectedDictionary, @"Returned dictionary does not match the expected dictionary");
 }
 
+- (void)testDictionaryBlockEnumerationFlatten
+{
+    NSDictionary *groups = @{ @"android" : @[ @"Fred", @"James", @"Marcelle", @"Curtis", @"Chris", @"Patrick", @"Ben" ],
+                              @"ios" : @[ @"Andrew", @"Prachi", @"Ameir", @"Kevin", @"Jill", @"Duncan", @"Tom", @"Steve"],
+                              @"mgmt" : @{ @"development" : @[ @"Josh" ] },
+                              @"ceo" : @"Rachit" };
+
+    NSDictionary *expected = @{ @"android" : @[ @"Fred", @"James", @"Marcelle", @"Curtis", @"Chris", @"Patrick", @"Ben" ],
+                                @"ios" : @[ @"Andrew", @"Prachi", @"Ameir", @"Kevin", @"Jill", @"Duncan", @"Tom", @"Steve"],
+                                @"development" : @[ @"Josh" ] ,
+                                @"ceo" : @"Rachit" };
+
+    NSArray *flattenedGroups = [groups twt_flatten];
+    
+    XCTAssertNotNil(flattenedGroups, @"Returned collection is nil");
+    XCTAssertEqual([expected count], [flattenedGroups count], @"Returned collection does not match size of original collection");
+    XCTAssertEqualObjects(expected, flattenedGroups, @"Flattened collection does not match the expected collection");
+}
+
 
 - (void)testDictionaryBlockEnumerationGroup
 {
@@ -234,6 +253,22 @@
         XCTAssertEqual([randomCollection count], [mappedCollection count], @"Returned collection does not match size of original collection");
         XCTAssertEqualObjects(mappedCollection, expectedCollection, @"Mapped collection does not match the expected collection");
     }
+}
+
+
+- (void)testCollectionBlockEnumerationFlatten
+{
+    NSArray *groups = @[ @[ @[ @"Josh" ] ],
+                         @[ @"Tom" ],
+                         @[ @"Jill" ],
+                         @[ @"Ameir", @"Kevin", @"Steve" ],
+                         @[ @"Andrew", @"Duncan", @"Prachi" ] ];
+    NSArray *groupsExpected = @[ @"Josh", @"Tom", @"Jill", @"Ameir", @"Kevin", @"Steve", @"Andrew", @"Duncan", @"Prachi" ];
+    NSArray *flattenedGroups = [groups twt_flatten];
+
+    XCTAssertNotNil(flattenedGroups, @"Returned collection is nil");
+    XCTAssertEqual([groupsExpected count], [flattenedGroups count], @"Returned collection does not match size of original collection");
+    XCTAssertEqualObjects(groupsExpected, flattenedGroups, @"Flattened collection does not match the expected collection");
 }
 
 

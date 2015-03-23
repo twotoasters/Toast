@@ -36,6 +36,7 @@
 @interface TWTBlockEnumerator : NSObject
 
 + (id)performCollectOnObject:(id <NSFastEnumeration>)object resultsCollectionClass:(Class)collectionClass block:(TWTBlockEnumerationCollectBlock)block;
++ (id)performFlattenOnObject:(id <NSFastEnumeration>)object resultsCollectionClass:(Class)collectionClass;
 + (id)performDetectOnObject:(id <NSFastEnumeration>)object block:(TWTBlockEnumerationPredicateBlock)block;
 + (NSDictionary *)performGroupOnObject:(id <NSFastEnumeration>)object resultsCollectionClass:(Class)collectionClass block:(TWTBlockEnumerationGroupBlock)block;
 + (id)performInjectOnObject:(id <NSFastEnumeration>)object initialObject:(id)initialObject block:(TWTBlockEnumerationInjectBlock)block;
@@ -68,6 +69,52 @@
             [collection setObject:result forKey:element];
         } else {
             [collection addObject:result];
+        }
+    }
+
+    return collection;
+}
+
+
++ (id)performFlattenOnObject:(id <NSObject, NSFastEnumeration>)object resultsCollectionClass:(Class)collectionClass
+{
+    NSParameterAssert(object);
+    NSParameterAssert(collectionClass);
+    
+    id collection = [[collectionClass alloc] init];
+    
+    BOOL respondsToSetObjectForKey = [collection respondsToSelector:@selector(setObject:forKey:)];
+    
+    for (id elementOrKey in object) {
+        id result;
+        SEL selector, collectionSelector;
+        
+        if (respondsToSetObjectForKey) {
+            result = object[elementOrKey];
+            selector = @selector(objectForKey:);
+            collectionSelector = @selector(addEntriesFromDictionary:);
+        }
+        else {
+            result = elementOrKey;
+            selector = @selector(objectAtIndex:);
+            collectionSelector = @selector(addObjectsFromArray:);
+        }
+        
+        if ([result respondsToSelector:selector]) {
+            id childResult = [self performFlattenOnObject:result resultsCollectionClass:collectionClass];
+            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[[collection class] instanceMethodSignatureForSelector:collectionSelector]];
+            [invocation retainArguments];
+            invocation.selector = collectionSelector;
+            [invocation setArgument:&childResult atIndex:2];
+            [invocation invokeWithTarget:collection];
+        }
+        else {
+            if (respondsToSetObjectForKey) {
+                [collection setObject:result forKey:elementOrKey];
+            }
+            else {
+                [collection addObject:result];
+            }
         }
     }
 
@@ -192,6 +239,12 @@
 }
 
 
+- (id)twt_flatten
+{
+    return [TWTBlockEnumerator performFlattenOnObject:self resultsCollectionClass:[NSMutableArray class]];
+}
+
+
 - (id)twt_detectWithBlock:(TWTBlockEnumerationPredicateBlock)block
 {
     return [TWTBlockEnumerator performDetectOnObject:self block:block];
@@ -231,6 +284,12 @@
 - (id)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block
 {
     return [TWTBlockEnumerator performCollectOnObject:self resultsCollectionClass:[NSMutableDictionary class] block:block];
+}
+
+
+- (id)twt_flatten
+{
+    return [TWTBlockEnumerator performFlattenOnObject:self resultsCollectionClass:[NSMutableDictionary class]];
 }
 
 
@@ -276,6 +335,12 @@
 }
 
 
+- (id)twt_flatten
+{
+    return [TWTBlockEnumerator performFlattenOnObject:self resultsCollectionClass:[NSMutableArray class]];
+}
+
+
 - (id)twt_detectWithBlock:(TWTBlockEnumerationPredicateBlock)block
 {
     return [TWTBlockEnumerator performDetectOnObject:self block:block];
@@ -318,6 +383,12 @@
 }
 
 
+- (id)twt_flatten
+{
+    return [TWTBlockEnumerator performFlattenOnObject:self resultsCollectionClass:[NSMutableOrderedSet class]];
+}
+
+
 - (id)twt_detectWithBlock:(TWTBlockEnumerationPredicateBlock)block
 {
     return [TWTBlockEnumerator performDetectOnObject:self block:block];
@@ -357,6 +428,12 @@
 - (id)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block
 {
     return [TWTBlockEnumerator performCollectOnObject:self resultsCollectionClass:[NSMutableSet class] block:block];
+}
+
+
+- (id)twt_flatten
+{
+    return [TWTBlockEnumerator performFlattenOnObject:self resultsCollectionClass:[NSMutableSet class]];
 }
 
 
