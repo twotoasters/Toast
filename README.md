@@ -40,7 +40,7 @@ A subspec for Foundation-level classes and categories.
 
 * **`TWTBlockEnumeration`** exposes methods on NSArray, NSDictionary, NSEnumerator, NSOrderedSet,
   and NSSet for block based enumeration. These methods include functionality for `Collect`,
-  `Inject`, `Detect`, `Reject`, and `Select`.
+  `Inject`, `Detect`, `Reject`, `Flatten`, and `Select`.
 
 ##### ErrorUtilities
 
