@@ -30,9 +30,11 @@
 
 #import "TWTBlockEnumeration.h"
 
+
 @interface TWTBlockEnumerationTests : TWTRandomizedTestCase
 
 @end
+
 
 @implementation TWTBlockEnumerationTests
 
@@ -80,17 +82,6 @@
     return @[ [NSArray class], [NSSet class], [NSOrderedSet class] ];
 }
 
-
-- (void)testBlach
-{
-    NSArray *iOSDevelopers = @[ @"Ameir", @"Andrew", @"Duncan", @"Jill", @"Josh", @"Kevin", @"Prachi", @"Steve", @"Tom" ];
-
-    NSDictionary *groups = [iOSDevelopers twt_groupWithBlock:^id<NSCopying>(NSString *name) {
-        return @(name.length);
-    }];
-
-    NSLog(@"%@", groups);
-}
 
 #pragma mark - Key Value Collection Tests
 
@@ -358,6 +349,5 @@
         }
     }
 }
-
 
 @end
