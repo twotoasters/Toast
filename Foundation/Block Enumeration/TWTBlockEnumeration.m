@@ -106,7 +106,11 @@
     NSMutableDictionary *groups = [[NSMutableDictionary alloc] init];
 
     id collection = object;
-    BOOL respondsToSetObjectForKey = [collection respondsToSelector:@selector(setObject:forKey:)];
+    BOOL respondsToSetObjectForKey = [collectionClass instancesRespondToSelector:@selector(setObject:forKey:)];
+
+    // If the collection class responds to setObject:forKey:, the collection must respond to objectForKey:
+    NSAssert(!respondsToSetObjectForKey || [collection respondsToSelector:@selector(objectForKey:)],
+             @"Only collections that respond to -objectForKey: may have resultsCollectionClasses that respond to -setObject:forKey:");
 
     for (id element in collection) {
         id<NSCopying> groupKey = block(element);
