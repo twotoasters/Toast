@@ -278,6 +278,27 @@
 }
 
 
+- (void)testCollectionSetBlockEnumerationFlatten
+{
+    NSMutableSet *randomSet = [[NSMutableSet alloc] init];
+    
+    for (NSUInteger i = 0; i < [self randomCount]; ++i) {
+        [randomSet addObject:[NSSet setWithArray:[self randomStringArray]]];
+    }
+    
+    NSMutableSet *expectedSet = [[NSMutableSet alloc] init];
+    for (NSSet *randomStringSet in randomSet) {
+        [expectedSet addObjectsFromArray:[randomStringSet allObjects]];
+    }
+    
+    NSSet *flattenedSet = [randomSet twt_flatten];
+    
+    XCTAssertNotNil(flattenedSet, @"Returned collection is nil");
+    XCTAssertEqual([expectedSet count], [flattenedSet count], @"Returned collection does not match size of original collection");
+    XCTAssertEqualObjects(expectedSet, flattenedSet, @"Flattened collection does not match the expected collection");
+}
+
+
 - (void)testCollectionBlockEnumerationGroup
 {
     for (Class class in [self collectionClasses]) {

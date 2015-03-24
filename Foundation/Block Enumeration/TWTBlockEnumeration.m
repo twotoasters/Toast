@@ -109,6 +109,10 @@
         if ([element respondsToSelector:@selector(objectAtIndex:)]) {
             [flattenedCollection addObjectsFromArray:[self performCollectionFlattenOnObject:element resultsCollectionClass:collectionClass]];
         }
+        else if ([element respondsToSelector:@selector(containsObject:)]) {
+            NSArray *childElements = [[self performCollectionFlattenOnObject:element resultsCollectionClass:collectionClass] allObjects];
+            [flattenedCollection addObjectsFromArray:childElements];
+        }
         else {
             [flattenedCollection addObject:element];
         }
