@@ -290,7 +290,6 @@
         XCTAssertEqual([expectedCollection count], [flattenedCollection count], @"Returned collection does not match size of original collection");
         XCTAssertEqualObjects(expectedCollection, flattenedCollection, @"Flattened collection does not match the expected collection");
     }
-    
 }
 
 
