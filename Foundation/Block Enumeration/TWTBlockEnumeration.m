@@ -106,12 +106,8 @@
     id flattenedCollection = [[collectionClass alloc] init];
 
     for (id element in collection) {
-        if ([element respondsToSelector:@selector(objectAtIndex:)]) {
-            [flattenedCollection addObjectsFromArray:[self performCollectionFlattenOnObject:element resultsCollectionClass:collectionClass]];
-        }
-        else if ([element respondsToSelector:@selector(containsObject:)]) {
-            NSArray *childElements = [[self performCollectionFlattenOnObject:element resultsCollectionClass:collectionClass] allObjects];
-            [flattenedCollection addObjectsFromArray:childElements];
+        if ([element respondsToSelector:@selector(countByEnumeratingWithState:objects:count:)]) {
+            [flattenedCollection addObjectsFromArray:[self performCollectionFlattenOnObject:element resultsCollectionClass:[NSMutableArray class]]];
         }
         else {
             [flattenedCollection addObject:element];

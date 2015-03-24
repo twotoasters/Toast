@@ -83,6 +83,12 @@
 }
 
 
+- (NSArray *)mutableCollectionClasses
+{
+    return @[ [NSMutableArray class], [NSMutableSet class], [NSMutableOrderedSet class] ];
+}
+
+
 #pragma mark - Key Value Collection Tests
 
 - (void)testDictionaryBlockEnumerationCollect
@@ -259,43 +265,32 @@
 
 - (void)testCollectionBlockEnumerationFlatten
 {
-    NSMutableArray *randomArray = [[NSMutableArray alloc] init];
+    for (Class class in [self mutableCollectionClasses]) {
+        id randomCollection = [[class alloc] init];
+        
+        for (NSUInteger i = 0; i < [self randomCount]; ++i) {
+            id collection = [[class alloc] init];
+            [collection addObject:UMKRandomAlphanumericString()];
+            [randomCollection addObject:collection];
+        }
 
-    for (NSUInteger i = 0; i < [self randomCount]; ++i) {
-        [randomArray addObject:[self randomStringArray]];
+        id expectedCollection = [[class alloc] init];
+        for (id collection in randomCollection) {
+            if ([collection respondsToSelector:@selector(allObjects)]) {
+                [expectedCollection addObjectsFromArray:[collection allObjects]];
+            }
+            else {
+                [expectedCollection addObjectsFromArray:collection];
+            }
+        }
+        
+        id flattenedCollection = [randomCollection twt_flatten];
+        
+        XCTAssertNotNil(flattenedCollection, @"Returned collection is nil");
+        XCTAssertEqual([expectedCollection count], [flattenedCollection count], @"Returned collection does not match size of original collection");
+        XCTAssertEqualObjects(expectedCollection, flattenedCollection, @"Flattened collection does not match the expected collection");
     }
     
-    NSMutableArray *expectedArray = [[NSMutableArray alloc] init];
-    for (NSArray *randomStringArray in randomArray) {
-        [expectedArray addObjectsFromArray:randomStringArray];
-    }
-
-    NSArray *flattenedArray = [randomArray twt_flatten];
-    
-    XCTAssertNotNil(flattenedArray, @"Returned collection is nil");
-    XCTAssertEqual([expectedArray count], [flattenedArray count], @"Returned collection does not match size of original collection");
-    XCTAssertEqualObjects(expectedArray, flattenedArray, @"Flattened collection does not match the expected collection");
-}
-
-
-- (void)testCollectionSetBlockEnumerationFlatten
-{
-    NSMutableSet *randomSet = [[NSMutableSet alloc] init];
-    
-    for (NSUInteger i = 0; i < [self randomCount]; ++i) {
-        [randomSet addObject:[NSSet setWithArray:[self randomStringArray]]];
-    }
-    
-    NSMutableSet *expectedSet = [[NSMutableSet alloc] init];
-    for (NSSet *randomStringSet in randomSet) {
-        [expectedSet addObjectsFromArray:[randomStringSet allObjects]];
-    }
-    
-    NSSet *flattenedSet = [randomSet twt_flatten];
-    
-    XCTAssertNotNil(flattenedSet, @"Returned collection is nil");
-    XCTAssertEqual([expectedSet count], [flattenedSet count], @"Returned collection does not match size of original collection");
-    XCTAssertEqualObjects(expectedSet, flattenedSet, @"Flattened collection does not match the expected collection");
 }
 
 
