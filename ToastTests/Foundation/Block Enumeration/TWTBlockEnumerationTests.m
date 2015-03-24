@@ -83,6 +83,12 @@
 }
 
 
+- (NSArray *)mutableCollectionClasses
+{
+    return @[ [NSMutableArray class], [NSMutableSet class], [NSMutableOrderedSet class] ];
+}
+
+
 #pragma mark - Key Value Collection Tests
 
 - (void)testDictionaryBlockEnumerationCollect
@@ -101,6 +107,26 @@
     XCTAssertNotNil(mappedDictionary, @"Returned dictionary is nil");
     XCTAssertEqual(mappedDictionary.count, expectedDictionary.count, @"Returned dictionary does not match the size of the expected dictionary");
     XCTAssertEqualObjects(mappedDictionary, expectedDictionary, @"Returned dictionary does not match the expected dictionary");
+}
+
+- (void)testDictionaryBlockEnumerationFlatten
+{
+    NSDictionary *randomStringDictionary = [self randomStringDictionary];
+    NSDictionary *randomSubDictionary = @{ UMKRandomAlphanumericString() : [self randomNumberArray] };
+    
+    NSMutableDictionary *randomDictionary = [[NSMutableDictionary alloc] init];
+    [randomDictionary addEntriesFromDictionary:randomStringDictionary];
+    [randomDictionary setObject:randomSubDictionary forKey:UMKRandomAlphanumericString()];
+    
+    NSMutableDictionary *expectedDictionary = [[NSMutableDictionary alloc] init];
+    [expectedDictionary addEntriesFromDictionary:randomStringDictionary];
+    [expectedDictionary addEntriesFromDictionary:randomSubDictionary];
+
+    NSDictionary *flattenedDictionary = [randomDictionary twt_flatten];
+    
+    XCTAssertNotNil(flattenedDictionary, @"Returned collection is nil");
+    XCTAssertEqual([expectedDictionary count], [flattenedDictionary count], @"Returned collection does not match size of original collection");
+    XCTAssertEqualObjects(expectedDictionary, flattenedDictionary, @"Flattened collection does not match the expected collection");
 }
 
 
@@ -233,6 +259,36 @@
         XCTAssertNotNil(mappedCollection, @"Returned collection is nil");
         XCTAssertEqual([randomCollection count], [mappedCollection count], @"Returned collection does not match size of original collection");
         XCTAssertEqualObjects(mappedCollection, expectedCollection, @"Mapped collection does not match the expected collection");
+    }
+}
+
+
+- (void)testCollectionBlockEnumerationFlatten
+{
+    for (Class class in [self mutableCollectionClasses]) {
+        id randomCollection = [[class alloc] init];
+        
+        for (NSUInteger i = 0; i < [self randomCount]; ++i) {
+            id collection = [[class alloc] init];
+            [collection addObject:UMKRandomAlphanumericString()];
+            [randomCollection addObject:collection];
+        }
+
+        id expectedCollection = [[class alloc] init];
+        for (id collection in randomCollection) {
+            if ([collection respondsToSelector:@selector(allObjects)]) {
+                [expectedCollection addObjectsFromArray:[collection allObjects]];
+            }
+            else {
+                [expectedCollection addObjectsFromArray:collection];
+            }
+        }
+        
+        id flattenedCollection = [randomCollection twt_flatten];
+        
+        XCTAssertNotNil(flattenedCollection, @"Returned collection is nil");
+        XCTAssertEqual([expectedCollection count], [flattenedCollection count], @"Returned collection does not match size of original collection");
+        XCTAssertEqualObjects(expectedCollection, flattenedCollection, @"Flattened collection does not match the expected collection");
     }
 }
 

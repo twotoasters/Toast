@@ -7,19 +7,6 @@ for à la carte use.
 
 ### Subspecs
 
-#### Core
-
-`pod 'TWTToast/Core'`
-
-A subspec chock full of low-level extensions.
-
-##### TWTHighOrderFunctions
-
-* __DEPRECATED__ **`TWTSimpleMap(id<NSObject, NSFastEnumeration> enumeration, TWTMapBlock block)`**
-  provides a simple implementation of Map. Map recieves an enumeration of objects and applies the
-  block to each item, returning the resulting array.
-
-
 #### Core Animation
 
 `pod 'TWTToast/CoreAnimation'`
@@ -53,7 +40,7 @@ A subspec for Foundation-level classes and categories.
 
 * **`TWTBlockEnumeration`** exposes methods on NSArray, NSDictionary, NSEnumerator, NSOrderedSet,
   and NSSet for block based enumeration. These methods include functionality for `Collect`,
-  `Inject`, `Detect`, `Reject`, and `Select`.
+  `Inject`, `Detect`, `Reject`, `Flatten`, and `Select`.
 
 ##### ErrorUtilities
 

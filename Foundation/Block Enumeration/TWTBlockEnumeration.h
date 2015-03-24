@@ -83,6 +83,20 @@ typedef id (^TWTBlockEnumerationInjectBlock)(id memo, id element);
 - (id)twt_collectWithBlock:(TWTBlockEnumerationCollectBlock)block;
 
 /*!
+ @abstract Return a newly created collection that is the result of flattening each child collection 
+    into the top top level element of a single collection.
+ @discussion Given a collection of [ [1, 2, 3], [4, 5, 6] ] this would return a collection of 
+    [1, 2, 3, 4, 5, 6]. For dictionaries, it merges child dictionaries into a single dictionary. 
+    For example, { "key1" : value1, "key2" : value2, "child" : { "key3" : value3 } } would be flattened
+    into { "key1" : value1, "key2" : value2, "key3" : value3 }. When dealing with dictionaries, this
+    is a bit more destructive and should be done with care as child keys can overwrite matching keys 
+    in the final dictionary.
+ @result A new instance of the collection with the results of flattening each element into a single 
+    instance of the reciver's class (or an array if the receiver is an NSEnumerator).
+ */
+- (id)twt_flatten;
+
+/*!
  @abstract Passes each entry in the collection to the block and returns the first item for which the 
     block returns YES.
  @discussion If the collection is a dictionary the item passed to the block is the key.
