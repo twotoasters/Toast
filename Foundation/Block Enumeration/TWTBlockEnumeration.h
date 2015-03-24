@@ -92,7 +92,7 @@ typedef id (^TWTBlockEnumerationInjectBlock)(id memo, id element);
     is a bit more destructive and should be done with care as child keys can overwrite matching keys 
     in the final dictionary.
  @result A new instance of the collection with the results of flattening each element into a single 
-    data structure.
+    instance of the reciver's class (or an array if the receiver is an NSEnumerator).
  */
 - (id)twt_flatten;
 
