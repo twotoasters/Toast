@@ -3,7 +3,7 @@
 //  Toast
 //
 //  Created by Josh Johnson on 1/13/14.
-//  Copyright (c) 2015 Ticketmaster.
+//  Copyright (c) 2015 Ticketmaster. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
