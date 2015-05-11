@@ -3,7 +3,7 @@
 //  Toast
 //
 //  Created by Andrew Hershberger on 4/12/14.
-//  Copyright (c) 2015 Ticketmaster
+//  Copyright (c) 2015 Ticketmaster.
 //  A prior version of this code was written for Normal Ears, Inc.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy

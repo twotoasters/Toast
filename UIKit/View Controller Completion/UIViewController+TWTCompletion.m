@@ -3,7 +3,7 @@
 //  Toast
 //
 //  Created by Andrew Hershberger on 5/22/14.
-//  Copyright (c) 2015 Ticketmaster
+//  Copyright (c) 2015 Ticketmaster.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
