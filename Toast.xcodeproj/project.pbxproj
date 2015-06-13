@@ -640,7 +640,7 @@
 			attributes = {
 				CLASSPREFIX = TWT;
 				LastUpgradeCheck = 0510;
-				ORGANIZATIONNAME = "Two Toasters, LLC";
+				ORGANIZATIONNAME = "Ticketmaster Entertainment, Inc.";
 				TargetAttributes = {
 					A4D633AF1883164000DA51CB = {
 						TestTargetID = A4D633941883164000DA51CB;

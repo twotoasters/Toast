@@ -3,7 +3,7 @@
 //  Toast
 //
 //  Created by Josh Johnson on 1/12/14.
-//  Copyright (c) 2014 Two Toasters, LLC.
+//  Copyright (c) 2015 Ticketmaster Entertainment, Inc. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,7 @@ NSString * const kToastSampleFileName = @"ToastExamples";
 NSString * const kToastSampleKeyTitle = @"Title";
 NSString * const kToastSampleKeyViewController = @"ViewController";
 
-static NSString *twt_cellIdentifier = @"com.twotoasters.toast.sampleCell";
+static NSString *twt_cellIdentifier = @"com.ticketmaster.toast.sampleCell";
 
 @interface TWTSampleViewController ()
 
