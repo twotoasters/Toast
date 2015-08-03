@@ -111,7 +111,8 @@ typedef id (^TWTBlockEnumerationInjectBlock)(id memo, id element);
      2, this method will return { 0 : [2, 6], 1 : { [3, 7, 9] } }. If the result of the block is nil, the grouping
      element in the resulting collection will be the NSNull instance. If the collection is a dictionary the item
      passed to the block is the key. The values in the resulting dictionary are the type of the receiver except
-     when the receiver is an NSEnumerator, in which case it is an array.
+     when the receiver is an NSEnumerator, in which case it is an array. If the receiver is an ordered collection,
+     the elements in each resulting group will maintain the same relative order as in the receiver.
  @param block Block that returns the group key that should be used for a given collection element.
  @result A dictionary whose keys are the return values of the block and whose values are collections of elements
      for which the block returned that value.

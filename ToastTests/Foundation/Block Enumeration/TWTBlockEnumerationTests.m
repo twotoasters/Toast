@@ -89,6 +89,12 @@
 }
 
 
+- (NSArray *)orderedCollectionClasses
+{
+    return @[ [NSArray class], [NSOrderedSet class] ];
+}
+
+
 #pragma mark - Key Value Collection Tests
 
 - (void)testDictionaryBlockEnumerationCollect
@@ -403,6 +409,45 @@
             
             XCTAssertTrue(comparisonResult == NSOrderedSame, @"Selected array selected number (%@) that is not equal to the expected number (%@)", number, expectedElement);
         }
+    }
+}
+
+
+#pragma mark - Ordered Collection Tests
+
+- (void)testOrderedCollectionBlockEnumerationGroup
+{
+    for (Class class in [self orderedCollectionClasses]) {
+        id randomCollection = [[class alloc] initWithArray:[self randomStringArray]];
+        NSMutableDictionary *expectedGroups = [[NSMutableDictionary alloc] init];
+
+        // Build up the expectedGroups by enumerating the source collection in-order.
+        // This guarantees the preservation of relative ordering of group elements.
+        [randomCollection enumerateObjectsUsingBlock:^(NSString *element, NSUInteger idx, BOOL *stop) {
+            NSNumber *groupKey = @(element.length);
+
+            id group = expectedGroups[groupKey];
+            if (!group) {
+                group = [[[class alloc] init] mutableCopy];
+                expectedGroups[groupKey] = group;
+            }
+
+            [group addObject:element];
+        }];
+
+        NSDictionary *groups = [randomCollection twt_groupWithBlock:^id<NSCopying>(NSString *element) {
+            NSNumber *groupKey = @(element.length);
+            return groupKey;
+        }];
+
+        XCTAssertNotNil(expectedGroups, @"Returned collection is nil");
+
+        NSUInteger groupElementsCount = [[groups twt_injectWithInitialObject:@0 block:^id(NSNumber *sum, id key) {
+            return @(sum.unsignedIntegerValue + [groups[key] count]);
+        }] unsignedIntegerValue];
+
+        XCTAssertEqual([randomCollection count], groupElementsCount, @"Number of grouped elements does not match size of original collection");
+        XCTAssertEqualObjects(groups, expectedGroups, @"Group dictionary does not match the expected group dictionary");
     }
 }
 
