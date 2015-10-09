@@ -30,6 +30,9 @@
 /*!
  TWTDateRanges model ranges of dates. They are useful for determining whether a date falls between
  two other dates. Date ranges are closed; that is, they include both their start and end dates.
+ 
+ All the properties of TWTDateRange instances are immutable. As such, invoking ‑copy on a date range
+ simply returns the receiver.
  */
 @interface TWTDateRange : NSObject <NSCopying, NSSecureCoding>
 

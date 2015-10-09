@@ -75,7 +75,7 @@
 
 - (instancetype)copyWithZone:(NSZone *)zone
 {
-    return [[[self class] alloc] initWithStartDate:self.startDate endDate:self.endDate];
+    return self;
 }
 
 
