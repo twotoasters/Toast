@@ -20,6 +20,8 @@
 		498BEEED192E8F1400DA38C3 /* UIViewController+TWTCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = 498BEEEC192E8F1400DA38C3 /* UIViewController+TWTCompletion.m */; };
 		4997421218E4A78B001A2CD1 /* NSArrayTWTIndexPathTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4997421118E4A78B001A2CD1 /* NSArrayTWTIndexPathTests.m */; };
 		49BCBC7818CD4BA1000B8706 /* NSArray+TWTIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BCBC7718CD4BA1000B8706 /* NSArray+TWTIndexPath.m */; };
+		4C01022A1BC725CA00D05BDF /* TWTDateRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0102291BC725CA00D05BDF /* TWTDateRange.m */; settings = {ASSET_TAGS = (); }; };
+		4C01022D1BC725DB00D05BDF /* TWTDateRangeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01022C1BC725DB00D05BDF /* TWTDateRangeTests.m */; settings = {ASSET_TAGS = (); }; };
 		4C351FBD188495F4009AD246 /* UIColor+TWTColorHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FB9188495F4009AD246 /* UIColor+TWTColorHelpers.m */; };
 		4C351FBE188495F4009AD246 /* UIDevice+TWTSystemVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FBC188495F4009AD246 /* UIDevice+TWTSystemVersion.m */; };
 		4C351FC118849803009AD246 /* TWTRandomizedTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C351FC018849803009AD246 /* TWTRandomizedTestCase.m */; };
@@ -91,6 +93,9 @@
 		4997421118E4A78B001A2CD1 /* NSArrayTWTIndexPathTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayTWTIndexPathTests.m; sourceTree = "<group>"; };
 		49BCBC7618CD4BA1000B8706 /* NSArray+TWTIndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+TWTIndexPath.h"; sourceTree = "<group>"; };
 		49BCBC7718CD4BA1000B8706 /* NSArray+TWTIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+TWTIndexPath.m"; sourceTree = "<group>"; };
+		4C0102281BC725CA00D05BDF /* TWTDateRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTDateRange.h; sourceTree = "<group>"; };
+		4C0102291BC725CA00D05BDF /* TWTDateRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTDateRange.m; sourceTree = "<group>"; };
+		4C01022C1BC725DB00D05BDF /* TWTDateRangeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTDateRangeTests.m; sourceTree = "<group>"; };
 		4C351FB8188495F4009AD246 /* UIColor+TWTColorHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+TWTColorHelpers.h"; sourceTree = "<group>"; };
 		4C351FB9188495F4009AD246 /* UIColor+TWTColorHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+TWTColorHelpers.m"; sourceTree = "<group>"; };
 		4C351FBB188495F4009AD246 /* UIDevice+TWTSystemVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+TWTSystemVersion.h"; sourceTree = "<group>"; };
@@ -273,6 +278,23 @@
 			path = "NSArray Index Path Additions";
 			sourceTree = "<group>";
 		};
+		4C0102271BC725CA00D05BDF /* Date Range */ = {
+			isa = PBXGroup;
+			children = (
+				4C0102281BC725CA00D05BDF /* TWTDateRange.h */,
+				4C0102291BC725CA00D05BDF /* TWTDateRange.m */,
+			);
+			path = "Date Range";
+			sourceTree = "<group>";
+		};
+		4C01022B1BC725DB00D05BDF /* Date Range */ = {
+			isa = PBXGroup;
+			children = (
+				4C01022C1BC725DB00D05BDF /* TWTDateRangeTests.m */,
+			);
+			path = "Date Range";
+			sourceTree = "<group>";
+		};
 		4C351FB6188495F4009AD246 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,6 +391,7 @@
 			children = (
 				136DBCCD194B37050058F08B /* Asynchronous Operation */,
 				A418D83418E758050067CCCA /* Block Enumeration */,
+				4C0102271BC725CA00D05BDF /* Date Range */,
 				4CFCDD72189FFFB700A7C3F2 /* Error Utilities */,
 				A4E7ACF518D0D8C1009FD889 /* KVO */,
 				49BCBC7518CD4B49000B8706 /* NSArray Index Path Additions */,
@@ -465,6 +488,7 @@
 			isa = PBXGroup;
 			children = (
 				A418D83818E758EF0067CCCA /* Block Enumeration */,
+				4C01022B1BC725DB00D05BDF /* Date Range */,
 				A4BD768118E06D5D0021BEF3 /* KVO */,
 				4997421018E4A6EE001A2CD1 /* NSArray Index Path Additions */,
 			);
@@ -639,7 +663,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = TWT;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Ticketmaster Entertainment, Inc.";
 				TargetAttributes = {
 					A4D633AF1883164000DA51CB = {
@@ -771,6 +795,7 @@
 				49BCBC7818CD4BA1000B8706 /* NSArray+TWTIndexPath.m in Sources */,
 				4C62E9B419F7D7F700BB8253 /* TWTNibBackedView.m in Sources */,
 				4901313E18C61B0900117218 /* TWTSimpleAnimationController.m in Sources */,
+				4C01022A1BC725CA00D05BDF /* TWTDateRange.m in Sources */,
 				498BEEE9192E8A9B00DA38C3 /* UIViewController+TWTPrepareForSegue.m in Sources */,
 				496FBFF2193F525E0043F116 /* TWTModelClassDeserialization.m in Sources */,
 				4901314118C61D4600117218 /* TWTCustomTransitionsSampleViewController.m in Sources */,
@@ -795,6 +820,7 @@
 				4C351FC118849803009AD246 /* TWTRandomizedTestCase.m in Sources */,
 				4997421218E4A78B001A2CD1 /* NSArrayTWTIndexPathTests.m in Sources */,
 				A4D633DE18838FF400DA51CB /* UIDeviceTWTSystemVersionTests.m in Sources */,
+				4C01022D1BC725DB00D05BDF /* TWTDateRangeTests.m in Sources */,
 				A418D83A18E7590F0067CCCA /* TWTBlockEnumerationTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -847,6 +873,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -912,6 +939,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ExampleApplication/Toast-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/ExampleApplication/Toast-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ticketmaster.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -926,6 +954,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ExampleApplication/Toast-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/ExampleApplication/Toast-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ticketmaster.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -937,7 +966,6 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Toast.app/Toast";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
@@ -948,6 +976,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "ToastTests/ToastTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ticketmaster.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -960,13 +989,13 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Toast.app/Toast";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ExampleApplication/Toast-Prefix.pch";
 				INFOPLIST_FILE = "ToastTests/ToastTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ticketmaster.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
