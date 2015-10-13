@@ -41,7 +41,7 @@
     if (self) {
         _startDate = startDate ? startDate : [NSDate distantPast];
         _endDate = endDate ? endDate : [NSDate distantFuture];
-        NSAssert([startDate compare:endDate] <= NSOrderedSame, @"The start date must not occur after the end date");
+        NSAssert([startDate compare:endDate] <= NSOrderedSame, @"The end date (%@) must not occur before the start date (%@).", endDate, startDate);
     }
 
     return self;
