@@ -114,23 +114,23 @@ static NSUInteger kTWTIterationCount = 65536;
 }
 
 
-- (void)testTWTHexString
+- (void)testTWTHexadecimalString
 {
-    NSArray *testCases = @[ @"#00008B", @"#C71585", @"#FFFAFA", @"#ADFF2F", @"#800080" ];
+    NSArray *testCases = @[ @"#00008b", @"#c71585", @"#fffafa", @"#adff2f", @"#800080" ];
     for (NSString *hexString in testCases) {
         UIColor *color = [UIColor twt_colorWithHexString:hexString alpha:1];
-        XCTAssertEqualObjects(hexString, [color twt_hexString], @"Wrong hex string for color (%@). Expected %@", color, hexString);
+        XCTAssertEqualObjects(hexString, [color twt_hexadecimalString], @"Wrong hex string for color (%@). Expected %@", color, hexString);
     }
 
-    NSArray *edgeCaseStrings = @[ @"#000000", @"#FFFFFF", @"#00FF00", @"#FF0000", @"#0000FF" ];
+    NSArray *edgeCaseStrings = @[ @"#000000", @"#ffffff", @"#00ff00", @"#ff0000", @"#0000ff" ];
     for (NSString *hexString in edgeCaseStrings) {
         UIColor *color = [UIColor twt_colorWithHexString:hexString alpha:1];
-        XCTAssertEqualObjects(hexString, [color twt_hexString], @"Wrong hex string for color (%@). Expected %@", color, hexString);
+        XCTAssertEqualObjects(hexString, [color twt_hexadecimalString], @"Wrong hex string for color (%@). Expected %@", color, hexString);
     }
 
     NSArray *edgeCaseColors = @[ [UIColor whiteColor], [UIColor blackColor], [UIColor grayColor], [UIColor lightGrayColor] ];
     for (UIColor *color in edgeCaseColors) {
-        XCTAssertNotNil([color twt_hexString], @"Unable to produce hex string from monochromatic system color (%@", color);
+        XCTAssertNotNil([color twt_hexadecimalString], @"Unable to produce hex string from monochromatic system color (%@", color);
     }
 }
 
