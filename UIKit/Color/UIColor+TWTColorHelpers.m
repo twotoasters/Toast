@@ -61,4 +61,16 @@
     return color;
 }
 
+
+- (NSString *)twt_hexString
+{
+    CGFloat red, blue, green;
+    BOOL success = [self getRed:&red green:&green blue:&blue alpha:nil];
+    if (!success) {
+        return nil;
+    }
+
+    return [NSString stringWithFormat:@"#%02lX%02lX%02lX", lroundf(red * 255), lroundf(green * 255), lroundf(blue * 255)];
+}
+
 @end

@@ -44,4 +44,7 @@
  */
 + (UIColor *)twt_colorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha;
 
+
+- (NSString *)twt_hexString;
+
 @end
