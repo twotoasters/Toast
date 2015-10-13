@@ -42,6 +42,13 @@ A subspec for Foundation-level classes and categories.
   and NSSet for block based enumeration. These methods include functionality for `Collect`,
   `Inject`, `Detect`, `Reject`, `Flatten`, and `Select`.
 
+##### Date Range
+
+`pod TWTToast/Foundation/DateRange`
+
+* **`TWTDateRange`** models closed date ranges to easily determine if a date falls within a certain
+  range.
+
 ##### ErrorUtilities
 
 `pod TWTToast/Foundation/ErrorUtilities`
