@@ -113,4 +113,25 @@ static NSUInteger kTWTIterationCount = 65536;
     }
 }
 
+
+- (void)testTWTHexadecimalString
+{
+    NSArray *testCases = @[ @"#00008b", @"#c71585", @"#fffafa", @"#adff2f", @"#800080" ];
+    for (NSString *hexString in testCases) {
+        UIColor *color = [UIColor twt_colorWithHexString:hexString alpha:1];
+        XCTAssertEqualObjects(hexString, [color twt_hexadecimalString], @"Wrong hex string for color (%@). Expected %@", color, hexString);
+    }
+
+    NSArray *edgeCaseStrings = @[ @"#000000", @"#ffffff", @"#00ff00", @"#ff0000", @"#0000ff" ];
+    for (NSString *hexString in edgeCaseStrings) {
+        UIColor *color = [UIColor twt_colorWithHexString:hexString alpha:1];
+        XCTAssertEqualObjects(hexString, [color twt_hexadecimalString], @"Wrong hex string for color (%@). Expected %@", color, hexString);
+    }
+
+    NSArray *edgeCaseColors = @[ [UIColor whiteColor], [UIColor blackColor], [UIColor grayColor], [UIColor lightGrayColor] ];
+    for (UIColor *color in edgeCaseColors) {
+        XCTAssertNotNil([color twt_hexadecimalString], @"Unable to produce hex string from monochromatic system color (%@", color);
+    }
+}
+
 @end

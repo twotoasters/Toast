@@ -32,7 +32,7 @@
  @abstract Create a UIColor with a Hex value.  
  @param hex An integer hex value to used to create a value.
  @param alpha A CGFloat value to control the alpha of the color.
- @return A new instance of a UIColor
+ @result A new instance of a UIColor
  */
 + (UIColor *)twt_colorWithHex:(uint32_t)hex alpha:(CGFloat)alpha;
 
@@ -40,8 +40,14 @@
  @abstract Create a UIColor with a Hex String.
  @param hexString A hex string conforming to #FFFFFF or FFFFFF defining the color to build.
  @param alpha A CGFloat value to control the alpha of the color.
- @return A new instance of a UIColor
+ @result A new instance of a UIColor
  */
 + (UIColor *)twt_colorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha;
+
+/*!
+ @abstract Returns a hexidecimal string representation of the receiver, or nil if the color cannot be converted to RGB components.
+ @discussion Format of the result begins with a # character and uses lower case letters (e.g., "#ff0000")
+ */
+- (NSString *)twt_hexadecimalString;
 
 @end
