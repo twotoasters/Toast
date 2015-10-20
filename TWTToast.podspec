@@ -109,6 +109,13 @@ Pod::Spec.new do |s|
       sss.source_files = "UIKit/Snapshot Image/*.{h,m}"
     end
 
+    ss.subspec 'TableViewCellController' do |sss|
+      sss.requires_arc = true
+      sss.source_files = "UIKit/Table View Cell Controller/*.{h,m}"
+      sss.dependency 'TWTToast/Foundation/SubclassResponsibility'
+      sss.dependency 'TWTToast/Foundation/BlockEnumeration'
+    end
+
     ss.subspec 'TextStyle' do |sss|
       sss.requires_arc = true
       sss.source_files = "UIKit/Text Style/*.{h,m}"

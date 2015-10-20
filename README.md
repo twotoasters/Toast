@@ -142,6 +142,12 @@ A subspec containing our humble extensions to UIKit.
 * **`UIView+TWTSnapshotImage`** provides a convenient method for getting a snapshot image of a
   view’s hierarchy.
 
+##### Tableview Cell Controller
+
+`pod 'TWTToast/UIKit/TableViewCellController'`
+
+* **`TWTTableViewController`** provides a way to populate a table view with a static list of section and cell controllers.
+
 ##### Text Style
 
 `pod 'TWTToast/UIKit/TextStyle'`
