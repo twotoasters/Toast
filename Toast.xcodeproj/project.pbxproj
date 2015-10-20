@@ -11,6 +11,9 @@
 		0A7A30FB1987F93D007EA571 /* TWTTextStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A30FA1987F93D007EA571 /* TWTTextStyle.m */; };
 		0A7A310419881056007EA571 /* TWTTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A310319881056007EA571 /* TWTTreeNode.m */; };
 		136DBCD0194B37050058F08B /* TWTAsynchronousOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 136DBCCF194B37050058F08B /* TWTAsynchronousOperation.m */; };
+		13B197771BD6934F004F825A /* TWTTableViewCellController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B197721BD6934F004F825A /* TWTTableViewCellController.m */; settings = {ASSET_TAGS = (); }; };
+		13B197781BD6934F004F825A /* TWTTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B197741BD6934F004F825A /* TWTTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		13B197791BD6934F004F825A /* TWTTableViewSectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B197761BD6934F004F825A /* TWTTableViewSectionController.m */; settings = {ASSET_TAGS = (); }; };
 		38D001530B13452CBE5DDB73 /* libPods-ToastTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A07E2E64D14C2EA63FBE64 /* libPods-ToastTests.a */; };
 		4901313B18C5830500117218 /* TWTNavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4901313A18C5830500117218 /* TWTNavigationControllerDelegate.m */; };
 		4901313E18C61B0900117218 /* TWTSimpleAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4901313D18C61B0900117218 /* TWTSimpleAnimationController.m */; };
@@ -76,6 +79,12 @@
 		0A7A310319881056007EA571 /* TWTTreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTTreeNode.m; sourceTree = "<group>"; };
 		136DBCCE194B37050058F08B /* TWTAsynchronousOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTAsynchronousOperation.h; sourceTree = "<group>"; };
 		136DBCCF194B37050058F08B /* TWTAsynchronousOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTAsynchronousOperation.m; sourceTree = "<group>"; };
+		13B197711BD6934F004F825A /* TWTTableViewCellController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTTableViewCellController.h; sourceTree = "<group>"; };
+		13B197721BD6934F004F825A /* TWTTableViewCellController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTTableViewCellController.m; sourceTree = "<group>"; };
+		13B197731BD6934F004F825A /* TWTTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTTableViewController.h; sourceTree = "<group>"; };
+		13B197741BD6934F004F825A /* TWTTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTTableViewController.m; sourceTree = "<group>"; };
+		13B197751BD6934F004F825A /* TWTTableViewSectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTTableViewSectionController.h; sourceTree = "<group>"; };
+		13B197761BD6934F004F825A /* TWTTableViewSectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTTableViewSectionController.m; sourceTree = "<group>"; };
 		22A07E2E64D14C2EA63FBE64 /* libPods-ToastTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ToastTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4901313918C5830500117218 /* TWTNavigationControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTNavigationControllerDelegate.h; sourceTree = "<group>"; };
 		4901313A18C5830500117218 /* TWTNavigationControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTNavigationControllerDelegate.m; sourceTree = "<group>"; };
@@ -222,6 +231,19 @@
 			path = "Asynchronous Operation";
 			sourceTree = "<group>";
 		};
+		13B197701BD69100004F825A /* Table View Cell Controller */ = {
+			isa = PBXGroup;
+			children = (
+				13B197711BD6934F004F825A /* TWTTableViewCellController.h */,
+				13B197721BD6934F004F825A /* TWTTableViewCellController.m */,
+				13B197731BD6934F004F825A /* TWTTableViewController.h */,
+				13B197741BD6934F004F825A /* TWTTableViewController.m */,
+				13B197751BD6934F004F825A /* TWTTableViewSectionController.h */,
+				13B197761BD6934F004F825A /* TWTTableViewSectionController.m */,
+			);
+			path = "Table View Cell Controller";
+			sourceTree = "<group>";
+		};
 		4901313818C582B600117218 /* View Controller Transitions */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,9 +328,10 @@
 				4C62E9B119F7D7D500BB8253 /* Nib-Backed View */,
 				498BEEE6192E8A7D00DA38C3 /* Prepare for Segue */,
 				4C73076B18CFC19100398573 /* Snapshot Image */,
+				13B197701BD69100004F825A /* Table View Cell Controller */,
+				0A7A30FC1987F940007EA571 /* Text Style */,
 				498BEEEA192E8D7100DA38C3 /* View Controller Completion */,
 				4901313818C582B600117218 /* View Controller Transitions */,
-				0A7A30FC1987F940007EA571 /* Text Style */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -806,8 +829,11 @@
 				4C54941019FA0C6300EFEC50 /* UIControl+TWTBlockActions.m in Sources */,
 				4CFCDD6D189FF9C900A7C3F2 /* NSException+TWTSubclassResponsibility.m in Sources */,
 				A43C03411884FEF1000F9753 /* UIAlertView+TWTBlocks.m in Sources */,
+				13B197791BD6934F004F825A /* TWTTableViewSectionController.m in Sources */,
+				13B197771BD6934F004F825A /* TWTTableViewCellController.m in Sources */,
 				A4E7ACF818D0D97C009FD889 /* TWTKeyValueObserver.m in Sources */,
 				498BEEED192E8F1400DA38C3 /* UIViewController+TWTCompletion.m in Sources */,
+				13B197781BD6934F004F825A /* TWTTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
