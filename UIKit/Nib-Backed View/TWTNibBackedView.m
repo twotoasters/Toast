@@ -82,7 +82,7 @@
 
 + (NSBundle *)nibBundle
 {
-    return [NSBundle bundleForClass:[self class]];
+    return [NSBundle bundleForClass:self];
 }
 
 @end
