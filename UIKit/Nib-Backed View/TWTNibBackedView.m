@@ -70,13 +70,19 @@
 
 + (UINib *)nib
 {
-    return [UINib nibWithNibName:[self nibName] bundle:nil];
+    return [UINib nibWithNibName:[self nibName] bundle:[self nibBundle]];
 }
 
 
 + (NSString *)nibName
 {
     return NSStringFromClass(self);
+}
+
+
++ (NSBundle *)nibBundle
+{
+    return [NSBundle bundleForClass:self];
 }
 
 @end
