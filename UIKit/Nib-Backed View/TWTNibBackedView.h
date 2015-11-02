@@ -73,9 +73,9 @@
 
 /*!
  @abstract Returns a UINib instance for the nib that backs this view.
- @discussion The base implementation of this method returns the nib whose name is the the return
-     value of +[self nibName] in the bundle for the receiver's class. Override +nibName to specify 
-     the name of the nib to load.
+ @discussion The base implementation of this method returns the nib whose name is the return
+     value of +[self nibName] in the bundle returned by +[self nibBundle]. Override +nibName to specify
+     the name of the nib to load and/or +nibBundle to specify another bundle.
  @result A UINib instance for the nib that backs this view.
  */
 + (UINib *)nib;
@@ -89,6 +89,14 @@
  @result The name of the nib that backs this view.
  */
 + (NSString *)nibName;
+
+/*!
+ @abstract Returns the bundle containing the nib that backs this view.
+ @discussion This method is used to get the appropriate bundle in +nib. The base implementation
+     returns the bundle for the receiver's class. Override this method to look in a different bundle.
+ @result The bundle containing the nib that backs this view.
+ */
++ (NSBundle *)nibBundle;
 
 /*!
  @abstract Indicates that objects in the backing nib have been instantiated and the content view
