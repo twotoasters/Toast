@@ -74,8 +74,8 @@
 /*!
  @abstract Returns a UINib instance for the nib that backs this view.
  @discussion The base implementation of this method returns the nib whose name is the the return
-     value of +[self nibName] in the main bundle. Override this method if you need to look in a
-     nib in a different bundle. Override +nibName to specify the name of the nib to load.
+     value of +[self nibName] in the bundle for the receiver's class. Override +nibName to specify 
+     the name of the nib to load.
  @result A UINib instance for the nib that backs this view.
  */
 + (UINib *)nib;

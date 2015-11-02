@@ -70,7 +70,7 @@
 
 + (UINib *)nib
 {
-    return [UINib nibWithNibName:[self nibName] bundle:nil];
+    return [UINib nibWithNibName:[self nibName] bundle:[NSBundle bundleForClass:[self class]]];
 }
 
 
