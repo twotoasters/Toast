@@ -42,6 +42,12 @@ A subspec for Foundation-level classes and categories.
   and NSSet for block based enumeration. These methods include functionality for `Collect`,
   `Inject`, `Detect`, `Reject`, `Flatten`, and `Select`.
 
+##### Concurrent Accessor
+
+* **`TWTConcurrentAccessor`** provides a mechanism for efficiently accessing an object across 
+  multiple threads. Internally, it uses Dispatch Barriers to allow multiple simultaneous readers
+  and one writer, though this complexity is hidden behind a simple interface.
+
 ##### Date Range
 
 `pod TWTToast/Foundation/DateRange`
