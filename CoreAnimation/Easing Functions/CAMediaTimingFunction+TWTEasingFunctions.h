@@ -27,6 +27,8 @@
 #import <QuartzCore/QuartzCore.h>
 
 
+NS_ASSUME_NONNULL_BEGIN
+
 /*!
  The TWTEasingFunctions category of CAMediaTimingFunctions adds numerous convenience factory methods
  for creating common easing timing functions.
@@ -204,3 +206,5 @@
 + (instancetype)twt_backEaseInOutFunction;
 
 @end
+
+NS_ASSUME_NONNULL_END

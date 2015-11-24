@@ -27,6 +27,8 @@
 #import <Foundation/Foundation.h>
 
 
+NS_ASSUME_NONNULL_BEGIN
+
 /*!
  TWTDateRanges model ranges of dates. They are useful for determining whether a date falls between
  two other dates. Date ranges are closed; that is, they include both their start and end dates.
@@ -69,7 +71,7 @@
  @result Whether the specified date is between the receiver’s start and end dates. Returns NO if the date parameter is 
      nil.
  */
-- (BOOL)containsDate:(NSDate *)date;
+- (BOOL)containsDate:(nullable NSDate *)date;
 
 
 /*!
@@ -80,7 +82,7 @@
  @result Whether the specified date range lies completely within between the receiver’s start and end dates. Returns NO
      if the date range parameter is nil.
  */
-- (BOOL)containsDateRange:(TWTDateRange *)dateRange;
+- (BOOL)containsDateRange:(nullable TWTDateRange *)dateRange;
 
 
 /*!
@@ -90,6 +92,8 @@
  @param date The date range with which to find the intersection.
  @result The intersection of the specified date range and the receiver, or nil if the intersection is empty.
  */
-- (TWTDateRange *)intersectionWithDateRange:(TWTDateRange *)dateRange;
+- (TWTDateRange *)intersectionWithDateRange:(nullable TWTDateRange *)dateRange;
 
 @end
+
+NS_ASSUME_NONNULL_END

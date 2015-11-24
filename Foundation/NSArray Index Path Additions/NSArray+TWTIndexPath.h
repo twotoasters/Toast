@@ -35,13 +35,13 @@
  @param indexPath the index path used to look up the object. All intermediate objects must be also arrays.
  @return the object found at the index path or nil if the index path is nil or has 0 length
  */
-- (id)twt_objectAtIndexPath:(NSIndexPath *)indexPath;
+- (nullable id)twt_objectAtIndexPath:(NSIndexPath * _Nullable)indexPath;
 
 /*!
  @abstract finds the first occurrence of object by performing a breadth-first search and returns the corresponding index path
  @param object the object to find
  @return the index path of the first occurrence of object or nil if the object can't be found
  */
-- (NSIndexPath *)twt_indexPathOfObject:(id)object;
+- (nullable NSIndexPath *)twt_indexPathOfObject:(id _Nullable)object;
 
 @end

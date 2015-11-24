@@ -26,6 +26,9 @@
 
 #import <Foundation/Foundation.h>
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 #pragma mark Block Types
 
 /*!
@@ -34,7 +37,7 @@
  @param element The element being enumerated.
  @result An object.
  */
-typedef id (^TWTBlockEnumerationCollectBlock)(id element);
+typedef id _Nullable (^TWTBlockEnumerationCollectBlock)(id element);
 
 /*!
  @abstract Type for blocks that are given an object and return an object with which to group the parameter.
@@ -42,7 +45,7 @@ typedef id (^TWTBlockEnumerationCollectBlock)(id element);
  @param element The element being enumerated.
  @result An object that represents the group in which the element belongs.
  */
-typedef id<NSCopying> (^TWTBlockEnumerationGroupBlock)(id element);
+typedef id<NSCopying> _Nullable (^TWTBlockEnumerationGroupBlock)(id element);
 
 /*!
  @abstract Type for blocks that when given an element return a BOOL.
@@ -60,7 +63,7 @@ typedef BOOL (^TWTBlockEnumerationPredicateBlock)(id element);
  @param element The element being enumerated.
  @result A new object representing the element's value injected into the total.
  */
-typedef id (^TWTBlockEnumerationInjectBlock)(id memo, id element);
+typedef id _Nullable (^TWTBlockEnumerationInjectBlock)(id memo, id element);
 
 /*! 
  @abstract Protocol that exposes block enumeration methods.
@@ -76,7 +79,7 @@ typedef id (^TWTBlockEnumerationInjectBlock)(id memo, id element);
     method will return [1, 4, 9]. If the result of the block is nil, that element in the resulting
     collection will be the NSNull instance. If the collection is a dictionary the item passed to
     the block is the key.
- @param block The block to invoke against each element of the collection.
+ @param block The block to invoke against each element of the collection. May not be nil.
  @result A new instance of the collection with the results of invoking the block on each element of
     the original collection.
  */
@@ -100,10 +103,10 @@ typedef id (^TWTBlockEnumerationInjectBlock)(id memo, id element);
  @abstract Passes each entry in the collection to the block and returns the first item for which the 
     block returns YES.
  @discussion If the collection is a dictionary the item passed to the block is the key.
- @param block Predicate block to apply to each item in the collection.
+ @param block Predicate block to apply to each item in the collection. May not be nil.
  @result The first item for which the block returns YES. If no item returns YES, this will return nil.
  */
-- (id)twt_detectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
+- (nullable id)twt_detectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
 
 /*!
  @abstract Returns a dictionary that groups elements in the collection by the values returned by the block.
@@ -113,7 +116,7 @@ typedef id (^TWTBlockEnumerationInjectBlock)(id memo, id element);
      passed to the block is the key. The values in the resulting dictionary are the type of the receiver except
      when the receiver is an NSEnumerator, in which case it is an array. If the receiver is an ordered collection,
      the elements in each resulting group will maintain the same relative order as in the receiver.
- @param block Block that returns the group key that should be used for a given collection element.
+ @param block Block that returns the group key that should be used for a given collection element. May not be nil.
  @result A dictionary whose keys are the return values of the block and whose values are collections of elements
      for which the block returned that value.
  */
@@ -129,16 +132,16 @@ typedef id (^TWTBlockEnumerationInjectBlock)(id memo, id element);
     the returned value will be the result of (0 + 1) then (1 + 2) then (3 + 3) or 6. If the collection
     is a dictionary the item passed to the block is the key.
  @param initialObject The initial object to pass as a memo to the first iteration of the collection.
- @param block An inject block that is performed on each element of the collection.
+ @param block An inject block that is performed on each element of the collection. May not be nil.
  @result The final returned value from the last iteration of the collection.
  */
-- (id)twt_injectWithInitialObject:(id)initialObject block:(TWTBlockEnumerationInjectBlock)block;
+- (nullable id)twt_injectWithInitialObject:(nullable id)initialObject block:(TWTBlockEnumerationInjectBlock)block;
 
 /*!
  @abstract Passes each item in the collection to the block and returns a new collection with the items
     that returned YES from the block removed.
  @discussion If the collection is a dictionary the item passed to the block is the key.
- @param block Predicate block to test items in the collection.
+ @param block Predicate block to test items in the collection. May not be nil.
  @result A new instance of a collection with the items that were not rejected.
  */
 - (id)twt_rejectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
@@ -147,7 +150,7 @@ typedef id (^TWTBlockEnumerationInjectBlock)(id memo, id element);
  @abstract Passes each item in the collection to the block and returns a new collection with the items
     for which the block returned YES.
  @discussion If the collection is a dictionary the item passed to the block is the key.
- @param block Predicate block to test items in the collection.
+ @param block Predicate block to test items in the collection. May not be nil.
  @result A new array with the items that were selected.
  */
 - (id)twt_selectWithBlock:(TWTBlockEnumerationPredicateBlock)block;
@@ -171,3 +174,5 @@ typedef id (^TWTBlockEnumerationInjectBlock)(id memo, id element);
 
 @interface NSSet (TWTBlockEnumeration) <TWTBlockEnumeration>
 @end
+
+NS_ASSUME_NONNULL_END
