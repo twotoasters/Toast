@@ -27,7 +27,7 @@
 #import "TWTConcurrentAccessor.h"
 
 
-@interface ConcurrentAccessor ()
+@interface TWTConcurrentAccessor ()
 
 @property (nonatomic, strong, readonly) id object;
 @property (nonatomic, strong, readonly) dispatch_queue_t queue;
@@ -35,7 +35,7 @@
 @end
 
 
-@implementation ConcurrentAccessor
+@implementation TWTConcurrentAccessor
 
 - (instancetype)initWithObject:(id)object
 {
@@ -48,6 +48,16 @@
         _queue = dispatch_queue_create([queueName UTF8String], DISPATCH_QUEUE_CONCURRENT);
     }
     return self;
+}
+
+
+- (NSString *)description
+{
+    NSString *objectDescription = [self performReadAndReturn:^id _Nullable(id  _Nonnull object) {
+        return [self.object description];
+    }];
+
+    return [NSString stringWithFormat:@"<%@: %p queue=%s object=%@>", self.class, self, dispatch_queue_get_label(self.queue), objectDescription];
 }
 
 

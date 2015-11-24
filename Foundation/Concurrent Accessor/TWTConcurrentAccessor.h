@@ -30,54 +30,55 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /*!
- ConcurrentAccessor instances provide a convenient wrapper for safely accessing an object from multiple threads.
+ TWTConcurrentAccessor instances provide a convenient wrapper for safely accessing an object from multiple threads.
  Internally, it uses the Dispatch Barrier API to allow for multiple simultaneous readers while allowing only a single
  writer. Thankfully, this complexity is hidden behind a simple interface.
 
- ConcurrentAccessors are appropriate to use whenever an object can be safely read from multiple threads simultaneously,
+ TWTConcurrentAccessors are appropriate to use whenever an object can be safely read from multiple threads simultaneously,
  but should only be written to from one thread at a time, and even then only when no reads are occurring. For example,
- you might use a ConcurrentAccessor to manage a mutable dictionary that needs to be updated from multiple threads:
+ you might use a TWTConcurrentAccessor to manage a mutable dictionary that needs to be updated from multiple threads:
 
      NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init]; 
-     ConcurrentAccessor<NSMutableDictionary *> *accessor = [[ConcurrentAccessor alloc] initWithObject:dictionary];
+     TWTConcurrentAccessor<NSMutableDictionary *> *accessor = [[TWTConcurrentAccessor alloc] initWithObject:dictionary];
 
  To perform reads, you can use the ‑performRead: and ‑performReadAndReturn: methods.
     
      NSString *name = [accessor performReadAndReturn:^(NSMutableDictionary *dictionary) {
-        return dictionary[@"name"];
+         return dictionary[@"name"];
      }];
  
- If you need to read multiple values in one ‑performRead: or would prefer to use a  you must use block variables. 
+ If you need to read multiple values in one ‑performRead: or would prefer to read primitive types, you must use block
+ variables.
  
      __block NSString *name = nil;
      __block NSUInteger age = 0;
      [accessor performRead:^(NSMutableDictionary *dictionary) {
-        name = dictionary[@"name"];
-        age = [dictionary[@"age"] unsignedIntegerValue];
-    }];
+         name = dictionary[@"name"];
+         age = [dictionary[@"age"] unsignedIntegerValue];
+     }];
  
  Reads are inherently synchronous, but you can safely read from several threads at once. Writes, on the other hand,
- are inherently asynchronous, and the implementation of ConcurrentAccessor prevents a write from occurring at the 
+ are inherently asynchronous, and the implementation of TWTConcurrentAccessor prevents a write from occurring at the
  same time as another read or write.
  
      NSString *newName = [name stringByAppendingString:@" modified"];
      [accessor performWrite:^(NSMutableDictionary *dictionary) {
-        dictionary[@"name"] = newName;
+         dictionary[@"name"] = newName;
      }];
 
  If you want to wait for a write to complete before moving on to subsequent lines, you can do so using 
  ‑performWriteAndWait:.
  */
-@interface ConcurrentAccessor<ObjectType> : NSObject
+@interface TWTConcurrentAccessor<ObjectType> : NSObject
 
 /*! Do not use this method. Use ‑initWithObject: instead. */
 - (instancetype)init NS_UNAVAILABLE;
 
 /*!
- @abstract Initializes a newly created ConcurrentAccessor instance that controls concurrent access to the specified
+ @abstract Initializes a newly created TWTConcurrentAccessor instance that controls concurrent access to the specified
      object.
  @param object The object that the instance will control concurrent access to.
- @result An initialized ConcurrentAccessor instance with the specified object.
+ @result An initialized TWTConcurrentAccessor instance with the specified object.
  */
 - (instancetype)initWithObject:(ObjectType)object;
 
