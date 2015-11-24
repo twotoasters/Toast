@@ -57,7 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
          age = [dictionary[@"age"] unsignedIntegerValue];
      }];
  
- Reads are inherently synchronous, but you can safely read from several threads at once. Writes, on the other hand,
+ Reads are inherently synchronous, and you can safely read from several threads at once. Writes, on the other hand,
  are inherently asynchronous, and the implementation of TWTConcurrentAccessor prevents a write from occurring at the
  same time as another read or write.
  
