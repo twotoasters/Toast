@@ -44,6 +44,8 @@ A subspec for Foundation-level classes and categories.
 
 ##### Concurrent Accessor
 
+`pod TWTToast/Foundation/ConcurrentAccessor`
+
 * **`TWTConcurrentAccessor`** provides a mechanism for efficiently accessing an object across 
   multiple threads. Internally, it uses Dispatch Barriers to allow multiple simultaneous readers
   and one writer, though this complexity is hidden behind a simple interface.
