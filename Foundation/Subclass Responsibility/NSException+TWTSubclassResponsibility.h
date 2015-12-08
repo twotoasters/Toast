@@ -39,7 +39,7 @@
  @param selector The selector to which the receiver will be responding. This is typically _cmd.
  @result A new NSInternalInconsistencyException
  */
-+ (nullable instancetype)twt_subclassResponsibilityExceptionWithReceiver:(id _Nullable)receiver selector:(SEL _Nullable)selector;
++ (nullable instancetype)twt_subclassResponsibilityExceptionWithReceiver:(id _Nonnull)receiver selector:(SEL _Nonnull)selector;
 
 @end
 

@@ -41,7 +41,7 @@
  @param selector The selector to which the receiver will be responding.
  @result A pretty-printed NSString representation of the selector.
  */
-extern NSString * _Nonnull TWTPrettySelector(id _Nullable receiver, SEL _Nullable selector);
+extern NSString * _Nonnull TWTPrettySelector(id _Nonnull receiver, SEL _Nonnull selector);
 
 /*!
  @abstract Returns an NSString representation of the selector.
@@ -51,7 +51,7 @@ extern NSString * _Nonnull TWTPrettySelector(id _Nullable receiver, SEL _Nullabl
  @param selector The selector to which the receiver will be responding.
  @result A pretty-printed NSString representation of the method name, including the receiving class.
  */
-extern NSString * _Nonnull TWTPrettyMethodName(id _Nullable receiver, SEL _Nullable selector);
+extern NSString * _Nonnull TWTPrettyMethodName(id _Nonnull receiver, SEL _Nonnull selector);
 
 /*!
  @abstract Returns an NSString that is formatted suitably for use as an exception message.
@@ -61,4 +61,4 @@ extern NSString * _Nonnull TWTPrettyMethodName(id _Nullable receiver, SEL _Nulla
  @param format A format string describing the reason for the exception.
  @result An NSString formatted suitable for use as an exception message.
  */
-extern NSString * _Nonnull TWTExceptionString(id _Nullable receiver, SEL _Nullable selector, NSString * _Nonnull format, ...) NS_FORMAT_FUNCTION(3, 4);
+extern NSString * _Nonnull TWTExceptionString(id _Nonnull receiver, SEL _Nonnull selector, NSString * _Nonnull format, ...) NS_FORMAT_FUNCTION(3, 4);

@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, getter = isExpanded) BOOL expanded;
 @property (nonatomic, copy, null_resettable) NSArray<TWTTreeNode *> *children;
 
-@property (nonatomic, readonly, weak, nullable) TWTTreeNode *parent;
+@property (nonatomic, readonly, weak) TWTTreeNode *parent;
 @property (nonatomic, readonly, strong, nullable) NSIndexPath *indexPath;
 
 - (NSUInteger)depth;

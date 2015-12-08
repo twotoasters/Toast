@@ -53,10 +53,10 @@ typedef void(^TWTKeyValueObserverChangeBlock)(id _Nullable observedObject, NSDic
  @param options Options to use for observations
  @param changeBlock A block to invoke when the observation occurs
  */
-+ (instancetype)observerWithObject:(id _Nullable)object
++ (instancetype)observerWithObject:(id)object
                            keyPath:(NSString *)keyPath
                            options:(NSKeyValueObservingOptions)options
-                       changeBlock:(TWTKeyValueObserverChangeBlock _Nullable)changeBlock;
+                       changeBlock:(TWTKeyValueObserverChangeBlock)changeBlock;
 
 /*! 
  @abstract Create and return an observer object that can be stored and released as needed
@@ -67,7 +67,7 @@ typedef void(^TWTKeyValueObserverChangeBlock)(id _Nullable observedObject, NSDic
  @param target An object to notify of changes.
  @param action A selector to call on the target object to notify of changes. 
  */
-+ (instancetype)observerWithObject:(id _Nullable)object
++ (instancetype)observerWithObject:(id)object
                            keyPath:(NSString *)keyPath
                            options:(NSKeyValueObservingOptions)options
                             target:(id _Nullable)target
@@ -81,11 +81,11 @@ typedef void(^TWTKeyValueObserverChangeBlock)(id _Nullable observedObject, NSDic
  @param startObserving Specify whether this should start the observer on creation
  @param changeBlock A block to invoke when the observation occurs
  */
-+ (instancetype)observerWithObject:(id _Nullable)object
++ (instancetype)observerWithObject:(id)object
                            keyPath:(NSString *)keyPath
                            options:(NSKeyValueObservingOptions)options
                     startObserving:(BOOL)startObserving
-                       changeBlock:(TWTKeyValueObserverChangeBlock _Nullable)changeBlock;
+                       changeBlock:(TWTKeyValueObserverChangeBlock)changeBlock;
 
 /*! 
  @abstract Create and return an observer object that can be stored and released as needed
@@ -96,7 +96,7 @@ typedef void(^TWTKeyValueObserverChangeBlock)(id _Nullable observedObject, NSDic
  @param target An object to notify of changes.
  @param action A selector to call on the target object to notify of changes. 
  */
-+ (instancetype)observerWithObject:(id _Nullable)object
++ (instancetype)observerWithObject:(id)object
                            keyPath:(NSString *)keyPath
                            options:(NSKeyValueObservingOptions)options
                     startObserving:(BOOL)startObserving
@@ -111,10 +111,10 @@ typedef void(^TWTKeyValueObserverChangeBlock)(id _Nullable observedObject, NSDic
  @param options Options to use for observations
  @param changeBlock A block to invoke when the observation occurs
  */
-- (instancetype)initWithObject:(id _Nullable)object
+- (instancetype)initWithObject:(id)object
                        keyPath:(NSString *)keyPath
                        options:(NSKeyValueObservingOptions)options
-                   changeBlock:(TWTKeyValueObserverChangeBlock _Nullable)changeBlock;
+                   changeBlock:(TWTKeyValueObserverChangeBlock)changeBlock;
 
 /*! 
  @abstract Create an observer object that can be stored and released as needed
@@ -124,7 +124,7 @@ typedef void(^TWTKeyValueObserverChangeBlock)(id _Nullable observedObject, NSDic
  @param target An object to notify of changes.
  @param action A selector to call on the target object to notify of changes. 
  */
-- (instancetype)initWithObject:(id _Nullable)object
+- (instancetype)initWithObject:(id)object
                        keyPath:(NSString *)keyPath
                        options:(NSKeyValueObservingOptions)options
                         target:(id _Nullable)target
@@ -139,11 +139,11 @@ typedef void(^TWTKeyValueObserverChangeBlock)(id _Nullable observedObject, NSDic
  @param startObserving Specify whether this should start the observer on creation
  @param changeBlock A block to invoke when the observation occurs
  */
-- (instancetype)initWithObject:(id _Nullable)object
+- (instancetype)initWithObject:(id)object
                        keyPath:(NSString *)keyPath
                        options:(NSKeyValueObservingOptions)options
                 startObserving:(BOOL)startObserving
-                   changeBlock:(TWTKeyValueObserverChangeBlock _Nullable)changeBlock;
+                   changeBlock:(TWTKeyValueObserverChangeBlock)changeBlock;
 
 /*! 
  @abstract Create an observer object that can be stored and released as needed
@@ -154,7 +154,7 @@ typedef void(^TWTKeyValueObserverChangeBlock)(id _Nullable observedObject, NSDic
  @param target An object to notify of changes.
  @param action A selector to call on the target object to notify of changes. 
  */
-- (instancetype)initWithObject:(id _Nullable)object
+- (instancetype)initWithObject:(id)object
                        keyPath:(NSString *)keyPath
                        options:(NSKeyValueObservingOptions)options
                 startObserving:(BOOL)startObserving
