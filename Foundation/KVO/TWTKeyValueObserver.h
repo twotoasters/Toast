@@ -70,7 +70,7 @@ typedef void(^TWTKeyValueObserverChangeBlock)(id _Nullable observedObject, NSDic
 + (instancetype)observerWithObject:(id)object
                            keyPath:(NSString *)keyPath
                            options:(NSKeyValueObservingOptions)options
-                            target:(id _Nullable)target
+                            target:(id)target
                             action:(SEL)action;
 
 /*! 
@@ -100,7 +100,7 @@ typedef void(^TWTKeyValueObserverChangeBlock)(id _Nullable observedObject, NSDic
                            keyPath:(NSString *)keyPath
                            options:(NSKeyValueObservingOptions)options
                     startObserving:(BOOL)startObserving
-                            target:(id _Nullable)target
+                            target:(id)target
                             action:(SEL)action;
 
 /*! 
@@ -127,7 +127,7 @@ typedef void(^TWTKeyValueObserverChangeBlock)(id _Nullable observedObject, NSDic
 - (instancetype)initWithObject:(id)object
                        keyPath:(NSString *)keyPath
                        options:(NSKeyValueObservingOptions)options
-                        target:(id _Nullable)target
+                        target:(id)target
                         action:(SEL)action;
 
 /*! 
@@ -158,7 +158,7 @@ typedef void(^TWTKeyValueObserverChangeBlock)(id _Nullable observedObject, NSDic
                        keyPath:(NSString *)keyPath
                        options:(NSKeyValueObservingOptions)options
                 startObserving:(BOOL)startObserving
-                        target:(id _Nullable)target
+                        target:(id)target
                         action:(SEL)action;
 
 /*!
