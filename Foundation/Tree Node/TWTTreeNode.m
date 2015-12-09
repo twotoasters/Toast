@@ -37,6 +37,15 @@
 
 #pragma mark - Helpers
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _children = @[ ];
+    }
+    return self;
+}
+
 - (void)invalidateIndexPath
 {
     self.indexPath = nil;
@@ -55,6 +64,10 @@
 
 - (void)setChildren:(NSArray *)children
 {
+    if (!children) {
+        children = @[ ];
+    }
+    
     for (TWTTreeNode *child in _children) {
         child.parent = nil;
     }

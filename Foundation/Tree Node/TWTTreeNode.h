@@ -26,17 +26,22 @@
 
 #import <Foundation/Foundation.h>
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface TWTTreeNode : NSObject
 
-@property (nonatomic, strong) id item;
+@property (nonatomic, strong, nullable) id item;
 @property (nonatomic, assign, getter = isExpanded) BOOL expanded;
-@property (nonatomic, copy) NSArray *children; // TWTTreeNode
+@property (nonatomic, copy, null_resettable) NSArray<TWTTreeNode *> *children;
 
 @property (nonatomic, readonly, weak) TWTTreeNode *parent;
-@property (nonatomic, readonly, strong) NSIndexPath *indexPath;
+@property (nonatomic, readonly, strong, nullable) NSIndexPath *indexPath;
 
 - (NSUInteger)depth;
-- (instancetype)nodeAtIndexPath:(NSIndexPath *)indexPath; // Use from the root node.
-- (BOOL)hasAncestor:(TWTTreeNode *)ancestor;
+- (instancetype)nodeAtIndexPath:(NSIndexPath * _Nullable)indexPath; // Use from the root node.
+- (BOOL)hasAncestor:(TWTTreeNode * _Nullable)ancestor;
 
 @end
+
+NS_ASSUME_NONNULL_END

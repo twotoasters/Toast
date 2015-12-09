@@ -28,7 +28,11 @@
 
 @class TWTAsynchronousOperation;
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 typedef void (^TWTAsynchronousOperationBlock)(TWTAsynchronousOperation *operation);
+
 
 @interface TWTAsynchronousOperation : NSOperation
 
@@ -47,7 +51,7 @@ typedef void (^TWTAsynchronousOperationBlock)(TWTAsynchronousOperation *operatio
  `-[TWTAsynchronousOperation isCancelled]` flag, and properly abort the execution of its asynchronous task, followed
  by an invocation of `-[TWTAsynchronousOperation finishOperationExecution]` to mark the operation is finished.
  */
-- (id)initWithOperationBlock:(TWTAsynchronousOperationBlock)operationBlock;
+- (id)initWithOperationBlock:(nullable TWTAsynchronousOperationBlock)operationBlock;
 
 /**
  @abstract Set the block to be executed by the operation.
@@ -58,7 +62,7 @@ typedef void (^TWTAsynchronousOperationBlock)(TWTAsynchronousOperation *operatio
  invoking `-[TWTAsynchronousOperation finishOperationExecution]`. The block should make no assumptions about its 
  execution environment.
  */
-- (void)setOperationBlock:(TWTAsynchronousOperationBlock)operationBlock;
+- (void)setOperationBlock:(nullable TWTAsynchronousOperationBlock)operationBlock;
 
 /**
  @abstract Tells the operation that it has ended execution and should enter the finished state.
@@ -71,3 +75,5 @@ typedef void (^TWTAsynchronousOperationBlock)(TWTAsynchronousOperation *operatio
 - (void)finishOperationExecution;
 
 @end
+
+NS_ASSUME_NONNULL_END

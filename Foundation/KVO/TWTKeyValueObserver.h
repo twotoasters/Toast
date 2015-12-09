@@ -26,7 +26,10 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^TWTKeyValueObserverChangeBlock)(id observedObject, NSDictionary *changeDictionary);
+
+NS_ASSUME_NONNULL_BEGIN
+
+typedef void(^TWTKeyValueObserverChangeBlock)(id _Nullable observedObject, NSDictionary * _Nullable changeDictionary);
 
 /*!
  @abstract An opaque observer object that manages KVO against a single object
@@ -38,7 +41,7 @@ typedef void(^TWTKeyValueObserverChangeBlock)(id observedObject, NSDictionary *c
  */
 @interface TWTKeyValueObserver : NSObject
 
-@property (nonatomic, weak, readonly) id object;
+@property (nonatomic, weak, readonly, nullable) id object;
 @property (nonatomic, copy, readonly) NSString *keyPath;
 @property (nonatomic, assign, getter = isObserving, readonly) BOOL observing;
 
@@ -169,3 +172,5 @@ typedef void(^TWTKeyValueObserverChangeBlock)(id observedObject, NSDictionary *c
 - (void)stopObserving;
 
 @end
+
+NS_ASSUME_NONNULL_END
