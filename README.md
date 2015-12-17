@@ -203,6 +203,14 @@ A subspec containing various Mantle extensions used by Two Toasters.
 * **`TWTSelectiveJSONAdapter`** extends `MTLJSONAdapter` to serialize only a subset of a model
   object’s property keys.
 
+### Owners
+
+@jnjosh, @prachigauriar, @macdrevx, and @dfowj currently act as the owners of Toast. Mention us in issues or pull requests for questions
+about features, project direction, or to request code review.
+
+Typically, a pull request should receive a code review and a :+1: from at least 2 project owners before being merged.
+In cases where a pull request review needs to be expedited a single :+1: from an owner will suffice, though this should 
+be the exception, not the rule.
 
 ### Credits
 
