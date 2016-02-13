@@ -207,7 +207,7 @@ A subspec containing various Mantle extensions used by Two Toasters.
 ### Credits
 
 TWTToast was created by developers at Two Toasters(@twotoasters) in order to collect our reusable
-code into one common repository, easily accessible via Cocoapods subspecs.
+code into one common repository, easily accessible via CocoaPods subspecs.
 
 ### License
 
