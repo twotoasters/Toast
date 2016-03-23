@@ -215,7 +215,7 @@ be the exception, not the rule.
 ### Credits
 
 TWTToast was created by developers at Two Toasters(@twotoasters) in order to collect our reusable
-code into one common repository, easily accessible via Cocoapods subspecs.
+code into one common repository, easily accessible via CocoaPods subspecs.
 
 ### License
 
