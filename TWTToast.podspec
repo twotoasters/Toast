@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "TWTToast"
-  s.version          = "0.17"
+  s.version          = "0.18"
   s.summary          = "Tools and Utilities for Cocoa Development"
   s.homepage         = "https://github.com/twotoasters/Toast"
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -23,12 +23,12 @@ Pod::Spec.new do |s|
   ## Subspec for files related to Foundation
   s.subspec 'Foundation' do |ss|
     ss.requires_arc = true
-    
+
     ss.subspec 'AsynchronousOperation' do |sss|
       sss.requires_arc = true
       sss.source_files = "Foundation/Asynchronous Operation/*.{h,m}"
     end
-    
+
     ss.subspec 'BlockEnumeration' do |sss|
       sss.requires_arc = true
       sss.source_files = "Foundation/Block Enumeration/*.{h,m}"
@@ -69,7 +69,7 @@ Pod::Spec.new do |s|
       sss.requires_arc = true
       sss.source_files = "Foundation/Tree Node/*.{h,m}"
     end
-  end  
+  end
 
   ## Subspec for files related to UIKit
   s.subspec 'UIKit' do |ss|
@@ -97,6 +97,11 @@ Pod::Spec.new do |s|
     ss.subspec 'Device' do |sss|
       sss.requires_arc = true
       sss.source_files = "UIKit/Device/*.{h,m}"
+    end
+
+    ss.subspec 'Gradient' do |sss|
+        sss.requires_arc = true
+        sss.source_files = "UIKit/Gradient/*.{h,m}"
     end
 
     ss.subspec 'NibBackedView' do |sss|
@@ -134,7 +139,7 @@ Pod::Spec.new do |s|
   s.subspec 'Mantle' do |ss|
     ss.requires_arc = true
     ss.dependency 'Mantle', '~> 1.4.0'
-    
+
     ss.subspec 'MantleModel' do |sss|
       sss.requires_arc = true
       sss.source_files = "Mantle/Mantle Model/*.{h,m}"

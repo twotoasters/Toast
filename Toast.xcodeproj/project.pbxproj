@@ -11,6 +11,7 @@
 		0A7A30FB1987F93D007EA571 /* TWTTextStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A30FA1987F93D007EA571 /* TWTTextStyle.m */; };
 		0A7A310419881056007EA571 /* TWTTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A310319881056007EA571 /* TWTTreeNode.m */; };
 		136DBCD0194B37050058F08B /* TWTAsynchronousOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 136DBCCF194B37050058F08B /* TWTAsynchronousOperation.m */; };
+		13D075151D12F353005E9177 /* TWTGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D075141D12F353005E9177 /* TWTGradient.m */; };
 		13D6A9261C04E630007463B9 /* TWTConcurrentAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D6A9251C04E630007463B9 /* TWTConcurrentAccessor.m */; };
 		38D001530B13452CBE5DDB73 /* libPods-ToastTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A07E2E64D14C2EA63FBE64 /* libPods-ToastTests.a */; };
 		4901313B18C5830500117218 /* TWTNavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4901313A18C5830500117218 /* TWTNavigationControllerDelegate.m */; };
@@ -77,6 +78,8 @@
 		0A7A310319881056007EA571 /* TWTTreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTTreeNode.m; sourceTree = "<group>"; };
 		136DBCCE194B37050058F08B /* TWTAsynchronousOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTAsynchronousOperation.h; sourceTree = "<group>"; };
 		136DBCCF194B37050058F08B /* TWTAsynchronousOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTAsynchronousOperation.m; sourceTree = "<group>"; };
+		13D075131D12F353005E9177 /* TWTGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTGradient.h; sourceTree = "<group>"; };
+		13D075141D12F353005E9177 /* TWTGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTGradient.m; sourceTree = "<group>"; };
 		13D6A9241C04E630007463B9 /* TWTConcurrentAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTConcurrentAccessor.h; sourceTree = "<group>"; };
 		13D6A9251C04E630007463B9 /* TWTConcurrentAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTConcurrentAccessor.m; sourceTree = "<group>"; };
 		22A07E2E64D14C2EA63FBE64 /* libPods-ToastTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ToastTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,6 +228,15 @@
 			path = "Asynchronous Operation";
 			sourceTree = "<group>";
 		};
+		13D075121D12F353005E9177 /* Gradient */ = {
+			isa = PBXGroup;
+			children = (
+				13D075131D12F353005E9177 /* TWTGradient.h */,
+				13D075141D12F353005E9177 /* TWTGradient.m */,
+			);
+			path = Gradient;
+			sourceTree = "<group>";
+		};
 		13D6A9231C04E611007463B9 /* Concurrent Accessor */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,6 +327,7 @@
 				A43C033B1884FEE0000F9753 /* Blocks */,
 				4C351FB7188495F4009AD246 /* Color */,
 				4C351FBA188495F4009AD246 /* Device */,
+				13D075121D12F353005E9177 /* Gradient */,
 				4C62E9B119F7D7D500BB8253 /* Nib-Backed View */,
 				498BEEE6192E8A7D00DA38C3 /* Prepare for Segue */,
 				4C73076B18CFC19100398573 /* Snapshot Image */,
@@ -812,6 +825,7 @@
 				498BEEE9192E8A9B00DA38C3 /* UIViewController+TWTPrepareForSegue.m in Sources */,
 				496FBFF2193F525E0043F116 /* TWTModelClassDeserialization.m in Sources */,
 				4901314118C61D4600117218 /* TWTCustomTransitionsSampleViewController.m in Sources */,
+				13D075151D12F353005E9177 /* TWTGradient.m in Sources */,
 				0A7A310419881056007EA571 /* TWTTreeNode.m in Sources */,
 				A4D633E31883914600DA51CB /* TWTAppDelegate.m in Sources */,
 				4901313B18C5830500117218 /* TWTNavigationControllerDelegate.m in Sources */,
