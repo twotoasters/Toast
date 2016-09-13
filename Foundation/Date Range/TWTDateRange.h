@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
      this date is before the start date.
  @result An initialized date range instance with the specified start and end dates.
  */
-- (instancetype)initWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithStartDate:(nullable NSDate *)startDate endDate:(nullable NSDate *)endDate NS_DESIGNATED_INITIALIZER;
 
 
 /*!

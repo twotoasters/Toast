@@ -27,6 +27,8 @@
 #import <UIKit/UIKit.h>
 
 
+NS_ASSUME_NONNULL_BEGIN
+
 /*!
  The TWTNibBacking protocol simply declares the +nib message. This allows users of a class to easily
  get the nib that backs it. This is useful when doing things like, e.g., registering a nib for a
@@ -104,6 +106,8 @@
  @discussion The base implementation of this method does nothing. Subclasses should override this
      if they wish to perform some initialization after the nib has been loaded.
  */
-- (void)didInstantiateObjectsInBackingNib __attribute__((objc_requires_super));
+- (void)didInstantiateObjectsInBackingNib NS_REQUIRES_SUPER;
 
 @end
+
+NS_ASSUME_NONNULL_END
